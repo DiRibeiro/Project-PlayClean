@@ -47,10 +47,9 @@ textarea {
     background-color: transparent;
     border: none;
     display: block;
-    height: 50px;
     width: 80px;
     text-decoration: none;
-    margin: 4px 2px;
+    padding: 1em;
   }
 
   button:hover{

@@ -2,7 +2,7 @@ import Axios from 'axios'
 //import { toastr } from 'react-redux-toastr'
 
 const REPORTS_FETCHED = 'REPORTS_FETCHED'
-const BASE_URL = 'http://localhost:3001'
+const BASE_URL = 'http://localhost:8080'
 
 export const getReports = () => {
     return dispatch => {
