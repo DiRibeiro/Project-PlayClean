@@ -67,3 +67,11 @@ textarea {
       text-decoration: line-through;
       color: #777;
   }
+
+  .btn-edit{
+      float: right;
+  }
+
+  .btn-view{
+    float: right;
+  }

@@ -29,12 +29,11 @@ export default props => (
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
                     amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
                     </textarea>
-
+                    <div className="box-footer">
+                        <button type="submit" className="btn btn-primary btn-edit">Editar</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div className="box-footer">
-            <button type="submit" className="btn btn-primary">Editar</button>
         </div>
     </div>
 )

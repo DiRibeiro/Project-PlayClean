@@ -28,7 +28,7 @@ class RowReport extends Component {
                         <p>asdas{ this.props.description }</p>
                     </div>
                     <a href="seeMoreReport">
-                        <button className="btn btn-primary" href="seeMoreReport">Ver mais</button>
+                        <button className="btn btn-primary btn-view" href="seeMoreReport">Ver mais</button>
                         { statusDom }
                     </a>
                 </div>

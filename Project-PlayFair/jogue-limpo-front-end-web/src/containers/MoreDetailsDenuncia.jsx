@@ -59,11 +59,11 @@ const MoreDetailsDenuncia = props => (
                     <td>
                         <IconButton style="primary" icon="eye" hide={ListReport.done} onClick={props.handleRefresh}>
                                 </IconButton>
-                        <IconButton style="danger" icon="refresh" hide={!ListReport.done} onClick={props.handleRefresh}>
+                        <IconButton style="danger" icon="refresh" /* hide={!ListReport.done} */ onClick={props.handleRefresh}>
                                 </IconButton>
-                        <IconButton style="warning" icon="hourglass" hide={!ListReport.done} onClick={props.handleMarkAsPending}>
+                        <IconButton style="warning" icon="hourglass" /* hide={!ListReport.done} */ onClick={props.handleMarkAsPending}>
                                 </IconButton>
-                        <IconButton style="success" icon="check" hide={!ListReport.done} onClick={props.handleMarkAsDone}>
+                        <IconButton style="success" icon="check" /* hide={!ListReport.done} */ onClick={props.handleMarkAsDone}>
                                 </IconButton>
                     </td>
                 </tr>

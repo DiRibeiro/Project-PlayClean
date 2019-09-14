@@ -7,9 +7,8 @@ const IMAGES =
         src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
         thumbnail: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
         thumbnailWidth: 320,
-        thumbnailHeight: 174,
-        isSelected: true,
-        caption: "After Rain (Jeshu John - designerspics.com)"
+        thumbnailHeight: 212,
+        caption: ""
 },
 {
         src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
@@ -17,7 +16,7 @@ const IMAGES =
         thumbnailWidth: 320,
         thumbnailHeight: 212,
         tags: [{value: "Ocean", title: "Ocean"}, {value: "People", title: "People"}],
-        caption: "Boats (Jeshu John - designerspics.com)"
+        caption: ""
 },
 
 {
@@ -33,7 +32,6 @@ export default props => (
         <div className="col-md-6">
             <div className="form-group"> 
                 <input type="file" name="images" accept="image/png, image/jpeg"  multiple /> 
-                
             </div>
         </div>
         </div>
