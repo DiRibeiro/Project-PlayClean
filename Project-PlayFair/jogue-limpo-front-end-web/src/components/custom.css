@@ -1,0 +1,69 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+textarea {
+    resize: none;
+}
+
+.floatRight {
+    float: right;
+    margin: 0px 10px 10px 0px;
+}
+
+.seeMoreReport {
+    float: right;
+    margin: 22px 10px 0px 0px;
+    position: absolute;
+    right: 10px;
+    bottom: 10%;
+}
+
+#map {
+    margin-top: 2rem;
+}
+
+.main-header .logo {
+    -webkit-transition: width 0.3s ease-in-out;
+    -o-transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out;
+    display: block;
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 230px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 0 15px;
+    font-weight: 300;
+    overflow: hidden;
+    font-size: larger;
+  }
+
+  button{
+    -webkit-transition: width 0.3s ease-in-out;
+    -o-transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out;
+    background-color: transparent;
+    border: none;
+    display: block;
+    height: 50px;
+    width: 80px;
+    text-decoration: none;
+    margin: 4px 2px;
+  }
+
+  button:hover{
+      background-color: #008d4c;
+      color: #ffffff;
+  }
+
+  .logout{
+    float: right;
+    color: #ffffff;
+  }
+
+  .markedAsDone {
+      text-decoration: line-through;
+      color: #777;
+  }
