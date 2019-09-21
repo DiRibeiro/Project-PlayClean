@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import LineChart from '../widget/LineChart'
-import DoughnutChart from '../widget/DoughnutChart'
+import BarChart from '../widget/BarChart'
+import PolarChart from '../widget/PolarChart'
 
 import Bookmark from '../widget/Bookmark'
 import Map from '../widget/Map'
@@ -14,8 +14,8 @@ const DashboardContent = () => {
     const dispatch = useDispatch()
         
     const bookmark = useSelector(state => state.dashboard.bookmark)
-    const lineChart = useSelector(state => state.dashboard.lineChart)
-    const doughnutChart = useSelector(state => state.dashboard.doughnutChart)
+    const polarChart = useSelector(state => state.dashboard.polarChart)
+    const barChart = useSelector(state => state.dashboard.barChart)
     const map = useSelector(state => state.dashboard.map)
 
     function makeTheDateMakeSense(number) {
@@ -52,11 +52,11 @@ const DashboardContent = () => {
             />
             <div className="row">
                 <div className="col-12 col-md-7">
-                    <LineChart data={ lineChart.data } />
+                    <BarChart />
                 </div>
                 <div className="col-12 col-md-5">
                     <h4>Denúncias por bairro</h4>
-                    <DoughnutChart labels={ doughnutChart.labels } data={ doughnutChart.data } />
+                    <PolarChart />
                 </div>
             </div>
             <Map map={ map } />

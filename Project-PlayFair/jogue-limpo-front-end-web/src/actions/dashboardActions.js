@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8080'
+const BASE_URL = 'http://localhost:3003/api'
 const DASHBOARD_FETCHED = "DASHBOARD_FETCHED"
 /* Connection with server here. Now fake data is returned */
 

@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default props => (
-    <div className="box box-primary">
+    <div className="box box-success">
         <div className="box-body">
             <h2 className="box-title">Telefones úteis</h2>
             <div className="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1">

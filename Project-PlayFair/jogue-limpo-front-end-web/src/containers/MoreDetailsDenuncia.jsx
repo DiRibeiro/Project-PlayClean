@@ -4,7 +4,7 @@ import ListReport from './ListReport'
 
 const MoreDetailsDenuncia = props => (
     <>
-        <div className="box box-primary">
+        <div className="box box-success">
         <div className="box-body">
             <div className="row">
                 <div class="col-md-6">
@@ -39,20 +39,18 @@ const MoreDetailsDenuncia = props => (
                 </div>
                 <div class="col-md-5">
                     <h2 className="box-title">
-                    <b>Nome do solicitante:</b> </h2>
+                    <b>Nome do solicitante:</b> </h2> { props.values.name }
+                    <br />                     
+                    <b>Data da denúncia: </b> { props.values.date }
                     <br />
-                    <b>Data da denúncia: </b>
+                    <b>Tipo da denúncia: </b> { props.values.typeReport }
                     <br />
-                    <b>Tipo da denúncia: </b>
-                    <br />
-                    <b>Local da denúncia: </b> 
-                    <br />
-                    <b>Bairro: </b> 
+                    <b>Local da denúncia: </b> { props.values.adressOccured }
                     <br />
                     <br />
                     <b>Descrição:</b>
+                    { props.values.description }
                     <br />
-                    {props.description}
                 </div>
                 <tr  className="floatRigth" key={ListReport._id}>
                     <td className={ListReport.done ? 'markedAsDone' : ''}>{ListReport.description}</td>

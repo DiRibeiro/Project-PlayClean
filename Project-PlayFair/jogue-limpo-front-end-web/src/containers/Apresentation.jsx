@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default props => (
-    <div className="box box-primary">
+    <div className="box box-success">
         <div className="box-header with-border">
             <h3 className="box-title">Apresentação</h3>
         </div>

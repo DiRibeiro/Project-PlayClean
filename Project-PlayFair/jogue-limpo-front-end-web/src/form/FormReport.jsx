@@ -1,9 +1,9 @@
-import React from 'react'
+/* import React from 'react'
 import IconButton from '../templates/iconButton'
 import ListReport from '../containers/ListReport'
 
 const FormReport = props => (
-    <div className="box box-primary">
+    <div className="box box-success">
         <div className="box-header with-border">
             <h3 className="box-title">Verificar denúncias</h3>
         </div>
@@ -146,4 +146,60 @@ const FormReport = props => (
     </div>
 )
 
+export default FormReport */
+
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import ContentHeader from '../templates/contentHeader'
+import Content from '../templates/content'
+import Tabs from '../tab/tabs'
+import TabsHeader from '../tab/tabsHeader'
+import TabsContent from '../tab/tabsContent'
+import TabHeader from '../tab/tabHeader'
+import TabContent from '../tab/tabContent'
+import {selectTab, showTabs} from '../actions/tabActions'
+import FormList from '../form/FormList'
+import Form from '../form/Form'
+
+class FormReport extends Component {
+    /* componentWillMount(){
+        this.props.selectTab('tabList')
+        this.props.showTabs('tabList', 'tabCreate')
+    } */
+    render() {
+        return (
+            <div className="box box-success">
+                <ContentHeader title='Verificar denúncias'/>
+                <Content>
+                {/* <div className="box-header with-border"> */}
+                    {/* <h3 className="box-title">Verificar denúncias</h3> */}
+                    <Tabs>
+                        <TabsHeader>
+                            <TabHeader label=' Listar' icon='bars' target='tabList'/>
+                            <TabHeader label=' Incluir' icon='plus' target='tabCreate'/>
+                            <TabHeader label=' Andamento' icon='hourglass' target='tabUpdate'/>
+                            <TabHeader label=' Concluído' icon='check' target='tabComplete'/>
+                        </TabsHeader>
+                        <TabsContent>
+                            <TabContent id='tabList'>
+                                <FormList/>
+                            </TabContent>
+                            <TabContent id='tabCreate'>
+                                <Form/>
+                            </TabContent>
+                            <TabContent id='tabUpdate'><h1>Andamento</h1></TabContent>
+                            <TabContent id='tabComplete'><h1>Concluído</h1></TabContent>
+                        </TabsContent>
+                    </Tabs>
+                </Content>
+                {/* </div> */}
+            </div>
+            )
+    }
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs }, dispatch)
+/* export default connect(null, mapDispatchToProps)(FormReport) */
 export default FormReport

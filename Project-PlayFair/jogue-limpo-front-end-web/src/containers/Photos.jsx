@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { render } from 'react-dom';
 import Gallery from 'react-grid-gallery';
 
@@ -25,16 +25,18 @@ const IMAGES =
         thumbnailWidth: 320,
         thumbnailHeight: 212
 }]
+ 
 
 export default props => (
     <>
         <div className="row">
         <div className="col-md-6">
             <div className="form-group"> 
-                <input type="file" name="images" accept="image/png, image/jpeg"  multiple /> 
+                <Field action="upload" name="images" accept="image/png, image/jpeg"  enctype="multipart/form-data" /> 
+                <InputEvent type="file" name="file" id="file" />
             </div>
         </div>
         </div>
         <Gallery images={IMAGES}/>
     </>
-)
+)  */

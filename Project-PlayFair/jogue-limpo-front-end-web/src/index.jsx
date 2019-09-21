@@ -17,7 +17,7 @@ ReactDOM.render(
     <Provider store={ store } >
         <>
             <Routes />
-            <ReduxToastr
+            {/* <ReduxToastr
                 timeOut={ 3500 }
                 newestOnTop={ true }
                 preventDuplicates
@@ -25,7 +25,7 @@ ReactDOM.render(
                 transitionIn="fadeIn"
                 transitionOut="fadeOut"
                 progressBar
-                closeOnToastrClick />
+                closeOnToastrClick /> */}
         </>
     </Provider>
 , document.getElementById('root'));

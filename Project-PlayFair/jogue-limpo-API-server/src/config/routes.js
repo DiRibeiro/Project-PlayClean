@@ -6,6 +6,6 @@ module.exports = (server) => {
     server.use('/api', router)
 
     //Routes in Report
-    const report = require('../api/dbSchema/reportSchema')
-    report.register(router, '/reportSchemas')
+    const report = require('../api/services')
+    report.register(router, '/reports')
 }

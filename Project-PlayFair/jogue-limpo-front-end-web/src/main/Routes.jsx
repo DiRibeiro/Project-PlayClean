@@ -16,7 +16,7 @@ import ColetaSeletiva from '../containers/ColetaSeletiva'
 import ColetaOrganica from '../containers/ColetaOrganica'
 import Photos from '../containers/Photos'
 import Apresentation from '../containers/Apresentation'
-//import Calendar from '../containers/Calendar'
+import Calendar from '../containers/Calendar'
 
 import App from './App'
 
@@ -35,7 +35,7 @@ export default props => (
             <Route path='coletaSeletiva' component={ ColetaSeletiva} />
             <Route path='coletaOrganica' component={ ColetaOrganica} />
             <Route path='photos' component={ Photos} />
-            <Route /*path='/calendar' component={ Calendar} *//>
+            <Route path='/calendar' component={ Calendar} />
         </Route>
         <Redirect from='*' to='/' />
     </Router>

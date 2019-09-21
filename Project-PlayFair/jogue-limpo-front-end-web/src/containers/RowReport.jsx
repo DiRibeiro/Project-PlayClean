@@ -20,7 +20,7 @@ class RowReport extends Component {
                         </a>)
 
         return (
-            <div className="box box-primary">
+            <div className="box box-success">
                 <div className="box-body">
                     <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                         <h3 className="box-title">{ this.props.title }</h3>
