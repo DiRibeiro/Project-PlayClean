@@ -4,8 +4,10 @@ import { reduxForm, Field } from 'redux-form'
 class Form extends Component{
     
     render(){
+
+        const { handleSubmit } = this.props
         return(
-            <form role='form'>
+            <form role='form' onSubmit={handleSubmit}>
                 <div className='box-body'>
                     <Field name='name' component='input'/>
                     <Field name='typeReport' component='input'/>
@@ -19,4 +21,6 @@ class Form extends Component{
     }
 }
 
-export default reduxForm({form: 'From'})(Form)
+export default reduxForm({
+    form: 'Form'
+})(Form)

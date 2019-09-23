@@ -1,16 +1,19 @@
-import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { getList } from '../actions/formActions'
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
-class FormList extends Component {
+import { getReports } from '../actions/reportActions'
 
-    componentWillMount(){
-        this.props.getList()
-    }
+export default props => {
 
-    renderRows(){
-        const list = this.props.list || []
+    const dispatch = useDispatch()
+    const reports = useSelector(state => state.reports.list)
+
+    useState(() => {
+        dispatch(getReports())
+    }, [])
+
+    const renderRows = () => {
+        const list = reports || []
         return list.map(fr => ( //fr = FormReport
             <tr key={fr._id}>
                 <td>{fr.name}</td>
@@ -20,25 +23,21 @@ class FormList extends Component {
         ))
     }
 
-    render(){
-        return (
-            <div>
-                <table className='table'>
-                    <thead>
-                        <tr>
-                            <th>Nome do denúnciante</th>
-                            <th>Tipo de denúncia</th>
-                            <th>Data da criação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.renderRows()}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <table className='table'>
+                <thead>
+                    <tr>
+                        <th>Nome do denúnciante</th>
+                        <th>Tipo de denúncia</th>
+                        <th>Data da criação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { renderRows() }
+                </tbody>
+            </table>
+        </div>
+    )
+
 }
-const mapStateToProps = state => ({list: state.formList.list})
-const mapDispatchToProps = dispatch => bindActionCreators({getList}, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(FormList)

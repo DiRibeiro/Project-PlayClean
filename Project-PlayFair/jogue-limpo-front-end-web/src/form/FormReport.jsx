@@ -162,6 +162,7 @@ import TabContent from '../tab/tabContent'
 import {selectTab, showTabs} from '../actions/tabActions'
 import FormList from '../form/FormList'
 import Form from '../form/Form'
+import { create } from '../actions/reportActions'
 
 class FormReport extends Component {
     /* componentWillMount(){
@@ -187,7 +188,7 @@ class FormReport extends Component {
                                 <FormList/>
                             </TabContent>
                             <TabContent id='tabCreate'>
-                                <Form/>
+                                <Form onSubmit={ this.props.create }/>
                             </TabContent>
                             <TabContent id='tabUpdate'><h1>Andamento</h1></TabContent>
                             <TabContent id='tabComplete'><h1>Concluído</h1></TabContent>
@@ -200,6 +201,6 @@ class FormReport extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, create }, dispatch)
 /* export default connect(null, mapDispatchToProps)(FormReport) */
 export default FormReport

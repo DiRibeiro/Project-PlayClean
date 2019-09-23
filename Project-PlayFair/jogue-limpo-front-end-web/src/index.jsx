@@ -17,15 +17,15 @@ ReactDOM.render(
     <Provider store={ store } >
         <>
             <Routes />
-            {/* <ReduxToastr
+            <ReduxToastr
                 timeOut={ 3500 }
-                newestOnTop={ true }
-                preventDuplicates
+                newestOnTop={ false }
+                preventDuplicates={ true }
                 position="top-right"
                 transitionIn="fadeIn"
                 transitionOut="fadeOut"
                 progressBar
-                closeOnToastrClick /> */}
+                closeOnToastrClick />
         </>
     </Provider>
 , document.getElementById('root'));
