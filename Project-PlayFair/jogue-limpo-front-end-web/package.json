@@ -35,6 +35,7 @@
     "redux": "^4.0.4",
     "redux-form": "^8.2.4",
     "redux-form-input-masks": "^2.0.1",
+    "redux-multi": "^0.1.12",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {

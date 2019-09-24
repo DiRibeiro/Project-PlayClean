@@ -1,33 +1,30 @@
-import React, {Component} from 'react'
-import axios from 'axios'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import RowReport from './RowReport'
+import { getReports } from '../actions/reportActions'
 
-class ListReport extends Component {
-    constructor(props){
-        super(props)
+const ListReport = () => {
+    const dispatch = useDispatch();
+    const list = useSelector(state => state.reports.list)
 
-        this.handleMarkAsDone = this.handleMarkAsDone.bind(this)
-        this.handleMarkAsPending = this.handleMarkAsPending.bind(this)
+    useEffect(() => {
+        dispatch(getReports())
+    }, [])
+
+    function renderRows() {        
+        return list.map(report =>
+            <RowReport 
+                key={ report._id } 
+                name={ report.name }
+                typeReport={ report.typeReport } 
+                status={ report.status } 
+                date={ report.date } 
+                description={ report.description } />
+        ); 
     }
 
-    handleMarkAsDone(ListReport){
-        axios.put(`${URL}/${ListReport._id}`, { ...ListReport, done: true})
-            .then(resp => this.refresh())
-    }
-    
-    handleMarkAsPending(ListReport){
-        axios.put(`${URL}/${ListReport._id}`, { ...ListReport, done: false})
-            .then(resp => this.refresh())
-    }
-
-    render(){
-        return(
-            <div>
-                <RowReport handleMarkAsDone={this.handleMarkAsDone} title="Lixos espalhados" dateInserted="11/12/2019" />
-            </div>
-        )
-    }
+    return renderRows()
 }
 
 export default ListReport

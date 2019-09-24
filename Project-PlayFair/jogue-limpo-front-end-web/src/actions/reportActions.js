@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
+import { showTabs, selectTab } from './tabActions'
+import { reset as resetForm, initialize} from 'redux-form'
 
 const REPORTS_FETCHED = 'REPORTS_FETCHED'
 const BASE_URL = 'http://localhost:3003/api'
@@ -52,4 +54,31 @@ export function create(values){
             );
         }).catch(error => console.log(error))
     } */
+} 
+
+/* export function create(values){
+    return dispatch => {
+        axios.post(`${BASE_URL}/reports`, values)
+        .then(resp => {
+            toastr.success('Sucesso', 'Operação realizada.')
+            dispatch([
+                resetForm('Form'),
+                getReports(),
+                selectTab('tabList'),
+                showTabs('*')
+            ])
+        })
+        .catch(e => {
+            e.response.data.errors.forEach(error => toastr.error('Erro', error))
+        })
+    }
+
+} */
+
+export function showUpdate(FormReport){
+    return [
+        showTabs('tabUpdate'),
+        selectTab('tabUpdate'),
+        initialize('Form', FormReport)
+    ]
 }

@@ -3,6 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
+import multi from 'redux-multi'
 import ReduxToastr from 'react-redux-toastr'
 
 import reducers from './reducers/reducers'
@@ -10,13 +11,12 @@ import Routes from './main/Routes'
 
 const store = createStore(
     reducers,
-    applyMiddleware(thunk)
+    applyMiddleware(multi,thunk)
 )
 
 ReactDOM.render(
     <Provider store={ store } >
-        <>
-            <Routes />
+        <Routes />
             <ReduxToastr
                 timeOut={ 3500 }
                 newestOnTop={ false }
@@ -26,6 +26,5 @@ ReactDOM.render(
                 transitionOut="fadeOut"
                 progressBar
                 closeOnToastrClick />
-        </>
     </Provider>
 , document.getElementById('root'));

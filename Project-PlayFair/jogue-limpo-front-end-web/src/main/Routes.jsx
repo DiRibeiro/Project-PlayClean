@@ -35,7 +35,7 @@ export default props => (
             <Route path='coletaSeletiva' component={ ColetaSeletiva} />
             <Route path='coletaOrganica' component={ ColetaOrganica} />
             <Route path='photos' component={ Photos} />
-            <Route path='/calendar' component={ Calendar} />
+            <Route path='calendar' component={ Calendar} />
         </Route>
         <Redirect from='*' to='/' />
     </Router>

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import If from '../templates/if'
-
 class TabContent extends Component {
     render(){
         const selected = this.props.tab.selected === this.props.id

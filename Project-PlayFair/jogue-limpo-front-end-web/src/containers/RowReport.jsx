@@ -23,9 +23,10 @@ class RowReport extends Component {
             <div className="box box-success">
                 <div className="box-body">
                     <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                        <h3 className="box-title">{ this.props.title }</h3>
-                        <span>Cadastrado dia { this.props.dateInserted }</span>
-                        <p>asdas{ this.props.description }</p>
+                        <h3 className="box-name">{ this.props.name }</h3>
+                        <h4 className='box-title'>{ this.props.typeReport }</h4>
+                        <span>Cadastrado dia { this.props.date }</span>
+                        <p>{ this.props.description }</p>
                     </div>
                     <a href="seeMoreReport">
                         <button className="btn btn-primary btn-view" href="seeMoreReport">Ver mais</button>
