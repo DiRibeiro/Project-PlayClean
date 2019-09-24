@@ -1,7 +1,11 @@
 const report = require('./dbSchema/reportSchema')
+const apresentation = require('./dbSchema/apresentationSchema')
 
 report.methods(['get', 'post', 'put', 'delete'])
 report.updateOptions({ new: true, runValidators: true })
+
+apresentation.methods(['get', 'post', 'put', 'delete'])
+apresentation.updateOptions({ new: true, runValidators: true })
 
 report.route('count', (req, res, next) => {
     report.count((error, value) => {
@@ -13,4 +17,4 @@ report.route('count', (req, res, next) => {
     })
 })
 
-module.exports = report
+module.exports = { report, apresentation }

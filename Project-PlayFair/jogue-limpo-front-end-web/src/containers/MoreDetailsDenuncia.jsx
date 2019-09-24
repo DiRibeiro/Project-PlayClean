@@ -47,7 +47,7 @@ const MoreDetailsDenuncia = () => {
                     </div>
                     <div class="col-md-5">
                         <h2 className="box-title">
-                        <b>Nome do solicitante:</b> </h2> { report.name }
+                        <b>Nome do solicitante:</b> { report.name } </h2>
                         <br />                     
                         <b>Data da denúncia: </b> { report.date }
                         <br />
