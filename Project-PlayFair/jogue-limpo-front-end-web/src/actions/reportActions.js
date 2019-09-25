@@ -37,32 +37,14 @@ export function create(values){
     return {
         type: 'TEMP'
     }
-    /* return dispatch => {
-        fetch(`${ BASE_URL }/reports`, {
-            method: 'post',
-            headers: {
-                "Content-type": "application/json"
-            }
-        }).then(response => {
-            response.json()
-                .then(result => {
-                    return dispatch({
-                        type: REPORTS_FETCHED,
-                        payload: result
-                    })
-                }
-            );
-        }).catch(error => console.log(error))
-    } */
 } 
-
 /* export function create(values){
     return dispatch => {
         axios.post(`${BASE_URL}/reports`, values)
         .then(resp => {
             toastr.success('Sucesso', 'Operação realizada.')
             dispatch([
-                resetForm('Form'),
+                reset('FormList'),
                 getReports(),
                 selectTab('tabList'),
                 showTabs('*')

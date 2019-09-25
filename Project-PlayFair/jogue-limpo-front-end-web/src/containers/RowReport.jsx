@@ -29,7 +29,7 @@ class RowReport extends Component {
                         <p>{ this.props.description }</p>
                     </div>
                     <a href="seeMoreReport">
-                        <button className="btn btn-primary btn-view" href="seeMoreReport">Ver mais</button>
+                        <button className="btn btn-primary btn-view" href="seeMoreReport"><i className='fa fa-eye'/> Visualizar</button>
                         { statusDom }
                     </a>
                 </div>

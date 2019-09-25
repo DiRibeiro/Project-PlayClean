@@ -16,7 +16,7 @@ export default class BarChart extends Component {
                 datasets: [
                     {
                         label: 'Total de denúncias por mês',
-                        data: [120, 145, 119, 100, 150, 130, 129, 34],
+                        data: props.data,
                         backgroundColor: [
                             randomColor(),
                             randomColor(),

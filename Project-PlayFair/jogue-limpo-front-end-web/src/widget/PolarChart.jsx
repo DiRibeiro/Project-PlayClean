@@ -7,17 +7,16 @@ export default class PolarClass extends Component {
         super(props)
 
         const randomColor = () => {
-            const rgb = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'
+            const rgb = 'rgb(' + (Math.floor(Math.random() * 255)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'
             return rgb
         }
 
         this.state = {
             data: {
-                labels: ['Osório', 'Atlântida Sul', 'Borússia', 'Estrada do Mar', 'Palmital',
-                        'Parque de Rodeios', 'Parque Eólico', 'Passinhos'],
+                labels: props.labels,
                 datasets: [
                     {
-                        data: [120, 145, 119, 100, 150, 130, 129, 34],
+                        data: props.data,
                         backgroundColor: [
                             randomColor(), randomColor(), randomColor(), randomColor(),
                             randomColor(), randomColor(), randomColor(), randomColor()

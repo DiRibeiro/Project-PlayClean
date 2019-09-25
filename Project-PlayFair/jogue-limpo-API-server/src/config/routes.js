@@ -10,4 +10,5 @@ module.exports = (server) => {
     const report = require('../api/services')
     services.report.register(router, '/reports')
     services.apresentation.register(router, '/apresentation')
+
 }

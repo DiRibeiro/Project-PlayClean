@@ -10,6 +10,7 @@ const MoreDetailsDenuncia = () => {
     useEffect(() => {
         dispatch(getReports())
     }, [])
+    
     function renderRows() {
         return list.map(report =>
             <div className="box box-success">

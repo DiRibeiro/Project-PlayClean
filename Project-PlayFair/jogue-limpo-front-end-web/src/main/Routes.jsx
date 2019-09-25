@@ -26,7 +26,7 @@ export default props => (
             <IndexRoute component={ Dashboard } />
             <Route path='page2' component={ page2 } />
             <Route path='registerDenuncia' component={ FormRegisterDenuncia } />
-            <Route path='editReport' component={ FormReport } />
+            <Route path='formReport' component={ FormReport } />
             <Route path='apresentation' component={ Apresentation } />
             <Route path='leis' component={ Leis} />
             <Route path='listLeis' component={ ListLeis } />

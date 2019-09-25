@@ -1,4 +1,4 @@
-const INITIAL_STATE =  { selected: 'tabList', visible: {} }
+const INITIAL_STATE =  { selected: '', visible: {} }
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type){

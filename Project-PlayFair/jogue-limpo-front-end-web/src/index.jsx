@@ -5,14 +5,12 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import multi from 'redux-multi'
 import ReduxToastr from 'react-redux-toastr'
+import promise from 'redux-promise'
 
 import reducers from './reducers/reducers'
 import Routes from './main/Routes'
 
-const store = createStore(
-    reducers,
-    applyMiddleware(multi,thunk)
-)
+const store = applyMiddleware(promise, thunk, multi)(createStore)(reducers)
 
 ReactDOM.render(
     <Provider store={ store } >
@@ -27,4 +25,4 @@ ReactDOM.render(
                 progressBar
                 closeOnToastrClick />
     </Provider>
-, document.getElementById('root'));
+, document.getElementById('root'))

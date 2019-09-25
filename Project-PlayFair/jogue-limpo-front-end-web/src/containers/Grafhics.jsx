@@ -1,16 +1,16 @@
 import React from 'react'
 
-import LineChart from '../widget/LineChart'
-import DoughnutChart from '../widget/DoughnutChart'
+import BarChart from '../widget/BarChart'
+import PolarChart from '../widget/PolarChart'
 
 export default props => (
     <>
         <div className="col-md-7">
-            <LineChart />
+            <BarChart />
         </div>
         <div className="col-md-5">
         <h4>Denúncias por bairro</h4>
-            <DoughnutChart />
+            <PolarChart />
         </div>
     </>
 )

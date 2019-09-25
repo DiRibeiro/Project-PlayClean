@@ -19,7 +19,7 @@ export default props => (
                 </MenuTree>
                 <MenuTree icon='list-alt' label='Denúncias'> 
                     <MenuItem path='/listReport' icon='eye' label='Ver denúncias' />
-                    <MenuItem path='/editReport' icon='edit' label='Verificar denúncias' />
+                    <MenuItem path='/formReport' icon='edit' label='Verificar denúncias' />
                 </MenuTree>
             </ul>
         </section>

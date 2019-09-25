@@ -14,8 +14,8 @@ const DashboardContent = () => {
     const dispatch = useDispatch()
         
     const bookmark = useSelector(state => state.dashboard.bookmark)
-    //const polarChart = useSelector(state => state.dashboard.polarChart)
-    //const barChart = useSelector(state => state.dashboard.barChart)
+    const polarChart = useSelector(state => state.dashboard.polarChart)
+    const barChart = useSelector(state => state.dashboard.barChart)
     const map = useSelector(state => state.dashboard.map)
 
     function makeTheDateMakeSense(number) {
@@ -52,11 +52,11 @@ const DashboardContent = () => {
             />
             <div className="row">
                 <div className="col-12 col-md-7">
-                    <BarChart />
+                    <BarChart /* data={ barChart.data } *//>
                 </div>
                 <div className="col-12 col-md-5">
                     <h4>Denúncias por bairro</h4>
-                    <PolarChart />
+                    <PolarChart /* labels={ polarChart.labels } data={ polarChart.data } */ />
                 </div>
             </div>
             <Map map={ map } />

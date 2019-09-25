@@ -30,7 +30,7 @@ export default props => (
                     amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
                     </textarea>
                     <div className="box-footer">
-                        <button type="submit" className="btn btn-primary btn-edit">Editar</button>
+                        <button type="submit" className="btn btn-primary btn-edit"><i className='fa fa-save'/> Salvar</button>
                     </div>
                 </div>
             </div>

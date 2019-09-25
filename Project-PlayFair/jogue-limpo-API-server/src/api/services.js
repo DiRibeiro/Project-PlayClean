@@ -17,4 +17,26 @@ report.route('count', (req, res, next) => {
     })
 })
 
+/* report.get('/reports/:id', function(req, res, next){
+    const id = req.params.id;
+
+    report.findById(id, function(err, result){
+    
+        if(err){
+            console.log(err);
+            res.status(500).json({
+                success: 0,
+                data: result
+            });
+            return;
+        }
+
+        res.status(200).json({
+            success: 1,
+            data: result
+        });
+    });
+}); */
+
+
 module.exports = { report, apresentation }
