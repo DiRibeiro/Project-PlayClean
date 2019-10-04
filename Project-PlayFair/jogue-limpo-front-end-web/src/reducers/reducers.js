@@ -6,6 +6,7 @@ import dashboard from './dashboardReducer'
 import TabReducer from './tabReducer'
 import FormReducer from './formReducer'
 import ReportReducer from './reportsReducer'
+import ApresentationReducer from './apresentationReducer'
 
 const rootReducer = combineReducers(
     {
@@ -14,7 +15,9 @@ const rootReducer = combineReducers(
         formList: FormReducer,
         form: formReducer,
         reports: ReportReducer,
+        apresentation: ApresentationReducer,
         toastr: toastrReducer
+
     }
 )
 

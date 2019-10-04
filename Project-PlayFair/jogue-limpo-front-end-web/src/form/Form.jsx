@@ -9,6 +9,10 @@ import momentLocaliser from 'react-widgets-moment'
 import LabelAndInput from './labelAndInput'
 import { create } from '../actions/reportActions'
 
+
+import Option from '../../node_modules/muicss/lib/react/option'
+import Select from '../../node_modules/muicss/lib/react/select'
+
 import 'react-widgets/dist/css/react-widgets.css'
 
 class Form extends Component{
@@ -30,19 +34,19 @@ class Form extends Component{
             time={ showTime }
             value={ !value ? null : new Date(value) }
             placeholder="Data do ocorrido"
-        />
+       />
     )
 
     render() {
         const { handleSubmit } = this.props
-        const { typeReportValue } = this.props
+        // const { typeReportValue } = this.props
 
         const phoneMask = createTextMask({
             pattern: '(99) 99999-9999'
         })
 
         return(
-            <form role='form' onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div className='box-body'>
                     <Field name='name' component={LabelAndInput}
                         label=' Nome' cols='6' type='text' icon='user'/>
@@ -54,77 +58,77 @@ class Form extends Component{
                         label=' Local da denúncia' cols='6' icon='map'/>
                     <Field name='typeReport' component={LabelAndInput}
                         label=' Tipo de denúncia' cols='3' type='option' icon='list'>
-                            <select className='form-control select2'>
-                                <option selected="selected">Osório</option>
-                                <option>Aguapés</option>
-                                <option>Albatroz</option>
-                                <option>Arroio das Pedras</option>
-                                <option>Arroio Grande</option>
-                                <option>Atlântida Sul - Dezembro/Março</option>                            
-                                <option>Atlântida Sul - Março/Dezembro</option>
-                                <option>Baixada</option>
-                                <option>Barranceira</option>
-                                <option>Borússia</option>
-                                <option>Bosque Albatroz</option>
-                                <option>Caconde</option>
-                                <option>Caiu do Céu</option>
-                                <option>Campos de Dentro</option>
-                                <option>Caravágio</option>
-                                <option>Cascata</option>
-                                <option>Centro</option>
-                                <option>Costa Verde</option>
-                                <option>Distrito Industrial</option>
-                                <option>Estrada da Perua</option>
-                                <option>Estrada do Mar</option>
-                                <option>Estrada do Posto Buffon</option>
-                                <option>Estrada Romildo Bolzan</option>
-                                <option>Farroupilha</option>
-                                <option>Figueira Grande</option>
-                                <option>Glória</option>
-                                <option>Goiabeira I e II</option>
-                                <option>Ilha</option>
-                                <option>Interlagos</option>
-                                <option>Invernada</option>
-                                <option>Jardim da Lagoa</option>
-                                <option>Lagoa do Horácio</option>
-                                <option>Laranjeiras</option>
-                                <option>Livramento</option>
-                                <option>Loteamento Serramar</option>
-                                <option>Mariápolis</option>
-                                <option>Marmeleiro</option>
-                                <option>Medianeira</option>
-                                <option>Morro das Antenas</option>
-                                <option>Palmital</option>
-                                <option>Panorâmico</option>
-                                <option>Parque da Lagoa</option>
-                                <option>Parque de Rodeios</option>
-                                <option>Parque do Sol</option>
-                                <option>Parque Eólico</option>
-                                <option>Parque Real</option>
-                                <option>Passinhos</option>
-                                <option>Penitenciária Modulada</option>
-                                <option>Pitangas</option>
-                                <option>Pontal dos Dihel</option>
-                                <option>Pór-do-sol</option>
-                                <option>Porto Lacustre</option>
-                                <option>Rincão</option>
-                                <option>RS-030</option>
-                                <option>RST-101</option>
-                                <option>Santa Luzia</option>
-                                <option>Santa Rita</option>
-                                <option>Sertão</option>
-                                <option>Sindicato Rural</option>
-                                <option>Sulbrasileiro</option>
-                                <option>Tombadouro</option>
-                                <option>Trilhos</option>
-                                <option>Várzea do Padre</option>
-                                <option>Vila Brasília</option>
-                                <option>Vila da Serra</option>
-                                <option>Vila dos Pescadores do Passo da Lagoa</option>
-                                <option>Vila Emboabas</option>
-                                <option>Vila Petrobrás</option>
-                                <option>Vila Popular</option>
-                            </select>
+                            <Select component={LabelAndInput} name='typeReport' label=' Tipo de denúncia' cols='3' defaultValue='selected' icon='list'>
+                                <Option value="selected" label='Osório' />
+                                <Option label='Aguapés' />
+                                <Option label='Albatroz' />
+                                <Option label='Arroio das Pedras' />
+                                <Option label='Arroio Grande' />
+                                <Option label='Atlântida Sul - Dezembro/Março' />                            
+                                <Option label='Atlântida Sul - Março/Dezembro' />
+                                <Option label='Baixada' />
+                                <Option label='Barranceira' />
+                                <Option label='Borússia' />
+                                <Option label='Bosque Albatroz' />
+                                <Option label='Caconde' />
+                                <Option label='Caiu do Céu' />
+                                <Option label='Campos de Dentro' />
+                                <Option label='Caravágio' />
+                                <Option label='Cascata' />
+                                <Option label='Centro' />
+                                <Option label='Costa Verde' />
+                                <Option label='Distrito Industrial' />
+                                <Option label='Estrada da Perua' />
+                                <Option label='Estrada do Mar' />
+                                <Option label='Estrada do Posto Buffon' />
+                                <Option label='Estrada Romildo Bolzan' />
+                                <Option label='Farroupilha' />
+                                <Option label='Figueira Grande' />
+                                <Option label='Glória' />
+                                <Option label='Goiabeira I e II' />
+                                <Option label='Ilha' />
+                                <Option label='Interlagos' />
+                                <Option label='Invernada' />
+                                <Option label='Jardim da Lagoa' />
+                                <Option label='Lagoa do Horácio' />
+                                <Option label='Laranjeiras' />
+                                <Option label='Livramento' />
+                                <Option label='Loteamento Serramar' />
+                                <Option label='Mariápolis' />
+                                <Option label='Marmeleiro' />
+                                <Option label='Medianeira' />
+                                <Option label='Morro das Antenas' />
+                                <Option label='Palmital' />
+                                <Option label='Panorâmico' />
+                                <Option label='Parque da Lagoa' />
+                                <Option label='Parque de Rodeios' />
+                                <Option label='Parque do Sol' />
+                                <Option label='Parque Eólico' />
+                                <Option label='Parque Real' />
+                                <Option label='Passinhos' />
+                                <Option label='Penitenciária Modulada' />
+                                <Option label='Pitangas' />
+                                <Option label='Pontal dos Dihel' />
+                                <Option label='Pór-do-sol' />
+                                <Option label='Porto Lacustre' />
+                                <Option label='Rincão' />
+                                <Option label='RS-030' />
+                                <Option label='RST-101' />
+                                <Option label='Santa Luzia' />
+                                <Option label='Santa Rita' />
+                                <Option label='Sertão' />
+                                <Option label='Sindicato Rural' />
+                                <Option label='Sulbrasileiro' />
+                                <Option label='Tombadouro' />
+                                <Option label='Trilhos' />
+                                <Option label='Várzea do Padre' />
+                                <Option label='Vila Brasília' />
+                                <Option label='Vila da Serra' />
+                                <Option label='Vila dos Pescadores do Passo da Lagoa' />
+                                <Option label='Vila Emboabas' />
+                                <Option label='Vila Petrobrás' />
+                                <Option label='Vila Popular' />
+                            </Select>
                     </Field>
                     <Field name='dateOccured' showTime={false}  component={this.renderDateTimePicker} component={LabelAndInput}
                         label=' Data da ocorrência' cols='3' type='date' icon='calendar'/>
@@ -132,7 +136,7 @@ class Form extends Component{
                         label=' Descrição da denúncia' type='text' icon='book'/>
                 </div>
                 <div className='box-footer'>
-                    <button type='submit' className='btn btn-success'><i className='fa fa-save'/> Salvar</button>
+                    <button type='submit' className='btn btn-success'><i className='fa fa-save'/> Salvar</button >
                 </div>
             </form>
         )

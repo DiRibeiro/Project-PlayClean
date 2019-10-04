@@ -1,43 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
-export default props => (
-    <div className="box box-success">
-        <div className="box-header with-border">
-            <h3 className="box-title">Apresentação</h3>
-        </div>
-        <div className="box-body">
-            <div className="row">
-                <div className="col-md-12">
-                    <label>Descrição da apresentação: </label>
-                    <textarea className="form-control" rows="10" placeholder="">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                    amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                    amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                    amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                    amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                    amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                    amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                    amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                    amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                    amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                    </textarea>
-                    <div className="box-footer">
-                        <button type="submit" className="btn btn-primary btn-edit"><i className='fa fa-save'/> Salvar</button>
+import Content from '../templates/content'
+import ContentHeader from '../templates/contentHeader'
+import { getApresentation, postApresentation } from '../actions/apresentationActions'
+
+export default props => {
+    const dispatch = useDispatch()
+    const apresentations = useSelector(state => state.apresentation.show)
+
+    useState(() => {
+        dispatch(getApresentation())
+    }, [])
+
+    const renderRows = () => {
+        const show = apresentations || []
+        return show.map(ap => (
+            <p key={ap._id}>{ap.apresentation}</p>
+        ))
+    }
+        return(
+            <div className='box box-success'>
+                <ContentHeader title='Apresentação inicial'/>
+                <Content>
+                <div className="box-body">
+                    <div className="row">
+                        <form className="col-md-12" onSubmit={ postApresentation } >
+                            <label>Descrição da apresentação: </label>
+                            <textarea className="form-control" name='apresentation' type='text' rows="10" />
+                            <div className="box-footer">
+                                <button type="submit" className="btn btn-primary btn-edit"><i className='fa fa-save'/> Alterar</button>
+                            </div>
+                        </form>
+                    
+                        <form className="col-md-12" role='form'>
+                            <label>Exibir apresentação: </label>
+                            <textarea className="form-control" name='apresentation' type='text' rows="10" value={ renderRows() }/>
+                        </form>
                     </div>
                 </div>
+                </Content>
             </div>
-
-            
-
-            
-        </div>
-    </div>
-)
+        )
+    
+}

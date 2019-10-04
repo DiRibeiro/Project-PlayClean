@@ -8,29 +8,24 @@ export default props => (
         <div className="box-body">
             <div className="row">
                 <div className="col-md-12">
-                        <label>Adicione uma nova lei: </label>
-                        <textarea className="form-control" rows="10" placeholder="">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                        amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                        amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                        amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                        amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                        amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                        amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                        amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                        amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, 
-                        amet facere laborum nostrum aperiam error odio consequatur dolorum quia a rerum. Velit laudantium ut eveniet iste ab dolore, similique maxime!
-                        </textarea>
+                        <label>Adicionar Lei Municipal: </label>
+                        <textarea className="form-control" rows="10" defaultValue='' placeholder='Insira uma nova lei' />
                     <div className="box-footer">
-                        <button type="submit" className="btn btn-primary btn-edit"><i className='fa fa-save'/> Salvar</button>
+                        <button type="submit" className="btn btn-primary btn-edit"><i className='fa fa-save'/> Adicionar</button>
+                    </div>
+                </div>
+                <div className="col-md-12">
+                        <label>Adicion Lei Estadual: </label>
+                        <textarea className="form-control" rows="10" defaultValue='' placeholder='Insira uma nova lei' />
+                    <div className="box-footer">
+                        <button type="submit" className="btn btn-primary btn-edit"><i className='fa fa-save'/> Adicionar</button>
+                    </div>
+                </div>
+                <div className="col-md-12">
+                        <label>Adicionar Lei Federal: </label>
+                        <textarea className="form-control" rows="10" defaultValue='' placeholder='Insira uma nova lei' />
+                    <div className="box-footer">
+                        <button type="submit" className="btn btn-primary btn-edit"><i className='fa fa-save'/> Adicionar</button>
                     </div>
                 </div>
             </div>

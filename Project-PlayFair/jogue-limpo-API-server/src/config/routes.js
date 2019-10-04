@@ -9,6 +9,6 @@ module.exports = (server) => {
     //Routes in Report
     const report = require('../api/services')
     services.report.register(router, '/reports')
-    services.apresentation.register(router, '/apresentation')
+    services.apresentation.register(router, '/apresentations')
 
 }

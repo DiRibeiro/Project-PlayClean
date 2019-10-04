@@ -21,9 +21,9 @@ export function create(values){
             toastr.success('Sucesso', 'Operação realizada.')
             dispatch([
                 resetForm('Form'),
-                getReports(),
-                selectTab('tabList'),
-                showTabs('*')
+                dispatch(getReports())
+                // dispatch(selectTab('tabList')),
+                // dispatch(showTabs('*'))
             ])
         })
         .catch(e => {

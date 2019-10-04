@@ -1,6 +1,6 @@
-import React, { useState, Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect, useSelector, useDispatch } from 'react-redux'
+import React, { useState/* , Component  */} from 'react'
+// import { bindActionCreators } from 'redux'
+import {/*  connect, useSelector, */ useDispatch } from 'react-redux'
 
 
 import ContentHeader from '../templates/contentHeader'

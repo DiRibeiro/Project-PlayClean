@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
 import { showTabs, selectTab } from './tabActions'
-import { reset as resetForm, initialize} from 'redux-form'
+import { /* reset as resetForm, */ initialize} from 'redux-form'
 
 const REPORTS_FETCHED = 'REPORTS_FETCHED'
 const BASE_URL = 'http://localhost:3003/api'

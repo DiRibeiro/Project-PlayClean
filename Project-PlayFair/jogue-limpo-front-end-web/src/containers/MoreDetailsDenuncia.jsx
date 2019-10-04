@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { getReports } from '../actions/reportActions'
@@ -58,7 +58,7 @@ const MoreDetailsDenuncia = () => {
                         <br />
                         <br />
                         <b>Descrição:</b>
-                        { report.description }
+                        <p>{ report.description }</p>
                         <br />
                     </div>
                     
