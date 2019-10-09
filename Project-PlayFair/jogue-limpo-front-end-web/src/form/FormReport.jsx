@@ -1,6 +1,6 @@
-import React, { useState/* , Component  */} from 'react'
-// import { bindActionCreators } from 'redux'
-import {/*  connect, useSelector, */ useDispatch } from 'react-redux'
+import React, { /* useState, */ Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect/* , useSelector, useDispatch */ } from 'react-redux'
 
 
 import ContentHeader from '../templates/contentHeader'
@@ -13,31 +13,30 @@ import TabContent from '../tab/tabContent'
 import {selectTab, showTabs} from '../actions/tabActions'
 import FormList from '../form/FormList'
 import Form from '../form/Form'
-import { create, getReports, showUpdate} from '../actions/reportActions'
+import { create/* , getReports, showUpdate */} from '../actions/reportActions'
 
-export default props => { 
-    const dispatch = useDispatch() 
+// export default props => { 
+//     const dispatch = useDispatch() 
 
-    useState(() => {
-        dispatch(
-            selectTab('tabList'),
-            showTabs('tabList', 'tabCreate'),
-            getReports(),
-            showUpdate()
-        )
-    }, [])
-/* class FormReport extends Component {
+//     useState(() => {
+//         dispatch(
+//             selectTab('tabList'),
+//             showTabs('tabList', 'tabCreate'),
+//             getReports(),
+//             showUpdate()
+//         )
+//     }, [])
+class FormReport extends Component {
     componentWillMount(){
         this.props.selectTab('tabList')
+        this.props.showTabs('tabList', 'tabCreate')
     }
 
-    render(){ */
+    render(){
         return (
             <div className="box box-success">
                 <ContentHeader title='Verificar denúncias'/>
                 <Content>
-                {/* <div className="box-header with-border"> */}
-                    {/* <h3 className="box-title">Verificar denúncias</h3> */}
                     <Tabs>
                         <TabsHeader>
                             <TabHeader label=' Listar' icon='bars' target='tabList'/>
@@ -59,13 +58,13 @@ export default props => {
                         </TabsContent>
                     </Tabs>
                 </Content>
-                {/* </div> */}
             </div>
         )    
-    
+    }
 }
-/* const mapDispatchToProps = dispatch => bindActionCreators({ create }, dispatch)
+const mapStateToProps = state => ({ tab: state.tab })
+const mapDispatchToProps = dispatch => bindActionCreators({ create, selectTab, showTabs }, dispatch)
+/* FormReport =  */
+export default connect(state => mapStateToProps, mapDispatchToProps)(FormReport)
 
-FormReport = connect(state => {}, mapDispatchToProps)(Form)
-
-export default FormReport */
+/* export default FormReport */

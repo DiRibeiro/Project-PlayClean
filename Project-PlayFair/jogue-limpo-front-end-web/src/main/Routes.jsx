@@ -1,5 +1,6 @@
 import React from 'react'
 import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-router'
+import {Provider} from 'redux'
 
 import '../components/dependences'
 
@@ -22,20 +23,20 @@ import App from './App'
 
 export default props => (
     <Router history={ browserHistory }>
-        <Route exact path='/' component={ App }>
-            <IndexRoute component={ Dashboard } />
-            <Route path='page2' component={ page2 } />
-            <Route path='registerDenuncia' component={ FormRegisterDenuncia } />
-            <Route path='formReport' component={ FormReport } />
-            <Route path='apresentation' component={ Apresentation } />
-            <Route path='leis' component={ Leis} />
-            <Route path='listLeis' component={ ListLeis } />
-            <Route path='listReport' component={ ListReport } />
-            <Route path='seeMoreReport' component={ MoreDetailsDenuncia } />
-            <Route path='coletaSeletiva' component={ ColetaSeletiva} />
-            <Route path='coletaOrganica' component={ ColetaOrganica} />
-            <Route path='photos' component={ Photos} />
-            <Route path='calendar' component={ Calendar} />
+        <Route exact path='/' component={props => <App {...props} />} >
+            <IndexRoute component={props => <Dashboard {...props} />} />
+            <Route path='page2' component={props => <page2 {...props} />} />
+            <Route path='registerDenuncia' component={props => <FormRegisterDenuncia {...props} />} />
+            <Route path='formReport' component={ FormReport }component={props => <FormReport {...props} />} />
+            <Route path='apresentation' component={props => <Apresentation {...props} />} />
+            <Route path='leis' component={props => <Leis {...props} />} />
+            <Route path='listLeis' component={props => <ListLeis {...props} />} />
+            <Route path='listReport' component={props => <ListReport {...props} />} />
+            <Route path='seeMoreReport' component={props => <MoreDetailsDenuncia {...props} />} />
+            <Route path='coletaSeletiva' component={props => <ColetaSeletiva {...props} />} />
+            <Route path='coletaOrganica' component={props => <ColetaOrganica {...props} />} />
+            <Route path='photos' component={props => <Photos {...props} />} />
+            <Route path='calendar' component={props => <Calendar {...props} />} />
         </Route>
         <Redirect from='*' to='/' />
     </Router>

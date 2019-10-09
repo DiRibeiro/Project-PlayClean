@@ -76,3 +76,12 @@ textarea {
     float: right;
     width: auto;
   }
+  
+  .nav-tabs-custom > .nav-tabs > li.active{
+    border-top-color: #00a65a;
+  }
+
+  .btn-opt{
+    margin-top: 0;
+    margin-right: 2px;
+  }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
 import { getReports, showUpdate } from '../actions/reportActions'
+import { showTabs, selectTab } from '../actions/tabActions'
 
 export default props => {
 
@@ -10,30 +10,31 @@ export default props => {
 
     useState(() => {
         dispatch(getReports(),
-            showUpdate()
+        showUpdate()
         )
     }, [])
 
     const renderRows = () => {
         const list = reports || []
-        return list.map(fr => ( //fr = FormReport
-            <tr key={fr._id}>
-                <td>{fr.name}</td>
-                <td>{fr.typeReport}</td>
-                <td>{fr.date}</td>
-                <td>
-                    <a href='seeMoreReport' className='btn btn-primary' onClick={() => showUpdate(fr)}>
-                        <i className='fa fa-eye'></i>
-                    </a>
-                    <a className='btn btn-warning' onClick={() => showUpdate(fr)}>
-                        <i className='fa fa-hourglass'></i>
-                    </a>
-                    <a className='btn btn-success' onClick={() => showUpdate(fr)}>
-                        <i className='fa fa-check'></i>
-                    </a>
-                </td>
-            </tr>
-        ))
+        
+            return list.map(fr => ( //fr = FormReport
+                <tr key={fr._id}>
+                    <td>{fr.name}</td>
+                    <td>{fr.typeReport}</td>
+                    <td>{fr.date}</td>
+                    <td>
+                        <a href='seeMoreReport' className='btn btn-primary btn-opt' onClick={() => showUpdate(fr)}>
+                            <i className='fa fa-eye'></i>
+                        </a>
+                        <a className='btn btn-warning btn-opt' onClick={() => showUpdate(fr)}>
+                            <i className='fa fa-hourglass'></i>
+                        </a>
+                        <a className='btn btn-success btn-opt' onClick={() => showUpdate(fr)}>
+                            <i className='fa fa-check'></i>
+                        </a>
+                    </td>
+                </tr>
+            ))
     }
 
     return (

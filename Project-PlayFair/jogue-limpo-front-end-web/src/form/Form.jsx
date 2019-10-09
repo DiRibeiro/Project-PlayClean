@@ -7,12 +7,9 @@ import { DateTimePicker } from 'react-widgets'
 import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
 import LabelAndInput from './labelAndInput'
+import Select from './Select'
 import { create } from '../actions/reportActions'
-
-
-import Option from '../../node_modules/muicss/lib/react/option'
-import Select from '../../node_modules/muicss/lib/react/select'
-
+import ContentHeader from '../templates/contentHeader'
 import 'react-widgets/dist/css/react-widgets.css'
 
 class Form extends Component{
@@ -26,21 +23,9 @@ class Form extends Component{
     componentWillMount() {
         this.setState({ momenTT: momentLocaliser(moment) })
     }
-
-    renderDateTimePicker = ({ input: { onChange, value }, showTime }) => (
-        <DateTimePicker
-            onChange={ onChange }
-            format="DD MMM YYYY"
-            time={ showTime }
-            value={ !value ? null : new Date(value) }
-            placeholder="Data do ocorrido"
-       />
-    )
-
+    
     render() {
-        const { handleSubmit } = this.props
-        // const { typeReportValue } = this.props
-
+        const { handleSubmit, pristine, reset, submitting} = this.props
         const phoneMask = createTextMask({
             pattern: '(99) 99999-9999'
         })
@@ -52,92 +37,21 @@ class Form extends Component{
                         label=' Nome' cols='6' type='text' icon='user'/>
                     <Field {...phoneMask} name='phone' component={LabelAndInput}
                         label=' Telefone' cols='3' type='text' icon='phone'/>
-                    <Field name='date' showTime={false}  component={this.renderDateTimePicker} component={LabelAndInput}
+                    <Field name='date' component={LabelAndInput}
                         label=' Data da denúncia' cols='3' type='date' icon='calendar'/>
                     <Field name='adressOccured' component={LabelAndInput}
                         label=' Local da denúncia' cols='6' icon='map'/>
-                    <Field name='typeReport' component={LabelAndInput}
-                        label=' Tipo de denúncia' cols='3' type='option' icon='list'>
-                            <Select component={LabelAndInput} name='typeReport' label=' Tipo de denúncia' cols='3' defaultValue='selected' icon='list'>
-                                <Option value="selected" label='Osório' />
-                                <Option label='Aguapés' />
-                                <Option label='Albatroz' />
-                                <Option label='Arroio das Pedras' />
-                                <Option label='Arroio Grande' />
-                                <Option label='Atlântida Sul - Dezembro/Março' />                            
-                                <Option label='Atlântida Sul - Março/Dezembro' />
-                                <Option label='Baixada' />
-                                <Option label='Barranceira' />
-                                <Option label='Borússia' />
-                                <Option label='Bosque Albatroz' />
-                                <Option label='Caconde' />
-                                <Option label='Caiu do Céu' />
-                                <Option label='Campos de Dentro' />
-                                <Option label='Caravágio' />
-                                <Option label='Cascata' />
-                                <Option label='Centro' />
-                                <Option label='Costa Verde' />
-                                <Option label='Distrito Industrial' />
-                                <Option label='Estrada da Perua' />
-                                <Option label='Estrada do Mar' />
-                                <Option label='Estrada do Posto Buffon' />
-                                <Option label='Estrada Romildo Bolzan' />
-                                <Option label='Farroupilha' />
-                                <Option label='Figueira Grande' />
-                                <Option label='Glória' />
-                                <Option label='Goiabeira I e II' />
-                                <Option label='Ilha' />
-                                <Option label='Interlagos' />
-                                <Option label='Invernada' />
-                                <Option label='Jardim da Lagoa' />
-                                <Option label='Lagoa do Horácio' />
-                                <Option label='Laranjeiras' />
-                                <Option label='Livramento' />
-                                <Option label='Loteamento Serramar' />
-                                <Option label='Mariápolis' />
-                                <Option label='Marmeleiro' />
-                                <Option label='Medianeira' />
-                                <Option label='Morro das Antenas' />
-                                <Option label='Palmital' />
-                                <Option label='Panorâmico' />
-                                <Option label='Parque da Lagoa' />
-                                <Option label='Parque de Rodeios' />
-                                <Option label='Parque do Sol' />
-                                <Option label='Parque Eólico' />
-                                <Option label='Parque Real' />
-                                <Option label='Passinhos' />
-                                <Option label='Penitenciária Modulada' />
-                                <Option label='Pitangas' />
-                                <Option label='Pontal dos Dihel' />
-                                <Option label='Pór-do-sol' />
-                                <Option label='Porto Lacustre' />
-                                <Option label='Rincão' />
-                                <Option label='RS-030' />
-                                <Option label='RST-101' />
-                                <Option label='Santa Luzia' />
-                                <Option label='Santa Rita' />
-                                <Option label='Sertão' />
-                                <Option label='Sindicato Rural' />
-                                <Option label='Sulbrasileiro' />
-                                <Option label='Tombadouro' />
-                                <Option label='Trilhos' />
-                                <Option label='Várzea do Padre' />
-                                <Option label='Vila Brasília' />
-                                <Option label='Vila da Serra' />
-                                <Option label='Vila dos Pescadores do Passo da Lagoa' />
-                                <Option label='Vila Emboabas' />
-                                <Option label='Vila Petrobrás' />
-                                <Option label='Vila Popular' />
-                            </Select>
+                    <Field multiple='' label=' Tipo de denúncia' icon='list' cols='3' component={Select} name='typeReport'>
                     </Field>
-                    <Field name='dateOccured' showTime={false}  component={this.renderDateTimePicker} component={LabelAndInput}
+                    <Field name='dateOccured' component={LabelAndInput}
                         label=' Data da ocorrência' cols='3' type='date' icon='calendar'/>
                     <Field name='descriptiom' component={LabelAndInput}
-                        label=' Descrição da denúncia' type='text' icon='book'/>
-                </div>
+                        label=' Descrição da denúncia' type='textarea' icon='book'/>
+                </div> 
                 <div className='box-footer'>
-                    <button type='submit' className='btn btn-success'><i className='fa fa-save'/> Salvar</button >
-                </div>
+                    <button type="button" disabled={pristine || submitting} onClick={reset} className='btn btn-danger btn-edit'><i className='fa fa-close'/> Limpar</button >
+                    <button type="submit" disabled={pristine || submitting}  onClick={reset} className='btn btn-success btn-edit'><i className='fa fa-save'/> Salvar</button >
+                </div>     
             </form>
         )
     }
