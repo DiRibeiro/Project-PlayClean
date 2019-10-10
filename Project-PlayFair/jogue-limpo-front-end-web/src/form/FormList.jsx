@@ -23,7 +23,7 @@ export default props => {
                     <td>{fr.typeReport}</td>
                     <td>{fr.date}</td>
                     <td>
-                        <a href='seeMoreReport' className='btn btn-primary btn-opt' onClick={() => showUpdate(fr)}>
+                        <a href='seeMoreReport' className='btn btn-primary btn-opt' onClick={() => showUpdate(fr._id)}>
                             <i className='fa fa-eye'></i>
                         </a>
                         <a className='btn btn-warning btn-opt' onClick={() => showUpdate(fr)}>

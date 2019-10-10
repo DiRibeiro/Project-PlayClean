@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Field, reduxForm, formValueSelector } from 'redux-form'
+import { Field, reduxForm, formValueSelector, reset as resetForm} from 'redux-form'
 import { createTextMask } from 'redux-form-input-masks'
-import { DateTimePicker } from 'react-widgets'
 import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
 import LabelAndInput from './labelAndInput'
 import Select from './Select'
 import { create } from '../actions/reportActions'
-import ContentHeader from '../templates/contentHeader'
 import 'react-widgets/dist/css/react-widgets.css'
+import { selectTab, showTabs } from '../actions/tabActions'
 
 class Form extends Component{
     constructor(props) {
@@ -49,8 +48,24 @@ class Form extends Component{
                         label=' Descrição da denúncia' type='textarea' icon='book'/>
                 </div> 
                 <div className='box-footer'>
-                    <button type="button" disabled={pristine || submitting} onClick={reset} className='btn btn-danger btn-edit'><i className='fa fa-close'/> Limpar</button >
-                    <button type="submit" disabled={pristine || submitting}  onClick={reset} className='btn btn-success btn-edit'><i className='fa fa-save'/> Salvar</button >
+                    <button 
+                        type="button" 
+                        disabled={pristine || submitting} 
+                        onClick={
+                            reset
+                        } 
+                        className='btn btn-danger btn-edit'>
+                            <i className='fa fa-close'/> Limpar</button >
+                    <button 
+                        type="submit" 
+                        disabled={pristine || submitting}
+                        onClick={() => {
+                            resetForm('Form')
+                            selectTab('tabList')
+                        }
+                        }
+                        className='btn btn-success btn-edit'>
+                            <i className='fa fa-save'/> Salvar</button >
                 </div>     
             </form>
         )
@@ -62,7 +77,7 @@ Form = reduxForm({
     destroyOnUnmount: false
 })(Form)
 const selector = formValueSelector('Form')
-const mapDispatchToProps = dispatch => bindActionCreators({ create }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ create, showTabs, selectTab  }, dispatch)
 
 Form = connect(state => {
     // can select values individually
