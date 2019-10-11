@@ -1,8 +1,7 @@
-const restful = require('node-restful')
-const mongoose = restful.mongoose
+const mongoose = require('mongoose')
 
 const apresentationSchema = new mongoose.Schema({
-    apresentation: { type: String }
+    apresentation: { String }
 })
 
-module.exports = restful.model('apresentation', apresentationSchema)
+module.exports = apresentationSchema

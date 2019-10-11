@@ -2,17 +2,16 @@ import React from 'react'
 import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-router'
 import {Provider} from 'redux'
 
-import '../components/dependences'
+import '../util/dependences'
 
 //import Login from './Login'
-import page2 from '../templates/page2'
+
 import FormReport from '../form/FormReport'
 import Dashboard from '../components/Dashboard'
 import Leis from '../containers/Leis'
 import ListLeis from '../containers/ListLeis'
 import ListReport from '../containers/ListReport'
 import MoreDetailsDenuncia from '../containers/MoreDetailsDenuncia'
-import FormRegisterDenuncia from '../form/FormRegisterDenuncia'
 import ColetaSeletiva from '../containers/ColetaSeletiva'
 import ColetaOrganica from '../containers/ColetaOrganica'
 import Photos from '../containers/Photos'
@@ -25,8 +24,6 @@ export default props => (
     <Router history={ browserHistory }>
         <Route exact path='/' component={props => <App {...props} />} >
             <IndexRoute component={props => <Dashboard {...props} />} />
-            <Route path='page2' component={props => <page2 {...props} />} />
-            <Route path='registerDenuncia' component={props => <FormRegisterDenuncia {...props} />} />
             <Route path='formReport' component={ FormReport }component={props => <FormReport {...props} />} />
             <Route path='apresentation' component={props => <Apresentation {...props} />} />
             <Route path='leis' component={props => <Leis {...props} />} />

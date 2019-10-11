@@ -1,16 +1,16 @@
-const restful = require('node-restful')
-const mongoose = restful.mongoose
+const mongoose = require('mongoose')
 
 const reportSchema = new mongoose.Schema({
-    name: { type: String, require: false },
-    phone: { type: String, require: false },
-    date: { type: Date, date: new Date()},
-    status: Number,
-    dateOccured: { type: Date, require: true },
-    adressOccured: { type: String, require: true },
-    typeReport: { type: String, require: true },
-    description: { type: String, require: true },    
-    img: [{ type: Buffer }]
+    whoCreated: mongoose.Schema.Types.ObjectId,
+    name: String,
+    phone: String,
+    date: { type: Number, default: new Date().getTime()},
+    status: { type: Number, default: 0 },
+    dateOccured: Date,
+    adressOccured: String,
+    typeReport: String,
+    description: String,    
+    img: [ String ]
 })
 
-module.exports = restful.model('report', reportSchema)
+module.exports = reportSchema

@@ -1,6 +1,6 @@
-/* import React from 'react';
-import { render } from 'react-dom';
-import Gallery from 'react-grid-gallery';
+import React from 'react';
+import Gallery from 'react-grid-gallery'
+import { Field } from 'redux-form'
 
 const IMAGES =
 [{
@@ -32,11 +32,20 @@ export default props => (
         <div className="row">
         <div className="col-md-6">
             <div className="form-group"> 
-                <Field action="upload" name="images" accept="image/png, image/jpeg"  enctype="multipart/form-data" /> 
-                <InputEvent type="file" name="file" id="file" />
+                <Field action="upload" name="images" accept="image/png, image/jpeg"  enctype="multipart/form-data" />
+                <button 
+                        type="submit" 
+                        /*disabled={pristine || submitting} 
+                        onSubmit={() => {
+                            this.props.selectTab('tabList')
+                            this.props.resetForm('FormReport')
+                            }
+                        } */
+                        className='btn btn-success'>
+                            <i className='fa fa-save'/> Salvar</button >
             </div>
         </div>
         </div>
         <Gallery images={IMAGES}/>
     </>
-)  */
+) 

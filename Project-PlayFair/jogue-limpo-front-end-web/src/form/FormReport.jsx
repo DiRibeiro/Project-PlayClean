@@ -2,7 +2,6 @@ import React, { /* useState, */ Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect/* , useSelector, useDispatch */ } from 'react-redux'
 
-
 import ContentHeader from '../templates/contentHeader'
 import Content from '../templates/content'
 import Tabs from '../tab/tabs'
@@ -13,7 +12,7 @@ import TabContent from '../tab/tabContent'
 import {selectTab, showTabs} from '../actions/tabActions'
 import FormList from '../form/FormList'
 import Form from '../form/Form'
-import { create/* , getReports, showUpdate */} from '../actions/reportActions'
+import { postReport } from '../actions/reportActions'
 
 // export default props => { 
 //     const dispatch = useDispatch() 
@@ -49,7 +48,7 @@ class FormReport extends Component {
                                 <FormList/>
                             </TabContent>
                             <TabContent id='tabCreate'>
-                                <Form onSubmit={ create }/>
+                                <Form onSubmit={ postReport }/>
                             </TabContent>
                             <TabContent id='tabUpdate'>
                                 <Form />
@@ -63,7 +62,7 @@ class FormReport extends Component {
     }
 }
 const mapStateToProps = state => ({ tab: state.tab })
-const mapDispatchToProps = dispatch => bindActionCreators({ create, selectTab, showTabs }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ postReport, selectTab, showTabs }, dispatch)
 /* FormReport =  */
 export default connect(state => mapStateToProps, mapDispatchToProps)(FormReport)
 

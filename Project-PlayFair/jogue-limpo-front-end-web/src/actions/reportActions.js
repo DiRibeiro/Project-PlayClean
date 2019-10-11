@@ -3,30 +3,42 @@ import { toastr } from 'react-redux-toastr'
 import { showTabs, selectTab } from './tabActions'
 import { reset as resetForm, initialize} from 'redux-form'
 
+import BASE_URL from '../config/CONSTS'
 const REPORTS_FETCHED = 'REPORTS_FETCHED'
-const BASE_URL = 'http://localhost:3003/api'
 
 export const getReports = () => {
     return dispatch => {
-        fetch(`${ BASE_URL }/reports`, {
-            method: 'get',
-            headers: {
-                "Content-type": "application/json"
-            }
-        }).then(response => {
-            response.json()
-                .then(result => {
-                    return dispatch({
-                        type: REPORTS_FETCHED,
-                        payload: result
-                    })
-                }
-            );
-        }).catch(error => console.log(error))
+        axios
+            .get(`${BASE_URL}/report`)
+            .then(response =>
+                dispatch({
+                    type: REPORTS_FETCHED,
+                    payload: response.data.result
+                })
+            )
+            .catch(error => toastr.error('Erro!', 'Internal server error'))
     }
 }
 
-export function create(values){
+export const postReport = values => dispatch => {
+	axios
+		.post(`${BASE_URL}/report`, values, {
+			headers: {
+				'content-type': 'multipart/form-data'
+			}
+		})
+		.then(response => {
+			if (response.status === 400) 
+				toastr.error('Erro!', response)
+
+			else if (response.status === 200) {
+				toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
+				dispatch(resetForm('Form'))
+			}
+		})
+		.catch(error => toastr.error('Erro!', 'Internal server error'))
+}
+/* export function create(values){
     axios.post(`${BASE_URL}/reports`, values)
         .then(resp => {
             toastr.success('Sucesso', 'Operação realizada.')
@@ -37,8 +49,8 @@ export function create(values){
     return {
         type: 'TEMP'
     }
-} 
-/* export function create(values){
+}  *//* 
+export function create(values){
     return dispatch => {
         axios.post(`${BASE_URL}/reports`, values)
         .then(resp => {
@@ -63,4 +75,22 @@ export function showUpdate(FormReport){
         selectTab('tabUpdate'),
         initialize('Form', FormReport)
     ]
+}
+
+export const setStatus = (status, _id) => {
+	return dispatch => {
+		axios
+			.post(`${BASE_URL}/reportStatus`, { status, _id })
+			.then(response => {
+				if (response.status === 202) toastr.error('Erro!', response)
+				else if (response.status === 200) {
+					toastr.success(
+						'Sucesso!',
+						'Registro atualizado com sucesso!'
+					)
+					dispatch(getReports())
+				}
+			})
+			.catch(error => toastr.error('Erro!', 'Internal server error'))
+	}
 }

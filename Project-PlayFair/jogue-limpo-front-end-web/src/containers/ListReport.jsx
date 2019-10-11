@@ -12,8 +12,8 @@ const ListReport = () => {
         dispatch(getReports())
     }, [])
 
-    function renderRows() {        
-        return list.map(report =>
+    const renderRows = () =>
+        list.map(report =>
             <RowReport 
                 key={ report._id } 
                 name={ report.name }
@@ -21,8 +21,7 @@ const ListReport = () => {
                 status={ report.status } 
                 date={ report.date } 
                 description={ report.description } />
-        ); 
-    }
+        )
 
     return renderRows()
 }

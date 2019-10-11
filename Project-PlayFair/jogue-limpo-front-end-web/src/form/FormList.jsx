@@ -9,15 +9,16 @@ export default props => {
     const reports = useSelector(state => state.reports.list)
 
     useState(() => {
-        dispatch(getReports(),
-        showUpdate()
+        dispatch(
+            getReports(),
+            showUpdate()
         )
     }, [])
 
     const renderRows = () => {
         const list = reports || []
         
-            return list.map(fr => ( //fr = FormReport
+             list.map(fr => ( //fr = FormReport
                 <tr key={fr._id}>
                     <td>{fr.name}</td>
                     <td>{fr.typeReport}</td>

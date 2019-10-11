@@ -13,5 +13,4 @@ import '../../node_modules/admin-lte/plugins/bootstrap-slider/slider.css'
 
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 
-import '../components/custom.css'
-import '../components/cssCalendar.css'
+import './custom.css'

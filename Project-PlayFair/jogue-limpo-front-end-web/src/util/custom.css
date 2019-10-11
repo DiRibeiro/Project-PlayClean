@@ -70,6 +70,7 @@ textarea {
   .btn-edit{
       float: right;
       width: auto;
+      margin-left: 2px;
   }
 
   .btn-view{

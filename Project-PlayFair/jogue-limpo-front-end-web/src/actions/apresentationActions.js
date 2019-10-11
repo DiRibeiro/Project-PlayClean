@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
 
+import BASE_URL from '../config/CONSTS'
 const APRESENTATION_FETCHED = 'APRESENTATION_FETCHED'
-const BASE_URL = 'http://localhost:3003/api'
 
 export const getApresentation = () => {
     return dispatch => {

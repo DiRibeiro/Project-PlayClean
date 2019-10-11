@@ -10,7 +10,10 @@ import promise from 'redux-promise'
 import reducers from './reducers/reducers'
 import Routes from './main/Routes'
 
-const store = applyMiddleware(promise, thunk, multi)(createStore)(reducers)
+const store = createStore(
+    reducers,
+    applyMiddleware(thunk)
+)
 
 ReactDOM.render(
     <Provider store={ store } >

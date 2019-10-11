@@ -1,85 +1,181 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { Field, reduxForm, formValueSelector, reset as resetForm} from 'redux-form'
+import React, { useEffect, useState } from 'react'
+import { connect, useSelector } from 'react-redux'
+import { Field, reduxForm, reset, formValueSelector} from 'redux-form'
 import { createTextMask } from 'redux-form-input-masks'
+import { DateTimePicker } from 'react-widgets'
+
 import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
-import LabelAndInput from './labelAndInput'
-import Select from './Select'
-import { create } from '../actions/reportActions'
+
 import 'react-widgets/dist/css/react-widgets.css'
+
+import { create } from '../actions/reportActions'
 import { selectTab, showTabs } from '../actions/tabActions'
 
-class Form extends Component{
-    constructor(props) {
-        super(props)
-        this.state = {
-            momenTT: null
-        }
-    }
+const Form = props => {
+    const { handleSubmit, handleImage, pristine, submitting } = props
 
-    componentWillMount() {
-        this.setState({ momenTT: momentLocaliser(moment) })
-    }
+    const [files] = useState(props.images)
+    const utils = useSelector(state => state.utils)
+
+    const phoneMask = createTextMask({ pattern: '(99) 99999-9999' })
     
-    render() {
-        const { handleSubmit, pristine, reset, submitting} = this.props
-        const phoneMask = createTextMask({
-            pattern: '(99) 99999-9999'
-        })
+    useEffect(() => {
+        momentLocaliser(moment)
+    }, [])
 
+    const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => 
+        <DateTimePicker
+            onChange={ onChange }
+            format="DD MMM YYYY"
+            time={ showTime }
+            value={ !value ? null : new Date(value) }
+            placeholder="Data do ocorrido" />
+    
+
+    const renderImages = () => 
+        files.map((element, index) => 
+            <img
+                key={ index }
+                style={{ 
+                    clear: 'both',
+                    width: '100px',
+                    height: '100px',
+                    margin: '0px 5px',
+                    marginTop: '-14px',
+                    borderRadius: '3px'
+                }} 
+                src={ URL.createObjectURL(element) } 
+                alt="img report" 
+            />
+        )
+     
         return(
-            <form onSubmit={handleSubmit}>
-                <div className='box-body'>
-                    <Field name='name' component={LabelAndInput}
-                        label=' Nome' cols='6' type='text' icon='user'/>
-                    <Field {...phoneMask} name='phone' component={LabelAndInput}
-                        label=' Telefone' cols='3' type='text' icon='phone'/>
-                    <Field name='date' component={LabelAndInput}
-                        label=' Data da denúncia' cols='3' type='date' icon='calendar'/>
-                    <Field name='adressOccured' component={LabelAndInput}
-                        label=' Local da denúncia' cols='6' icon='map'/>
-                    <Field multiple='' label=' Tipo de denúncia' icon='list' cols='3' component={Select} name='typeReport'>
-                    </Field>
-                    <Field name='dateOccured' component={LabelAndInput}
-                        label=' Data da ocorrência' cols='3' type='date' icon='calendar'/>
-                    <Field name='descriptiom' component={LabelAndInput}
-                        label=' Descrição da denúncia' type='textarea' icon='book'/>
-                </div> 
-                <div className='box-footer'>
+            <form onSubmit={handleSubmit} className='form-group' encType='multipart/form-data'>
+                    <div className='row mb-3'>
+                        <div className='col-md-6'>
+                            <label>Nome</label>
+                            <div className='input-group'>
+                                <span className="input-group-addon"><i className="fas fa-user"/></span>
+                                <Field name="name" component="input" type="text" placeholder="Nome" className="form-control" />
+                            </div>                        
+                        </div>
+                        <div className='col-md-3'>
+                            <label>Telefone</label>
+                            <div className='input-group'>
+                                <span className="input-group-addon"><i className="fas fa-phone"/></span>
+                                <Field required name="phone" component="input" type="tel" placeholder="(__) _____-____" className="form-control" />
+                            </div>                        
+                            <h5 className='requiredField'>*Campo obrigatório</h5>
+                        </div>
+                        <div className='col-md-3'>
+                            <label>Data da denúncia</label>
+                            <div className='input-group date'>
+                                <Field 
+                                    name='date'
+                                    showTime={ false }
+                                    component={ renderDateTimePicker }
+                                />
+                            </div>
+                        </div>                       
+                    </div>
+                    <div className='row mb-3'>
+                        <div className='col-md-6'>
+                            <label>Local da denúncia</label>
+                            <div className='input-group'>
+                                <span className="input-group-addon"><i className="fas fa-map"/></span>
+                                <Field required name="adressOccured" component="input" type="text" placeholder="Endereço do local da denúncia" className="form-control" />
+                            </div> 
+                            <h5 className='requiredField'>*Campo obrigatório</h5>                       
+                        </div>
+                        <div className='col-md-3'>
+                            <label>Tipo de denúncia</label>
+                            <div className='input-group'>
+                                <span className="input-group-addon"><i className="fas fa-list"/></span>
+                                <Field required name="typeReport" component="select" className="form-control select">
+                                    <option value="" disabled defaultValue>Selecione um tipo</option>
+                                    <option>Lixo irregular</option>
+                                    <option>Descarte de material incorreto</option>
+                                    <option>Lâmpadas de mercúrio</option>
+                                    <option>Outro</option>
+                                </Field>
+                            </div>                        
+                            <h5 className='requiredField'>*Campo obrigatório</h5>
+                        </div>
+                        <div className='col-md-3'>
+                            <label>Data da ocorrência</label>
+                            <div className='input-group date'>
+                                <Field 
+                                    name='dateOccured'
+                                    showTime={ false }
+                                    component={ renderDateTimePicker }
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col-md-12' style={{ marginBottom: '20px' }}>
+                            <label>Descrição</label>
+                            <Field className='form-control' component='textarea' rows='10' name='description' placeholder='Descreva a denúncia detalhadamente.' />
+                            <h5 className='description'>*Toda informação é útil</h5>
+                        </div>
+                    </div>
+
+                   {/* {renderImages() } */}
+
+                    <label 
+                        htmlFor='select-pictures'
+                        style={{ 
+                            clear: 'both',
+                            width: '100px',
+                            heigth: '100px',
+                            margin: '5px',
+                            backgroundColor: '#3c8dbc',
+                            color: '#fff',
+                            border: 'none',
+                            // display: 'inline-block',
+                            borderRadius: '3px',
+                            padding: '28px 35px',
+                            fontSize: '32px',
+                            cursor: 'pointer',
+                        }} ><i className="fas fa-photo"></i></label>                    
+
+                    <h5 className="description">*Insira somente imagens da denúncia.</h5>
+                                <input id="select-pictures"
+                                    type="file" 
+                                    name="images" 
+                                    accept="image/png, image/jpeg" 
+                                    onChange={ handleImage } 
+                                    multiple 
+                                    style={{ display: 'none' }} />
+                <div className="box-footer">
                     <button 
                         type="button" 
                         disabled={pristine || submitting} 
-                        onClick={
-                            reset
+                        onClick={ () => {
+                            reset('Form')
+                            }
                         } 
                         className='btn btn-danger btn-edit'>
                             <i className='fa fa-close'/> Limpar</button >
                     <button 
                         type="submit" 
                         disabled={pristine || submitting}
-                        onClick={() => {
-                            resetForm('Form')
-                            selectTab('tabList')
-                        }
-                        }
                         className='btn btn-success btn-edit'>
                             <i className='fa fa-save'/> Salvar</button >
                 </div>     
             </form>
         )
-    }
 }
 
-Form = reduxForm({
+let FormReport = reduxForm({
     form: 'Form',
     destroyOnUnmount: false
 })(Form)
-const selector = formValueSelector('Form')
-const mapDispatchToProps = dispatch => bindActionCreators({ create, showTabs, selectTab  }, dispatch)
 
-Form = connect(state => {
+const selector = formValueSelector('Form')
+
+FormReport = connect(state => {
     // can select values individually
     const typeReportValue = selector(state, 'typeReport')
 
@@ -87,6 +183,6 @@ Form = connect(state => {
         typeReportValue
     }
 
-}, mapDispatchToProps)(Form)
+})(FormReport)
 
-export default Form
+export default FormReport
