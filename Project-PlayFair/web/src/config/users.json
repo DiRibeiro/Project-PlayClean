@@ -1,0 +1,57 @@
+db.users.insertMany([
+	{
+		"firstName": "Carlos Eduardo",
+		"lastName": "Wunsch",
+		"cpf": "03924510008",
+		"phone1": "51991384007",
+		"email": "admin",
+		"reports": [],
+		"animalsAdoption": [],
+		"type": "admin",
+		"password": "admin"
+	},
+	{
+		"firstName": "Canil",
+		"lastName": "de Osório",
+		"cpf": "11122233345",
+		"phone1": "51988887777",
+		"email": "canilmunicipal@gmail.com",
+		"reports": [],
+		"animalsAdoption": [],
+		"type": "canil",
+		"password": "CanilMunicipal@123"
+	},
+	{
+		"firstName": "Secretaria da Saúde",
+		"lastName": "de Osório",
+		"cpf": "11122233345",
+		"phone1": "51988887777",
+		"email": "secretariadasaude@gmail.com",
+		"reports": [],
+		"animalsAdoption": [],
+		"type": "secretaria-da-saude",
+		"password": "SecretariaDaSaude@123"
+	},
+	{
+		"firstName": "Usuário do Canil",
+		"lastName": "de Osório",
+		"cpf": "11122233345",
+		"phone1": "51988887777",
+		"email": "canilmunicipal@gmail.com",
+		"reports": [],
+		"animalsAdoption": [],
+		"type": "canil",
+		"password": "CanilMunicipal@123"
+	},
+	{
+		"firstName": "Adoção de animais",
+		"lastName": "de Osório",
+		"cpf": "11122233345",
+		"phone1": "51988887777",
+		"email": "animais@gmail.com",
+		"reports": [],
+		"animalsAdoption": [],
+		"type": "animais",
+		"password": "AnimaisOsorio@123"
+	}
+])
