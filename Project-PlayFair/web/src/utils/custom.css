@@ -551,7 +551,7 @@ button.btn.btn-success.btnLogin:hover {
 }
 
 .Login-logo {
-  height: 20vmin;
+  height: 25vmin;
 }
 
 .Login-header {
@@ -568,6 +568,10 @@ button.btn.btn-success.btnLogin:hover {
   color: white;
 }
 
+.container {
+    width: 15em;
+}
+
 .form {
   display: flex;
   position: relative;
@@ -577,10 +581,9 @@ button.btn.btn-success.btnLogin:hover {
   background-color: #ffffff;
   width: auto;
   height: auto;
-  padding-left: 2em;
   padding-top: 1em;
   padding-bottom: 2em;
-  box-shadow: 0em 1.7em 2em 0em black;
+  box-shadow: 0em 0.5em 1em 0em black;
 }
 
 .arrow {
@@ -606,7 +609,7 @@ button.btn.btn-success.btnLogin:hover {
   border-bottom: #1e7e34 1px solid;
   border-radius: 4px;
   margin: auto;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.7em;
   color:white;
 }
 
@@ -628,6 +631,7 @@ input.user-form {
   border-bottom: #1e7e34 1px solid;
   border-radius: 4px;
   margin:auto;
+  margin-bottom: 0.7em;
   color:white;
 }
 
@@ -651,26 +655,27 @@ input:focus {
 
 .inputCheck{
   font-size: 0.6em;
-  margin: auto;
+  margin: auto 1em auto 1em;
   padding: auto;
 }
 
 .formTop {
-  float: left;
+  /* float: left; */
+    padding: 0;
+    margin: 0;
 }
 
 .form-check {
-  float: left;
-  margin-left: 16px;
+    float: left;
+    margin-left: 5px;
+    padding: 1px;
 }
 
 .form-check-input {
-  position: absolute;
-  margin-top: 1.3rem;
-  margin-left: -1.25rem;
+    margin-left: 0;
 }
-
-/* button {
+/* 
+.btnLogin {
   height: auto;
   width: 2.6em;
   border: 0px;
@@ -680,27 +685,31 @@ input:focus {
   color: white;
   margin: 0em 1.7em 0em 1em;
   font-size: 22px;
+}
+
+.btnLogin:hover{
+    background: #1e7e34;
 } */
 
-/* 
+
 .btn-col {
-  width: 10em;
+  width: 8em;
   margin-right: auto;
   margin-left: auto;
-} */
+} 
 
-/* .btn-cancel {
+.btn-cancel {
   float: left;
   margin-top: 0.3em;
   width: 8em;
   font-size: 0.7em;
-  padding: 0;
-} */
-/* 
+  padding: 4px;
+}
+
 .btn-login {
   float: right;
   width: 8em; 
   margin-top: 0.3em;
   font-size: 0.7em;
-  padding: 0;
-} */
+  padding: 4px;
+}

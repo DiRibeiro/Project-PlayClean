@@ -89,7 +89,7 @@ const FormLogin = props => {
 			  <img src='img/JogueLimpo.png' className="Login-logo" alt="logo" />
 			  <div className='arrow'></div>
 			  <form onSubmit={props.handleSubmit} className='form'>
-				  <div className='row'>
+				  <div className='container'>
 					<div className='formTop'>
 					  <div className='row'>
 						<div className='col-auto'>
@@ -123,21 +123,20 @@ const FormLogin = props => {
 							</span>
 						</div>
 					  </div>
-					  <div className='row'>
 						<div className='form-check'>
 						  <input type='checkbox' className='form-check-input' />
 						  <label className='inputCheck'>Lembrar minha senha.</label>
 						</div>
-					  </div>
+					  
 					</div>
-					<button className="submit">
+					{/* <button className="submit btnLogin">
 					  <span>
 						<i className='fa fa-sign-in'/>
 					  </span>
-					</button>
+					</button> */}
+					  <input className="btn btn-success btn-login" type="submit" value="Login" />
+					  <input className="btn btn-danger btn-cancel" type="reset" value="Clear"/>
 				  </div>
-					  {/* <input className="btn btn-success btn-login" type="submit" /> */}
-					  {/* <input className="btn btn-danger btn-cancel" type="reset" value="Cancel"/> */}
 				</form>
 		  </header>
 		</div>
