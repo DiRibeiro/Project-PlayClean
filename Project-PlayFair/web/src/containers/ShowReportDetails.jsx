@@ -6,7 +6,7 @@ import { fullDate } from '../helper/date'
 
 const ShowReportDetails = props => { 
 	const dispatch = useDispatch()
-	const reports = useSelector(state => state.reports.list)
+	const reports = useSelector(state => state.report.list)
 	const report = reports.find(element => element._id === props.location.state) || undefined
 
 	const showStatus = () =>

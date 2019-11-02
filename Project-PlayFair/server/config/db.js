@@ -4,7 +4,7 @@ const reportSchema = require('../api/dbSchema/reportSchema')
 const animalSchema = require('../api/dbSchema/animalSchema')
 const userSchema = require('../api/dbSchema/userSchema')
 
-mongoose.connect("mongodb://localhost/eco-e-pet", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/jogue-limpo", { useNewUrlParser: true });
 
 const report = mongoose.model('report', reportSchema)
 const animal = mongoose.model('animal', animalSchema)

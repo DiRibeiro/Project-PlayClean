@@ -538,3 +538,169 @@ ul.ks-cboxtags li input[type="checkbox"] {
     color: white;
     text-decoration: none;
 }
+
+button.btn.btn-success.btnLogin:hover {
+    background-color: #008d4c;
+}
+
+/*LOGIN*/
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+.Login {
+  text-align: center;
+}
+
+.Login-logo {
+  height: 20vmin;
+}
+
+.Login-header {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0b/Mirante_Morro_da_Bor%C3%BAssia_-_Os%C3%B3rio_RS_-_panoramio.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.form {
+  display: flex;
+  position: relative;
+  color: #000000;
+  border-top: solid 5px #1e7e34;
+  border-radius: 0.5em;
+  background-color: #ffffff;
+  width: auto;
+  height: auto;
+  padding-left: 2em;
+  padding-top: 1em;
+  padding-bottom: 2em;
+  box-shadow: 0em 1.7em 2em 0em black;
+}
+
+.arrow {
+  width: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border: 15px solid transparent;
+  border-bottom-color: #1e7e34;
+}
+
+/* .inputUser {
+  font-size: 0.7em;
+}
+
+.inputPasswd {
+  font-size: 0.7em;
+} */
+
+.user-row {
+  font-size: 1em;
+  background-color: #1e7e34;
+  /* border: 1px solid #00010000; */
+  border-bottom: #1e7e34 1px solid;
+  border-radius: 4px;
+  margin: auto;
+  margin-bottom: 0.5em;
+  color:white;
+}
+
+.fa-user:before {
+  margin-left: 0.5em;
+}
+
+input.user-form {
+  padding-left: 8px;
+  margin-left: 0.5em;
+  border: none;
+  height: 1.4em;
+}
+
+.password-row {
+  font-size: 1em;
+  background-color: #1e7e34;
+  /* border: 1px solid #000100; */
+  border-bottom: #1e7e34 1px solid;
+  border-radius: 4px;
+  margin:auto;
+  color:white;
+}
+
+.fa-lock:before {
+  margin-left: 0.5em;
+  padding: 1px;
+}
+
+input.passwd-form {
+  padding-left: 8px;
+  margin-left: 0.5em;
+  border: none;
+  height: 1.4em;
+}
+
+input:focus {
+  outline-color: rgba(0,0,0,0);
+  background: rgba(255,255,255,.95);
+  color: #1e7e34;
+}
+
+.inputCheck{
+  font-size: 0.6em;
+  margin: auto;
+  padding: auto;
+}
+
+.formTop {
+  float: left;
+}
+
+.form-check {
+  float: left;
+  margin-left: 16px;
+}
+
+.form-check-input {
+  position: absolute;
+  margin-top: 1.3rem;
+  margin-left: -1.25rem;
+}
+
+/* button {
+  height: auto;
+  width: 2.6em;
+  border: 0px;
+  background: #1e7e34;
+  border-radius: 7px;
+  padding: 1em 1em 1em 1rem;
+  color: white;
+  margin: 0em 1.7em 0em 1em;
+  font-size: 22px;
+} */
+
+/* 
+.btn-col {
+  width: 10em;
+  margin-right: auto;
+  margin-left: auto;
+} */
+
+/* .btn-cancel {
+  float: left;
+  margin-top: 0.3em;
+  width: 8em;
+  font-size: 0.7em;
+  padding: 0;
+} */
+/* 
+.btn-login {
+  float: right;
+  width: 8em; 
+  margin-top: 0.3em;
+  font-size: 0.7em;
+  padding: 0;
+} */

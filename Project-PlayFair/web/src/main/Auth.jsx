@@ -9,6 +9,7 @@ import Loader from 'react-loader-spinner'
 import Routes from './Routes'
 import Authenticate from '../reports/Authenticate'
 import { validatedToken } from '../actions/authActions'
+import Auth from '../reports/Authenticate'
 
 const AuthOrApp = () => {
 	const dispatch = useDispatch()
@@ -21,29 +22,28 @@ const AuthOrApp = () => {
 			dispatch(validatedToken(auth.user))
 	}, [])
 
-	// if (auth.user && auth.validToken) {
-	// 	axios.defaults.headers.common['authorization'] = auth.user
-	// 	axios.defaults.headers.common['_id'] = user._id
+	if (auth.user && auth.validToken) {
+		axios.defaults.headers.common['authorization'] = auth.user
+		axios.defaults.headers.common['_id'] = user._id
 
-	// 	return <Routes />
-    // } else if (!auth.user) 
-    //     return <Authenticate />
+		return <Routes />
+    } else if (!auth.user) 
+        return <Authenticate />
 		
-	// else
+	else
 		return (
-			// <Loader
-			// 	type='Oval'
-			// 	color='#00BFFF'
-			// 	height={100}
-			// 	width={100}
-			// 	style={{
-			// 		position: 'absolute',
-			// 		left: '50%',
-			// 		top: '40%',
-			// 		marginLeft: '-50px'
-			// 	}}
-			// />
-			<Routes/>
+			<Loader
+				type='Oval'
+				color='#00BFFF'
+				height={100}
+				width={100}
+				style={{
+					position: 'absolute',
+					left: '50%',
+					top: '40%',
+					marginLeft: '-50px'
+				}}
+			/>
 		)
 }
 

@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2'
 const LineChart = props => {
     return (
         <div style={{ position: 'relative' }} >
-            <Line 
+            <Line
                 data = {{
                     labels: ['Jeneiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
                     datasets: [

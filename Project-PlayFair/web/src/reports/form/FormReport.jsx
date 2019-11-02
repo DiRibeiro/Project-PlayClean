@@ -54,7 +54,7 @@ const Form = props => {
                 <div className="col-md-6">
                     <label>Nome</label>
                     <div className="input-group">
-                        <span className="input-group-addon"><i className="fas fa-signature"/></span>
+                        <span className="input-group-addon"><i className="fas fa-user"/></span>
                         <Field name="name" component="input" type="text" placeholder="Nome completo" className="form-control" />
                     </div>
                     {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
@@ -67,15 +67,6 @@ const Form = props => {
                     </div>
                 </div>
             </div>
-            {/* <div className="row mb-3">
-                <div className="col-md-6">
-                    <label>E-mail</label>
-                    <div className="input-group">
-                        <span className="input-group-addon"><i className="fas fa-at" /></span>
-                        <Field name="emailReportForm" component="input" type="email" placeholder="" className="form-control" />
-                    </div>
-                </div>
-            </div> */}
             <hr className="hrcustom" />
 
             {/* Information about what happened */}
@@ -107,7 +98,6 @@ const Form = props => {
             <div className="row">
                 <div className="col-md-12" style={{ marginBottom: '20px' }}>
                     <label>Descrição</label>
-                    {/* <textarea className="form-control" rows="4" placeholder="Descreva a denúncia por completo, incluíndo características de veículos vistos pela região, como cor, placa. Informe a hora. Descreva a cena." /> */}
                     <Field className="form-control" rows="4" name="description" component="textarea" placeholder="Descreva a denúncia por completo." />                        
                     <h5 className="description">*Qualquer informação é útil</h5>
                 </div>

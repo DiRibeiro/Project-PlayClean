@@ -122,10 +122,10 @@ const getDataDashboard = async (req, res) => {
 		doughnutChart: {
 			labels: [
 				'Centro',
-				'Borrucia',
-				'Glória',
-				'Caconde',
-				'Emboaba',
+				'Borúsia',
+				'Atlântida Sul',
+				'Serramar',
+				'Laranjeiras',
 				'Mariápolis',
 				'Palmital'
 			],

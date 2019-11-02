@@ -40,7 +40,7 @@ export default () => {
 					<li className={ `treeview ${ reportOpen ? 'menu-open' : '' }` }>
 						<MenuTree
 							open={ reportOpen ? 'true' : '' }
-							icon='list-alt'
+							icon='bullhorn'
 							label='Denúncias'
 							onClick={ () => dispatch(setSidebarReport()) }>
 							<MenuItem
@@ -65,7 +65,7 @@ export default () => {
 								icon='calendar'
 								label='Calendário' />
 							<MenuItem
-								path='registerevents'
+								path='photos'
 								icon='photo'
 								label='Galeria de fotos' />
 							{/* <MenuItem path='registerLostevents' icon='home' label='Cadastrar perdido' /> */}
@@ -75,7 +75,7 @@ export default () => {
 					<li className={ `treeview ${ collectionsOpen ? 'menu-open' : '' }` }>
 						<MenuTree
 							open={ collectionsOpen ? 'true' : '' }
-							icon='truck'
+							icon='trash'
 							label='Coletas'
 							onClick={ () => dispatch(setSidebarColletions()) }>
 							<MenuItem
@@ -91,8 +91,8 @@ export default () => {
 					</li>
 
 					<MenuItem
-						path='contacts'
-						icon='plug'
+						path='cataTreco'
+						icon='shopping-cart'
 						label='Cata-Treco' />
 					<MenuItem
 						path='contacts'

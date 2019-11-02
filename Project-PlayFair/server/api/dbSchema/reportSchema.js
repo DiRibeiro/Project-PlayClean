@@ -2,19 +2,16 @@ const mongoose = require('mongoose')
 
 const reportSchema = new mongoose.Schema({
     whoCreated: mongoose.Schema.Types.ObjectId,
-    nameReportForm: String,                //Denunciante
-    phoneReportForm: String,
-    cpfReportForm: String,
-    emailReportForm: String,
+    name: String,                //Denunciante
+    phone: String,
     typeReport: String,
-    titleReportForm: String,
-    dateOcurrReport: Date,
+    dateOcurr: Date,
     dateCreate: {
         type: Number,
         default: new Date().getTime()
     },
-    adressOcurrReportForm: String,
-    descriptionReportForm: String,
+    adressOcurr: String,
+    description: String,
     images: [ String ],
     status: {
         type: Number,

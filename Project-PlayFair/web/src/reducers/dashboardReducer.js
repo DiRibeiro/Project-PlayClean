@@ -10,7 +10,7 @@ const INITIAL_STATE = {
         data: []
     },
     doughnutChart: {
-        labels: ['Centro', 'Borrucia', 'Glória', 'Caconde', 'Emboaba', 'Mariápolis', 'Palmital'],
+        labels: ['Centro', 'Borúsia', 'Atlântida Sul', 'Serramar', 'Laranjeiras', 'Mariápolis', 'Palmital'],
         data: []
     }, 
     map: {

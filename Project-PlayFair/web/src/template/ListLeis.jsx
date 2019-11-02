@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner'
 import LineSearchFilter from '../containers/LineSearchFilter'
 import Dropmenu from '../containers/Dropmenu'
 
-import RowAnimal from '../containers/RowAnimal'
+import RowLeis from '../containers/RowLeis'
 import { getListAdoption } from '../actions/animalsActions'
 
 export default () => {
@@ -17,7 +17,7 @@ export default () => {
 	}, [])
 
 	const renderRows = () =>
-		list.map(animal => <RowAnimal key={animal._id} animal={animal} />)
+		list.map(animal => <RowLeis key={animal._id} animal={animal} />)
 
 	if (list !== undefined) return renderRows()
 	return (

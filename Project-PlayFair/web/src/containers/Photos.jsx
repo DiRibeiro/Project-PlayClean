@@ -27,10 +27,10 @@ const IMAGES =
 }]
 
 const Photo = props => {
-    const handleImage = props
+    const {handleImage} = props
     const [files] = useState(props.images)
     const renderImages = () => {
-        files.map((element, index) => 
+        files.map((element, index) =>
             <img
                 key={ index }
                 style={{ 
@@ -69,20 +69,20 @@ const Photo = props => {
                         }} ><i className="fas fa-photo"></i></label>                    
 
                     <h5 className="description">*Insira um arquivo.</h5>
-                                <input id="select-pictures"
-                                    type="file" 
-                                    name="images" 
-                                    accept="image/png, image/jpeg" 
-                                    onChange={ handleImage } 
-                                    multiple 
-                                    style={{ display: 'none' }} />
+                        <input id="select-pictures"
+                            type="file" 
+                            name="images" 
+                            accept="image/png, image/jpeg" 
+                            onChange={ handleImage } 
+                            multiple 
+                            style={{ display: 'none' }} />
                                 
             </div>
         </div>
         
         <div className='col-md-12'>
-            {renderImages}
-            {/* <Gallery images={IMAGES}/> */}
+            {renderImages()}
+            {/* <Gallery images={renderImages()}/> */}
 
         </div>
         </div>
