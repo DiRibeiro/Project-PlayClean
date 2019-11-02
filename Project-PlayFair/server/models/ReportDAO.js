@@ -25,8 +25,8 @@ const getReport = (req, res) => {
 		})
 }
 
-const setReport = async (req, res) => {
-	const newReport = await new report(req.body)
+const setReport = (req, res) => {
+	const newReport =  new report(req.body)
 
 	let paths = new Array()
 	req.files.forEach(pic => paths.push(pic.path))
@@ -36,7 +36,7 @@ const setReport = async (req, res) => {
 
 	newReport.save().then(response =>
 		user.findOne({ _id: req.headers['_id'] }, (err, result) => {
-			result.reports.push(response._id)
+			// result.reports.push(response._id)
 			result.save()
 				.then(response => res.status(200).json('successfuly request'))
 				.catch(err => res.status(500).json('Internal server error'))

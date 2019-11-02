@@ -713,3 +713,17 @@ input:focus {
   font-size: 0.7em;
   padding: 4px;
 }
+
+.listReport {
+    height: 7em;
+}
+
+.showStatus {
+    float: right;
+    display: grid;
+    padding: inherit;
+}
+
+.showBtn {
+    margin-bottom: 1em;
+}

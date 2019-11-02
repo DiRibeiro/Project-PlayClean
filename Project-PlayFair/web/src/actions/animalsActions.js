@@ -23,7 +23,7 @@ export const postAnimalAdoption = values => {
     return dispatch => {
         dispatch({ type: LOAD, payload: true })
         axios.post(`${ BASE_URL }/animalAdoption`, values)
-            .then(response => {                                     // response.data.result.firstName == "Carlos Eduardo" || response.data.token
+            .then(response => {                                     
                 if(response.status === 202) {
                     toastr.error('Erro!', response)
                     dispatch({ type: LOAD, payload: false })

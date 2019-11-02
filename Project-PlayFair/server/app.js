@@ -17,7 +17,7 @@ const Auth = require('./models/auth/authUser')
 
 // Reports
 app.get('/report', (req, res) => ReportsDAO.getReport(req, res))
-app.post('/report', upload.array('images', 10), (req, res) => ReportsDAO.setReport(req, res))
+app.post('/report', upload.array('images', 4), (req, res) => ReportsDAO.setReport(req, res))
 app.post('/reportStatus' , (req, res) => ReportsDAO.setStatus(req, res))
 
 app.get('/get', (req, res) => ReportsDAO.get(req, res))

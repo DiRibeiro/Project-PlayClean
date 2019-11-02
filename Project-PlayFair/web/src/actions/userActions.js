@@ -13,7 +13,7 @@ export const tradeTokenToUser = token => {
 
     return dispatch => {
         axios.post(`${ BASE_URL }/tradeTokenToUser`, tokenID)
-            .then(response => {                                     // response.data.result.firstName == 'Carlos Eduardo' || response.data.token
+            .then(response => {                                     
                 if(response.status === 400)
                     toastr.error('Erro!', response)
 
@@ -29,7 +29,7 @@ export const tradeTokenToUser = token => {
 export const updateToken = () => {
     return dispatch => {
         axios.get(`${ BASE_URL }/updateToken`)
-            .then(response => {                                     // response.data.result.firstName == 'Carlos Eduardo' || response.data.token  
+            .then(response => {                                    
                 if(response.status === 202)
                     toastr.error('Erro!', response.data)
 
@@ -51,7 +51,7 @@ export const updateUser = values => {
     return dispatch => {
         dispatch({ type: LOAD, payload: true })
         axios.post(`${ BASE_URL }/updateUser`, values)
-            .then(response => {                                     // response.data.result.firstName == 'Carlos Eduardo' || response.data.token
+            .then(response => {                                     
                 if(response.status === 202) {
                     toastr.error('Erro!', response.data)
                     dispatch({ type: LOAD, payload: false })

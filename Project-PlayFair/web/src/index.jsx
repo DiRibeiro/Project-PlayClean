@@ -18,8 +18,8 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={ store } >
         <>
-            <Auth />
-            {/* <Routes/> */}
+            {/* <Auth /> */}
+            <Routes/>
             <ReduxToastr
                 timeOut={ 3500 }
                 newestOnTop={ true }

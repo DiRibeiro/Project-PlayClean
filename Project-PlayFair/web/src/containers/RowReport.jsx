@@ -19,12 +19,12 @@ const RowReport = props => {
 
         return (
             <div className="box box-success">
-                <div className="box-body">
+                <div className="box-body listReport">
                     <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                        <h3 className="box-title">{ report.titleReportForm }</h3>
-                        <span>Ocorreu dia { fullDate(report.dateOcurrReport) }</span><br />
+                        <h3 className="box-title">{ report.title }</h3>
+                        <span>Ocorreu dia { fullDate(report.dateOcurr) }</span><br />
                         <span>Cadastrado dia { fullDate(report.dateCreate) }</span><br />
-                        <p>{ report.descriptionReportForm }</p>
+                        <p>{ report.description }</p>
                     </div>
                     <Link to={{ pathname: '/showDetailReport', state: report._id }} >
                         <button className="btn btn-primary bottomZero">Ver mais</button>

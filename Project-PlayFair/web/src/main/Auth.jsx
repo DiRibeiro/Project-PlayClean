@@ -9,7 +9,6 @@ import Loader from 'react-loader-spinner'
 import Routes from './Routes'
 import Authenticate from '../reports/Authenticate'
 import { validatedToken } from '../actions/authActions'
-import Auth from '../reports/Authenticate'
 
 const AuthOrApp = () => {
 	const dispatch = useDispatch()

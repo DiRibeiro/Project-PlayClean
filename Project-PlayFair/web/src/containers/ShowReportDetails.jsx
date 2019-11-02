@@ -6,23 +6,26 @@ import { fullDate } from '../helper/date'
 
 const ShowReportDetails = props => { 
 	const dispatch = useDispatch()
-	const reports = useSelector(state => state.report.list)
+	const reports = useSelector(state => state.reports.list)
 	const report = reports.find(element => element._id === props.location.state) || undefined
-
-	const showStatus = () =>
-		report.status ? (
-			<button
-				className='btn btn-btn-dark floatRight'
-				onClick={ () => dispatch(setStatus(0, report._id)) }>
-				Fechada
+	
+	const showStatus = () => (
+		<div className='showStatus'>
+			<button className="btn btn-success showBtn"
+				onClick={ () => dispatch(setStatus(0, report._id), window.location='/listReport') }
+			>Aberta
 			</button>
-		) : (
-			<button
-				className='btn btn-success floatRight'
-				onClick={ () => dispatch(setStatus(1, report._id)) }>
-				Aberta
+			<button className="btn btn-dark showBtn"
+				onClick={ () => dispatch(setStatus(1, report._id), window.location='/listReport') }
+			>Fechada
 			</button>
-		)
+        	<button className="btn btn-warning showBtn"
+				onClick={ () => dispatch(setStatus(2, report._id), window.location='/listReport') }
+				
+				>Pendente
+				</button>
+		</div>
+	)
 
 	const showImages = () => {
 		report.images.map((pic, index) => (
@@ -80,36 +83,29 @@ const ShowReportDetails = props => {
 					</div>
 					{ /* Info */ }
 					<div className='col-xl-8 col-md-6'>
-						<h2 className='box-title'>{ report.titleReportForm }</h2>
 						{ showStatus() }
-						<h4>{ report.typeReport }</h4>
+						<h4>Tipo de denúncia: { report.typeReport }</h4>
 						<span>
 							Cadastrado dia: { fullDate(report.dateCreate) }
 						</span>
 						<br />
 						<span>
-							Ocorreu dia: { fullDate(report.dateOcurrReport) }
+							Ocorreu dia: { fullDate(report.dateOcurr) }
 						</span>
 						<br />
 						<br />
 						<b>Onde ocorreu: </b>
-						{ report.adressOcurrReportForm }
+						{ report.adressOcurr }
 						<br />
-						{ /* <h4>Informações sobre o denunciante: </h4> */ }
+						{ <h4>Informações sobre o denunciante: </h4> }
 						<b>Nome: </b>
-						{ report.nameReportForm }
+						{ report.name }
 						<br />
 						<b>Telefone: </b>
-						{ report.phoneReportForm }
-						<br />
-						<b>CPF: </b>
-						{ report.cpfReportForm }
-						<br />
-						<b>E-mail do denunciante: </b>
-						{ report.emailReportForm }
+						{ report.phone }
 						<br />
 						<b>Descrição: </b>
-						{ report.descriptionReportForm }
+						{ report.description }
 					</div>
 				</div>
 			</div>
