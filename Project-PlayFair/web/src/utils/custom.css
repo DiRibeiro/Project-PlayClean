@@ -570,6 +570,9 @@ button.btn.btn-success.btnLogin:hover {
 
 .container {
     width: 15em;
+    display: flex;   
+    flex-direction: column;
+    align-items: center;
 }
 
 .form {
@@ -583,7 +586,7 @@ button.btn.btn-success.btnLogin:hover {
   height: auto;
   padding-top: 1em;
   padding-bottom: 2em;
-  box-shadow: 0em 0.5em 1em 0em black;
+  box-shadow: 2px 2px 4px rgba(0,0,0, .5);
 }
 
 .arrow {
@@ -647,10 +650,9 @@ input.passwd-form {
   height: 1.4em;
 }
 
-input:focus {
-  outline-color: rgba(0,0,0,0);
-  background: rgba(255,255,255,.95);
-  color: #1e7e34;
+input {
+    clear: both;
+    color: #000000;
 }
 
 .inputCheck{
@@ -667,8 +669,7 @@ input:focus {
 
 .form-check {
     float: left;
-    margin-left: 5px;
-    padding: 1px;
+    margin-left: -14px;
 }
 
 .form-check-input {
@@ -691,6 +692,10 @@ input:focus {
     background: #1e7e34;
 } */
 
+.btn-layout {
+    display: flex;
+    flex-direction: row-reverse;
+}
 
 .btn-col {
   width: 8em;
@@ -699,19 +704,18 @@ input:focus {
 } 
 
 .btn-cancel {
-  float: left;
-  margin-top: 0.3em;
   width: 8em;
   font-size: 0.7em;
   padding: 4px;
+  margin-top: 0.3em;
+  margin-right: 1em;
 }
 
 .btn-login {
-  float: right;
   width: 8em; 
-  margin-top: 0.3em;
   font-size: 0.7em;
   padding: 4px;
+  margin-top: 0.3em;
 }
 
 .listReport {

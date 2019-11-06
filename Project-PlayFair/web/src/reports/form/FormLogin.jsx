@@ -134,8 +134,10 @@ const FormLogin = props => {
 						<i className='fa fa-sign-in'/>
 					  </span>
 					</button> */}
+					<div className='btn-layout'>
 					  <input className="btn btn-success btn-login" type="submit" value="Login" />
 					  <input className="btn btn-danger btn-cancel" type="reset" value="Clear"/>
+					</div>
 				  </div>
 				</form>
 		  </header>

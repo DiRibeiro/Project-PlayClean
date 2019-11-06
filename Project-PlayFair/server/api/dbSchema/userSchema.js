@@ -19,17 +19,18 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-module.exports = userSchema
+db.user.insertMany([
+	{
+		"firstName": "Diego",
+		"lastName": "Ribeiro",
+		"cpf": "07998634910",
+		"phone1": "51989405478",
+		"email": "admin",
+		"reports": [],
+		"animalsAdoption": [],
+		"type": "admin",
+		"password": "admin"
+	}
+])
 
-/*
-    db.users.insertOne({  
-        firstName: "Carlos Eduardo",  
-        lastName: "Wunsch",  
-        cpf: "03924510008",  
-        phone1: "51991384007", 
-        email: "admin", 
-        reports: [], 
-        animalsAdoption: [], 
-        type: "admin", 
-        password: "admin"  });
- */
+module.exports = userSchema

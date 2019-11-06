@@ -14,9 +14,7 @@ const IMAGES =
         src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
         thumbnail: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
         thumbnailWidth: 320,
-        thumbnailHeight: 212,
-        tags: [{value: "Ocean", title: "Ocean"}, {value: "People", title: "People"}],
-        caption: ""
+        thumbnailHeight: 212
 },
 
 {
@@ -49,8 +47,7 @@ const Photo = props => {
     return(
         <div className="row">
         <div className="col-md-6">
-            <div className="form-group"> 
-                {/* <Field action="upload" name="images" accept="image/png, image/jpeg"  enctype="multipart/form-data" /> */}
+            <div className="form-group">
                     <label 
                         htmlFor='select-pictures'
                         style={{ 
@@ -61,7 +58,6 @@ const Photo = props => {
                             backgroundColor: '#00a65a',
                             color: '#fff',
                             border: 'none',
-                            // display: 'inline-block',
                             borderRadius: '3px',
                             padding: '28px 35px',
                             fontSize: '32px',
@@ -81,8 +77,8 @@ const Photo = props => {
         </div>
         
         <div className='col-md-12'>
-            {renderImages()}
-            {/* <Gallery images={renderImages()}/> */}
+            {/* {renderImages()} */}
+            <Gallery images={IMAGES}/>
 
         </div>
         </div>
