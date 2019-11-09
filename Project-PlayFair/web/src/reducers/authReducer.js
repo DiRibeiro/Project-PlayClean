@@ -30,4 +30,3 @@ export default (state = INITIAL_STATE, action) => {
             return state
     }
 }
-// response.data.result.firstName == "Carlos Eduardo" || response.data.token

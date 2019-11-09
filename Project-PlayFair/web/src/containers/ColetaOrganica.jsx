@@ -5,7 +5,7 @@ export default props => (
         <div className="col-md-6">
             <div className="form-group"> 
                 <input type="file" name="images" accept="image/png, image/jpeg"  multiple /> 
-                <img src="./img/lixos/organica.jpg"></img>
+                {/* <img src="./img/lixos/organica.jpg"></img> */}
             </div>
         </div>
     </div>

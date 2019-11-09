@@ -29,18 +29,27 @@ const setReport = (req, res) => {
 	const newReport =  new report(req.body)
 
 	let paths = new Array()
-	req.files.forEach(pic => paths.push(pic.path))
-
-	newReport.whoCreated = req.headers['_id'] // ID of the loged user
 	newReport.images = paths
 
 	newReport.save().then(response =>
-		user.findOne({ _id: req.headers['_id'] }, (err, result) => {
-			// result.reports.push(response._id)
-			result.save()
+		report.insertOne({
+			name: newReport.name,               
+			phone: newReport.phone,
+    		typeReport: newReport.typeReport,
+    		dateOcurr: newReport.dateOcurr,
+    		dateCreate: new Date().getTime(),
+			adressOcurr: newReport.adressOcurr,
+			description: newReport.description,
+		}, (err, result) => {
+			result.post(response)
 				.then(response => res.status(200).json('successfuly request'))
 				.catch(err => res.status(500).json('Internal server error'))
 		})
+		// report.findOne({ _id: req.body._id }, (err, result) => {
+		// 	result.post(response)
+		// 		.then(response => res.status(200).json('successfuly request'))
+		// 		.catch(err => res.status(500).json('Internal server error'))
+		// })
 	)
 }
 

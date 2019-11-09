@@ -4,10 +4,9 @@ const INITIAL_STATE = {
         firstName: '',
         lastName: '',
         cpf: '',
-        phone1: '',
-        email: '',
+        phone: '',
+        userName: '',
         reports: [],
-        animalsAdoption: [],
         type: '',
         img: '../img/no_perfil_image_2.png'
     }
@@ -23,10 +22,9 @@ export default (state = INITIAL_STATE, action) => {
                     firstName: action.payload.firstName,
                     lastName: action.payload.lastName,
                     cpf: action.payload.cpf,
-                    phone1: action.payload.phone1,
-                    email: action.payload.email,
+                    phone: action.payload.phone,
+                    userName: action.payload.userName,
                     reports: action.payload.reports,
-                    animalsAdoption: action.payload.animalsAdoption,
                     type: action.payload.type,
                     img: '../img/no_perfil_image_2.png'
                 }

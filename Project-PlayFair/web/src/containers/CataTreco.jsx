@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect, useSelector } from 'react-redux'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
 import { createTextMask } from 'redux-form-input-masks'
-import { DateTimePicker } from 'react-widgets'
+// import { DateTimePicker } from 'react-widgets'
 
 import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
@@ -20,14 +20,6 @@ const Form = props => {
     useEffect(() => {
         momentLocaliser(moment)
     }, [])
-
-    const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => 
-        <DateTimePicker
-            onChange={ onChange }
-            format="DD MMM YYYY"
-            time={ showTime }
-            value={ !value ? null : new Date(value) }
-            placeholder="Data do ocorrido" />
     
     return (
         <form onSubmit={ handleSubmit } className="form-group">
@@ -94,3 +86,11 @@ FormReport = connect(state => {
 })(FormReport)
 
 export default FormReport
+
+// const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => 
+    //     <DateTimePicker
+    //         onChange={ onChange }
+    //         format="DD MMM YYYY"
+    //         time={ showTime }
+    //         value={ !value ? null : new Date(value) }
+    //         placeholder="Data do ocorrido" />

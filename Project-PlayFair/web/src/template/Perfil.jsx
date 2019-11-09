@@ -6,9 +6,8 @@ import RowAnimal from '../containers/RowAnimal'
 import RowReport from '../containers/RowReport'
 import FormChangeAccount from '../reports/form/FormChangeAccount'
 
-import { updateUser, updateToken } from '../actions/userActions'
+import { updateUser/* , updateToken  */} from '../actions/userActions'
 import { getReports } from '../actions/reportActions'
-import { getListAdoption } from '../actions/animalsActions'
 
 import { fullDate } from '../helper/date'
 
@@ -24,8 +23,7 @@ const Perfil = () => {
 
 	useEffect(() => { 
 		dispatch(getReports())
-		dispatch(getListAdoption())
-		dispatch(updateToken())
+		// dispatch(updateToken())
 	}, [])
 
 	useEffect(() => { 

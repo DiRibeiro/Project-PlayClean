@@ -3,10 +3,9 @@ db.users.insertMany([
 		"firstName": "Diego",
 		"lastName": "Ribeiro",
 		"cpf": "07998634910",
-		"phone1": "51989405478",
-		"email": "admin",
+		"phone": "51989405478",
+		"userName": "admin",
 		"reports": [],
-		"animalsAdoption": [],
 		"type": "admin",
 		"password": "admin"
 	}

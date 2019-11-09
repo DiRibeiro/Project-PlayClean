@@ -4,13 +4,12 @@ const userSchema = new mongoose.Schema({
     firstName: String,
     lastName: String,
     cpf: String,
-    phone1: String,
-    email: {
+    phone: String,
+    userName: {
         type: String,
         unique: true
     },
     reports: [ String ],
-    animalsAdoption: [ String ],
     type: String,
     password: String,
     dateCreate: {
@@ -18,19 +17,5 @@ const userSchema = new mongoose.Schema({
         default: new Date()
     }
 })
-
-db.user.insertMany([
-	{
-		"firstName": "Diego",
-		"lastName": "Ribeiro",
-		"cpf": "07998634910",
-		"phone1": "51989405478",
-		"email": "admin",
-		"reports": [],
-		"animalsAdoption": [],
-		"type": "admin",
-		"password": "admin"
-	}
-])
 
 module.exports = userSchema

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect, useSelector } from 'react-redux'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
 import { createTextMask } from 'redux-form-input-masks'
-import { DateTimePicker } from 'react-widgets'
+// import { DateTimePicker } from 'react-widgets'
 
 import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
@@ -11,25 +11,24 @@ import 'react-widgets/dist/css/react-widgets.css'
 import Button from '../../template/Button'
 
 const Form = props => {
-    const { handleSubmit, handleImage, typeReportValue } = props
+    const { handleSubmit, handleImage } = props
 
     const [files] = useState(props.images)
     const utils = useSelector(state => state.utils)
 
-    const cpfMask= createTextMask({ pattern: '999.999.999-99' })
     const phoneMask = createTextMask({ pattern: '(99) 99999-9999' })
     
     useEffect(() => {
         momentLocaliser(moment)
     }, [])
 
-    const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => 
-        <DateTimePicker
-            onChange={ onChange }
-            format="DD MMM YYYY"
-            time={ showTime }
-            value={ !value ? null : new Date(value) }
-            placeholder="Data do ocorrido" />
+    // const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => 
+    //     <DateTimePicker
+    //         onChange={ onChange }
+    //         format="DD MMM YYYY"
+    //         time={ showTime }
+    //         value={ !value ? null : new Date(value) }
+    //         placeholder="Data do ocorrido" />
 
     const renderImages = () =>
         files.map((element, index) =>

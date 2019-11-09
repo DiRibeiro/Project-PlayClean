@@ -11,8 +11,9 @@ import ColetaSeletiva from '../containers/ColetaSeletiva'
 import CataTreco from '../containers/CataTreco'
 import Photos from '../containers/Photos'
 import Contacts from '../Pages/Contacts'
+import Calendar from '../containers/Calendar'
 import Perfil from '../template/Perfil'
-// import RegisterUser from '../Molecules/RegisterUser'
+// import RegisterUser from '../?/RegisterUser'
 
 import App from './App'
 
@@ -25,6 +26,7 @@ export default () => (
             <Route path='listReport' component={ ListReports } />
             <Route path='coletaSeletiva' component={ ColetaSeletiva } />
             <Route path='coletaOrganica' component={ ColetaOrganica } />
+            <Route path='calendar' component={ Calendar } />
             <Route path='photos' component={ Photos } />
             <Route path='showDetailReport' component={ ReportDetail } />
             <Route path='cataTreco' component={ CataTreco } />

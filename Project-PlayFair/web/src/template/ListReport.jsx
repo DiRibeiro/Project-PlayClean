@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from 'react-loader-spinner'
 
 import RowReport from '../containers/RowReport'
-import LineSearchFilter from '../containers/LineSearchFilter'
-import Dropmenu from '../template/Dropmenu'
+// import LineSearchFilter from '../containers/LineSearchFilter'
+// import Dropmenu from '../template/Dropmenu'
 
 import { getReports } from '../actions/reportActions'
 

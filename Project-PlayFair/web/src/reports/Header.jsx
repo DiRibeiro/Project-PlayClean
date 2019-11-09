@@ -1,6 +1,6 @@
 import React from 'react'
-import UserAccount from '../containers/UserAccount'
-import { useDispatch, useSelector } from 'react-redux'
+// import UserAccount from '../containers/UserAccount'
+import { useDispatch } from 'react-redux'
 
 import { logout } from '../actions/authActions'
 export default () => {

@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken')
-// const bcrypt = require('bcrypt')
 const { user } = require('../../config/db')
 const env = require('../../config/secret.env')
 const mongoose = require('mongoose')
@@ -21,8 +20,6 @@ const login = (req, res) => {
 }
 
 const getJWT = data => jwt.sign(data, env.authSecret, { expiresIn: "1 day" })
-const decodeJWT = token => jwt.decode(token)
-const tradeTokenToUser = (req, res) => res.status(200).json(jwt.decode(req.headers['authorization']))
 
 const signup = (req, res) => {
     let dataNewUser = req.body
@@ -63,75 +60,9 @@ const validateToken = (req, res) =>
         res.status(200).json({ valid: !err }))
 
 
-const updateUser = (req, res) => {
-    const data = req.body
-    let theFuckingUserWantsToUpdateHisFuckingPassword = false
 
-    if(data['newPassword'] != null) {
-        theFuckingUserWantsToUpdateHisFuckingPassword = true
-        if(data['newPassword'] != data['newPasswordConfirm'])
-            return res.status(202).json('Senhas não conferem')
-
-        else if (!data['newPassword'].match(passwordRegex))
-            return res.status(202).json('Senha precisa ter, no mínimo, uma letra maiúscula, uma letra minúscula, um número, um caracter especial e tamanho de 6 caracteres.')
-    }
-    if(Object.keys(data).length == 1)
-        return res.status(202).json('Você precisa atualizar no mínimo um campo!')
-
-    user.findOne({ _id: req.headers['_id'] }, (err, result) => {
-        if(err)
-            return res.status(500).json('Internal server error!')
-            
-        if(data.password == result.password) {
-            if(theFuckingUserWantsToUpdateHisFuckingPassword) {
-                data['password'] = data['newPassword']
-                delete data['newPassword']
-                delete data['newPasswordConfirm']
-            }
-
-            user.updateOne({ _id: req.headers['_id'] }, data)                
-                .then(response => {
-                    user.findOne({ _id: req.headers['_id'] }, (err, result) =>
-                        res.status(200).json({ result, token: getJWT(result.toJSON()) })              
-                    )
-                }).catch(err => res.status(202).json('Internal server error!'))
-            
-        } else
-            return res.status(202).json('Senha incorreta!')
-    })
-}
-
-const updateToken = (req, res) =>
-    user.findOne({ _id: mongoose.Types.ObjectId(decodeJWT(req.headers['authorization'])._id) }, (err, result) =>
-        err ? 
-            res.status(202).json("Internal error") :
-            res.status(200).json({ token: getJWT(result.toJSON()), result })
-        )
-
-module.exports = { login, signup, validateToken, tradeTokenToUser, updateUser, updateToken }
+module.exports = { login, signup, validateToken}
 
 // 202 Request received and accepted but no action has made with that
 // 401 Unauthorized
 
-/*
-    db.user.insertOne({
-        firstName: "Carlos Eduardo",
-        lastName: "Wunsch",
-        cpf: "03924510008",
-        phone1: "51991384007",
-        email: "carlos@westpoint.io",
-        type: "admin",
-        password: "carlosww"});
-
-request to SignUp:
-
-firstName:Carlos Eduardo
-lastName:Wunsch
-cpf:03924510008
-phone1:51991384007
-email:carlos@westpoint.io
-type:admin
-password:Wiebbelling@10
-confirmPassword:Wiebbelling@10
-
-*/

@@ -22,7 +22,11 @@ export default (state = INITIAL_STATE, action) => {
                 ...state, 
                 sideReportOpen: !state.sideReportOpen
             }
-        
+        case 'SIDEBAR_CATATRECO':
+            return { 
+                ...state, 
+                sideCataTrecoOpen: !state.sideCataTrecoOpen
+            }
         case 'LOAD':
             return {
                 ...state,

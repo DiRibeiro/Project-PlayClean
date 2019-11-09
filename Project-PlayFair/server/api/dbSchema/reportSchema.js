@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const reportSchema = new mongoose.Schema({
     whoCreated: mongoose.Schema.Types.ObjectId,
-    name: String,                //Denunciante
+    name: String,                
     phone: String,
     typeReport: String,
     dateOcurr: Date,

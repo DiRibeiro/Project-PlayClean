@@ -8,7 +8,7 @@ import ReduxToastr from 'react-redux-toastr'
 
 import reducers from './reducers/reducers'
 import Auth from './main/Auth' 
-import Routes from './main/Routes' 
+// import Routes from './main/Routes' 
 
 const store = createStore(
     reducers,

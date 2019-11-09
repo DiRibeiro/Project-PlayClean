@@ -26,26 +26,26 @@ export const tradeTokenToUser = token => {
     }
 }
 
-export const updateToken = () => {
-    return dispatch => {
-        axios.get(`${ BASE_URL }/updateToken`)
-            .then(response => {                                    
-                if(response.status === 202)
-                    toastr.error('Erro!', response.data)
+// export const updateToken = () => {
+//     return dispatch => {
+//         axios.get(`${ BASE_URL }/updateToken`)
+//             .then(response => {                                    
+//                 if(response.status === 202)
+//                     toastr.error('Erro!', response.data)
 
-                else if(response.status === 200) {
-                    dispatch({
-                        type: USER_FETCHED,
-                        payload: response.data.result
-                    })
-                    dispatch({
-                        type: TOKEN_FETCHED,
-                        payload: response.data.token
-                    })
-                }     
-            }).catch(error => toastr.error('Erro!', 'Internal server error'))
-    }
-}
+//                 else if(response.status === 200) {
+//                     dispatch({
+//                         type: USER_FETCHED,
+//                         payload: response.data.result
+//                     })
+//                     dispatch({
+//                         type: TOKEN_FETCHED,
+//                         payload: response.data.token
+//                     })
+//                 }     
+//             }).catch(error => toastr.error('Erro!', 'Internal server error'))
+//     }
+// }
 
 export const updateUser = values => {
     return dispatch => {

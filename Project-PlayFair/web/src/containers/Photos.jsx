@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { /* useState */ } from 'react';
 import Gallery from 'react-grid-gallery'
-import { Field } from 'redux-form'
+// import { Field } from 'redux-form'
 
 const IMAGES =
 [{
@@ -26,23 +26,23 @@ const IMAGES =
 
 const Photo = props => {
     const {handleImage} = props
-    const [files] = useState(props.images)
-    const renderImages = () => {
-        files.map((element, index) =>
-            <img
-                key={ index }
-                style={{ 
-                    clear: 'both',
-                    width: '100px',
-                    height: '100px',
-                    margin: '0px 5px',
-                    marginTop: '-14px',
-                    borderRadius: '3px'
-                }} 
-                src={ URL.createObjectURL(element) } 
-                alt="img report" />
-        )
-    }
+    // const [files] = useState(props.images)
+    // const renderImages = () => {
+    //     files.map((element, index) =>
+    //         <img
+    //             key={ index }
+    //             style={{ 
+    //                 clear: 'both',
+    //                 width: '100px',
+    //                 height: '100px',
+    //                 margin: '0px 5px',
+    //                 marginTop: '-14px',
+    //                 borderRadius: '3px'
+    //             }} 
+    //             src={ URL.createObjectURL(element) } 
+    //             alt="img report" />
+    //     )
+    // }
 
     return(
         <div className="row">
