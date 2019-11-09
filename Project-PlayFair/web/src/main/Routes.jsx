@@ -12,8 +12,8 @@ import CataTreco from '../containers/CataTreco'
 import Photos from '../containers/Photos'
 import Contacts from '../Pages/Contacts'
 import Calendar from '../containers/Calendar'
-import Perfil from '../template/Perfil'
-// import RegisterUser from '../?/RegisterUser'
+import Leis from '../containers/Leis'
+import ListLeis from '../template/ListLeis'
 
 import App from './App'
 
@@ -26,13 +26,13 @@ export default () => (
             <Route path='listReport' component={ ListReports } />
             <Route path='coletaSeletiva' component={ ColetaSeletiva } />
             <Route path='coletaOrganica' component={ ColetaOrganica } />
+            <Route path='leis' component={ Leis } />
+            <Route path='listLeis' component={ ListLeis } />
             <Route path='calendar' component={ Calendar } />
             <Route path='photos' component={ Photos } />
             <Route path='showDetailReport' component={ ReportDetail } />
             <Route path='cataTreco' component={ CataTreco } />
             <Route path='contacts' component={ Contacts } />
-            <Route path='perfil' component={ Perfil } />
-            {/* <Route path='registerUser' component={ RegisterUser } /> */}
         </Route>
         <Redirect from='*' to='/' />
     </Router>

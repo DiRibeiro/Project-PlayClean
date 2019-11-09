@@ -1,23 +1,22 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { /* useDispatch, */ useSelector } from 'react-redux'
 import Loader from 'react-loader-spinner'
 
 // import LineSearchFilter from '../containers/LineSearchFilter'
 // import Dropmenu from '../containers/Dropmenu'
 
 import RowLeis from '../containers/RowLeis'
-import { getListAdoption } from '../actions/animalsActions'
 
 export default () => {
-	const dispatch = useDispatch()
-	const list = useSelector(state => state.animals.list) || undefined
+	// const dispatch = useDispatch()
+	const list = useSelector(state => state.reports.list) || undefined
 
 	useEffect(() => {
-		dispatch(getListAdoption())
+		// dispatch()
 	}, [])
 
 	const renderRows = () =>
-		list.map(animal => <RowLeis key={animal._id} animal={animal} />)
+		list.map(lei => <RowLeis  />)
 
 	if (list !== undefined) return renderRows()
 	return (

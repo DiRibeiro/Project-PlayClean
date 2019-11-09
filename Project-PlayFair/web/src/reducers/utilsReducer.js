@@ -27,6 +27,11 @@ export default (state = INITIAL_STATE, action) => {
                 ...state, 
                 sideCataTrecoOpen: !state.sideCataTrecoOpen
             }
+        case 'SIDEBAR_LEI':
+            return { 
+                ...state, 
+                sideLeiOpen: !state.sideLeiOpen
+            }
         case 'LOAD':
             return {
                 ...state,

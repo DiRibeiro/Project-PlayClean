@@ -7,7 +7,7 @@ import MenuTree from '../template/MenuTree'
 // import UserSide from '../containers/UserSide'
 
 // import { tradeTokenToUser, updateToken } from '../actions/userActions'
-import { setSidebarEvents, setSidebarReport, setSidebarColletions, setSidebarCataTreco } from '../actions/utilsActions'
+import { setSidebarEvents, setSidebarReport, setSidebarColletions, setSidebarCataTreco, setSidebarLei } from '../actions/utilsActions'
 
 export default () => {
 	const dispatch = useDispatch()
@@ -19,6 +19,7 @@ export default () => {
 	const eventsOpen = useSelector(state => state.utils.sideEventsOpen)
 	const collectionsOpen = useSelector(state => state.utils.sideCollectionsOpen)
 	const cataTrecoOpen = useSelector(state => state.utils.sideCataTrecoOpen)
+	const leiOpen = useSelector(state => state.utils.sideLeiOpen)
 
 
 	useEffect(() => {
@@ -53,6 +54,23 @@ export default () => {
 								path='registerReport'
 								icon='plus-square'
 								label='Cadastrar' />
+						</MenuTree>
+					</li>
+
+					<li className={ `treeview ${ leiOpen ? 'menu-open' : '' }` }>
+						<MenuTree
+							open={ leiOpen ? 'true' : '' }
+							icon='balance-scale'
+							label='Leis'
+							onClick={ () => dispatch(setSidebarLei()) }>
+							<MenuItem
+								path='listLeis'
+								icon='eye'
+								label='Ver Leis' />
+							<MenuItem
+								path='Leis'
+								icon='plus-square'
+								label='Cadastrar Leis' />
 						</MenuTree>
 					</li>
 
