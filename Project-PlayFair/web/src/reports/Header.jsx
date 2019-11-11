@@ -1,5 +1,4 @@
 import React from 'react'
-// import UserAccount from '../containers/UserAccount'
 import { useDispatch } from 'react-redux'
 
 import { logout } from '../actions/authActions'
@@ -8,7 +7,6 @@ export default () => {
     return(
     <header className="main-header">
         <a href="/#" className="logo">
-            {/* <span className="logo-mini"><img src="img/EcoePet.png" alt="" width="80%" /></span> */}
             <span className="logo-mini">J<b>L</b>O</span>
             <span className="logo-lg">Jogue<b>Limpo</b></span>
         </a>
