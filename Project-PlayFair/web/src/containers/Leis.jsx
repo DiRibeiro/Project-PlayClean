@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { reduxForm, formValueSelector } from 'redux-form'
-// import { createTextMask } from 'redux-form-input-masks'
+import { Tabs, Tab } from 'react-bootstrap'
+import FormLei from '../reports/form/FormLei'
 // import { DateTimePicker } from 'react-widgets'
 
 import moment from 'react-widgets-moment'
@@ -22,9 +23,21 @@ const Leis = (props) => {
             <div className="box box-success">
                 <div className="box-header with-border">
                     <h3 className='box-title'>Tipos de Lei</h3>
-                    <a href='a' className='nav showLei' >Municipais</a>
-                    <a href='a' className='nav showLei' >Estaduais</a>
-                    <a href='a' className='nav showLei' >Federais</a>
+                </div>
+                <div>
+                    <Tabs className='showLei' defaultActiveKey="municipais" transition={false} id="noanim-tab-example">
+                        <Tab eventKey="municipais" title="Municipais">
+                            <div className='box'>
+                                <FormLei />
+                            </div>
+                        </Tab>
+                        <Tab eventKey="estaduais" title="Estaduais">
+                            
+                        </Tab>
+                        <Tab eventKey="federais" title="Federais">
+                            
+                        </Tab>
+                    </Tabs>
                 </div>
             </div>            
         </form>

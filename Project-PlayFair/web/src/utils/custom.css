@@ -735,5 +735,16 @@ input {
 /* Lei */
 
 .showLei {
-    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+}
+
+.showLei a {
+    color: black;
+    margin-right: 5px;
+    border-bottom: #00a65a 1px solid;
+    width: 6em;
+    text-align: center;
 }
