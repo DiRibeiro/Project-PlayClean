@@ -17,15 +17,25 @@ const Form = props => {
     return (
         <form onSubmit={ handleSubmit } className="form-group">
             {/* Information about what whistleblower */}
-            <h4><b>Dados das leis municipais</b></h4>
-            <div className="row mb-3">
-                <div className="col-md-6">
-                    <div className="input-group">
-                        {/* <span className="input-group-addon"><i className="fas fa-user"/></span> */}
-                        <Field name="nameLei" component="input" type="text" placeholder="Escreva o nome da lei." className="form-control" />
-                        <Field name="leiDrescription" component="textarea" type="text" placeholder="Descreva a lei." className="form-control" />
+            <div className='tabContent'>
+                <h5><b>Dados das leis { props.label }</b></h5>
+                <div className="row mb-3">
+                    <div className="col-md-6">
+                        <label></label>
+                        <div className="input-group">
+                            <span className="input-group-addon"><i className="fas fa-signature"/></span>
+                            <Field name="nameLei" component="input" type="text" placeholder="Artigo da lei" className="form-control" />
+                        </div>
+                        {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
                     </div>
-                    {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
+                    
+                    <div className="col-md-12">
+                        <label>Descrição da lei</label>
+                        <div className="input-group">
+                            <Field name="descriptionLei" component="textarea" type="text" placeholder="Descrição da lei" className="form-control" />
+                        </div>
+                        {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
+                    </div>
                 </div>
             </div>
         </form>
