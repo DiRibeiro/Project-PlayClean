@@ -27,15 +27,22 @@ const Leis = (props) => {
                 <div>
                     <Tabs className='showLei' defaultActiveKey="municipais" transition={false} id="noanim-tab-example">
                         <Tab eventKey="municipais" title="Municipais">
-                            <div className='box'>
+                            <div className='arrowUp'></div>
+                            <div className='box box-success'>
                                 <FormLei />
                             </div>
                         </Tab>
                         <Tab eventKey="estaduais" title="Estaduais">
-                            
+                            <div className='arrowUp'></div>
+                            <div className='box box-success'>
+                                <FormLei />
+                            </div>
                         </Tab>
                         <Tab eventKey="federais" title="Federais">
-                            
+                            <div className='arrowUp'></div>
+                            <div className='box box-success'>
+                                <FormLei />
+                            </div>
                         </Tab>
                     </Tabs>
                 </div>

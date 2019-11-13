@@ -748,3 +748,11 @@ input {
     width: 6em;
     text-align: center;
 }
+
+.arrowUp {
+  width: 0;
+  margin-left: 5px;
+  margin-right: auto;
+  border: 5px solid transparent;
+  border-bottom-color: #00a65a;
+}
