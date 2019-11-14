@@ -1,19 +1,38 @@
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
 
 import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
+import Button from '../../template/Button'
+
 
 import 'react-widgets/dist/css/react-widgets.css'
 
 const Form = props => {
     const { handleSubmit } = props
+    const utils = useSelector(state => state.utils)
     
     useEffect(() => {
         momentLocaliser(moment)
     }, [])
         
+    // myHandleSubmit = values => {
+
+    //     values = {
+    //         nameLei: 'LEI 1'
+    //     }
+
+    //     values['type'] = props.label     
+
+    //     values = {
+    //         nameLei: 'LEI 1',
+    //         type: 'Municipio'
+    //     }
+
+    //     dispatch(db(values))
+    // }
+
     return (
         <form onSubmit={ handleSubmit } className="form-group">
             {/* Information about what whistleblower */}
@@ -28,14 +47,18 @@ const Form = props => {
                         </div>
                         {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
                     </div>
-                    
-                    <div className="col-md-12">
+                </div>
+                <div className='row'>    
+                    <div className="col-md-6">
                         <label>Descrição da lei</label>
-                        <div className="input-group">
-                            <Field name="descriptionLei" component="textarea" type="text" placeholder="Descrição da lei" className="form-control" />
-                        </div>
-                        {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
+                            <Field name="descriptionLei" row='6' component="textarea" type="text" placeholder="Descreva da lei" className="form-control" />
+                            {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
                     </div>
+                </div>
+                <div className="box-footer">
+                    <Button 
+                    label='Salvar'
+                    loading={ utils.loading } />
                 </div>
             </div>
         </form>

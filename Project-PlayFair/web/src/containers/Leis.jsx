@@ -21,10 +21,10 @@ const Leis = (props) => {
     return (
         <form onSubmit={ handleSubmit } className="form-group" encType="multipart/form-data" >
             <div className="box box-success">
-                <div className="box-header with-border">
+                {/* <div className="box-header with-border">
                     <h3 className='box-title'>Tipos de Lei</h3>
-                </div>
-                <div>
+                </div> */}
+                <div className=''>
                     <Tabs className='showLei' defaultActiveKey="municipais" transition={false} id="noanim-tab-example">
                         <Tab eventKey="municipais" title="Municipais">
                             <FormLei label='municipais'/>

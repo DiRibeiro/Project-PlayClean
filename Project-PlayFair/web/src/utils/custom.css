@@ -1,11 +1,7 @@
-/* 
-    phone color front a4d9db
-    phone color back 3c8dbc
-*/
-
 html {
-    min-width: 70%;
+    min-width: 70% !important;
 }
+
 * {
     font-family: 'Open Sans', sans-serif;
     font-family: 'Roboto Thin', sans-serif;
@@ -18,12 +14,6 @@ textarea {
 .floatRight {
     float: right;
     margin: 0px 10px 10px 0px;
-}
-
-.seeMoreAnimal {
-    float: right;
-    margin: 45px 10px 0px 0px;
-    bottom: 0;
 }
 
 .seeMoreReport {
@@ -569,10 +559,11 @@ button.btn.btn-success.btnLogin:hover {
 }
 
 .container {
-    width: 15em;
-    display: flex;   
+    width: 13em;
+    display: flex;
     flex-direction: column;
     align-items: center;
+    height: 6em;
 }
 
 .form {
@@ -606,7 +597,7 @@ button.btn.btn-success.btnLogin:hover {
 } */
 
 .user-row {
-  font-size: 1em;
+  font-size: .7em;
   background-color: #1e7e34;
   /* border: 1px solid #00010000; */
   border-bottom: #1e7e34 1px solid;
@@ -628,7 +619,7 @@ input.user-form {
 }
 
 .password-row {
-  font-size: 1em;
+  font-size: .7em;
   background-color: #1e7e34;
   /* border: 1px solid #000100; */
   border-bottom: #1e7e34 1px solid;
@@ -704,7 +695,7 @@ input {
 } 
 
 .btn-cancel {
-  width: 8em;
+  width: 6em;
   font-size: 0.7em;
   padding: 4px;
   margin-top: 0.3em;
@@ -712,7 +703,7 @@ input {
 }
 
 .btn-login {
-  width: 8em; 
+  width: 6em; 
   font-size: 0.7em;
   padding: 4px;
   margin-top: 0.3em;
@@ -738,17 +729,26 @@ input {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin: 5px;
+    background-color: #00a65a;
 }
 
 .showLei a {
-    color: black;
-    margin-right: 5px;
+    color: white;
     border-bottom: #00a65a 1px solid;
     width: 6em;
     text-align: center;
+    padding: 6px 0;
 }
 
+.showLei a:hover {
+    background-color: #008d4c;
+    /* width: 6em; */
+    padding: 6px 0;
+}
 .tabContent {
     margin-left: 12px;
+}
+
+.box {
+    box-shadow: 2px 2px 4px rgba(0,0,0, .5);
 }
