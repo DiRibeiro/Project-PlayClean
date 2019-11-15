@@ -7,12 +7,15 @@ import reports from './reportsReducer'
 import user from './userReducer'
 import auth from './authReducer'
 import utils from './utilsReducer'
+import calendar from './calendarReducer'
+
 
 const rootReducer = combineReducers(
     {
         form: formReducer,
         toastr: toastrReducer,
         reports,
+        calendar,
         dashboard,
         user,
         auth,
