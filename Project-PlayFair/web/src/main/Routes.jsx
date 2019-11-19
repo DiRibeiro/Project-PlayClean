@@ -12,7 +12,7 @@ import CataTreco from '../containers/CataTreco'
 import ListCataTreco from '../template/ListCataTreco'
 import Photos from '../containers/Photos'
 import Contacts from '../Pages/Contacts'
-import Calendar from '../containers/Calendar'
+import Calendar from '../containers/Calendar/Calendar'
 import Leis from '../containers/Leis'
 import ListLeis from '../template/ListLeis'
 
