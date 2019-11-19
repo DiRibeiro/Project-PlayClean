@@ -15,7 +15,7 @@ class Calendar extends Component {
     }
 
     handleAdd = () => {
-        console.log(this.state.description)
+        console.log(this.state.description, this.state.date)
     }
 
     render() {

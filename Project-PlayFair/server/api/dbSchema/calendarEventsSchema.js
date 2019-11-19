@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const calendarEventsSchema = new mongoose.Schema({
-    name: String, 
+    description: String, 
     dateCreate: {
         type: Date,
         default: new Date()

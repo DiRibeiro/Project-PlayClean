@@ -1,25 +1,50 @@
 import axios from 'axios'
-import BASE_URL from '../config/consts'
 
-const CALENDAR_FETCHED = 'CALENDAR_FETCHED'
+const BASE_URL = './config/consts'
 
-export const getCalendar = () => {
-    return dispatch => {
-        axios.get(`${BASE_URL}/calendar`)
-            .then(response =>
-                dispatch({
-                    type: CALENDAR_FETCHED,
-                    payload: response.data.result
-                })
-            )
-            .catch(error => toastr.error('Erro!', 'Internal server error'))
+export const changeDescription = event => ({
+    type: 'DESCRIPTION_CHANGED',
+    payload: event.target.value
+})
+
+export const search = () => {
+    return (dispatch, getState) => {
+        const description = getState().calendar.description
+        const search = description ? `&description__regex=/${description}/` : ''
+        const request = axios.get(`${BASE_URL}?sort=-createdAt${search}`)
+            .then(resp => dispatch({type: 'CALENDAR_SEARCHED', payload: resp.data}))
     }
 }
 
-export const postCalendar = () => {
+export const add = (description) => {
     return dispatch => {
-        axios.post(`${BASE_URL}/calendar`)
-            .then(response => console.log('Funcionou!'))
-            .catch(error => toastr.error('Erro! '))
+        axios.post(BASE_URL, { description })
+            .then(resp => dispatch(clear()))
+            .then(resp => dispatch(search()))
     }
+}
+
+export const markAsDone = (calendar) => {
+    return dispatch => {
+        axios.put(`${BASE_URL}/${calendar._id}`, { ...calendar, done: true })
+            .then(resp => dispatch(search()))
+    }
+}
+
+export const markAsPending = (calendar) => {
+    return dispatch => {
+        axios.put(`${BASE_URL}/${calendar._id}`, { ...calendar, done: false })
+            .then(resp => dispatch(search()))
+    }
+}
+
+export const remove = (calendar) => {
+    return dispatch => {
+        axios.delete(`${BASE_URL}/${calendar._id}`)
+            .then(resp => dispatch(search()))
+    }
+}
+
+export const clear = () => {
+    return [{ type: 'CALENDAR_CLEAR' }, search()]
 }
