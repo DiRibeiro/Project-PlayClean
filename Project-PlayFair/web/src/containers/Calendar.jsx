@@ -1,30 +1,59 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-const Calendar = () => {
-    return(
-        <div className='calendar-container'>
-            <h1 className='calendar-h1'>Calendário de eventos<i class="fa fa-plus" aria-hidden="true"/></h1>
-            <input className='calendar-input' type='text' placeholder='Adicione um novo evento'/>
-            <input className='calendar-input' type='date' />
-            <ul className='calendarUl'>
-                <li className='calendarLi'>
-                    <span className='span'>
-                        <i className="fa fa-trash"></i>                   
-                    </span> Jogue Limpo com Osório - Largo dos estudantes
-                </li>
-                <li className='calendarLi'>
-                    <span className='span'>
-                        <i className="fa fa-trash"></i>
-                    </span> Jogue Limpo com Osório - Praça das Carretas
-                </li>
-                <li className='calendarLi'>
-                    <span className='span'>
-                        <i className="fa fa-trash"></i>
-                    </span> Jogue Limpo com Osório - Praça da Matriz
-                </li>
-            </ul>
-        </div>
-    )
+class Calendar extends Component {
+    constructor(props){
+        super(props)
+        
+        this.state = { description: '', list: [] }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleAdd = this.handleAdd.bind(this)
+        
+    }
+
+    handleChange = (e) => {
+        this.setState({ ...this.state, description: e.target.value })
+    }
+
+    handleAdd = () => {
+        console.log(this.state.description)
+    }
+
+    render() {
+        return(
+            <div className='calendar-container'>
+                <h1 className='calendar-h1'>Calendário de eventos</h1>
+                <div className='calendar-input'>
+                    <input 
+                        className='form-control' 
+                        type='text' 
+                        placeholder='Adicione um novo evento' 
+                        onChange={ this.handleChange }
+                        description={ this.state.description }/>
+                    <input 
+                        className='form-control' 
+                        type='date' />
+                    <button className='btn-calendar' onClick={ this.handleAdd } ><i className="fa fa-plus" aria-hidden="true"/></button>
+                </div>
+                <ul className='calendarUl'>
+                    <li className='calendarLi'>
+                        <span className='span'>
+                            <i className="fa fa-trash"></i>                   
+                        </span> Jogue Limpo com Osório - Largo dos estudantes
+                    </li>
+                    <li className='calendarLi'>
+                        <span className='span'>
+                            <i className="fa fa-trash"></i>
+                        </span> Jogue Limpo com Osório - Praça das Carretas
+                    </li>
+                    <li className='calendarLi'>
+                        <span className='span'>
+                            <i className="fa fa-trash"></i>
+                        </span> Jogue Limpo com Osório - Praça da Matriz
+                    </li>
+                </ul>
+            </div>
+        )
+    }
 }
 
 export default Calendar

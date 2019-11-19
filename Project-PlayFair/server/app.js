@@ -21,6 +21,8 @@ app.post('/reportStatus' , (req, res) => ReportsDAO.setStatus(req, res))
 
 app.get('/get', (req, res) => ReportsDAO.get(req, res))
 
+//Calendar Events
+
 // Dashboard
 app.get('/dashboard', (req, res) => ReportsDAO.getDataDashboard(req, res))
 

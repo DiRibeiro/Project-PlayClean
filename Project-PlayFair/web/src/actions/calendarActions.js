@@ -15,3 +15,11 @@ export const getCalendar = () => {
             .catch(error => toastr.error('Erro!', 'Internal server error'))
     }
 }
+
+export const postCalendar = () => {
+    return dispatch => {
+        axios.post(`${BASE_URL}/calendar`)
+            .then(response => console.log('Funcionou!'))
+            .catch(error => toastr.error('Erro! '))
+    }
+}
