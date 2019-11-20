@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { connect, useSelector } from 'react-redux'
+import { connect, useDispatch} from 'react-redux'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
 import { createTextMask } from 'redux-form-input-masks'
 // import { DateTimePicker } from 'react-widgets'
@@ -8,13 +8,11 @@ import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
 
 import 'react-widgets/dist/css/react-widgets.css'
-import Button from '../../template/Button'
 
 const Form = props => {
     const { handleSubmit, handleImage } = props
-
+    const dispatch = useDispatch()
     const [files] = useState(props.images)
-    const utils = useSelector(state => state.utils)
 
     const phoneMask = createTextMask({ pattern: '(99) 99999-9999' })
     
@@ -75,7 +73,7 @@ const Form = props => {
                     <label>Endereço</label>
                     <div className="input-group">
                         <span className="input-group-addon"><i className="fas fa-city" /></span>
-                        <Field name="adressOcurred" component="input" type="text" placeholder="Ex.: Avenida Brasil - 5000" className="form-control" />
+                        <Field name="adressOcurr" component="input" type="text" placeholder="Ex.: Avenida Brasil - 5000" className="form-control" />
                     </div>
                     <h5 className="description">*Endereço do ocorrido</h5>
                 </div>
@@ -130,9 +128,11 @@ const Form = props => {
                 multiple 
                 style={{ display: 'none' }} />
             <div className="box-footer">
-                <Button 
-                    label='Cadastrar'
-                    loading={ utils.loading } />
+                <button
+                    type='submit'
+                    className='btn btn-success btnLogin'
+                    onClick={() => { dispatch(window.location = '/listReport')}}
+                    >Cadastrar</button>
             </div>
         </form>
     )

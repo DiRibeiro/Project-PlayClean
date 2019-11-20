@@ -5,7 +5,7 @@ const express = require('express')
 const app = express()
 const upload = require('./config/multer')
 
-const port = process.env.PORT || 3003
+const port = process.env.PORT || 3001
 
 app.use(cors())
 app.use(express.json())
@@ -30,5 +30,10 @@ app.get('/dashboard', (req, res) => ReportsDAO.getDataDashboard(req, res))
 app.post('/login', (req, res) => Auth.login(req, res))
 app.post('/signup', (req, res) => Auth.signup(req, res))
 app.post('/validateToken', (req, res) => Auth.validateToken(req, res))
+
+// User
+app.get('/updateToken', (req, res) => Auth.updateToken(req, res))
+app.post('/tradeTokenToUser', (req, res) => Auth.tradeTokenToUser(req, res))
+app.post('/updateUser', (req, res) => Auth.updateUser(req, res))
 
 app.listen(port, () => console.log(`Server on port: ${port}`))

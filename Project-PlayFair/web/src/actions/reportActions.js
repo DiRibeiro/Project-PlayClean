@@ -8,12 +8,11 @@ const REPORTS_FETCHED = 'REPORTS_FETCHED'
 
 export const getReports = () => {
 	return dispatch => {
-		axios
-			.get(`${BASE_URL}/report`)
+		axios.get(`${BASE_URL}/report`)
 			.then(response =>
 				dispatch({
 					type: REPORTS_FETCHED,
-					payload: response.data.result
+					payload: response.data
 				})
 			)
 			.catch(error => toastr.error('Erro!', 'Internal server error'))

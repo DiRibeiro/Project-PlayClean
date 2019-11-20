@@ -4,8 +4,8 @@ export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case 'DESCRIPTION_CHANGED':
             return { ...state, description: action.payload }
-        case 'CALENDAR_SEARCHED':
-            return { ...state, list: action.payload }
+        /* case 'CALENDAR_SEARCHED':
+            return { ...state, list: action.payload } */
         case 'CALENDAR_CLEAR':
             return { ...state, description: '' }
         default:

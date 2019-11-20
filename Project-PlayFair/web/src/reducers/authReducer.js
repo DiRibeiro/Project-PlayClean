@@ -1,4 +1,4 @@
-const userKey = 'eco_e_pet'             // Key of the Local Storage
+const userKey = 'jogue-limpo'             // Key of the Local Storage
 const INITIAL_STATE = {
     user: JSON.parse(localStorage.getItem(userKey)),
     validToken: false,

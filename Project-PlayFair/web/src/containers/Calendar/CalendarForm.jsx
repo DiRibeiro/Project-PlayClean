@@ -2,46 +2,51 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import Button from '../../template/Button'
-import { add, changeDescription, search, clear } from '../../actions/calendarActions'
+import { add, changeDescription, /* search, */ clear } from '../../actions/calendarActions'
 
 class CalendarForm extends Component {
     constructor(props) {
         super(props)
         this.keyHandler = this.keyHandler.bind(this)
     }
-
+/* 
     UNSAFE_componentWillMount() {
         this.props.search()
-    }
+    } */
 
     keyHandler(e) {
-        const { add, clear, search, description } = this.props
+        const { add, clear, /* search, */ description } = this.props
         if (e.key === 'Enter') {
-            e.shiftKey ? search() : add(description)
+            e.shiftKey = add(description)
         } else if (e.key === 'Escape') {
             clear()
         }
     }
 
     render() {
-        const { add, search, description } = this.props
+        const { add, /* search, */ description } = this.props
         return (
             <div role='form' className='calendarForm'>
-                <div className=''>
+                <div className='calendar-input'>
                     <input id='description' className='form-control'
                         placeholder='Adicione um evento'
                         onChange={this.props.changeDescription}
                         onKeyUp={this.keyHandler}
-                        value={this.props.description}></input>
+                        value={this.props.description}
+                        name='description'></input>
+                    <input id='date' className='form-control inputDate'
+                        type='date'
+                        placeholder='00/00/0000'
+                        name='dateCreate'></input>
+                
+                <div className='btn-calendar'>
+                    <button className='btn-success btn-add'
+                        onClick={() => add(description)}><i className="fa fa-plus" aria-hidden="true"/></button>
+                    {/* <button className='btn-info btn-search'
+                        onClick={search}><i className="fa fa-search" aria-hidden="true"/></button> */}
+                    <button className='btn-danger btn-close'
+                        onClick={this.props.clear}><i className="fa fa-close" aria-hidden="true"/></button>
                 </div>
-                <div className=''>
-                    <Button style='primary' icon='plus'
-                        onClick={() => add(description)}></Button>
-                    <Button style='info' icon='search'
-                        onClick={search}></Button>
-                    <Button style='default' icon='close'
-                        onClick={this.props.clear}></Button>
                 </div>
             </div>
         )
@@ -50,5 +55,5 @@ class CalendarForm extends Component {
 
 const mapStateToProps = state => ({description: state.calendar.description})
 const mapDispatchToProps = dispatch => 
-    bindActionCreators({ add, changeDescription, search, clear }, dispatch)
+    bindActionCreators({ add, changeDescription,/*  search, */ clear }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarForm)

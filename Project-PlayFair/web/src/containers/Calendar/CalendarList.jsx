@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import Button from '../../template/Button'
 import { markAsDone, markAsPending, remove } from '../../actions/calendarActions'
 
 const CalendarList = props => {
@@ -13,12 +12,12 @@ const CalendarList = props => {
             <tr key={calendar._id}>
                 <td className={calendar.done ? 'markedAsDone' : ''}>{calendar.description}</td>
                 <td>
-                    <Button style='success' icon='check' hide={calendar.done}
-                        onClick={() => props.markAsDone(calendar)}></Button>
-                    <Button style='warning' icon='undo' hide={!calendar.done} 
-                        onClick={() => props.markAsPending(calendar)}></Button>
-                    <Button style='danger' icon='trash-o' hide={!calendar.done} 
-                        onClick={() => props.remove(calendar)}></Button>
+                    <button className='btn-success' icon='check' hide={calendar.done}
+                        onClick={() => markAsDone(calendar)}></button>
+                    <button className='btn-warning' icon='undo' hide={!calendar.done} 
+                        onClick={() => markAsPending(calendar)}></button>
+                    <button className='btn-danger' icon='trash-o' hide={!calendar.done} 
+                        onClick={() => remove(calendar)}></button>
                 </td>
             </tr>
         ))

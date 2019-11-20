@@ -802,6 +802,9 @@ input {
     margin: 0px;
 }
 
+.inputDate {
+    margin-left: 1em;
+}
 /* .calendar-input:focus {
 	background: #fff;
 	border: 3px solid #008d4c;
@@ -830,11 +833,28 @@ calendarLi:nth-child(2n) {
 }
 
 .btn-calendar {
-    float: right;
     border: none;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: #00a65a;
     color: white;
+}
+
+.btn-add {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    border: none;
+    width: 3em;
+}
+
+.btn-search {
+    margin-right: 0.5em;
+    border: none;
+    width: 3em;
+}
+
+.btn-close {
+    margin-right: 0.5em;
+    border: none;
+    width: 3em;
 }
