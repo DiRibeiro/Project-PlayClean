@@ -22,13 +22,13 @@ const postCataTreco = (req, res) => {
         .save()
         .then(response => 
             cataTreco.insertMany({
-                name: newReport.name,               
-                cpf: newReport.cpf,
-                local: newReport.local,
-                dateOcurr: newReport.dateOcurr,
+                name: newCataTreco.name,               
+                cpf: newCataTreco.cpf,
+                local: newCataTreco.local,
+                dateOcurr: newCataTreco.dateOcurr,
                 dateCreate: new Date().getTime(),
-                adressOcurr: newReport.adressOcurr,
-                description: newReport.description,
+                adressOcurr: newCataTreco.adressOcurr,
+                description: newCataTreco.description,
             })
             , (err, result) => {
                 result.post(response)
@@ -36,3 +36,5 @@ const postCataTreco = (req, res) => {
                     .catch(err => res.status(500).json('Internal server error'))
             })
 }
+
+module.exports = { getCataTreco, postCataTreco }

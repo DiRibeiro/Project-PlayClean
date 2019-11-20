@@ -1,22 +1,23 @@
 import React, { useEffect } from 'react'
-import { /* useDispatch, */ useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Loader from 'react-loader-spinner'
 
 // import LineSearchFilter from '../containers/LineSearchFilter'
 // import Dropmenu from '../containers/Dropmenu'
 
-import RowLeis from '../containers/RowLeis'
+import RowCataTreco from '../containers/RowCataTreco'
+import { getCataTreco } from '../actions/cataTrecoActions'
 
 export default () => {
-	// const dispatch = useDispatch()
+	const dispatch = useDispatch()
 	const list = useSelector(state => state.reports.list) || undefined
 
 	useEffect(() => {
-		// dispatch()
+		dispatch(getCataTreco())
 	}, [])
 
 	const renderRows = () =>
-		list.map(lei => <RowLeis  />)
+		list.map((cataTreco, index) => <RowCataTreco key={index} cataTreco={cataTreco} />)
 
 	if (list !== undefined) return renderRows()
 	return (
