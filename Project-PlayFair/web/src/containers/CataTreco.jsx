@@ -77,9 +77,9 @@ const Form = props => {
     )
 }
 
-let FormReport = reduxForm({ form: 'newReportForm' })(Form)   // A unique identifier for this form	
+let FormReport = reduxForm({ form: 'newCataTrecoForm' })(Form)   // A unique identifier for this form	
 
-const selector = formValueSelector('newReportForm')
+const selector = formValueSelector('newCataTrecoForm')
 FormReport = connect(state => {
     const typeReportValue = selector(state, 'typeReport')	
     return { typeReportValue }	

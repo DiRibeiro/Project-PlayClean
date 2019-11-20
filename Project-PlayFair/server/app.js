@@ -12,6 +12,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 const ReportsDAO = require('./models/ReportDAO')
+const CataTrecoDAO = require('./models/CataTrecoDAO')
 const Auth = require('./models/auth/authUser')
 
 // Reports
@@ -22,6 +23,10 @@ app.post('/reportStatus' , (req, res) => ReportsDAO.setStatus(req, res))
 app.get('/get', (req, res) => ReportsDAO.get(req, res))
 
 //Calendar Events
+
+//Cata Treco
+app.get('/cataTreco', (req,res) => CataTrecoDAO.getCataTreco(req,res))
+app.post('/cataTreco', (req,res) => CataTrecoDAO.postCataTreco(req,res))
 
 // Dashboard
 app.get('/dashboard', (req, res) => ReportsDAO.getDataDashboard(req, res))
