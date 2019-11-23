@@ -6,17 +6,21 @@ import BASE_URL from '../config/consts'
 
 const REPORTS_FETCHED = 'REPORTS_FETCHED'
 
-export const getReports = () => {
-	return dispatch => {
-		axios.get(`${BASE_URL}/report`)
-			.then(response => {
-				dispatch({
-					type: REPORTS_FETCHED,
-					payload: response.data
-				})
-			})
-			// .catch(error => toastr.error('Erro!', 'Internal server error'))
-	}
+export const getReports = () => dispatch => {
+	return fetch(`${BASE_URL}/report`, {
+		method: 'get',
+		headers: {
+			"Content-type": "application/json"
+		}
+	}).then(response => {
+			response.json()
+				.then(result => 
+					dispatch({
+						type: REPORTS_FETCHED,
+						payload: result
+					})
+				)
+		}).catch(error => toastr.error('Erro!', 'Internal server error'))
 }
 
 export const postReport = values => dispatch => {

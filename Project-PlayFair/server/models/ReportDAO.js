@@ -23,6 +23,7 @@ const getReport = (req, res) => {
 				res.status(200).json({ result })
 			}
 		})
+		.catch(err => res.status(500).json('Internal server error'))
 }
 
 const setReport = (req, res) => {
@@ -32,7 +33,7 @@ const setReport = (req, res) => {
 	newReport.images = paths
 
 	newReport.save().then(response =>
-		report.insertOne({
+		report.insertMany({
 			name: newReport.name,               
 			phone: newReport.phone,
     		typeReport: newReport.typeReport,
@@ -44,12 +45,12 @@ const setReport = (req, res) => {
 			result.post(response)
 				.then(response => res.status(200).json('successfuly request'))
 				.catch(err => res.status(500).json('Internal server error'))
+		}),
+		report.findOne({ _id: req.body._id }, (err, result) => {
+			result.post(response)
+				.then(response => res.status(200).json('successfuly request'))
+				.catch(err => res.status(500).json('Internal server error'))
 		})
-		// report.findOne({ _id: req.body._id }, (err, result) => {
-		// 	result.post(response)
-		// 		.then(response => res.status(200).json('successfuly request'))
-		// 		.catch(err => res.status(500).json('Internal server error'))
-		// })
 	)
 }
 

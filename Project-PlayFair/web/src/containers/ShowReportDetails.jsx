@@ -39,13 +39,13 @@ const ShowReportDetails = props => {
 			</div>
 		))
 	}
-	const renderIndicators = () => 
+	const renderIndicators = () => {
 		report.images.forEach((pic, index) => (
 			<li
 				data-target='#carousel'
 				data-slide-to={ index }
 				className={ `${ index === 0 ? 'active' : '' }` }></li>
-		))
+		))}
 
 	return report !== undefined ? (
 		<div className='box box-success'>
