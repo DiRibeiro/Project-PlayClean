@@ -8,16 +8,17 @@ import Loader from 'react-loader-spinner'
 import RowCataTreco from '../containers/RowCataTreco'
 import { getCataTreco } from '../actions/cataTrecoActions'
 
-export default () => {
+const ListCataTreco = () => {
 	const dispatch = useDispatch()
-	const list = useSelector(state => state.reports.list) || undefined
+	const list = useSelector(state => state.cataTreco.list) || undefined
 
 	useEffect(() => {
 		dispatch(getCataTreco())
 	}, [])
 
-	const renderRows = () =>
+	const renderRows = () => {
 		list.map((cataTreco, index) => <RowCataTreco key={index} cataTreco={cataTreco} />)
+	}
 
 	if (list !== undefined) return renderRows()
 	return (
@@ -34,3 +35,5 @@ export default () => {
 		/>
 	)
 }
+
+export default ListCataTreco
