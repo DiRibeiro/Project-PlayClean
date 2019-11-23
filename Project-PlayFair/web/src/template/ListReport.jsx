@@ -6,7 +6,7 @@ import RowReport from '../containers/RowReport'
 
 import { getReports } from '../actions/reportActions'
 
-export default () => {
+const ListReport = () => {
 	const dispatch = useDispatch()
 	const list = useSelector(state => state.reports.list) || undefined
 
@@ -14,10 +14,14 @@ export default () => {
 		dispatch(getReports())
 	}, [])
 
-	const renderRows = () =>
+	const renderRows = () => {
 		list.map((report, index) => <RowReport key={index} report={report} />)
+	}
 
-	if (list !== undefined) return renderRows()
+	if (list !== undefined) { 
+		return renderRows() 
+	}
+
 	return (
 		<Loader
 			type='Oval'
@@ -31,3 +35,5 @@ export default () => {
 			}} />
 	)
 }
+
+export default ListReport

@@ -2,6 +2,8 @@ const INITIAL_STATE = {
     sideReportOpen: null,
     sideEventsOpen: null,
     sideCollectionsOpen: null,
+    sideCataTrecoOpen: null,
+    sideLeiOpen: null,
     loading: false
 }
 

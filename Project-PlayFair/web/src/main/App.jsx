@@ -4,7 +4,7 @@ import Header from '../reports/Header'
 import SideBar from '../template/SideBar'
 import Footer from '../containers/Footer'
 
-export default props => (
+const App = props => (
     <div className="wrapper" >
         <Header />
         <SideBar />
@@ -16,3 +16,5 @@ export default props => (
         <Footer />
     </div>
 )
+
+export default App

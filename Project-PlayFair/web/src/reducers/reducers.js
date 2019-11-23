@@ -9,6 +9,7 @@ import auth from './authReducer'
 import utils from './utilsReducer'
 import calendar from './calendarReducer'
 import cataTreco from './cataTrecoReducer'
+import leis from './leisReducer'
 
 
 const rootReducer = combineReducers(
@@ -17,6 +18,7 @@ const rootReducer = combineReducers(
         toastr: toastrReducer,
         reports,
         calendar,
+        leis,
         cataTreco,
         dashboard,
         user,

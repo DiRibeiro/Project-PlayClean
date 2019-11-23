@@ -9,13 +9,13 @@ const REPORTS_FETCHED = 'REPORTS_FETCHED'
 export const getReports = () => {
 	return dispatch => {
 		axios.get(`${BASE_URL}/report`)
-			.then(response =>
+			.then(response => {
 				dispatch({
 					type: REPORTS_FETCHED,
 					payload: response.data
 				})
-			)
-			.catch(error => toastr.error('Erro!', 'Internal server error'))
+			})
+			// .catch(error => toastr.error('Erro!', 'Internal server error'))
 	}
 }
 
@@ -31,7 +31,9 @@ export const postReport = values => dispatch => {
 				toastr.error('Erro!', response)
 
 			else if (response.status === 200) {
-				dispatch(reset('newReportForm'))
+				dispatch(
+					reset('newReportForm')
+					)
 				window.location = '/listReport'                 // dont forget to remove that fucking shit
 				toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
 			}

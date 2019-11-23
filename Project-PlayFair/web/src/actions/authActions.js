@@ -4,7 +4,6 @@ import axios from 'axios'
 
 import BASE_URL from '../config/consts'
 
-const USER_FETCHED = 'USER_FETCHED'
 const TOKEN_VALIDATED = 'TOKEN_VALIDATED'
 const TOKEN_FETCHED = 'TOKEN_FETCHED'
 const LOGIN = 'LOGIN'
@@ -31,10 +30,6 @@ export const login = values => {
 						payload: response.data.token
 					})
 
-					dispatch({
-						type: USER_FETCHED,
-						payload: response.data.result
-					})
 					dispatch({ type: LOGIN, payload: false })
 				}
 			})
@@ -50,7 +45,6 @@ export const signup = values => {
 		axios
 			.post(`${BASE_URL}/signup`, values)
 			.then(response => {
-				// response.data.result.firstName == "Carlos Eduardo" || response.data.token
 				if (response.status === 202)
 					toastr.error('Erro!', response.data)
 				else if (response.status === 200) {
@@ -74,17 +68,17 @@ export const validatedToken = token => {
         token ? 
             axios
                 .post(`${BASE_URL}/validateToken`, { token })
-                .then(response =>
+                .then(response =>{
                     dispatch({
                         type: TOKEN_VALIDATED,
                         payload: response.data.valid
-                    })
+                    })}
                 )
-                .catch(error =>
+                .catch(error =>{
                     dispatch({
                         type: TOKEN_VALIDATED,
                         payload: false
-                    })
+                    })}
                 )
 			: dispatch({
                 type: TOKEN_VALIDATED,
