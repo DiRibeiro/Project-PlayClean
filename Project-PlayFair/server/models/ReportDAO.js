@@ -8,8 +8,10 @@ const getReport = (req, res) => {
 		.find()
 		.sort({ dateCreate: -1 })
 		.exec((err, result) => {
-			if (err) res.status(400).json(err)
-			else {
+			if (err) {
+				res.status(400).json(err)
+				console.error(err)
+			}else {
 				let images64base = result.map(element =>
 					element.images.map(pic => {
 						let image = fs.readFileSync(pic)

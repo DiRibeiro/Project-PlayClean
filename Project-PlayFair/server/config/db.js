@@ -12,14 +12,15 @@ const user = mongoose.model('user', userSchema)
 const calendar = mongoose.model('calendar', calendarEventsSchema)
 const cataTreco = mongoose.model('cataTreco', cataTrecoSchema)
 
-module.exports = { report, user, calendar, cataTreco }
+if(!user.find({ 'userName': 'admin' }))
+    user.insertMany({
+        firstName: "Diego",
+        lastName: "RIbeiro",
+        cpf: "07998634910",
+        phone: "51989405478",
+        userName: "admin",
+        type: "admin",
+        password: "admin"
+    })
 
-user.insertMany({
-    firstName: "Diego",
-    lastName: "RIbeiro",
-    cpf: "07998634910",
-    phone: "51989405478",
-    userName: "admin",
-    type: "admin",
-    password: "admin"
-})
+module.exports = { report, user, calendar, cataTreco }
