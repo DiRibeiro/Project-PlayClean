@@ -6,7 +6,7 @@ import BASE_URL from '../config/consts'
 
 const REPORTS_FETCHED = 'REPORTS_FETCHED'
 
-export const getReports = () => dispatch => {
+export const getReports = () => {
 	/*
 		return fetch(`${BASE_URL}/report`, {
 			method: 'get',
@@ -26,10 +26,13 @@ export const getReports = () => dispatch => {
 	
 	return dispatch => {
 		axios.get(`${ BASE_URL }/report`)
-		.then(result => console.log(result))
-		.catch(err => console.error(err))
+		.then(result => {
+			console.log(result)
+			dispatch({ type: 'REPORTS_FETCHED', payload: result })
 
-		dispatch({ type: 'REPORTS_FETCHEDD' })
+		}).catch(err => {
+			console.error(err)
+		})
 	}
 }
 
