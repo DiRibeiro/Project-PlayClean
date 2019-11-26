@@ -13,11 +13,11 @@ const ListLeis = () => {
 		dispatch(getLeis())
 	}, [])
 
-	const renderRows = () => {
+	const renderRows = () =>
 		list.map((leis, index) => <RowLeis key={index} leis={leis} />)
-	}
 
-	if (list !== undefined) return renderRows()
+	if (list !== undefined) 
+		return renderRows()
 	return (
 		<Loader
 			type='Oval'

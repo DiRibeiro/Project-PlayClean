@@ -16,9 +16,7 @@ const ListCataTreco = () => {
 		dispatch(getCataTreco())
 	}, [])
 
-	const renderRows = () => {
-		list.map((cataTreco, index) => <RowCataTreco key={index} cataTreco={cataTreco} />)
-	}
+	const renderRows = () => list.map((cataTreco, index) => <RowCataTreco key={index} cataTreco={cataTreco} />)
 
 	if (list !== undefined) return renderRows()
 	return (
