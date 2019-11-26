@@ -7,8 +7,8 @@ const reportSchema = new mongoose.Schema({
     typeReport: String,
     dateOcurr: Date,
     dateCreate: {
-        type: Number,
-        default: new Date().getTime()
+        type: Date,
+        default: Date.now()
     },
     adressOcurr: String,
     description: String,

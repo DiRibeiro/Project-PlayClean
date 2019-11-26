@@ -26,7 +26,7 @@ const RowReport = props => {
                         <span>Cadastrado dia { fullDate(report.dateCreate) }</span><br />
                         <p>{ report.description }</p>
                     </div>
-                    <Link to={{ pathname: '/showReportDetails', state: report._id }} >
+                    <Link to={{ pathname: '/showDetailReport', state: report._id }} >
                         <button className="btn btn-primary bottomZero">Ver mais</button>
                     </Link>
                     { statusDom }

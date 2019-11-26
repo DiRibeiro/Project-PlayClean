@@ -4,15 +4,13 @@ import { reset } from 'redux-form'
 
 import BASE_URL from '../config/consts'
 
-const CATATRECO_FETCHED = 'CATATRECO_FETCHED'
-
 export const getCataTreco = () => {
 	return dispatch => {
 		axios.get(`${BASE_URL}/cataTreco`)
-			.then(response =>
+			.then(result =>
 				dispatch({
-					type: CATATRECO_FETCHED,
-					payload: response.data
+					type: 'CATATRECO_FETCHED',
+					payload: result.data
 				})
 			)
 			.catch(error => toastr.error('Erro!', 'Internal server error'))

@@ -20,21 +20,19 @@ const postCataTreco = (req, res) => {
 
     newCataTreco
         .save()
-        .then(response => 
-            cataTreco.insertMany({
-                name: newCataTreco.name,               
-                cpf: newCataTreco.cpf,
-                local: newCataTreco.local,
-                dateOcurr: newCataTreco.dateOcurr,
-                dateCreate: new Date().getTime(),
-                adressOcurr: newCataTreco.adressOcurr,
-                description: newCataTreco.description,
-            })
-            , (err, result) => {
-                result.post(response)
-                    .then(response => res.status(200).json('successfuly request'))
-                    .catch(err => res.status(500).json('Internal server error'))
-            })
+        .then(res => res.status(200).json('successfuly request'))
+        .catch(err => res.status(500).json('Internal server error'))
 }
 
+const setReport = (req, res) => {
+	const newReport =  new report(req.body) 				// Criar o novo report a ser isnerido
+
+	let paths = new Array()									// tratar as imagens
+	/* ---------- */
+	newReport.images = paths								// sobrescrever o value de images do body
+
+	newReport.save()
+		.then(res => console.log(res))						// save new report
+		.catch(err => console.log(err))
+}
 module.exports = { getCataTreco, postCataTreco }

@@ -7,7 +7,7 @@ import { getLeis } from '../actions/leisActions'
 
 const ListLeis = () => {
 	const dispatch = useDispatch()
-	const list = useSelector(state => state.leis.list) || undefined
+	const list = useSelector(state => state.leis.list)
 
 	useEffect(() => {
 		dispatch(getLeis())
@@ -16,9 +16,9 @@ const ListLeis = () => {
 	const renderRows = () =>
 		list.map((leis, index) => <RowLeis key={index} leis={leis} />)
 
-	if (list !== undefined) 
-		return renderRows()
-	return (
+	return list.length > 0 ? (
+		renderRows()
+	) : (
 		<Loader
 			type='Oval'
 			color='#00BFFF'

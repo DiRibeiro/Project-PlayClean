@@ -4,31 +4,12 @@ import { reset } from 'redux-form'
 
 import BASE_URL from '../config/consts'
 
-const REPORTS_FETCHED = 'REPORTS_FETCHED'
-
-export const getReports = () => {
-	/*
-		return fetch(`${BASE_URL}/report`, {
-			method: 'get',
-			headers: {
-				"Content-type": "application/json"
-			}
-		}).then(response => {
-				response.json()
-					.then(result => 
-						dispatch({
-							type: REPORTS_FETCHED,
-							payload: result
-						})
-					)
-		}).catch(error => toastr.error('Erro!', 'Internal server error'))
-	*/
-	
+export const getReports = () => {	
 	return dispatch => {
 		axios.get(`${ BASE_URL }/report`)
 		.then(result => {
-			console.log(result)
-			dispatch({ type: 'REPORTS_FETCHED', payload: result })
+			//console.log(result)
+			dispatch({ type: 'REPORTS_FETCHED', payload: result.data })
 
 		}).catch(err => {
 			console.error(err)

@@ -10,7 +10,7 @@ import { getCataTreco } from '../actions/cataTrecoActions'
 
 const ListCataTreco = () => {
 	const dispatch = useDispatch()
-	const list = useSelector(state => state.cataTreco.list) || undefined
+	const list = useSelector(state => state.cataTreco.list)
 
 	useEffect(() => {
 		dispatch(getCataTreco())
@@ -18,8 +18,9 @@ const ListCataTreco = () => {
 
 	const renderRows = () => list.map((cataTreco, index) => <RowCataTreco key={index} cataTreco={cataTreco} />)
 
-	if (list !== undefined) return renderRows()
-	return (
+	return list.length >= 0 ? (
+		renderRows()
+	) : (
 		<Loader
 			type='Oval'
 			color='#00BFFF'

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect, useDispatch} from 'react-redux'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
 import { createTextMask } from 'redux-form-input-masks'
-// import { DateTimePicker } from 'react-widgets'
+import { DateTimePicker } from 'react-widgets'
 
 import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
@@ -20,13 +20,13 @@ const Form = props => {
         momentLocaliser(moment)
     }, [])
 
-    // const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => 
-    //     <DateTimePicker
-    //         onChange={ onChange }
-    //         format="DD MMM YYYY"
-    //         time={ showTime }
-    //         value={ !value ? null : new Date(value) }
-    //         placeholder="Data do ocorrido" />
+    const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => 
+        <DateTimePicker
+            onChange={ onChange }
+            format="DD MMM YYYY"
+            time={ showTime }
+            value={ !value ? null : new Date(value) }
+            placeholder="Data do ocorrido" />
 
     const renderImages = () =>
         files.map((element, index) =>
@@ -48,7 +48,7 @@ const Form = props => {
             {/* Information about what whistleblower */}
             <h4><b>Dados do usuário</b></h4>
             <div className="row mb-3">
-                <div className="col-md-6">
+                <div className="col-md-4">
                     <label>Nome</label>
                     <div className="input-group">
                         <span className="input-group-addon"><i className="fas fa-user"/></span>
@@ -56,11 +56,18 @@ const Form = props => {
                     </div>
                     {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-4">
                     <label>Telefone</label>
                     <div className="input-group">
                         <span className="input-group-addon"><i className="fas fa-phone"></i></span>
                         <Field { ...phoneMask } name="phone" component="input" type="tel" placeholder="(__) _____-____" className="form-control" />
+                    </div>
+                </div>
+                <div className="col-md-4">
+                    <label>Data do ocorrido</label>
+                    <div className="input-group">
+                        <span className="input-group-addon"><i className="fas fa-calendar"></i></span>
+                        <Field { ...renderDateTimePicker } name="dateOcurr" component="input" type="date" className="form-control" />
                     </div>
                 </div>
             </div>

@@ -8,10 +8,9 @@ const getReport = (req, res) => {
 		.find()
 		.sort({ dateCreate: -1 })
 		.exec((err, result) => {
-			if (err) {
+			if (err)
 				res.status(400).json(err)
-				console.error(err)
-			}else {
+			else {
 				let images64base = result.map(element =>
 					element.images.map(pic => {
 						let image = fs.readFileSync(pic)
@@ -25,35 +24,18 @@ const getReport = (req, res) => {
 				res.status(200).json({ result })
 			}
 		})
-		.catch(err => res.status(500).json('Internal server error'))
 }
 
 const setReport = (req, res) => {
-	const newReport =  new report(req.body)
+	const newReport =  new report(req.body) 				// Criar o novo report a ser isnerido
 
-	let paths = new Array()
-	newReport.images = paths
+	let paths = new Array()									// tratar as imagens
+	/* ---------- */
+	newReport.images = paths								// sobrescrever o value de images do body
 
-	newReport.save().then(response =>
-		report.insertMany({
-			name: newReport.name,               
-			phone: newReport.phone,
-    		typeReport: newReport.typeReport,
-    		dateOcurr: newReport.dateOcurr,
-    		dateCreate: new Date().getTime(),
-			adressOcurr: newReport.adressOcurr,
-			description: newReport.description,
-		}, (err, result) => {
-			result.post(response)
-				.then(response => res.status(200).json('successfuly request'))
-				.catch(err => res.status(500).json('Internal server error'))
-		}),
-		report.findOne({ _id: req.body._id }, (err, result) => {
-			result.post(response)
-				.then(response => res.status(200).json('successfuly request'))
-				.catch(err => res.status(500).json('Internal server error'))
-		})
-	)
+	newReport.save()
+		.then(res => console.log(res))						// save new report
+		.catch(err => console.log(err))
 }
 
 const getTotalPerMonth = async () => {
