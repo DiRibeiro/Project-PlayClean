@@ -24,15 +24,4 @@ const postCataTreco = (req, res) => {
         .catch(err => res.status(500).json('Internal server error'))
 }
 
-const setReport = (req, res) => {
-	const newReport =  new report(req.body) 				// Criar o novo report a ser isnerido
-
-	let paths = new Array()									// tratar as imagens
-	/* ---------- */
-	newReport.images = paths								// sobrescrever o value de images do body
-
-	newReport.save()
-		.then(res => console.log(res))						// save new report
-		.catch(err => console.log(err))
-}
 module.exports = { getCataTreco, postCataTreco }

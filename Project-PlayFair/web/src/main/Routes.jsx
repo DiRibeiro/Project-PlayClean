@@ -2,6 +2,7 @@ import React from 'react'
 import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-router'
 
 import NewReport from '../reports/NewReport'
+import NewLeis from '../reports/NewLeis'
 
 import Dashboard from '../template/Dashboard'
 import ListReports from '../template/ListReport'
@@ -23,6 +24,7 @@ export default () => (
         <Route exact path='/' component={ App }>
             <IndexRoute component={ Dashboard } />
             <Route path='registerReport' component={ NewReport } />
+            <Route path='registerLeis' component={ NewLeis } />
             <Route path='dashboard' component={ Dashboard } />
             <Route path='listReport' component={ ListReports } />
             <Route path='coletaSeletiva' component={ ColetaSeletiva } />

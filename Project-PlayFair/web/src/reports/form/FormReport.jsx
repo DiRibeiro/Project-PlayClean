@@ -67,7 +67,7 @@ const Form = props => {
                     <label>Data do ocorrido</label>
                     <div className="input-group">
                         <span className="input-group-addon"><i className="fas fa-calendar"></i></span>
-                        <Field { ...renderDateTimePicker } name="dateOcurr" component="input" type="date" className="form-control" />
+                        <Field { ...renderDateTimePicker } name="dateOcurr" component="input" className="form-control" />
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@ const ListReport = () => {
 		dispatch(getReports())
 	}, [])
 
-	const renderRows = () => list.map((report, _id) => <RowReport key={_id} report={report} />)
+	const renderRows = () => list.map((report, index) => <RowReport key={index} report={report} />)
 
 	return list.length > 0 ? (
 		renderRows()
