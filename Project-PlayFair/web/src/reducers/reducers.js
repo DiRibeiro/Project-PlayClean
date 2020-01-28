@@ -17,7 +17,7 @@ const rootReducer = combineReducers(
         form: formReducer,
         toastr: toastrReducer,
         reports,
-        calendar,
+        todo: calendar,
         leis,
         cataTreco,
         dashboard,

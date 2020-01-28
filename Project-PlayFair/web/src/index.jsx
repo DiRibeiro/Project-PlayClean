@@ -10,8 +10,10 @@ import reducers from './reducers/reducers'
 import Auth from './main/Auth' 
 // import Routes from './main/Routes' 
 
+const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
+    && window.__REDUX_DEVTOOLS_EXTENSION__()
 const store = createStore(
-    reducers,
+    reducers,devTools,
     applyMiddleware(thunk)
 )
 

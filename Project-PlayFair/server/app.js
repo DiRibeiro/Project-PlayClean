@@ -10,11 +10,13 @@ const port = process.env.PORT || 3001
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+const router = express.Router()
 
 const ReportsDAO = require('./models/ReportDAO')
 const CataTrecoDAO = require('./models/CataTrecoDAO')
 const LeisDAO = require('./models/LeisDAO')
 const Auth = require('./models/auth/authUser')
+const Todo = require('./models/todoEventsDAO')
 
 // Reports
 app.get('/report', (req, res) => ReportsDAO.getReport(req, res))
@@ -24,6 +26,9 @@ app.post('/reportStatus' , (req, res) => ReportsDAO.setStatus(req, res))
 app.get('/get', (req, res) => ReportsDAO.get(req, res))
 
 //Calendar Events
+app.get('/todoSchema', (req,res) => Todo.getTodo(req,res))
+app.post('/todoSchema', (req,res) => Todo.postTodo(req,res))
+// Todo.register(router, '/todos')
 
 //Cata Treco
 app.get('/cataTreco', (req,res) => CataTrecoDAO.getCataTreco(req,res))
