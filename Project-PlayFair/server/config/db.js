@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const reportSchema = require('../api/dbSchema/reportSchema')
 const userSchema = require('../api/dbSchema/userSchema')
-const todoSchema = require('../api/dbSchema/todoSchema')
+const calendarSchema = require('../api/dbSchema/todoSchema')
 const cataTrecoSchema = require('../api/dbSchema/cataTrecoSchema')
 const leisSchema = require('../api/dbSchema/leisSchema')
 
@@ -12,6 +12,7 @@ const report = mongoose.model('report', reportSchema)
 const user = mongoose.model('user', userSchema)
 const cataTreco = mongoose.model('cataTreco', cataTrecoSchema)
 const leis = mongoose.model('leis', leisSchema)
+const calendars = mongoose.model('calendars', calendarSchema)
 
 if(!user.find({ 'userName': 'admin' }))
     user.insertMany({
@@ -24,4 +25,4 @@ if(!user.find({ 'userName': 'admin' }))
         password: "admin"
     })
 
-module.exports = { report, user,todoSchema, cataTreco, leis }
+module.exports = { report, user, calendars, cataTreco, leis }

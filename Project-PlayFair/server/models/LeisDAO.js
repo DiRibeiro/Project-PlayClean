@@ -6,7 +6,6 @@ const { leis } = require('../config/db')
 const getLeis = (req, res) => {
     leis
         .find()
-        .sort({ dateCreate: -1 })
         .exec((err, result) => {
             if (err) res.status(400).json(err)
             else{
@@ -18,6 +17,8 @@ const getLeis = (req, res) => {
 const postLeis = (req, res) => {
     const newLeis =  new leis(req.body)
 
+    newLeis.type = leis.type
+    newLeis.nameLei = leis.nameLeis
     newLeis
         .save()
         .then(res => res.status(200).json('successfuly request'))

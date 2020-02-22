@@ -16,7 +16,7 @@ const ReportsDAO = require('./models/ReportDAO')
 const CataTrecoDAO = require('./models/CataTrecoDAO')
 const LeisDAO = require('./models/LeisDAO')
 const Auth = require('./models/auth/authUser')
-const Todo = require('./models/todoEventsDAO')
+const Calendar = require('./models/todoEventsDAO')
 
 // Reports
 app.get('/report', (req, res) => ReportsDAO.getReport(req, res))
@@ -26,13 +26,13 @@ app.post('/reportStatus' , (req, res) => ReportsDAO.setStatus(req, res))
 app.get('/get', (req, res) => ReportsDAO.get(req, res))
 
 //Calendar Events
-app.get('/todoSchema', (req,res) => Todo.getTodo(req,res))
-app.post('/todoSchema', (req,res) => Todo.postTodo(req,res))
+app.get('/calendars', Calendar.get)
+app.post('/calendars', Calendar.post)
 // Todo.register(router, '/todos')
 
 //Cata Treco
-app.get('/cataTreco', (req,res) => CataTrecoDAO.getCataTreco(req,res))
-app.post('/cataTreco', (req,res) => CataTrecoDAO.postCataTreco(req,res))
+app.get('/cataTreco', CataTrecoDAO.get)
+app.post('/cataTreco',CataTrecoDAO.post)
 
 //Leis
 app.get('/leis', (req,res) => LeisDAO.getLeis(req,res))

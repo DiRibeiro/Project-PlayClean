@@ -1,33 +1,25 @@
-// const Todo = require('../api/dbSchema/todoSchema')
-
-// Todo.methods(['get', 'post', 'put', 'delete'])
-// Todo.updateOptions({new: true, runValidators: true})
-
-// module.exports = Todo
-const fs = require('fs')
 const mongoose = require('mongoose')
 
-const { todoSchema } = require('../config/db')
+const { calendars } = require('../config/db')
 
-const getTodo = (req, res) => {
-    todoSchema
+exports.get = (req, res, next) => {
+    calendars
         .find()
-        .sort({ dateCreate: -1 })
-        .exec((err, result) => {
-            if (err) res.status(400).json(err)
-            else{
-                res.status(200).json({ result })
-            }
+        .then(data => {
+            res.status(200).json(data)
+        }).catch(err => {
+            res.status(400).json(err)
         })
 }
 
-const postTodo = (req, res) => {
-    const newTodo =  new todoSchema(req.body)
+exports.post = (req, res, next) => {
+    let newTodo =  new calendars(req.body)
 
     newTodo
         .save()
-        .then(res => res.status(200).json('successfuly request'))
-        .catch(err => res.status(500).json('Internal server error'))
+        .then(e => {
+            res.status(200).json('successfuly request')
+        }).catch(err => {
+            res.status(400).json(err)
+        })
 }
-
-module.exports = { getTodo, postTodo }

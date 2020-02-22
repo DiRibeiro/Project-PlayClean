@@ -5,7 +5,7 @@ const { report, user } = require('../config/db')
 
 const getReport = (req, res) => {
 	report
-		.find()
+		.find({})
 		.sort({ dateCreate: -1 })
 		.exec((err, result) => {
 			if (err)
@@ -34,8 +34,8 @@ const setReport = (req, res) => {
 	newReport.images = paths								// sobrescrever o value de images do body
 
 	newReport.save()
-		.then(res => console.log(res))						// save new report
-		.catch(err => console.log(err))
+		.then(res => res.status(200).json('successfuly request'))						// save new report
+		.catch(err => res.status(500).json('Internal server error'))
 }
 
 const getTotalPerMonth = async () => {
