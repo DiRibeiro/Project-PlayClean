@@ -1,48 +1,75 @@
-import React, { /* useState */ } from 'react';
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import Gallery from 'react-grid-gallery'
-// import { Field } from 'redux-form'
 
-const IMAGES =
-[{
-        src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
-        thumbnail: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
-        thumbnailWidth: 320,
-        thumbnailHeight: 212,
-        caption: ""
-},
-{
-        src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
-        thumbnail: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
-        thumbnailWidth: 320,
-        thumbnailHeight: 212
-},
+import {getPhotos, postPhotos} from '../actions/photosActions'
+import FormData from 'form-data'
 
-{
-        src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
-        thumbnail: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
-        thumbnailWidth: 320,
-        thumbnailHeight: 212
-}]
+// const IMAGES =
+// [{
+//         src: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg",
+//         thumbnail: "https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg",
+//         thumbnailWidth: 320,
+//         thumbnailHeight: 212,
+//         caption: ""
+// },
+// {
+//         src: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg",
+//         thumbnail: "https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_n.jpg",
+//         thumbnailWidth: 320,
+//         thumbnailHeight: 212
+// },
+
+// {
+//         src: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg",
+//         thumbnail: "https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_n.jpg",
+//         thumbnailWidth: 320,
+//         thumbnailHeight: 212
+// }]
 
 const Photo = props => {
-    const {handleImage} = props
-    // const [files] = useState(props.images)
-    // const renderImages = () => {
-    //     files.map((element, index) =>
-    //         <img
-    //             key={ index }
-    //             style={{ 
-    //                 clear: 'both',
-    //                 width: '100px',
-    //                 height: '100px',
-    //                 margin: '0px 5px',
-    //                 marginTop: '-14px',
-    //                 borderRadius: '3px'
-    //             }} 
-    //             src={ URL.createObjectURL(element) } 
-    //             alt="img report" />
-    //     )
+    const dispatch = useDispatch()
+
+    const [files, setFiles] = useState({images: []})
+
+    const fileSelectedHandler = event => {
+        let images = files['images']
+        Object.values(event.target.files).map(picture => images.push(picture))
+        setFiles({ images })
+    }
+
+    const handleForm = values => {
+        const fd = new FormData()
+
+        if (files['images'] !== undefined)
+            files['images'].forEach(img => fd.append('images', img))
+
+        for (let key in values)
+            if (values.hasOwnProperty(key))
+                fd.append(key, values[key])
+
+        setFiles({ images: [] })
+        dispatch(postPhotos(fd))
+    }
+
+    // const renderImage = () => {
+    //     dispatch(getPhotos())
     // }
+
+    const renderImages = () =>
+        files['images'].map((element, index) =>
+            <img
+                key={ index }
+                style={{ 
+                    clear: 'both',
+                    width: '100px',
+                    height: '100px',
+                    margin: '0px 5px',
+                    marginTop: '-14px',
+                    borderRadius: '3px'
+                }} 
+                src={ URL.createObjectURL(element) } 
+                alt="img report" />)
 
     return(
         <div className="row">
@@ -68,18 +95,20 @@ const Photo = props => {
                         <input id="select-pictures"
                             type="file" 
                             name="images" 
-                            accept="image/png, image/jpeg" 
-                            onChange={ handleImage } 
+                            accept="image/*" 
+                            onChange= { values => fileSelectedHandler(values) }  
                             multiple 
                             style={{ display: 'none' }} />
+                        <button type='submit' 
+                            value='Upload'
+                            onClick={ values => handleForm(values) }>Upload</button>
                                 
             </div>
         </div>
         
         <div className='col-md-12'>
-            {/* {renderImages()} */}
-            <Gallery images={IMAGES}/>
-
+            {/* <Gallery image={renderImage}/> */}
+            {renderImages()}
         </div>
         </div>
         

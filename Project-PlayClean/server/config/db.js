@@ -5,6 +5,7 @@ const userSchema = require('../api/dbSchema/userSchema')
 const calendarSchema = require('../api/dbSchema/todoSchema')
 const cataTrecoSchema = require('../api/dbSchema/cataTrecoSchema')
 const leisSchema = require('../api/dbSchema/leisSchema')
+const photosSchema = require('../api/dbSchema/photosSchema')
 
 mongoose.connect("mongodb://localhost/jogue-limpo", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true })
 
@@ -13,6 +14,7 @@ const user = mongoose.model('user', userSchema)
 const cataTreco = mongoose.model('cataTreco', cataTrecoSchema)
 const leis = mongoose.model('leis', leisSchema)
 const calendars = mongoose.model('calendars', calendarSchema)
+const photos = mongoose.model('photos', photosSchema)
 
 if(!user.find({ 'userName': 'admin' }))
     user.insertMany({
@@ -25,4 +27,4 @@ if(!user.find({ 'userName': 'admin' }))
         password: "admin"
     })
 
-module.exports = { report, user, calendars, cataTreco, leis }
+module.exports = { report, user, calendars, cataTreco, leis , photos}

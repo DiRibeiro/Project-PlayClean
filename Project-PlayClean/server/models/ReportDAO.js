@@ -5,7 +5,7 @@ const { report, user } = require('../config/db')
 
 const getReport = (req, res) => {
 	report
-		.find({})
+		.find()
 		.sort({ dateCreate: -1 })
 		.exec((err, result) => {
 			if (err)
@@ -29,16 +29,23 @@ const getReport = (req, res) => {
 const setReport = (req, res) => {
 	const newReport =  new report(req.body) 				// Criar o novo report a ser inserido
 
-	// let paths = new Array()									// tratar as imagens
-	// /* ---------- */
-	// newReport.images = paths								// sobrescrever o value de images do body
+	const paths = new Array()									// tratar as imagens
+	
+	req.files.forEach(pic => paths.push(pic.path))
 
-	newReport.save()
-		.then(e => {
-			res.status(200).json('Successfuly request')		// save new report
-		}).catch(err => {
-			res.status(500).json('Internal server error')
+	newReport.images = paths								// sobrescrever o value de images do body
+
+	newReport.save().then(e => 
+		user.findOne({ _id: req.headers['_id'] }, (err, result) => {
+			result.reports.push(response._id)
+			result.save()
+			.then(e => 		
+				res.status(200).json('Successfuly request')		// save new report
+			).catch(err => 
+				res.status(500).json('Internal server error')
+			)
 		})
+	)
 }
 
 const getTotalPerMonth = async () => {

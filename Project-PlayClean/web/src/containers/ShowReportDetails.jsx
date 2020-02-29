@@ -1,13 +1,18 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setStatus } from '../actions/reportActions'
+import { setStatus, getReports } from '../actions/reportActions'
 
 import { fullDate } from '../helper/date'
+import { useEffect } from 'react'
 
 const ShowReportDetails = props => { 
 	const dispatch = useDispatch()
 	const reports = useSelector(state => state.reports.list)
 	const report = reports.find(element => element._id === props.location.state) || undefined
+	
+	useEffect(() => {
+		dispatch(getReports())
+	}, [])
 	
 	const showStatus = () => (
 		<div className='showStatus'>
@@ -33,12 +38,13 @@ const ShowReportDetails = props => {
 				key={ index }
 				className={ `item ${ index === 0 ? 'active' : '' }` } >
 				<img
-					src={ `data:image/png;base64, ${ pic }` }
+					src={ `data:image/png; image/jpg; image/jpeg; base64, ${ pic }` }
 					alt={ `report img ${ index }` } 
 					style={{ width: '100%' }}/>
 			</div>
 		))
 	}
+
 	const renderIndicators = () => {
 		report.images.forEach((pic, index) => (
 			<li

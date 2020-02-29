@@ -4,6 +4,7 @@ const express = require('express')
 
 const app = express()
 const upload = require('./config/multer')
+const mural = require('./config/multer')
 
 const port = process.env.PORT || 3001
 
@@ -17,6 +18,7 @@ const CataTrecoDAO = require('./models/CataTrecoDAO')
 const LeisDAO = require('./models/LeisDAO')
 const Auth = require('./models/auth/authUser')
 const Calendar = require('./models/todoEventsDAO')
+const Photo = require('./models/PhotosDAO')
 
 // Reports
 app.get('/report', (req, res) => ReportsDAO.getReport(req, res))
@@ -37,6 +39,10 @@ app.post('/cataTreco',CataTrecoDAO.post)
 //Leis
 app.get('/leis', (req,res) => LeisDAO.getLeis(req,res))
 app.post('/leis', (req,res) => LeisDAO.postLeis(req,res))
+
+//Mural Photos
+app.get('/photos', Photo.get)
+app.post('/photos', mural.array('images', 10), Photo.post)
 
 // Dashboard
 app.get('/dashboard', (req, res) => ReportsDAO.getDataDashboard(req, res))
