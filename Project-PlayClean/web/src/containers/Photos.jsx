@@ -52,10 +52,6 @@ const Photo = props => {
         dispatch(postPhotos(fd))
     }
 
-    // const renderImage = () => {
-    //     dispatch(getPhotos())
-    // }
-
     const renderImages = () =>
         files['images'].map((element, index) =>
             <img
@@ -109,6 +105,7 @@ const Photo = props => {
         <div className='col-md-12'>
             {/* <Gallery image={renderImage}/> */}
             {renderImages()}
+            {dispatch(getPhotos())}
         </div>
         </div>
         

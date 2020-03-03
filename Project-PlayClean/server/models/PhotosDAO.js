@@ -20,7 +20,7 @@ exports.get = (req, res, next) => {
 					(element, index) =>
 						(element['images'] = images64base[index])
 				)
-				res.status(200).json({ result })
+				res.status(200).json( result )
 			}
 		})
 }
@@ -29,12 +29,9 @@ exports.post = (req, res, next) => {
 	const photos =  req.files 				// Criar o novo report a ser inserido
 
 	photos.save()
-		.then(result => {
-			if(!files) {
-				res.status(500).json('Internal server error')
-			} else {
-			res.send(photos)
+		.then(e => {
 			res.status(200).json('Successfuly request')
-			}
-		}).catch((err) => next(err))							
+		}).catch((err) => {
+			res.status(500).json('Internal server error')
+		})			
 }

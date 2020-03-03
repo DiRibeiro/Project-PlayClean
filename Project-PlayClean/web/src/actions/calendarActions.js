@@ -15,7 +15,7 @@ export const search = () => {
         axios
             .get(`${BASE_URL}/calendars?sort=-createdAt${search}`)
             .then(res => {
-                dispatch({type: 'TODO_SEARCHED', payload: res.result})
+                dispatch({type: 'TODO_SEARCHED', payload: res.data})
             })
     }
 }

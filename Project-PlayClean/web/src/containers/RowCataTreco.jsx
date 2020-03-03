@@ -26,7 +26,7 @@ const RowCataTreco = props => {
                         <span>Cadastrado dia { fullDate(cataTreco.dateCreate) }</span><br />
                         <p>{ cataTreco.description }</p>
                     </div>
-                    <Link to={{ pathname: '/showDetailcataTreco', state: cataTreco._id }} >
+                    <Link to={{ pathname: '/showDetailCataTreco', state: cataTreco._id }} >
                         <button className="btn btn-primary bottomZero">Ver mais</button>
                     </Link>
                     { statusDom }

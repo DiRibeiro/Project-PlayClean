@@ -32,3 +32,21 @@ export const postCataTreco = values => dispatch => {
 		})
 		.catch(error => toastr.error('Erro!', 'Internal server error'))
 }
+
+export const setStatus = (status, _id) => {
+	return dispatch => {
+		axios
+			.post(`${BASE_URL}/cataTrecoStatus`, { status, _id })
+			.then(response => {
+				if (response.status === 202) toastr.error('Erro!', response)
+				else if (response.status === 200) {
+					toastr.success(
+						'Sucesso!',
+						'Registro atualizado com sucesso!'
+					)
+					dispatch(getCataTreco())
+				}
+			})
+			.catch(error => toastr.error('Erro!', 'Internal server error'))
+	}
+}

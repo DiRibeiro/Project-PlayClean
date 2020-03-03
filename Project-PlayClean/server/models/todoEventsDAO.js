@@ -20,6 +20,6 @@ exports.post = (req, res, next) => {
         .then(e => {
             res.status(200).json('Successfuly request')
         }).catch(err => {
-            res.status(400).json(err)
+            res.status(400).json('Internal server error')
         })
 }
