@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 
 // import Grid from '../template/grid'
 // import IconButton from '../template/iconButton'
-import { add, changeDescription, search, clear } from '../../actions/calendarActions'
+import { add, changeDescription, search, clear, remove } from '../../actions/calendarActions'
 
 class TodoForm extends Component {
     constructor(props) {
@@ -21,12 +21,12 @@ class TodoForm extends Component {
         if (e.key === 'Enter') {
             e.shiftKey ? search() : add(description)
         } else if (e.key === 'Escape') {
-            clear()
+            clear('')
         }
     }
 
     render() {
-        const { add, search, description } = this.props
+        const { add, search, description, clear } = this.props
         return (
             <div role='form' className='calendarForm'>
                 <div className='calendar-input'>
@@ -34,7 +34,8 @@ class TodoForm extends Component {
                         placeholder='Adicione um evento'
                         onChange={this.props.changeDescription}
                         onKeyUp={this.keyHandler}
-                        name='description'></input>
+                        name='description'
+                        value={this.description}></input>
                     {/* <input id='date' className='form-control inputDate'
                         type='date'
                         placeholder='00/00/0000'
@@ -44,9 +45,9 @@ class TodoForm extends Component {
                     <button className='btn-success btn-add'
                         onClick={() => add(description)}><i className="fa fa-plus" aria-hidden="true"/></button>
                     <button className='btn-info btn-search'
-                        onClick={search}><i className="fa fa-search" aria-hidden="true"/></button>
+                        onClick={() => search()}><i className="fa fa-search" aria-hidden="true"/></button>
                     <button className='btn-danger btn-close'
-                        onClick={this.props.clear}><i className="fa fa-close" aria-hidden="true"/></button>
+                        onClick={() => clear()}><i className="fa fa-close" aria-hidden="true"/></button>
                 </div>
                 </div>
             </div>

@@ -36,7 +36,7 @@ const setReport = (req, res) => {
 	newReport.images = paths								// sobrescrever o value de images do body
 
 	newReport.save().then(e => 
-		user.findOne({ _id: req.headers['_id'] }, (err, result) => {
+		user.find({}, (err, result) => {
 			result.reports.push(response._id)
 			result.save()
 			.then(e => 		

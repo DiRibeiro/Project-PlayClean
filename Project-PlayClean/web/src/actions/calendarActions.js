@@ -15,7 +15,7 @@ export const search = () => {
         axios
             .get(`${BASE_URL}/calendars?sort=-createdAt${search}`)
             .then(res => {
-                dispatch({type: 'TODO_SEARCHED', payload: res.data})
+                dispatch({type: 'TODO_SEARCHED', payload: res})
             })
     }
 }
@@ -36,27 +36,37 @@ export const add = (description) => dispatch => {
             })
 }
 
-export const markAsDone = (todo) => {
+export const markAsDone = (todo, index) => {
     return dispatch => {
-        axios.put(`${BASE_URL}/${todo._id}`, { ...todo, done: true })
+        axios.put(`${BASE_URL}/${todo,index}`, { ...todo, done: true })
             .then(resp => dispatch(search()))
     }
 }
 
-export const markAsPending = (todo) => {
+export const markAsPending = (todo, index) => {
     return dispatch => {
-        axios.put(`${BASE_URL}/${todo._id}`, { ...todo, done: false })
+        axios.put(`${BASE_URL}/${todo,index}`, { ...todo, done: false })
             .then(resp => dispatch(search()))
     }
 }
 
 export const remove = (todo) => {
     return dispatch => {
-        axios.delete(`${BASE_URL}/${todo._id}`)
+        axios.delete(`${BASE_URL}/${todo}`)
             .then(resp => dispatch(search()))
     }
 }
 
 export const clear = () => {
-    return [{ type: 'TODO_CLEAR' }, search()]
+    return (dispatch, getState) => {
+        const description = getState().todo.description
+        axios
+            .get(`${BASE_URL}/calendars`)
+            .then(res => {
+                dispatch({
+                    type: 'TODO_CLEAR',
+                    payload: ''
+                })
+            })
+    }
 }
