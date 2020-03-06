@@ -30,7 +30,8 @@ const Leis = () => {
             </div>
             <div className="box-body">
                 <FormLei 
-                    onSubmit={ values => handleForm(values) } />
+                    onSubmit={ values => handleForm(values) }
+                    type={ leis['type']} />
             </div>
         </div>
     )

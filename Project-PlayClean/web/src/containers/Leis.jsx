@@ -3,13 +3,10 @@ import { connect } from 'react-redux'
 import { reduxForm, formValueSelector } from 'redux-form'
 import { Tabs, Tab } from 'react-bootstrap'
 import FormLei from '../reports/form/FormLei'
-// import { DateTimePicker } from 'react-widgets'
-
 import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
 
 import 'react-widgets/dist/css/react-widgets.css'
-// import Button from '../template/Button'
 
 const Leis = (props) => {
     const { handleSubmit } = props
@@ -42,9 +39,9 @@ const Leis = (props) => {
     )
 }
 
-let LeisRepost = reduxForm({ form: 'newLei' })(Leis)   // A unique identifier for this form	
+let LeisRepost = reduxForm({ form: 'newLeiForm' })(Leis)   // A unique identifier for this form	
 
-const selector = formValueSelector('newLei')
+const selector = formValueSelector('newLeiForm')
 LeisRepost = connect(state => {
     const typeReportValue = selector(state, 'typeReport')	
     return { typeReportValue }	

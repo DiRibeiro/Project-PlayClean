@@ -19,7 +19,7 @@ exports.post = (req, res, next) => {
     newCataTreco
         .save()
         .then(e => {
-            res.status(200).json('successfuly request')
+            res.status(200).json('Successfuly request')
         }).catch(err => {
             res.status(400).json('Internal server error')
         })

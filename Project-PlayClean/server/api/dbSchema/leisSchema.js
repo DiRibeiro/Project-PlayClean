@@ -2,7 +2,9 @@ const mongoose = require('mongoose')
 
 const leisSchema = new mongoose.Schema({
     whoCreated: mongoose.Schema.Types.ObjectId,
-    nameLei: String,                
+    nameLei: {
+        type: String
+    },
     type: [ String ],
     descriptionLei: String,
     status: {

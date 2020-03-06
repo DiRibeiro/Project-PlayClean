@@ -3,26 +3,29 @@ const mongoose = require('mongoose')
 
 const { leis } = require('../config/db')
 
-const getLeis = (req, res) => {
+exports.get = (req, res, next) => {
     leis
         .find()
-        .exec((err, result) => {
-            if (err) res.status(400).json(err)
-            else{
-                res.status(200).json({ result })
-            }
+        .then(result => {
+            res.status(200).json(result)
+        }).catch(err => {
+            res.status(400).json(err)
         })
 }
 
-const postLeis = (req, res) => {
+exports.post = (req, res, next) => {
     const newLeis =  new leis(req.body)
 
-    newLeis.type = leis.type
-    newLeis.nameLei = leis.nameLeis
+    // newLeis.nameLei = leis.nameLei
+    // newLeis.type = leis.type
+    // newLeis.descriptionLei = leis.descriptionLei
+    
     newLeis
         .save()
-        .then(res => res.status(200).json('successfuly request'))
-        .catch(err => res.status(500).json('Internal server error'))
+        .then(e => {
+            res.status(200).json('Successfuly request')
+        }).catch(err => {
+            console.log(err)
+            res.status(400).json('Internal server error')
+        })
 }
-
-module.exports = { getLeis, postLeis }

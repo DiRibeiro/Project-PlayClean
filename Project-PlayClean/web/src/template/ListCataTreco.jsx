@@ -2,9 +2,6 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from 'react-loader-spinner'
 
-// import LineSearchFilter from '../containers/LineSearchFilter'
-// import Dropmenu from '../containers/Dropmenu'
-
 import RowCataTreco from '../containers/RowCataTreco'
 import { getCataTreco } from '../actions/cataTrecoActions'
 
