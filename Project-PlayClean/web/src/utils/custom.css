@@ -148,7 +148,7 @@ input[type=date] {
     color: white;
 }
 
-/* item list Animal/Report */
+/* item list Report */
 .box-title {
     margin-top: 0px;
 }
@@ -710,7 +710,7 @@ input {
 }
 
 .listReport {
-    height: 7em;
+    min-height: 7em;
 }
 
 .showStatus {

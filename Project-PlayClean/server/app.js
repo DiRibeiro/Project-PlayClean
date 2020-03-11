@@ -11,7 +11,7 @@ const port = process.env.PORT || 3001
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use('/public', express.static('uploads'))
+app.use(express.static('public'))
 
 const ReportsDAO = require('./models/ReportDAO')
 const CataTrecoDAO = require('./models/CataTrecoDAO')
