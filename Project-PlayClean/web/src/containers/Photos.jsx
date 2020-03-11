@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import Gallery from 'react-grid-gallery'
 
 import {getPhotos, postPhotos} from '../actions/photosActions'
 import FormData from 'form-data'

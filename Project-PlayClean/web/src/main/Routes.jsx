@@ -3,13 +3,13 @@ import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-route
 
 import NewReport from '../reports/NewReport'
 import NewLeis from '../reports/NewLeis'
+import NewCataTreco from '../reports/NewCataTreco'
 
 import Dashboard from '../template/Dashboard'
 import ListReports from '../template/ListReport'
 import ReportDetail from '../containers/ShowReportDetails'
 import ColetaOrganica from '../containers/ColetaOrganica'
 import ColetaSeletiva from '../containers/ColetaSeletiva'
-import CataTreco from '../containers/CataTreco'
 import ListCataTreco from '../template/ListCataTreco'
 import CataTrecoDetail from '../containers/ShowCataTrecoDetails'
 import Photos from '../containers/Photos'
@@ -26,6 +26,7 @@ export default () => (
             <IndexRoute component={ Dashboard } />
             <Route path='registerReport' component={ NewReport } />
             <Route path='registerLeis' component={ NewLeis } />
+            <Route path='registerCataTreco' component={ NewCataTreco } />
             <Route path='dashboard' component={ Dashboard } />
             <Route path='listReport' component={ ListReports } />
             <Route path='coletaSeletiva' component={ ColetaSeletiva } />
@@ -35,7 +36,6 @@ export default () => (
             <Route path='calendar' component={ Calendar } />
             <Route path='photos' component={ Photos } />
             <Route path='showDetailReport' component={ ReportDetail } />
-            <Route path='cataTreco' component={ CataTreco } />
             <Route path='listCataTreco' component={ ListCataTreco } />
             <Route path='showDetailCataTreco' component={ CataTrecoDetail } />
             <Route path='contacts' component={ Contacts } />

@@ -8,22 +8,11 @@ import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
 
 import 'react-widgets/dist/css/react-widgets.css'
-import { postCataTreco } from '../actions/cataTrecoActions'
-
-import FormData from 'form-data'
 
 const Form = props => {
+    const {handleSubmit} = props
     const dispatch = useDispatch()
-    const handleSubmit = values => {
-        const fd = new FormData()
-
-        for (let key in values)
-        if (values.hasOwnProperty(key))
-            fd.append(key, values[key])
-
-        dispatch(postCataTreco(fd))
-    }
-
+    
     const cpfMask= createTextMask({ pattern: '999.999.999-99' })
 
     useEffect(() => {
@@ -31,7 +20,7 @@ const Form = props => {
     }, [])
     
     return (
-        <form onSubmit={ values => handleSubmit(values) } className="form-group">
+        <form onSubmit={ handleSubmit } className="form-group">
             {/* Information about what whistleblower */}
             <div className="box box-success">
                 <div className="box-header with-border">
@@ -79,8 +68,7 @@ const Form = props => {
                         <button
                             type='submit'
                             className='btn btn-success btnLogin'
-                            onClick = { (values) => handleSubmit(values)}
-                            //onClick={() => { dispatch(window.location = '/listCataTreco')}}
+                            onClick={() => { dispatch(window.location = '/listCataTreco')}}
                             >Agendar</button>
                     </div>
                 </div>
@@ -89,20 +77,12 @@ const Form = props => {
     )
 }
 
-let CataTreco = reduxForm({ form: 'newCataTrecoForm' })(Form)   // A unique identifier for this form	
+let FormCataTreco = reduxForm({ form: 'newCataTrecoForm' })(Form)   // A unique identifier for this form	
 
 const selector = formValueSelector('newCataTrecoForm')
-CataTreco = connect(state => {
+FormCataTreco = connect(state => {
     const typeReportValue = selector(state, 'typeReport')	
     return { typeReportValue }	
-})(CataTreco)
+})(FormCataTreco)
 
-export default CataTreco
-
-// const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => 
-    //     <DateTimePicker
-    //         onChange={ onChange }
-    //         format="DD MMM YYYY"
-    //         time={ showTime }
-    //         value={ !value ? null : new Date(value) }
-    //         placeholder="Data do ocorrido" />
+export default FormCataTreco

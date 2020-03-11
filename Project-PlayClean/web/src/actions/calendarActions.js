@@ -59,7 +59,7 @@ export const remove = (todo) => {
 
 export const clear = () => {
     return (dispatch, getState) => {
-        const description = getState().todo.description
+        // const description = getState().todo.description
         axios
             .get(`${BASE_URL}/calendars`)
             .then(res => {

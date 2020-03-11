@@ -30,22 +30,15 @@ const setReport = (req, res) => {
 	const newReport =  new report(req.body) 				// Criar o novo report a ser inserido
 
 	const paths = new Array()									// tratar as imagens
-	
-	req.files.forEach(pic => paths.push(pic.path))
 
 	newReport.images = paths								// sobrescrever o value de images do body
 
-	newReport.save().then(e => 
-		user.find({}, (err, result) => {
-			result.reports.push(response._id)
-			result.save()
-			.then(e => 		
+	newReport.save()
+		.then(e => 		
 				res.status(200).json('Successfuly request')		// save new report
 			).catch(err => 
 				res.status(500).json('Internal server error')
 			)
-		})
-	)
 }
 
 const getTotalPerMonth = async () => {

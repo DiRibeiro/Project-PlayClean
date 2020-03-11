@@ -5,7 +5,10 @@ const reportSchema = new mongoose.Schema({
     name: String,                
     phone: String,
     typeReport: String,
-    dateOcurr: Date,
+    dateOcurr: {
+        type: Date,
+        default: Date.now
+    },
     dateCreate: {
         type: Date,
         default: Date.now

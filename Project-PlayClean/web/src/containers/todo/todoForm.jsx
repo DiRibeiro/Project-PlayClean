@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 
 // import Grid from '../template/grid'
 // import IconButton from '../template/iconButton'
-import { add, changeDescription, search, clear, remove } from '../../actions/calendarActions'
+import { add, changeDescription, search, clear/* , remove */ } from '../../actions/calendarActions'
 
 class TodoForm extends Component {
     constructor(props) {

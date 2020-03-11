@@ -5,10 +5,13 @@ const cataTrecoSchema = new mongoose.Schema({
     name: String,                
     cpf: String,
     local: String,
-    dateOcurr: Date,
+    dateOcurr: {
+        type: Date,
+        default: Date.now
+    },
     dateCreate: {
-        type: Number,
-        default: new Date().getTime()
+        type: Date,
+        default: Date.now
     },
     adressOcurr: String,
     description: String

@@ -61,13 +61,10 @@ const ShowCataTrecoDetails = props => {
 					{ /* Info */ }
 					<div className='col-xl-8 col-md-6'>
 						{ showStatus() }
-						<h4>Tipo de denúncia: { ct.typeReport }</h4>
-						<span>
-							Cadastrado dia: { fullDate(ct.dateCreate) }
-						</span>
+						<h4>Cata-Treco</h4>
 						<br />
 						<span>
-							Ocorreu dia: { fullDate(ct.dateOcurr) }
+							Cadastrado dia: { fullDate(ct.dateCreate) }
 						</span>
 						<br />
 						<br />
@@ -78,8 +75,11 @@ const ShowCataTrecoDetails = props => {
 						<b>Nome: </b>
 						{ ct.name }
 						<br />
-						<b>Telefone: </b>
-						{ ct.phone }
+						<b>Cpf: </b>
+						{ ct.cpf }
+						<br />
+						<b>Local: </b>
+						{ ct.local }
 						<br />
 						<b>Descrição: </b>
 						{ ct.description }

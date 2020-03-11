@@ -858,3 +858,7 @@ calendarLi:nth-child(2n) {
     border: none;
     width: 3em;
 }
+
+.btn {
+    width: 6em;
+}

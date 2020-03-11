@@ -5,7 +5,8 @@ const { cataTreco } = require('../config/db')
 
 exports.get = (req, res, next) => {
     cataTreco
-        .find({})
+        .find()
+        .sort({ dateCreate: -1 })
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {

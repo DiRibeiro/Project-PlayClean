@@ -117,7 +117,7 @@ export default () => {
 							label='Cata-Treco'
 							onClick={ () => dispatch(setSidebarCataTreco()) }>
 							<MenuItem
-									path='cataTreco'
+									path='registerCataTreco'
 									icon='plus-square'
 									label='Agendar' />
 							<MenuItem
