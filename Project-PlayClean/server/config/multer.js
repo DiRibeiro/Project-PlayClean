@@ -3,7 +3,7 @@ const path = require('path')
 
 const storage = multer.diskStorage({
 	destination: function(req, file, callback) {
-		callback(null, path.join(__dirname, '../uploads/'))
+		callback(null, path.join(__dirname, '..', 'public','uploads'))
 	},
 	filename: function(req, file, callback) {
 		const nameRegex = /(.+?)(\.[^.]*$|$)/
@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 
 const album = multer.diskStorage({
 	destination: function(req, file, callback) {
-		callback(null, path.join(__dirname, '../mural/'))
+		callback(null, path.join(__dirname, '..', 'public','mural'))
 	},
 	filename: function(req, file, callback) {
 		const nameRegex = /(.+?)(\.[^.]*$|$)/

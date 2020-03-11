@@ -31,14 +31,15 @@ const ShowReportDetails = props => {
 				</button>
 		</div>
 	)
-
+	
 	const showImages = () => {
-		report.images.map((pic, index) => (
+		report.images.map((image, index) => (
+
 			<div 
 				key={ index }
 				className={ `item ${ index === 0 ? 'active' : '' }` } >
 				<img
-					src={ `data:image/png; image/jpg; image/jpeg; base64, ${ pic }` }
+					src={ `data:image/png; image/jpg; image/jpeg; base64, ${ image }` }
 					alt={ `report img ${ index }` } 
 					style={{ width: '100%' }}/>
 			</div>
@@ -46,13 +47,13 @@ const ShowReportDetails = props => {
 	}
 
 	const renderIndicators = () => {
-		report.images.forEach((pic, index) => (
+		report.images.forEach((image, index) => (
 			<li
 				data-target='#carousel'
 				data-slide-to={ index }
 				className={ `${ index === 0 ? 'active' : '' }` }></li>
 		))}
-
+		
 	return report !== undefined ? (
 		<div className='box box-success'>
 			<div className='box-body'>

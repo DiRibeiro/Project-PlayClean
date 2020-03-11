@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 const { report, user } = require('../config/db')
 
-const getReport = (req, res) => {
+const getReport = (req, res, next) => {
 	report
 		.find()
 		.sort({ dateCreate: -1 })
@@ -26,7 +26,7 @@ const getReport = (req, res) => {
 		})
 }
 
-const setReport = (req, res) => {
+const setReport = (req, res, next) => {
 	const newReport =  new report(req.body) 				// Criar o novo report a ser inserido
 
 	const paths = new Array()									// tratar as imagens
@@ -37,7 +37,7 @@ const setReport = (req, res) => {
 		.then(e => 		
 				res.status(200).json('Successfuly request')		// save new report
 			).catch(err => 
-				res.status(500).json('Internal server error')
+				res.status(400).json('Internal server error')
 			)
 }
 
