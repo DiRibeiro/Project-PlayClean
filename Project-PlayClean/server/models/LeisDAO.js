@@ -14,18 +14,15 @@ exports.get = (req, res, next) => {
 }
 
 exports.post = (req, res, next) => {
-    const newLeis =  new leis(req.body)
-
-    // newLeis.nameLei = leis.nameLei
-    // newLeis.type = leis.type
-    // newLeis.descriptionLei = leis.descriptionLei
+    let newLeis = new leis(req.body)
     
     newLeis
         .save()
         .then(e => {
+            console.log(e)
             res.status(200).json('Successfuly request')
         }).catch(err => {
-            console.log(err)
+             console.log(err)
             res.status(400).json('Internal server error')
         })
 }

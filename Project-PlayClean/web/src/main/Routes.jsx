@@ -15,8 +15,9 @@ import CataTrecoDetail from '../containers/ShowCataTrecoDetails'
 import Photos from '../containers/Photos'
 import Contacts from '../Pages/Contacts'
 import Calendar from '../containers/todo/todo'
-import Leis from '../containers/Leis'
+import Leis from '../reports/form/FormLei'
 import ListLeis from '../template/ListLeis'
+import LeisDetail from '../containers/ShowLeisDetails'
 
 import App from './App'
 
@@ -33,6 +34,7 @@ export default () => (
             <Route path='coletaOrganica' component={ ColetaOrganica } />
             <Route path='leis' component={ Leis } />
             <Route path='listLeis' component={ ListLeis } />
+            <Route path='showDetailLeis' component={ LeisDetail } />
             <Route path='calendar' component={ Calendar } />
             <Route path='photos' component={ Photos } />
             <Route path='showDetailReport' component={ ReportDetail } />

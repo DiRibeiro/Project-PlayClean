@@ -2,10 +2,8 @@ const mongoose = require('mongoose')
 
 const leisSchema = new mongoose.Schema({
     whoCreated: mongoose.Schema.Types.ObjectId,
-    nameLei: {
-        type: String
-    },
-    type: [ String ],
+    nameLei: String,
+    type: [ 'Municipal', 'Federal', 'Estadual' ],
     descriptionLei: String,
     status: {
         type: Number,

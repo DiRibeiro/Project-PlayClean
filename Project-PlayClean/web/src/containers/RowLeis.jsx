@@ -1,16 +1,10 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { Link } from 'react-router'
 
 const RowLeis = props => {
     const renderDom = () => {
         let statusDom
         let leis = props.leis || props
-        
-        const list = useSelector(state => state.leis.list)
-
-
-        const renderRows = list.map(types => <RowLeis key={types} types={types} />)
     
         if(leis.status === 0)
             statusDom = (<button className="btn btn-success">Aberta</button>)
@@ -26,7 +20,7 @@ const RowLeis = props => {
                 <div className="box-body listLeis">
                     <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                         <h3 className="box-title">{ leis.nameLei }</h3>
-                        <span>Tipo de lei {renderRows}</span><br />
+                        <span>Tipo de lei {props.label}</span><br />
                         <p>{ leis.descriptionLei }</p>
                     </div>
                     <Link to={{ pathname: '/showDetailLeis', state: leis._id }} >

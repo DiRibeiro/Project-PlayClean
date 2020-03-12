@@ -1,6 +1,5 @@
 const fs = require('fs')
 const mongoose = require('mongoose')
-
 const { report, user } = require('../config/db')
 
 const getReport = (req, res, next) => {
@@ -30,15 +29,16 @@ const setReport = (req, res, next) => {
 	const newReport =  new report(req.body) 				// Criar o novo report a ser inserido
 
 	const paths = new Array()									// tratar as imagens
+	newReport.images.forEach(pic => paths.push(pic.path))
 
 	newReport.images = paths								// sobrescrever o value de images do body
 
 	newReport.save()
 		.then(e => 		
-				res.status(200).json('Successfuly request')		// save new report
-			).catch(err => 
-				res.status(400).json('Internal server error')
-			)
+			res.status(200).json('Successfuly request')		// save new report
+		).catch(err => 
+			res.status(400).json('Internal server error')
+		)
 }
 
 const getTotalPerMonth = async () => {

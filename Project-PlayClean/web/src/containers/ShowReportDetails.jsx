@@ -33,13 +33,13 @@ const ShowReportDetails = props => {
 	)
 	
 	const showImages = () => {
-		report.images.map((image, index) => (
+		report.images.map((img, index) => (
 
 			<div 
 				key={ index }
 				className={ `item ${ index === 0 ? 'active' : '' }` } >
 				<img
-					src={ `data:image/png; image/jpg; image/jpeg; base64, ${ image }` }
+					src={ `data:image/png; image/jpg; image/jpeg; base64, ${ img }` }
 					alt={ `report img ${ index }` } 
 					style={{ width: '100%' }}/>
 			</div>
@@ -47,7 +47,7 @@ const ShowReportDetails = props => {
 	}
 
 	const renderIndicators = () => {
-		report.images.forEach((image, index) => (
+		report.images.forEach((img, index) => (
 			<li
 				data-target='#carousel'
 				data-slide-to={ index }
