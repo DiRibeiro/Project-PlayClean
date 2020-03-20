@@ -12,7 +12,7 @@ const getReport = (req, res, next) => {
 			else {
 				let images64base = result.map(element =>
 					element.images.map(pic => {
-						let image = fs.readFileSync(pic)
+						let image = fs.readFileSync(/* 'server/public/uploads/'+ */ pic)
 						return new Buffer(image).toString('base64')
 					})
 				)
@@ -22,6 +22,7 @@ const getReport = (req, res, next) => {
 				)
 				res.status(200).json({ result })
 			}
+			// var bitmap = fs.readFileSync('src/temp/'+fileName+'')		
 		})
 }
 

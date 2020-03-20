@@ -11,6 +11,7 @@ const TodoList = props => {
         return list.map((todo, index) => (
             <tr key={index}>
                 <td className={todo.done ? 'markedAsDone' : ''}>{todo.description}</td>
+                <td>{todo.dateOcurr}</td>
                 <td>
                     <button className='btn-success btn-add' hide={todo.done}
                         onClick={() => props.markAsDone(todo)}><i className="fa fa-check"></i></button>
@@ -28,6 +29,7 @@ const TodoList = props => {
             <thead>
                 <tr>
                     <th>Descrição</th>
+                    <th>Data</th>
                     <th className='tableActions'>Ações</th>
                 </tr>
             </thead>

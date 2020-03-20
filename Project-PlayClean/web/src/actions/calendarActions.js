@@ -8,6 +8,11 @@ export const changeDescription = event => ({
     payload: event.target.value
 })
 
+export const changeDate = event => ({
+    type: 'DATE_CHANGED',
+    payload: event.target.value
+})
+
 export const search = () => {
     return (dispatch, getState) => {
         const description = getState().todo.description
@@ -20,9 +25,9 @@ export const search = () => {
     }
 }
 
-export const add = (description) => dispatch => {
+export const add = (description, dateOcurr) => dispatch => {
         axios
-            .post(`${BASE_URL}/calendars`, { description })
+            .post(`${BASE_URL}/calendars`, { description, dateOcurr })
             .then(response => {
                 if (response.status === 400) {
                     toastr.error('Erro!', response)
