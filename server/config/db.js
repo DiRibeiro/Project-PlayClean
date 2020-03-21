@@ -16,7 +16,10 @@ const leis = mongoose.model('leis', leisSchema)
 const calendars = mongoose.model('calendars', calendarSchema)
 const photos = mongoose.model('photos', photosSchema)
 
-if(!user.find({ 'userName': 'admin' }))
+
+if(!user.find({ 'userName': 'admin' }).exec(err => {
+    console.log(err)
+}))
     user.insertMany({
         firstName: "Diego",
         lastName: "RIbeiro",
@@ -25,6 +28,8 @@ if(!user.find({ 'userName': 'admin' }))
         userName: "admin",
         type: "admin",
         password: "admin"
+    }, err => {
+        console.log(err)
     })
 
 module.exports = { report, user, calendars, cataTreco, leis , photos}
