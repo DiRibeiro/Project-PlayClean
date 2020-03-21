@@ -16,20 +16,27 @@ const leis = mongoose.model('leis', leisSchema)
 const calendars = mongoose.model('calendars', calendarSchema)
 const photos = mongoose.model('photos', photosSchema)
 
-
-if(!user.find({ 'userName': 'admin' }).exec(err => {
-    console.log(err)
-}))
-    user.insertMany({
-        firstName: "Diego",
-        lastName: "RIbeiro",
-        cpf: "07998634910",
-        phone: "51989405478",
-        userName: "admin",
-        type: "admin",
-        password: "admin"
-    }, err => {
-        console.log(err)
+user.find({ 'userName': 'admin' })
+    .then(result => {
+        const adminExists = result;
+        console.log("Admin: ", adminExists)
+        if (result.length < 1) {
+            user.insertMany({
+                firstName: "Diego",
+                lastName: "RIbeiro",
+                cpf: "07998634910",
+                phone: "51989405478",
+                userName: "admin",
+                type: "admin",
+                password: "admin"
+            }, err => {
+                console.log(err)
+            })
+        }   
     })
+    .catch(err => {
+        console.log(err);
+    });
 
-module.exports = { report, user, calendars, cataTreco, leis , photos}
+
+module.exports = { report, user, calendars, cataTreco, leis, photos }
