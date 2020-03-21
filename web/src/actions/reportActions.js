@@ -23,7 +23,7 @@ export const getReports = () => {
 export const postReport = values => dispatch => {
 	dispatch({ type: LOAD, payload: true })
 	axios
-		 .post(`${BASE_URL}/report`+`/uploads`, values, {
+		 .post(`${BASE_URL}/report`, values, {
 			headers: {
 				'content-type': 'multipart/form-data'
 			}
