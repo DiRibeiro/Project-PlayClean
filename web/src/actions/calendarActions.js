@@ -44,14 +44,14 @@ export const add = (description, dateOcurr) => dispatch => {
 export const markAsDone = (todo, index) => {
     return dispatch => {
         axios.put(`${BASE_URL}/${todo,index}`, { ...todo, done: true })
-            .then(resp => dispatch(search()))
+            .then(res => dispatch(search()))
     }
 }
 
 export const markAsPending = (todo, index) => {
     return dispatch => {
         axios.put(`${BASE_URL}/${todo,index}`, { ...todo, done: false })
-            .then(resp => dispatch(search()))
+            .then(res => dispatch(search()))
     }
 }
 

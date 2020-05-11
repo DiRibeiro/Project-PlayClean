@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner'
 import RowLeis from '../containers/RowLeis'
 import { getLeis } from '../actions/leisActions'
 
-const ListLeis = (props) => {
+const ListLeis = () => {
 	const dispatch = useDispatch()
 	const list = useSelector(state => state.leis.list)
 
@@ -15,7 +15,7 @@ const ListLeis = (props) => {
 
 	const renderRows = () => list.map((leis, index) => <RowLeis key={index} leis={leis} />)
 
-	return list.length >= 0 ? (
+	return list.length > 0 ? (
 		renderRows()
 	) : (
 		<Loader

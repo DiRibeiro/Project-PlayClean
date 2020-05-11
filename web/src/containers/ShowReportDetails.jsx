@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 const ShowReportDetails = props => { 
 	const dispatch = useDispatch()
 	const reports = useSelector(state => state.reports.list)
-	const report = reports.find(element => element._id === props.location.state) || undefined
+	const report = reports.find(element => element._id === props.location.state)/*  || undefined */
 	
 	useEffect(() => {
 		dispatch(getReports())
@@ -36,11 +36,11 @@ const ShowReportDetails = props => {
 		report.images.map((img, index) => (
 
 			<div 
-				key={ index }
-				className={ `item ${ index === 0 ? 'active' : '' }` } >
+				key={ index._id }
+				className={ `item ${ index._id === 0 ? 'active' : '' }` } >
 				<img
-					src={ `data:image/png; image/jpg; image/jpeg; base64, ${ img }` }
-					alt={ `report img ${ index }` } 
+					src={ `data:image/png; image/jpg; image/jpeg; base64, ${img[0]}` }
+					alt={ `report img ${ index._id }` } 
 					style={{ width: '100%' }}/>
 			</div>
 		))
