@@ -28,6 +28,11 @@ exports.get = (req, res, next) => {
 exports.post = (req, res, next) => {
 	const photos =  req.files 				// Criar o novo report a ser inserido
 
+	const paths = new Array()	
+
+	if (req.files)
+		req.files.forEach(pic => paths.push(pic.path))
+		
 	photos.save()
 		.then(e => {
 			res.status(200).json('Successfuly request')

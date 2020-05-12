@@ -12,7 +12,7 @@ const getReport = (req, res, next) => {
 			else {
 				let images64base = result.map(element =>
 					element.images.map(pic => {
-						let image = fs.readFileSync('server/public/uploads/'+ pic)
+						let image = fs.readFileSync(pic)
 						return new Buffer(image).toString('base64')
 					})
 				)
@@ -29,8 +29,10 @@ const setReport = (req, res, next) => {
 	const newReport =  new report(req.body) 				// Criar o novo report a ser inserido
 
 	const paths = new Array()									// tratar as imagens
-	newReport.images.forEach(pic => paths.push(pic.path))
 
+    if (req.files)
+        req.files.forEach(pic => paths.push(pic.path))
+	
 	newReport.images = paths								// sobrescrever o value de images do body
 
 	newReport.save()

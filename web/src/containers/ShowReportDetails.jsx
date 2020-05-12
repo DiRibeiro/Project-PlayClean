@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 const ShowReportDetails = props => { 
 	const dispatch = useDispatch()
 	const reports = useSelector(state => state.reports.list)
-	const report = reports.find(element => element._id === props.location.state)/*  || undefined */
+	const report = reports.find(element => element._id === props.location.state) || undefined
 	
 	useEffect(() => {
 		dispatch(getReports())
@@ -33,32 +33,36 @@ const ShowReportDetails = props => {
 	)
 	
 	const showImages = () => {
-		report.images.map((img, index) => (
+		return report.images.map((img, index) => (
 
-			<div 
-				key={ index._id }
+			<div  style= {{ display:'block', height: '50%'}}
+				key={ index }
 				className={ `item ${ index._id === 0 ? 'active' : '' }` } >
 				<img
-					src={ `data:image/png; image/jpg; image/jpeg; base64, ${img[0]}` }
+					src={ `data:image/png;base64, ${ img }` }
 					alt={ `report img ${ index._id }` } 
 					style={{ width: '100%' }}/>
 			</div>
 		))
 	}
 
-	const renderIndicators = () => {
-		report.images.forEach((img, index) => (
-			<li
-				data-target='#carousel'
-				data-slide-to={ index }
-				className={ `${ index === 0 ? 'active' : '' }` }></li>
-		))}
+	// const renderIndicators = () => {
+	// 	report.images.forEach((img, index) => (
+	// 		<li
+	// 			data-target='#carousel'
+	// 			data-slide-to={ index }
+	// 			className={ `${ index === 0 ? 'active' : '' }` }></li>
+	// 	))}
 		
 	return report !== undefined ? (
+
 		<div className='box box-success'>
+
 			<div className='box-body'>
+			
 				<div className='row'>
 					{/* Carroussel */}
+			
 					<div className='col-md-6'>
 						<div className='box box-solid'>
 							<div className='box-body'>
@@ -66,13 +70,13 @@ const ShowReportDetails = props => {
 									id='carousel'
 									className='carousel slide'
 									data-ride='carousel'>
-									<ol className='carousel-indicators'>
+									{/* <ol className='carousel-indicators'>
 										{ renderIndicators() }
-									</ol>
+									</ol> */}
 									<div className='carousel-inner'>
 										{ showImages() }
 									</div>
-									<a
+									{/* <a
 										className='left carousel-control'
 										href='#carousel'
 										data-slide='prev'>
@@ -83,7 +87,7 @@ const ShowReportDetails = props => {
 										href='#carousel'
 										data-slide='next'>
 										<span className='fa fa-angle-right'></span>
-									</a>
+									</a> */}
 								</div>
 							</div>
 						</div>
