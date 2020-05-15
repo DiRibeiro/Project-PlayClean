@@ -20,20 +20,21 @@ exports.get = (req, res, next) => {
 					(element, index) =>
 						(element['images'] = images64base[index])
 				)
-				res.status(200).json( result )
+				res.status(200).json( {result} )
 			}
 		})
 }
 
 exports.post = (req, res, next) => {
-	const photos =  req.files 				// Criar o novo report a ser inserido
+	const newPhotos =  new photos(req.body) 				// Criar o novo report a ser inserido
 
 	const paths = new Array()	
+	newPhotos.albums.image = paths
 
 	if (req.files)
 		req.files.forEach(pic => paths.push(pic.path))
 		
-	photos.save()
+	newPhotos.save()
 		.then(e => {
 			res.status(200).json('Successfuly request')
 		}).catch((err) => {
