@@ -18,7 +18,7 @@ const TodoList = props => {
                     <button className='btn-warning btn-search' hide={!todo.done} 
                         onClick={() => props.markAsPending(todo)}><i className="fa fa-undo"></i></button>
                     <button className='btn-danger btn-close' hide={!todo.done}
-                        onClick={() => props.remove(todo)}><i className="fa fa-trash-o"></i></button>
+                        onClick={() => props.remove()}><i className="fa fa-trash-o"></i></button>
                 </td>
             </tr>
         ))

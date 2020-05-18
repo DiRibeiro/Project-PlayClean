@@ -23,3 +23,13 @@ exports.post = (req, res, next) => {
             res.status(400).json('Internal server error')
         })
 }
+
+exports.delete = (req, res, next) => {
+    calendars
+        .deleteMany()
+        .then(data => {
+            res.status(200).json(data)
+        }).catch(err => {
+            res.status(400).json(err)
+        })
+}

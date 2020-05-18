@@ -55,16 +55,25 @@ export const markAsPending = (todo, index) => {
     }
 }
 
-export const remove = (todo) => {
+export const remove = ( description, dateOcurr ) => {
     return dispatch => {
-        axios.delete(`${BASE_URL}/${todo}`)
-            .then(resp => dispatch(search()))
+        axios.delete(`${BASE_URL}/calendars`, { description, dateOcurr })
+        .then(response => {
+            if (response.status === 400) {
+                toastr.error('Erro!', response)
+            }   
+            else if (response.status === 200) {
+                window.location = '/calendar'
+                toastr.success('Sucesso!', 'Registro deletado!')
+            }
+        }).catch(error => {
+            toastr.error('Erro!', 'Internal server error')
+        })
     }
 }
 
 export const clear = () => {
-    return (dispatch, getState) => {
-        // const description = getState().todo.description
+    return (dispatch) => {
         axios
             .get(`${BASE_URL}/calendars`)
             .then(res => {

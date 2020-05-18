@@ -31,6 +31,7 @@ app.get('/get', (req, res) => ReportsDAO.get(req, res))
 //Calendar Events
 app.get('/calendars', Calendar.get)
 app.post('/calendars', Calendar.post)
+app.delete('/calendars', Calendar.delete)
 // Todo.register(router, '/todos')
 
 //Cata Treco

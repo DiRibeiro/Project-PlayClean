@@ -5,7 +5,7 @@ import { DateTimePicker } from 'react-widgets'
 
 // import Grid from '../template/grid'
 // import IconButton from '../template/iconButton'
-import { add, changeDescription, search, clear, changeDate/* , remove */ } from '../../actions/calendarActions'
+import { add, changeDescription, search, clear/* , remove */ } from '../../actions/calendarActions'
 
 class TodoForm extends Component {
     constructor(props) {
@@ -34,7 +34,7 @@ class TodoForm extends Component {
             placeholder="Data do ocorrido" />
 
     render() {
-        const { add, search, description, clear, dateOcurr } = this.props
+        const { add, search, description, clear, dateOcurr, changeDate } = this.props
         return (
             <div role='form' className='calendarForm'>
                 <div className='calendar-input'>
@@ -49,18 +49,17 @@ class TodoForm extends Component {
                     <input 
                         id='dateOcurr'
                         className='form-control inputDate'
-                        onChange={this.props.changeDate}
+                        onChange={this.changeDate}
                         onKeyUp={this.keyHandler}
                         name='dateOcurr'
-                        type='date'
-                        value={this.dateOcurr}>
+                        {...this.renderDateTimePicker}
+                    >
                     </input>
 
                 <div className='btn-calendar'>
                     <button className='btn-success btn-add'
                         onClick={() => add(description, dateOcurr)}><i className="fa fa-plus" aria-hidden="true"/></button>
-                    <button className='btn-info btn-search'
-                        onClick={() => search()}><i className="fa fa-search" aria-hidden="true"/></button>
+                    
                     <button className='btn-danger btn-close'
                         onClick={() => clear()}><i className="fa fa-close" aria-hidden="true"/></button>
                 </div>

@@ -80,7 +80,6 @@ const Photo = props => {
         </div>
         
         <div className='col-md-12'>
-            {/* <Gallery image={renderImage}/> */}
             {renderImages()}
             {dispatch(getPhotos())}
         </div>
