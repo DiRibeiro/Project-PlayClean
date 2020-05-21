@@ -14,12 +14,11 @@ export const changeDate = event => ({
 })
 
 export const search = () => {
-    return (dispatch, getState) => {
-        const description = getState().todo.description
-        const search = description ? `&description__regex=/${description}/` : ''
+    return dispatch => {
         axios
-            .get(`${BASE_URL}/calendars?sort=-createdAt${search}`)
+            .get(`${BASE_URL}/calendars`)
             .then(res => {
+                console.log(res)
                 dispatch({type: 'TODO_SEARCHED', payload: res})
             })
     }
@@ -50,7 +49,7 @@ export const markAsDone = (todo, index) => {
 
 export const markAsPending = (todo, index) => {
     return dispatch => {
-        axios.put(`${BASE_URL}/${todo,index}`, { ...todo, done: false })
+        axios.put(`${BASE_URL}/${todo,index}`, /* { todo, done: false } */)
             .then(res => dispatch(search()))
     }
 }
@@ -72,11 +71,11 @@ export const remove = ( description, dateOcurr ) => {
     }
 }
 
-export const clear = () => {
-    return (dispatch) => {
+export const clear = ( ) => {
+    return dispatch => {
         axios
             .get(`${BASE_URL}/calendars`)
-            .then(res => {
+            .then(response => {
                 dispatch({
                     type: 'TODO_CLEAR',
                     payload: ''

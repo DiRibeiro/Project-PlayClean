@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { DateTimePicker } from 'react-widgets'
 
-// import Grid from '../template/grid'
-// import IconButton from '../template/iconButton'
-import { add, changeDescription, search, clear/* , remove */ } from '../../actions/calendarActions'
+import { add, changeDescription, search, clear, changeDate/* , remove */ } from '../../actions/calendarActions'
 
 class TodoForm extends Component {
     constructor(props) {
@@ -22,19 +19,12 @@ class TodoForm extends Component {
         if (e.key === 'Enter') {
             e.shiftKey ? search() : add(description, dateOcurr)
         } else if (e.key === 'Escape') {
-            clear('')
+            clear()
         }
     }
 
-    renderDateTimePicker = ({ input: { value }, showTime }) => 
-        <DateTimePicker
-            format="DD MMM YYYY"
-            time={ showTime }
-            value={ !value ? null : new Date(value) }
-            placeholder="Data do ocorrido" />
-
     render() {
-        const { add, search, description, clear, dateOcurr, changeDate } = this.props
+        const { add, description, clear, dateOcurr} = this.props
         return (
             <div role='form' className='calendarForm'>
                 <div className='calendar-input'>
@@ -45,16 +35,17 @@ class TodoForm extends Component {
                         onChange={this.props.changeDescription}
                         onKeyUp={this.keyHandler}
                         name='description'
-                        value={this.description}/>
+                        type='text'
+                        value={description}/>
                     <input 
                         id='dateOcurr'
                         className='form-control inputDate'
-                        onChange={this.changeDate}
+                        onChange={this.props.changeDate}
                         onKeyUp={this.keyHandler}
                         name='dateOcurr'
-                        {...this.renderDateTimePicker}
-                    >
-                    </input>
+                        type='date'
+                        value={this.dateOcurr}
+                    />
 
                 <div className='btn-calendar'>
                     <button className='btn-success btn-add'
@@ -69,7 +60,7 @@ class TodoForm extends Component {
     }
 }
 
-const mapStateToProps = state => ({description: state.todo.description, dateOcurr: state.todo.dateOcurr})
+const mapStateToProps = state => ({description: state.todo.description, dateOcurr: state.todo.date})
 const mapDispatchToProps = dispatch => 
-    bindActionCreators({ add, changeDescription, search, clear }, dispatch)
+    bindActionCreators({ add, changeDescription, search, clear, changeDate }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(TodoForm)

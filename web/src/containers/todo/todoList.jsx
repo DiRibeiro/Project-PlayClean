@@ -1,17 +1,23 @@
-import React from 'react'
-import { useSelector, connect } from 'react-redux'
+import React, {useEffect} from 'react'
+import { useSelector, connect, useDispatch } from 'react-redux'
 import { bindActionCreators} from 'redux'
 // import IconButton from '../template/iconButton'
-import { markAsDone, markAsPending, remove } from '../../actions/calendarActions'
+import { markAsDone, markAsPending, remove, search } from '../../actions/calendarActions'
+import { fullDate } from '../../helper/date'
 
 const TodoList = props => {
-
+	const dispatch = useDispatch()
+    const list = useSelector(state => state.todo.list) || undefined
+	
+    useEffect(() => {
+		dispatch(search())
+    }, [])
+    
     const renderRows = () => {
-        const list = useSelector(state => state.todo.list) || []
         return list.map((todo, index) => (
             <tr key={index}>
                 <td className={todo.done ? 'markedAsDone' : ''}>{todo.description}</td>
-                <td>{todo.dateOcurr}</td>
+                <td>{fullDate(todo.dateOcurr)}</td>
                 <td>
                     <button className='btn-success btn-add' hide={todo.done}
                         onClick={() => props.markAsDone(todo)}><i className="fa fa-check"></i></button>

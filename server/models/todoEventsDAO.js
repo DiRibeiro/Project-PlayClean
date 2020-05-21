@@ -5,6 +5,7 @@ const { calendars } = require('../config/db')
 exports.get = (req, res, next) => {
     calendars
         .find()
+		.sort({ dateOcurr: 1 })
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {
@@ -26,7 +27,7 @@ exports.post = (req, res, next) => {
 
 exports.delete = (req, res, next) => {
     calendars
-        .deleteMany()
+        .deleteOne()
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {
