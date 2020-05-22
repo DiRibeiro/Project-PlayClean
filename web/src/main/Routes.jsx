@@ -13,7 +13,6 @@ import ColetaSeletiva from '../containers/ColetaSeletiva'
 import ListCataTreco from '../template/ListCataTreco'
 import CataTrecoDetail from '../containers/ShowCataTrecoDetails'
 import Photos from '../containers/Photos'
-import Contacts from '../Pages/Contacts'
 import Calendar from '../containers/todo/todo'
 import Leis from '../reports/form/FormLei'
 import ListLeis from '../template/ListLeis'
@@ -40,7 +39,6 @@ export default () => (
             <Route path='showDetailReport' component={ ReportDetail } />
             <Route path='listCataTreco' component={ ListCataTreco } />
             <Route path='showDetailCataTreco' component={ CataTrecoDetail } />
-            <Route path='contacts' component={ Contacts } />
         </Route>
         <Redirect from='*' to='/' />
     </Router>

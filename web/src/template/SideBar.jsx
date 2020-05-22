@@ -126,15 +126,6 @@ export default () => {
 									label='Verificar agendamento' />
 						</MenuTree>
 					</li>
-
-					<MenuItem
-						path='contacts'
-						icon='phone'
-						label='Telefones úteis' />
-					{/* <MenuItem
-						path='registerUser'
-						icon='user'
-						label='Registrar usuário' /> */}
 				</ul>
 			</section>
 		</aside>

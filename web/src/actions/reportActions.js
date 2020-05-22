@@ -12,7 +12,7 @@ export const getReports = () => {
 		axios.get(`${ BASE_URL }/report`)
 		.then(result => {
 			console.log(result)
-			dispatch({ type: REPORTS_FETCHED , payload: result.data })
+			dispatch({ type: REPORTS_FETCHED , payload: result})
 
 		}).catch(err => {
 			console.error(err)

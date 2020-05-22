@@ -9,14 +9,11 @@ export const getLeis = () => {
 	return dispatch => {
 		axios.get(`${BASE_URL}/leis`)
 		.then(result => {
-			console.log(result.data)
 			dispatch({ 
 				type: LEIS_FETCHED, 
 				payload: result.data
 			})
-		}).catch(err => {
-			console.error(err)
-		})
+		}).catch(error => toastr.error('Erro!', 'Internal server error'))
 	}
 }
 

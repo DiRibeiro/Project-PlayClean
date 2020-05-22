@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 
 const leisSchema = new mongoose.Schema({
     whoCreated: mongoose.Schema.Types.ObjectId,
-    nameLei: String,
-    type: [ 'Municipal', 'Federal', 'Estadual' ],
-    descriptionLei: String,
+    name: String,
+    group: [ 'Municipal', 'Federal', 'Estadual' ],
+    description: String,
     status: {
         type: Number,
         default: 0

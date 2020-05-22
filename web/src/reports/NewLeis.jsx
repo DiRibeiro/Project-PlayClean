@@ -10,17 +10,17 @@ const Leis = () => {
     const [leis, setLeis]= useState({ type: [] })
 
     const handleForm = values => {
-        const fd = new FormData()
+        // const fd = new FormData()
 
-        if (leis['type'] !== undefined)
-            leis['type'].forEach(type => fd.append('type', type))
+        // if (leis['type'] !== undefined)
+        //     leis['type'].forEach(type => fd.append('type', type))
 
-        for (let key in values)
-            if (values.hasOwnProperty(key))
-                fd.append(key, values[key])
+        // for (let key in values)
+        //     if (values.hasOwnProperty(key))
+        //         fd.append(key, values[key])
 
-        setLeis({ type: [] })
-        dispatch(postLeis(fd))
+        // setLeis({ type: [] })
+        dispatch(postLeis())
     }
 
     return (
@@ -31,7 +31,8 @@ const Leis = () => {
             <div className="box-body">
                 <FormLei 
                     onSubmit={ values => handleForm(values) }
-                    type={ leis['type']} />
+                    // type={ leis['type']}
+                     />
             </div>
         </div>
     )
