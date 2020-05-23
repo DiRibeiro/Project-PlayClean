@@ -20,13 +20,13 @@ const Form = props => {
         momentLocaliser(moment)
     }, [])
 
-    const renderDateTimePicker = ({ input: { onChange, value }, showTime }) => 
-        <DateTimePicker
-            onChange={ onChange }
-            format="DD MMM YYYY"
-            time={ showTime }
-            value={ !value ? null : new Date(value) }
-            placeholder="Data do ocorrido" />
+    // const renderDateTimePicker = ({ input: { onChange, value } }) => 
+    //     <DateTimePicker
+    //         onChange={ onChange }
+    //         format="MMM-DD-YYYY"
+    //         value={ value ? null : new Date(value) }
+    //         placeholder={'Date'}
+    //         />
 
     const renderImages = () =>
         files.map((element, index) =>
@@ -67,7 +67,7 @@ const Form = props => {
                     <label>Data do ocorrido</label>
                     <div className="input-group">
                         <span className="input-group-addon"><i className="fas fa-calendar"></i></span>
-                        <Field { ...renderDateTimePicker } name="dateOcurr" /* type='date' */ component="input" className="form-control" />
+                        <Field /* { ...renderDateTimePicker }  */name="dateOcurr" type='date' component="input" className="form-control" />
                     </div>
                 </div>
             </div>

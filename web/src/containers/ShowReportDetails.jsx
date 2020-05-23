@@ -97,7 +97,7 @@ const ShowReportDetails = props => {
 						{ showStatus() }
 						<h4>Tipo de denúncia: { report.typeReport }</h4>
 						<span>
-							Cadastrado dia: { fullDate(report.dateCreate) }
+							Cadastrado dia: { fullDate(report.dateCreate)}
 						</span>
 						<br />
 						<span>

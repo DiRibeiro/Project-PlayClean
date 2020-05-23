@@ -10,16 +10,6 @@ const Leis = () => {
     const [leis, setLeis]= useState({ type: [] })
 
     const handleForm = values => {
-        // const fd = new FormData()
-
-        // if (leis['type'] !== undefined)
-        //     leis['type'].forEach(type => fd.append('type', type))
-
-        // for (let key in values)
-        //     if (values.hasOwnProperty(key))
-        //         fd.append(key, values[key])
-
-        // setLeis({ type: [] })
         dispatch(postLeis())
     }
 
@@ -30,9 +20,8 @@ const Leis = () => {
             </div>
             <div className="box-body">
                 <FormLei 
-                    onSubmit={ values => handleForm(values) }
-                    // type={ leis['type']}
-                     />
+                    onSubmit={ (values) => handleForm(values) }
+                    />
             </div>
         </div>
     )
