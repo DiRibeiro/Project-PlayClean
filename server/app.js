@@ -23,7 +23,7 @@ const Photo = require('./models/PhotosDAO')
 // Reports
 app.get('/report', (req, res) => ReportsDAO.getReport(req, res))
 app.post('/report', upload.array('images', 4), (req, res) => ReportsDAO.setReport(req, res))
-app.post('/uploads', upload.array('images', 4), (req, res) => ReportsDAO.setReport(req, res))
+// app.post('/uploads', upload.array('images', 4), (req, res) => ReportsDAO.setReport(req, res))
 app.post('/reportStatus' , (req, res) => ReportsDAO.setStatus(req, res))
 
 app.get('/get', (req, res) => ReportsDAO.get(req, res))
@@ -35,9 +35,11 @@ app.delete('/calendars', Calendar.delete)
 // Todo.register(router, '/todos')
 
 //Cata Treco
-app.get('/cataTreco', CataTrecoDAO.get)
-app.post('/cataTreco',CataTrecoDAO.post)
+app.get('/cataTreco', (req, res) => CataTrecoDAO.getCataTreco(req, res))
+app.post('/cataTreco',(req, res) => CataTrecoDAO.postCataTreco(req, res))
+app.post('/cataTrecoStatus',(req, res) => CataTrecoDAO.setStatus(req, res))
 
+// app.get('/get', (req, res) => CataTrecoDAO.get(req, res))
 //Leis
 app.get('/leis', LeisDAO.get)
 app.post('/leis', LeisDAO.post)

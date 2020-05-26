@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React/* , { useState } */ from 'react'
 import { useDispatch } from 'react-redux'
 import FormLei from './form/FormLei'
 import { postLeis } from '../actions/leisActions'
 
-import FormData from 'form-data'
+// import FormData from 'form-data'
 
 const Leis = () => {
     const dispatch = useDispatch()
-    const [leis, setLeis]= useState({ type: [] })
+    // const [leis, setLeis]= useState({ type: [] })
 
     const handleForm = values => {
         dispatch(postLeis())

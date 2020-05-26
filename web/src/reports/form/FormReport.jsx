@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect, useDispatch} from 'react-redux'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
 import { createTextMask } from 'redux-form-input-masks'
-import { DateTimePicker } from 'react-widgets'
+// import { DateTimePicker } from 'react-widgets'
 
 import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'

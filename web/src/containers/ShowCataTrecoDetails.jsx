@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setStatus, getCataTreco } from '../actions/cataTrecoActions'
+import { setStatus ,getCataTreco } from '../actions/cataTrecoActions'
 
 import { fullDate } from '../helper/date'
 import { useEffect } from 'react'
@@ -14,6 +14,23 @@ const ShowCataTrecoDetails = props => {
 		dispatch(getCataTreco())
 	}, [])
 	
+	const showStatus = () => (
+		<div className='showStatus'>
+			<button className="btn btn-success showBtn"
+				onClick={ () => dispatch(setStatus(0, cataTreco._id), window.location='/listCataTreco') }
+			>Agendado
+			</button>
+			<button className="btn btn-dark showBtn"
+				onClick={ () => dispatch(setStatus(1, cataTreco._id), window.location='/listCataTreco') }
+			>Realizado
+			</button>
+        	<button className="btn btn-warning showBtn"
+				onClick={ () => dispatch(setStatus(2, cataTreco._id), window.location='/listCataTreco') }
+			>Pendente
+			</button>
+		</div>
+	)
+
 	return ct !== undefined ? (
 		<div className='box box-success'>
 			<div className='box-body'>
@@ -21,6 +38,7 @@ const ShowCataTrecoDetails = props => {
 					
 					{ /* Info */ }
 					<div className='col-xl-8 col-md-6'>
+					{ showStatus() }
 						<h4>Cata-Treco</h4>
 						<br />
 						<span>

@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 const { cataTreco } = require('../config/db')
 
-exports.get = (req, res, next) => {
+const getCataTreco = (req, res, next) => {
     cataTreco
         .find()
         .sort({ dateCreate: -1 })
@@ -14,7 +14,7 @@ exports.get = (req, res, next) => {
         })
 }
 
-exports.post = (req, res, next) => {
+const postCataTreco = (req, res, next) => {
     let newCataTreco =  new cataTreco(req.body)
 
     newCataTreco
@@ -25,3 +25,13 @@ exports.post = (req, res, next) => {
             res.status(400).json('Internal server error')
         })
 }
+
+const setStatus = (req, res) =>
+	cataTreco.updateOne(
+		{ _id: mongoose.Types.ObjectId(req.body._id) },
+		{ status: req.body.status },
+		(err, response) =>
+			err ? res.status(202).json(err) : res.status(200).json(response)
+    )
+    
+module.exports = {setStatus, getCataTreco, postCataTreco}

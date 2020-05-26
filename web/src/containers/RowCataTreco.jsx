@@ -5,7 +5,17 @@ import { fullDate } from '../helper/date'
 
 const RowCataTreco = props => {
     const renderDom = () => {
+        let statusDom
         let cataTreco = props.cataTreco || props
+
+        if(cataTreco.status === 0)
+            statusDom = (<button className="btn btn-success">Agendado</button>)
+
+        else if(cataTreco.status === 1) 
+            statusDom = (<button className="btn btn-dark">Realizado</button>)
+
+        else if(cataTreco.status === 2) 
+            statusDom = (<button className="btn btn-warning">Pendente</button>)
 
         return (
             <div className="box box-success">
@@ -18,6 +28,7 @@ const RowCataTreco = props => {
                     <Link to={{ pathname: '/showDetailCataTreco', state: cataTreco._id }} >
                         <button className="btn btn-primary bottomZero">Ver mais</button>
                     </Link>
+                    { statusDom }
                 </div>
             </div>
         )

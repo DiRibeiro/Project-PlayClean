@@ -15,7 +15,7 @@ const ListCataTreco = () => {
 
 	const renderRows = () => list.map((cataTreco, index) => <RowCataTreco key={index} cataTreco={cataTreco} />)
 
-	return list.length >= 0 ? (
+	return list.length > 0 ? (
 		renderRows()
 	) : (
 		<Loader

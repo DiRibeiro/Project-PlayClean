@@ -14,7 +14,11 @@ const cataTrecoSchema = new mongoose.Schema({
         default: Date.now
     },
     adressOcurr: String,
-    description: String
+    description: String,
+    status: {
+        type: Number,
+        default: 0
+    }
 });
 
 module.exports = cataTrecoSchema
