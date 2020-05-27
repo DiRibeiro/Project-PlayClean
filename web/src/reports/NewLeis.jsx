@@ -10,7 +10,7 @@ const Leis = () => {
     // const [leis, setLeis]= useState({ type: [] })
 
     const handleForm = values => {
-        dispatch(postLeis())
+        dispatch(postLeis(values))
     }
 
     return (

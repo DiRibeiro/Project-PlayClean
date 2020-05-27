@@ -41,8 +41,8 @@ app.post('/cataTrecoStatus',(req, res) => CataTrecoDAO.setStatus(req, res))
 
 // app.get('/get', (req, res) => CataTrecoDAO.get(req, res))
 //Leis
-app.get('/leis', LeisDAO.get)
-app.post('/leis', LeisDAO.post)
+app.get('/leis', (req, res) => LeisDAO.getLeis(req, res))
+app.post('/leis', (req, res) => LeisDAO.postLeis(req, res))
 
 //Mural Photos
 app.get('/photos', Photo.get)
