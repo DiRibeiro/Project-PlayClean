@@ -862,3 +862,8 @@ calendarLi:nth-child(2n) {
 .btn {
     width: 6em;
 }
+
+.markedAsDone {
+    text-decoration: line-through;
+    color: #777;
+}

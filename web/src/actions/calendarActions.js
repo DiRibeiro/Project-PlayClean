@@ -40,20 +40,6 @@ export const add = (description, dateOcurr) => dispatch => {
             })
 }
 
-export const markAsDone = (todo, index) => {
-    return dispatch => {
-        axios.put(`${BASE_URL}/calendars?:_id`, { ...todo, done: true })
-            .then(res => dispatch(search()))
-    }
-}
-
-export const markAsPending = (todo, index) => {
-    return dispatch => {
-        axios.put(`${BASE_URL}/calendars?:_id`, /* { todo, done: false } */)
-            .then(res => dispatch(search()))
-    }
-}
-
 export const remove = ( description, dateOcurr ) => {
     return dispatch => {
         axios.delete(`${BASE_URL}/calendars`, { description, dateOcurr })

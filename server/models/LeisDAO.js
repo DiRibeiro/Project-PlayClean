@@ -5,9 +5,10 @@ const { leis } = require('../config/db')
 
 const getLeis = (req, res, next) => {
     leis
-        .find({})
+        .find()
+        .sort({ typeLei: -1 })
         .then(data => {
-            console.log(data)
+            // console.log(data)
             res.status(200).json(data)
         }).catch(err => {
             res.status(400).json(err)
@@ -22,7 +23,7 @@ const postLeis = (req, res, next) => {
         .then(e => {
             res.status(200).json('Successfuly request')
         }).catch(err => {
-             console.log(err)
+            //  console.log(err)
             res.status(400).json('Internal server error')
         })
 }

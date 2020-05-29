@@ -1,26 +1,25 @@
 import React, { useEffect } from 'react'
-import { connect, useDispatch } from 'react-redux'
-import { Field, reduxForm, formValueSelector, } from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
 
 import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
 
 import 'react-widgets/dist/css/react-widgets.css'
 
-const Form = props => {
-    const { handleSubmit } = props
-    const dispatch = useDispatch()
+let FormLei = props => {
     
+
     useEffect(() => {
+        console.log("Mounting...", props.handleSubmit)
         momentLocaliser(moment)
     }, [])
         
     return (
-        <form onSubmit={ handleSubmit } className="form-group">
+        
+        <form onSubmit={props.handleSubmit} className="form-group">
             {/* Information about what whistleblower */}
             <div className="box box-success">
                 <div className="box-header with-border">
-                    <h3 className="box-title">Informe a lei</h3>
                 </div>  
                 <div className="box-body">
                         {/* <h5><b>Dados das leis municipais</b></h5> */}
@@ -41,9 +40,9 @@ const Form = props => {
                                     {/* <span className="input-group-addon"><i className="fas fa-signature"/></span> */}
                                     <Field name='typeLei' component="select" className="form-control select">
                                         <option value="" disabled defaultValue>Selecione um tipo</option>
-                                        <option /* name='Municipal' */>Municipal</option>
-                                        <option /* name='Estadual' */>Estadual</option>
-                                        <option /* name='Federal' */>Federal</option>
+                                        <option value='Municipal' >Municipal</option>
+                                        <option value='Estadual' >Estadual</option>
+                                        <option value='Federal' >Federal</option>
                                     </Field>
                                 </div>
                                 {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
@@ -60,24 +59,28 @@ const Form = props => {
                             <button
                                 type='submit'
                                 className='btn btn-success btnLogin'
-                                onClick={() => { dispatch(window.location = '/listLeis')}}
+                                htmlType="submit"
                                 >Cadastrar</button>
                         </div>
                     </div>
                 </div>
         </form>
+       
     )
 }
 
-let FormLei = reduxForm({ form: 'newLeisForm' })(Form)   // A unique identifier for this form	
+FormLei =  reduxForm({ form: 'newLeisForm' })(FormLei)   // A unique identifier for this form	
 
+export default FormLei
+
+
+/*
 const selector = formValueSelector('newLeisForm')
 FormLei = connect(state => {
     const typeLeiValue = selector(state, 'typeLei')	
     return { typeLeiValue }	
 })(FormLei)
-
-export default FormLei
+*/
 
 /*
 <Tab  name='Estadual' eventKey="estaduais" title="Estaduais">

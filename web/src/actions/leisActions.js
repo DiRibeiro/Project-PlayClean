@@ -17,7 +17,10 @@ export const getLeis = () => {
 	}
 }
 
-export const postLeis = values => dispatch => {
+export const postLeis = values => {
+    return dispatch => {
+    console.log("POSTING LAWS") //percei que isso nunca era chamado!!!
+    console.log(values)
 	axios
 		.post(`${BASE_URL}/leis`, values)
 		.then(response => {
@@ -26,9 +29,10 @@ export const postLeis = values => dispatch => {
 
 			else if (response.status === 200) {
 				dispatch(reset('newLeisForm'))
-				window.location = '/listLeis'                 // dont forget to remove that fucking shit
+				window.location = '/listLeis'                
 				toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
 			}
 		})
-		.catch(error => toastr.error('Erro!', 'Internal server error'))
+        .catch(error => toastr.error('Erro!', 'Internal server error'))
+    }
 }
