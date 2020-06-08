@@ -1,9 +1,10 @@
 const mongoose = require('mongoose')
 
 const photosSchema = new mongoose.Schema({
-    albums: {
-        image: [String]
-    }
+    images:  {
+        type: [ String ],
+        trim: true
+    },
 })
 
 module.exports = photosSchema

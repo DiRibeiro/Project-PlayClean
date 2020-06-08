@@ -24,10 +24,10 @@ export const getPhotos = () => {
 	}
 }
 
-export const postPhotos = values => dispatch => {
+export const postPhotos = (values) => dispatch => {
 	dispatch({ type: LOAD, payload: true })
 	axios
-		 .post(`${BASE_URL}/photos`, values, {
+		 .post(`${BASE_URL}/photos`, {values}, {
 			headers: {
 				'content-type': 'multipart/form-data'
 			}
@@ -40,7 +40,7 @@ export const postPhotos = values => dispatch => {
 			}else if (response.status === 200) {
 				dispatch({ type: LOAD, payload: false })
 				window.location = '/photos'                 //nao remova
-				toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
+				toastr.success('Sucesso!', 'Nova foto inserida com sucesso!')
 			}
 		})
 		.catch(error => {

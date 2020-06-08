@@ -46,8 +46,8 @@ app.get('/leis', (req, res) => LeisDAO.getLeis(req, res))
 app.post('/leis', (req, res) => LeisDAO.postLeis(req, res))
 
 //Mural Photos
-app.get('/photos', Photo.get)
-app.post('/photos', mural.array('images', 10), Photo.post)
+app.get('/photos',(req, res) => Photo.getPhotos(req, res))
+app.post('/photos', mural.array('images', 4), (req, res) => Photo.postPhotos(req, res))
 
 // Dashboard
 app.get('/dashboard', (req, res) => ReportsDAO.getDataDashboard(req, res))

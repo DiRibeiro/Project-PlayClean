@@ -1,0 +1,69 @@
+import React, { useState } from 'react'
+import {postPhotos, changePhotos} from '../../actions/photosActions'
+import FormData from 'form-data'
+import { useDispatch } from 'react-redux'
+
+const Photo = (props) => {
+    const dispatch = useDispatch()
+    const [files, setFiles] = useState({ photos: [] })
+
+    const fileSelectedHandler = event => {
+        let images = files['images']
+        Object.values(event.target.files).map(picture => images.push(picture))
+        setFiles({ images })
+    }
+
+    const handleForm = (values) => {
+        const fd = new FormData()
+
+        if (files['photos'] !== undefined)
+            files['photos'].forEach(img => fd.append('photos', img))
+
+        for (let key in values)
+            if (values.hasOwnProperty(key))
+                fd.append(key, values[key])
+
+        setFiles({ photos: [] })
+        dispatch(postPhotos(fd))
+    }
+
+        return(
+            <form onSubmit={ values => handleForm(values) } className="form-group" encType="multipart/form-data" >
+               <div className="row">
+                <div className="col-md-6">
+
+                    <label 
+                    htmlFor="select-pictures"
+                    style={{
+                        clear: 'both',
+                        width: '100px', 
+                        height: '100px',
+                        margin: '5px',
+                        backgroundColor: '#00a65a',
+                        color: '#fff',
+                        border: 'none',
+                        // display: 'inline-block',
+                        borderRadius: '3px',
+                        padding: '28px 35px',
+                        fontSize: '32px',
+                        cursor: 'pointer',
+                    }} ><i className="fas fa-photo"></i></label>
+                    <input id="select-pictures"
+                    type="file" 
+                    name="images" 
+                    accept="image/png, image/jpeg" 
+                    onChange={ changePhotos } 
+                    multiple 
+                    style={{ display: 'none' }} 
+                    />
+                    <button 
+                        type='submit'
+                        onClick={ values => fileSelectedHandler(values) }>Upload</button>                
+                </div>
+               </div>
+            </form>
+        )
+    
+}
+
+export default Photo

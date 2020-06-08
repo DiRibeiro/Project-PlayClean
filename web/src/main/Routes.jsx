@@ -12,7 +12,7 @@ import ColetaOrganica from '../containers/ColetaOrganica'
 import ColetaSeletiva from '../containers/ColetaSeletiva'
 import ListCataTreco from '../template/ListCataTreco'
 import CataTrecoDetail from '../containers/ShowCataTrecoDetails'
-import Photos from '../containers/Photos'
+import Photos from '../containers/photos/NewPhotos'
 import Calendar from '../containers/todo/todo'
 import Leis from '../reports/NewLeis'       //o erro estava aqui, estavas importanto o form ao inves do componente que continha o form, ou seja, o dispatch e tudo mais nao era utilizado.
 import ListLeis from '../template/ListLeis'

@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 const { photos } = require('../config/db')
 
-exports.get = (req, res, next) => {
+const getPhotos = (req, res, next) => {
 	photos
 		.find()
 		.exec((err, result) => {
@@ -25,11 +25,11 @@ exports.get = (req, res, next) => {
 		})
 }
 
-exports.post = (req, res, next) => {
+const postPhotos = (req, res, next) => {
 	const newPhotos =  new photos(req.body) 				// Criar o novo report a ser inserido
 
 	const paths = new Array()	
-	newPhotos.albums.image = paths
+	newPhotos.images = paths
 
 	if (req.files)
 		req.files.forEach(pic => paths.push(pic.path))
@@ -41,3 +41,5 @@ exports.post = (req, res, next) => {
 			res.status(500).json('Internal server error')
 		})			
 }
+
+module.exports = { getPhotos, postPhotos }
