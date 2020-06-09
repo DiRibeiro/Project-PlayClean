@@ -9,10 +9,6 @@ const FormPhotos = props => {
     const dispatch = useDispatch()
     const [files] = useState(props.photos)
 
-    useEffect(() => {
-        dispatch(getPhotos())
-    }, [])
-
     const renderImages = () =>
         files.map((element, index) =>
             <img
@@ -64,7 +60,7 @@ const FormPhotos = props => {
                     <button
                         type='submit'
                         className='btn btn-success btnLogin'
-                        onClick={() => { dispatch(window.location = '/photos')}}
+                        //onClick={() => { dispatch(window.location = '/photos')}}
                         >Cadastrar</button>
                 </div>
             </div>

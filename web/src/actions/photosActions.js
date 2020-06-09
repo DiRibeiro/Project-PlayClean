@@ -15,7 +15,7 @@ export const getPhotos = () => {
 	return dispatch => {
 		axios.get(`${ BASE_URL }/photos`)
 		.then(result => {
-			//console.log(result)
+			console.log(result)
 			dispatch({ type: PHOTOS_FETCHED , payload: result.data })
 
 		}).catch(err => {
@@ -25,9 +25,12 @@ export const getPhotos = () => {
 }
 
 export const postPhotos = (values) => dispatch => {
-	dispatch({ type: LOAD, payload: true })
-	axios
-		 .post(`${BASE_URL}/photos`, {values}, {
+    dispatch({ type: LOAD, payload: true })
+    
+    console.log("Action postPhotos")
+    
+    axios
+		 .post(`${BASE_URL}/photos`, values, {
 			headers: {
 				'content-type': 'multipart/form-data'
 			}
