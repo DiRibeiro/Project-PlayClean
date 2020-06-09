@@ -6,6 +6,7 @@ const calendarSchema = require('../api/dbSchema/todoSchema')
 const cataTrecoSchema = require('../api/dbSchema/cataTrecoSchema')
 const leisSchema = require('../api/dbSchema/leisSchema')
 const photosSchema = require('../api/dbSchema/photosSchema')
+const coletaSchema = require('../api/dbSchema/coletaSchema')
 
 mongoose.connect("mongodb://localhost/jogue-limpo", { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true })
 
@@ -15,6 +16,7 @@ const cataTreco = mongoose.model('cataTreco', cataTrecoSchema)
 const leis = mongoose.model('leis', leisSchema)
 const calendars = mongoose.model('calendars', calendarSchema)
 const photos = mongoose.model('photos', photosSchema)
+const coleta = mongoose.model('coleta', coletaSchema)
 
 user.find({ 'userName': 'admin' })
     .then(result => {
@@ -39,4 +41,4 @@ user.find({ 'userName': 'admin' })
     });
 
 
-module.exports = { report, user, calendars, cataTreco, leis, photos }
+module.exports = { report, user, calendars, cataTreco, leis, photos, coleta }

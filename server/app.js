@@ -19,6 +19,7 @@ const LeisDAO = require('./models/LeisDAO')
 const Auth = require('./models/auth/authUser')
 const Calendar = require('./models/todoEventsDAO')
 const Photo = require('./models/PhotosDAO')
+const Coleta = require('./models/ColetaDAO')
 
 // Reports
 app.get('/report', (req, res) => ReportsDAO.getReport(req, res))
@@ -48,6 +49,10 @@ app.post('/leis', (req, res) => LeisDAO.postLeis(req, res))
 //Mural Photos
 app.get('/photos',(req, res) => Photo.getPhotos(req, res))
 app.post('/photos', mural.array('images', 4), (req, res) => Photo.postPhotos(req, res))
+
+//Coleta
+app.get('/coleta', (req, res) => ColetaDAO.getColeta(req, res))
+app.post('/coleta', (req, res) => ColetaDAO.postColeta(req, res))
 
 // Dashboard
 app.get('/dashboard', (req, res) => ReportsDAO.getDataDashboard(req, res))
