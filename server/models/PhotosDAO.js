@@ -30,6 +30,7 @@ const postPhotos = (req, res, next) => {
 
 	const paths = new Array()	
 	newPhotos.images = paths
+	newPhotos.id = id + 1
 
 	if (req.files)
 		req.files.forEach(pic => paths.push(pic.path))

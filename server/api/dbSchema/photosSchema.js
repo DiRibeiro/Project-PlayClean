@@ -5,6 +5,7 @@ const photosSchema = new mongoose.Schema({
         type: [ String ],
         trim: true
     },
+    id: Number
 })
 
 module.exports = photosSchema

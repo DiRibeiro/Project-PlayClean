@@ -12,7 +12,8 @@ const Photos = (props) => {
     const photosOnBackend = useSelector(state => state.photos.photo)
     
     const IMAGES = [{
-        src: '',
+        src: "http://localhost:3001/uploads/LogoAzul_FundoBranco-1592227001694.jpg",
+        thumbnail: "http://localhost:3001/uploads/LogoAzul_FundoBranco-1592227001694.jpg",
         thumbnailWidth: 320,
         thumbnailHeight: 174
     }]
