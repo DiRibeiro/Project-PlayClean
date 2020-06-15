@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 
 const album = multer.diskStorage({
 	destination: function(req, file, callback) {
-		callback(null, path.join(__dirname, '..', 'public','mural'))
+		callback(null, path.join(__dirname, '..', 'public','murals'))
 	},
 	filename: function(req, file, callback) {
 		const nameRegex = /(.+?)(\.[^.]*$|$)/

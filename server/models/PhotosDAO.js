@@ -30,14 +30,13 @@ const postPhotos = (req, res, next) => {
 
 	const paths = new Array()	
 	newPhotos.images = paths
-	newPhotos.id = id + 1
-
 	if (req.files)
-		req.files.forEach(pic => paths.push(pic.path))
+		req.files.forEach(pic => paths.push({'url': `https://localhost:3001/murals/${pic.filename}`, '_id' : `${pic._id}`}))
 		
 	newPhotos.save()
 		.then(e => {
-			res.status(200).json('Successfuly request')
+			res.status(200).json(paths)
+			console.log(paths)
 		}).catch((err) => {
 			res.status(500).json('Internal server error')
 		})			
