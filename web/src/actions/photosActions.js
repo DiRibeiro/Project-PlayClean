@@ -6,11 +6,6 @@ import BASE_URL from '../config/consts'
 const PHOTOS_FETCHED = 'PHOTOS_FETCHED'
 const LOAD = 'LOAD'
 
-export const changePhotos = event => ({
-    type: 'PHOTOS_FETCHED',
-    payload: event.target.files
-})
-
 export const getPhotos = () => {	
 	return dispatch => {
 		axios.get(`${ BASE_URL }/photos`)
@@ -27,7 +22,7 @@ export const getPhotos = () => {
 export const postPhotos = (values) => dispatch => {
     dispatch({ type: LOAD, payload: true })
     
-    console.log("Action postPhotos")
+    // console.log("Action postPhotos")
     
     axios
 		 .post(`${BASE_URL}/photos`, values, {

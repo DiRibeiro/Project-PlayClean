@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import {useDispatch} from 'react-redux'
-import {getPhotos} from '../../actions/photosActions'
-
+import React, { useState } from 'react'
+// import {useSelector} from 'react-redux'
 import 'react-widgets/dist/css/react-widgets.css'
 
 const FormPhotos = props => {
     const { handleSubmit, handleImage } = props
-    const dispatch = useDispatch()
     const [files] = useState(props.photos)
-
+    
     const renderImages = () =>
         files.map((element, index) =>
             <img
@@ -27,7 +24,6 @@ const FormPhotos = props => {
     return (
         <form onSubmit={ handleSubmit } className="form-group" encType="multipart/form-data" >
             {/* Information about what whistleblower */}
-            <h4><b>Upload de fotos</b></h4>
             <div className="row">
                 { renderImages() }
                 

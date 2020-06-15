@@ -19,7 +19,7 @@ const LeisDAO = require('./models/LeisDAO')
 const Auth = require('./models/auth/authUser')
 const Calendar = require('./models/todoEventsDAO')
 const Photo = require('./models/PhotosDAO')
-const Coleta = require('./models/ColetaDAO')
+const ColetaDAO = require('./models/ColetaDAO')
 
 // Reports
 app.get('/report', (req, res) => ReportsDAO.getReport(req, res))
