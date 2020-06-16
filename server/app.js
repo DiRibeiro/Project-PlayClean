@@ -6,7 +6,7 @@ const app = express()
 const upload = require('./config/multer')
 const mural = require('./config/multer')
 
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 3003
 
 app.use(cors())
 app.use(express.json())

@@ -11,6 +11,7 @@ import calendar from './calendarReducer'
 import cataTreco from './cataTrecoReducer'
 import leis from './leisReducer'
 import photos from './photosReducer'
+import coleta from './coletaReducer'
 
 
 const rootReducer = combineReducers(
@@ -20,6 +21,7 @@ const rootReducer = combineReducers(
         reports,
         todo: calendar,
         leis,
+        coleta,
         photos,
         cataTreco,
         dashboard,
