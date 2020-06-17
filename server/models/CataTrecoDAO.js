@@ -17,6 +17,12 @@ const getCataTreco = (req, res, next) => {
 const postCataTreco = (req, res, next) => {
     let newCataTreco =  new cataTreco(req.body)
 
+    newCataTreco.protocol = newCataTreco.protocol + Math.floor(1 + Math.random() * 9000);
+
+    if(newCataTreco.protocol === newCataTreco.protocol){
+        newCataTreco.protocol = newCataTreco.protocol + Math.floor(1 + Math.random() * 9000);
+    }
+    
     newCataTreco
         .save()
         .then(e => {

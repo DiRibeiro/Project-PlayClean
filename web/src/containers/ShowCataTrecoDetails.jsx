@@ -46,6 +46,8 @@ const ShowCataTrecoDetails = props => {
 						</span>
 						<br />
 						<br />
+						<b>Protocolo: </b>
+						{ ct.protocol }
 						<b>Onde ocorreu: </b>
 						{ ct.adressOcurr }
 						<br />

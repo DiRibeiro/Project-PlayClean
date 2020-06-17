@@ -18,6 +18,10 @@ const cataTrecoSchema = new mongoose.Schema({
     status: {
         type: Number,
         default: 0
+    },
+    protocol: {
+        type: Number,
+        default: 0
     }
 });
 
