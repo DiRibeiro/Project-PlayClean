@@ -12,7 +12,7 @@ let ColetaSeletiva = props => {
     const dispatch = useDispatch()
 
     const handleForm = values => {
-        console.log(values)
+        // console.log(values)
         dispatch(postColeta(values))
     }
     

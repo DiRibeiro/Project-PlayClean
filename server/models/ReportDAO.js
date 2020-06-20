@@ -157,4 +157,15 @@ const setStatus = (req, res) =>
 			err ? res.status(202).json(err) : res.status(200).json(response)
 	)
 
-module.exports = { getReport, setReport, getDataDashboard, setStatus }
+const deleteReport = (req, res, next) => {
+	leis
+		.deleteOne({'_id' : req.query.whoCreated})
+		.then(data => {
+			res.status(200).json(data)
+		}).catch(err => {
+			res.status(400).json(err)
+		})
+}
+
+
+module.exports = { getReport, setReport, getDataDashboard, setStatus, deleteReport }

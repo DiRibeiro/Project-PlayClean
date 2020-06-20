@@ -39,5 +39,17 @@ const setStatus = (req, res) =>
 		(err, response) =>
 			err ? res.status(202).json(err) : res.status(200).json(response)
     )
+
+
+const deleteCataTreco = (req, res, next) => {
+    cataTreco
+        .deleteOne({'protocol' : req.query.protocol})
+        .then(data => {
+            res.status(200).json(data)
+        }).catch(err => {
+            res.status(400).json(err)
+        })
+}
+
     
-module.exports = {setStatus, getCataTreco, postCataTreco}
+module.exports = {setStatus, getCataTreco, postCataTreco, deleteCataTreco}

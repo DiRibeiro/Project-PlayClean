@@ -19,8 +19,8 @@ export const getLeis = () => {
 
 export const postLeis = values => {
     return dispatch => {
-    console.log("POSTING LAWS") //percei que isso nunca era chamado!!!
-    console.log(values)
+    // console.log("POSTING LAWS") //percei que isso nunca era chamado!!!
+    // console.log(values)
 	axios
 		.post(`${BASE_URL}/leis`, values)
 		.then(response => {

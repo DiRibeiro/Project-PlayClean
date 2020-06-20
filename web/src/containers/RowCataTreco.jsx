@@ -22,6 +22,8 @@ const RowCataTreco = props => {
                 <div className="box-body listCataTreco">
                     <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                         <h3 className="box-title">{ cataTreco.name }</h3>
+                        <b>Protocolo: { cataTreco.protocol }</b>
+                        <br/>
                         <span>Cadastrado dia { fullDate(cataTreco.dateCreate) }</span><br />
                         <p>{ cataTreco.description }</p>
                     </div>

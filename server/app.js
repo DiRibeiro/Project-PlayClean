@@ -26,6 +26,7 @@ app.get('/report', (req, res) => ReportsDAO.getReport(req, res))
 app.post('/report', upload.array('images', 4), (req, res) => ReportsDAO.setReport(req, res))
 // app.post('/uploads', upload.array('images', 4), (req, res) => ReportsDAO.setReport(req, res))
 app.post('/reportStatus' , (req, res) => ReportsDAO.setStatus(req, res))
+app.put('/report' , (req, res) => ReportsDAO.deleteReport(req, res))
 
 app.get('/get', (req, res) => ReportsDAO.get(req, res))
 
@@ -40,11 +41,16 @@ app.delete('/calendars', Calendar.delete)
 app.get('/cataTreco', (req, res) => CataTrecoDAO.getCataTreco(req, res))
 app.post('/cataTreco',(req, res) => CataTrecoDAO.postCataTreco(req, res))
 app.post('/cataTrecoStatus',(req, res) => CataTrecoDAO.setStatus(req, res))
+app.put('/cataTreco',(req, res) => CataTrecoDAO.deleteCataTreco(req, res))
 
 // app.get('/get', (req, res) => CataTrecoDAO.get(req, res))
 //Leis
-app.get('/leis', (req, res) => LeisDAO.getLeis(req, res))
+app.get('/leis', (req, res) => LeisDAO.getAllLeis(req, res))
+app.get('/leisMunicipais', (req, res) => LeisDAO.getLeisMunicipais(req, res))
+app.get('/leisEstaduais', (req, res) => LeisDAO.getLeisEstaduais(req, res))
+app.get('/leisFederais', (req, res) => LeisDAO.getLeisFederais(req, res))
 app.post('/leis', (req, res) => LeisDAO.postLeis(req, res))
+app.put('/leis', (req, res) => LeisDAO.deleteLeis(req, res))
 
 //Mural Photos
 app.get('/photos',(req, res) => Photo.getPhotos(req, res))
@@ -53,6 +59,7 @@ app.post('/photos', mural.array('images', 4), (req, res) => Photo.postPhotos(req
 //Coleta
 app.get('/coleta', (req, res) => ColetaDAO.getColeta(req, res))
 app.post('/coleta', (req, res) => ColetaDAO.postColeta(req, res))
+app.put('/coleta', (req, res) => ColetaDAO.deleteColeta(req, res))
 
 // Dashboard
 app.get('/dashboard', (req, res) => ReportsDAO.getDataDashboard(req, res))

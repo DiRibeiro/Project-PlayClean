@@ -19,8 +19,8 @@ export const getColeta = () => {
 
 export const postColeta = values => {
     return dispatch => {
-    console.log("POSTING LAWS") //percei que isso nunca era chamado!!!
-    console.log(values)
+    // console.log("POSTING LAWS") //percei que isso nunca era chamado!!!
+    // console.log(values)
 	axios
 		.post(`${BASE_URL}/coleta`, values)
 		.then(response => {

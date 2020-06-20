@@ -2,9 +2,6 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { useDispatch } from 'react-redux'
 
-// import moment from 'react-widgets-moment'
-// import momentLocaliser from 'react-widgets-moment'
-
 import 'react-widgets/dist/css/react-widgets.css'
 import { postColeta } from '../actions/coletaActions'
 
@@ -12,7 +9,7 @@ let ColetaOrganica = props => {
 	const dispatch = useDispatch()
 
     const handleForm = values => {
-        console.log(values)
+        // console.log(values)
         dispatch(postColeta(values))
     }
 
