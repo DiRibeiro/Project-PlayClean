@@ -6,7 +6,7 @@ const { coleta } = require('../config/db')
 const getColeta = (req, res, next) => {
     coleta
         .find()
-        .sort({whoCreated: -1})
+        .sort('neighborhood')
         .then(data => {
             console.log(data)
             res.status(200).json(data)
@@ -16,6 +16,7 @@ const getColeta = (req, res, next) => {
 }
 
 const postColeta = (req, res, next) => {
+    console.log("New coleta, req.body", req.body)
     let newColeta = new coleta(req.body)
     
     newColeta
@@ -29,8 +30,9 @@ const postColeta = (req, res, next) => {
 }
 
 const deleteColeta = (req, res, next) => {
+    console.log(req.params.id)
     coleta
-        .deleteOne({'_id' : req.query.whoCreated})
+        .deleteOne({'_id' : req.params.id})
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {

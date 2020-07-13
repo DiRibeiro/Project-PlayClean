@@ -17,7 +17,6 @@ export default () => {
 
 	const reportOpen = useSelector(state => state.utils.sideReportOpen)
 	const eventsOpen = useSelector(state => state.utils.sideEventsOpen)
-	const collectionsOpen = useSelector(state => state.utils.sideCollectionsOpen)
 	const cataTrecoOpen = useSelector(state => state.utils.sideCataTrecoOpen)
 	const leiOpen = useSelector(state => state.utils.sideLeiOpen)
 
@@ -92,23 +91,8 @@ export default () => {
 						</MenuTree>
 					</li>
 
-					<li className={ `treeview ${ collectionsOpen ? 'menu-open' : '' }` }>
-						<MenuTree
-							open={ collectionsOpen ? 'true' : '' }
-							icon='trash'
-							label='Coletas'
-							onClick={ () => dispatch(setSidebarColletions()) }>
-							<MenuItem
-								path='ColetaOrganica'
-								icon='recycle'
-								label='Orgânica' />
-							<MenuItem
-								path='ColetaSeletiva'
-								icon='recycle'
-								label='Seletiva' />
-							{/* <MenuItem path='registerLostevents' icon='home' label='Cadastrar perdido' /> */}
-						</MenuTree>
-					</li>
+                    <MenuItem path='coleta' icon='recycle' label='Coletas' />
+					
 
 					<li className={ `treeview ${ cataTrecoOpen ? 'menu-open' : '' }` }>
 						<MenuTree

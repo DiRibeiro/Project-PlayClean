@@ -2,6 +2,9 @@ const fs = require('fs')
 const mongoose = require('mongoose')
 const { report, user } = require('../config/db')
 
+const path = require('path');
+
+
 const getReport = (req, res, next) => {
 	report
 		.find()
@@ -12,7 +15,12 @@ const getReport = (req, res, next) => {
 			else {
 				let images64base = result.map(element =>
 					element.images.map(pic => {
-						let image = fs.readFileSync(pic)
+                        let image;
+                        try {
+                            image =  fs.readFileSync(pic);
+                        } catch (error) {
+                            image = fs.readFileSync(path.join(__dirname, '..', 'public', 'uploads', 'no-image-found.png'))
+                        }
 						return new Buffer(image).toString('base64')
 					})
 				)

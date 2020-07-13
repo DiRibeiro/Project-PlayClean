@@ -18,9 +18,9 @@ export const getColeta = () => {
 }
 
 export const postColeta = values => {
+    
     return dispatch => {
-    // console.log("POSTING LAWS") //percei que isso nunca era chamado!!!
-    // console.log(values)
+    
 	axios
 		.post(`${BASE_URL}/coleta`, values)
 		.then(response => {
@@ -31,9 +31,20 @@ export const postColeta = values => {
 				dispatch(
 					reset('newColetaForm'),
 					)
-				toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
+                toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
+                
+                dispatch(getColeta());
 			}
 		})
         .catch(error => toastr.error('Erro!', 'Internal server error'))
     }
+}
+
+export const deleteColeta = id => {	
+	return dispatch => {
+		axios.delete(`${BASE_URL}/coleta/${id}`)
+		.then(result => {
+			dispatch(getColeta());
+		}).catch(error => toastr.error('Erro!', 'Internal server error'))
+	}
 }

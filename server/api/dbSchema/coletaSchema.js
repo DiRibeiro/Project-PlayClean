@@ -1,10 +1,9 @@
 const mongoose = require('mongoose')
 
 const coletaSchema = new mongoose.Schema({
-    whoCreated: mongoose.Schema.Types.ObjectId,
-    name: String,
-    selective: String,
-    organic: String
+    neighborhood: String, 
+    type: String,
+    description: String,
 });
 
 module.exports = coletaSchema

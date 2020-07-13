@@ -10,6 +10,7 @@
     "bootstrap": "^3.3.7",
     "chart.js": "^2.8.0",
     "cldr": "^5.4.1",
+    "cross-env": "^7.0.2",
     "express-session": "^1.16.2",
     "font-awesome": "^4.7.0",
     "form-data": "^2.5.1",
@@ -40,7 +41,7 @@
     "yarn": "^1.21.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env NODE_ENV=development react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
