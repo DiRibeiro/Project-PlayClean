@@ -2,9 +2,10 @@ const mongoose = require('mongoose')
 
 const leisSchema = new mongoose.Schema({
     whoCreated: mongoose.Schema.Types.ObjectId,
-    name: String,
-    typeLei: String,
-    description: String
+    title: String,
+    type: String,
+    description: String,
+    file: String
 });
 
 /*

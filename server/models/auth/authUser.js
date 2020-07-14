@@ -55,10 +55,13 @@ const signup = (req, res) => {
     })
 }
 
-const validateToken = (req, res) => 
+const validateToken = (req, res) => {
+    
+    //console.log("Validating token: ", req.body.token)
+
     jwt.verify(req.body.token, env.authSecret, (err, decoded) => 
         res.status(200).json({ valid: !err }))
-
+} 
 
 
 module.exports = { login, signup, validateToken}

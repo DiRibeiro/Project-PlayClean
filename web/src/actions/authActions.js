@@ -18,11 +18,15 @@ export const login = values => {
 					toastr.error('Erro!', response.data)
 					dispatch({ type: LOGIN, payload: false })
 				} else if (response.status === 200) {
-					axios.defaults.headers.common['authorization'] =
+                    
+                    console.log("Response in login action", response.data)
+                    
+                    axios.defaults.headers.common['authorization'] =
 						response.data.token
 					axios.defaults.headers.common['_id'] =
 						response.data.result._id
 
+                   
 					dispatch(reset('formLogin'))
 
 					dispatch({

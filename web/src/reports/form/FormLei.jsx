@@ -16,7 +16,7 @@ let FormLei = props => {
         
     return (
         
-        <form onSubmit={props.handleSubmit} className="form-group">
+        <form onSubmit={props.handleSubmit} className="form-group" encType="multipart/form-data">
             {/* Information about what whistleblower */}
             <div className="box box-success">
                 <div className="box-header with-border">
@@ -28,7 +28,7 @@ let FormLei = props => {
                                 <label>Artigo da lei</label>
                                 <div className="input-group">
                                     <span className="input-group-addon"><i className="fas fa-signature"/></span>
-                                    <Field name="name" component="input" type="text" placeholder="Artigo da lei" className="form-control" />
+                                    <Field name="title" component="input" type="text" placeholder="Artigo da lei" className="form-control" />
                                 </div>
                                 {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
                             </div>
@@ -38,7 +38,7 @@ let FormLei = props => {
                                 <label>Tipo de lei</label>
                                 <div className="input-group">
                                     {/* <span className="input-group-addon"><i className="fas fa-signature"/></span> */}
-                                    <Field name='typeLei' component="select" className="form-control select">
+                                    <Field name='type' component="select" className="form-control select">
                                         <option value="" disabled defaultValue>Selecione um tipo</option>
                                         <option value='Municipal' >Municipal</option>
                                         <option value='Estadual' >Estadual</option>
@@ -54,6 +54,19 @@ let FormLei = props => {
                                     <Field name="description" row='6' component="textarea" type="text" placeholder="Descreva da lei" className="form-control" />
                                     {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
                             </div>
+                        </div>
+                        <div className='row'>    
+                        <div className="col-md-6">
+                        
+                        
+                        <h5 className="description">*Selecione o documento PDF Associado a esta LEI</h5>
+                            <input id="select-document"
+                                type="file" 
+                                name="mydocument" 
+                                accept="application/pdf" 
+                                onChange={ props.handleDocument } 
+                                 />
+                                </div>
                         </div>
                         <div className="box-footer">
                             <button

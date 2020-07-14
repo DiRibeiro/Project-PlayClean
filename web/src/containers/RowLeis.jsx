@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-
+import BASE_URL from '../config/consts'
 const RowLeis = props => {
     const renderDom = () => {
         let statusDom
@@ -19,9 +19,10 @@ const RowLeis = props => {
             <div className="box box-success">
                 <div className="box-body listLeis">
                     <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                        <h3 className="box-title">{ lei.name }</h3>
-                        <span>Tipo de lei {lei.typeLei}</span><br />
+                        <h3 className="box-title">{ lei.title }</h3>
+                        <span>Tipo de lei {lei.type}</span><br />
                         <p>{ lei.description }</p>
+                        <a href={BASE_URL + '/' + lei.file} target='_blank'>ARQUIVO</a>
                     </div>
                     <Link to={{ pathname: '/showDetailLeis', state: lei._id }} >
                         <button className="btn btn-primary bottomZero">Ver mais</button>

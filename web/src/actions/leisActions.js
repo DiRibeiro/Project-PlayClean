@@ -19,10 +19,14 @@ export const getLeis = () => {
 
 export const postLeis = values => {
     return dispatch => {
-    // console.log("POSTING LAWS") //percei que isso nunca era chamado!!!
-    // console.log(values)
+     console.log("POSTING LAWS") //percei que isso nunca era chamado!!!
+    
 	axios
-		.post(`${BASE_URL}/leis`, values)
+		.post(`${BASE_URL}/leis`, values, {
+            headers: {
+				'content-type': 'multipart/form-data'
+			}
+        })
 		.then(response => {
 			if (response.status === 400) 
 				toastr.error('Erro!', response)

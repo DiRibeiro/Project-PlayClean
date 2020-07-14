@@ -30,8 +30,7 @@ const Dashboard = () => {
                 <h3 className="box-title">Denúncias</h3>
             </div>
             <div className="box-body">
-                { console.log(bookmark.closedReports) }
-                { console.log(bookmark.totalReports) }
+               
                 <div className="row">
                     <Bookmark 
                         label={ `Denúncias de ${ getMonth(bookmark.month) }` } 

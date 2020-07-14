@@ -4,8 +4,6 @@ const express = require('express')
 
 const app = express()
 const upload = require('./config/multer')
-const mural = require('./config/multer')
-
 
 const TokenValidation = require('./middlewares/TokenValidation');
 
@@ -50,12 +48,17 @@ app.get('/leis', (req, res) => LeisDAO.getAllLeis(req, res))
 app.get('/leisMunicipais', (req, res) => LeisDAO.getLeisMunicipais(req, res))
 app.get('/leisEstaduais', (req, res) => LeisDAO.getLeisEstaduais(req, res))
 app.get('/leisFederais', (req, res) => LeisDAO.getLeisFederais(req, res))
-app.post('/leis', TokenValidation, (req, res) => LeisDAO.postLeis(req, res))
+
+app.post('/leis', 
+    TokenValidation, 
+    upload.single('document'), 
+    LeisDAO.postLeis
+    );
 //app.put('/leis', (req, res) => LeisDAO.deleteLeis(req, res))
 
 //Mural Photos
 app.get('/photos',(req, res) => Photo.getPhotos(req, res))
-app.post('/photos', TokenValidation, mural.array('images', 4), (req, res) => Photo.postPhotos(req, res))
+app.post('/photos', TokenValidation, upload.array('images', 4), (req, res) => Photo.postPhotos(req, res))
 
 //Coleta
 app.get('/coleta', (req, res) => ColetaDAO.getColeta(req, res))

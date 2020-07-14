@@ -10,7 +10,7 @@ const TokenValidation = (req, res, next) => {
     else {
         const token = req.body.token || req.query.token || req.headers['authorization']
 
-        if (!token)
+       if (!token)
             return res.status(403).json('No token provided.');
         
         jwt.verify(token, env.authSecret, (error, decoded) => {
@@ -18,7 +18,7 @@ const TokenValidation = (req, res, next) => {
                 return res.status(403).json('Failed to authenticate token.')
 
             else {
-                console.log("User validated!")
+                //console.log("User validated!")
                 req.currentUser = jwt.decode(token);
                 next();
             }

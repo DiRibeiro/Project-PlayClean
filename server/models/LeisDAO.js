@@ -49,7 +49,11 @@ const getLeisFederais = (req, res, next) => {
 
 const postLeis = (req, res, next) => {
     let newLeis = new leis(req.body)
+    console.log(req.body);
+    console.log(req.file)
     
+    newLeis.file = "laws/" + req.file.filename;
+
     newLeis
         .save()
         .then(e => {

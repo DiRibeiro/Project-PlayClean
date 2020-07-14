@@ -1,6 +1,6 @@
 const userKey = 'jogue-limpo'             // Key of the Local Storage
 const INITIAL_STATE = {
-    user: JSON.parse(localStorage.getItem(userKey)),
+    user: localStorage.getItem(userKey),
     validToken: false,
     loading: false
 }
@@ -17,7 +17,7 @@ export default (state = INITIAL_STATE, action) => {
             }
 
         case 'TOKEN_FETCHED':
-            localStorage.setItem(userKey, JSON.stringify(action.payload))
+            localStorage.setItem(userKey, action.payload)
             return { ...state, user: action.payload, validToken: true }
         
         case 'LOGIN':

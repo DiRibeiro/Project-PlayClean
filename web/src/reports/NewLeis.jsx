@@ -1,17 +1,39 @@
-import React, { useEffect }/* , { useState } */ from 'react'
+import React, { useState, useEffect }/* , { useState } */ from 'react'
 import { useDispatch } from 'react-redux'
 import FormLei from './form/FormLei'
 import { postLeis } from '../actions/leisActions'
 
-// import FormData from 'form-data'
+import FormData from 'form-data'
 
 const Leis = () => {
+    
     const dispatch = useDispatch()
-    // const [leis, setLeis]= useState({ type: [] })
+    
+    const [file, setFile] = useState();
+
+    const fileSelectedHandler = event => {
+        console.log(event.target.files[0])
+        setFile(event.target.files[0]);
+    }
 
     const handleForm = values => {
-        console.log("handle laws form")
-        dispatch(postLeis(values))
+        const fd = new FormData()
+        console.log(values)
+        console.log(file)
+        
+        for (let key in values)
+            if (values.hasOwnProperty(key)) {
+                fd.append(key, values[key])
+                console.log("key", key, "value", values[key])
+            }
+
+            //let fileObj = {uri: file, originalname: 'law', type: 'pdf'};
+            console.log("File to send: ", file 
+            )
+        fd.append('document', file);
+        
+        setFile("")
+        dispatch(postLeis(fd))
     }
 
     useEffect(() => {
@@ -27,7 +49,8 @@ const Leis = () => {
             </div>
             <div className="box-body">
                 <FormLei 
-                    onSubmit={ handleForm }
+                    onSubmit={ values => handleForm(values) }
+                    handleDocument = {value => fileSelectedHandler(value)}
                     />
             </div>
         </div>
