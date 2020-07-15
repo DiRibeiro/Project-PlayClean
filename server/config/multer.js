@@ -6,8 +6,9 @@ const storage = multer.diskStorage({
         console.log("Current path:", req.path)
         if (req.path === '/leis') {
             callback(null, path.join(__dirname, '..', 'public','laws'))
-        }
-        else if(req.path === '/photos') {
+        } else if (req.path === '/calendars') {
+            callback(null, path.join(__dirname, '..', 'public','events'))
+        } else if (req.path === '/photos') {
             callback(null, path.join(__dirname, '..', 'public','murals'))
         } else {
             callback(null, path.join(__dirname, '..', 'public','uploads'))

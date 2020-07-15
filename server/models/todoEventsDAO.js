@@ -15,12 +15,18 @@ exports.get = (req, res, next) => {
 
 exports.post = (req, res, next) => {
     let newTodo =  new calendars(req.body)
+    console.log(req.body)
+    if (req.file) {
+        newTodo.image = "events/" + req.file.filename;
+
+    }
 
     newTodo
         .save()
         .then(e => {
             res.status(200).json('Successfuly request')
         }).catch(err => {
+            console.log(err)
             res.status(400).json('Internal server error')
         })
 }

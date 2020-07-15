@@ -2,6 +2,17 @@ import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
 
 import BASE_URL from '../config/consts'
+import FormData from 'form-data'
+
+export const changeTitle = event => ({
+    type: 'TITLE_CHANGED',
+    payload: event.target.value
+})
+
+export const changeFile = event => ({
+    type: 'FILE_CHANGED',
+    payload: event.target.files[0]
+})
 
 export const changeDescription = event => ({
     type: 'DESCRIPTION_CHANGED',
@@ -24,9 +35,19 @@ export const search = () => {
     }
 }
 
-export const add = (description, dateOcurr) => dispatch => {
+export const add = (title, description, dateOcurr, file) => dispatch => {
+    console.log(file)
+        const fd = new FormData();
+        fd.append('image', file);
+        fd.append('title', title);
+        fd.append('description', description);
+        fd.append('dateOcurr', dateOcurr);
         axios
-            .post(`${BASE_URL}/calendars`, { description, dateOcurr })
+            .post(`${BASE_URL}/calendars`, fd, {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            })
             .then(response => {
                 if (response.status === 400) {
                     toastr.error('Erro!', response)

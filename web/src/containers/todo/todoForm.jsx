@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { add, changeDescription, search, clear, changeDate/* , remove */ } from '../../actions/calendarActions'
+import { add, changeTitle, changeFile, changeDescription, search, clear, changeDate/* , remove */ } from '../../actions/calendarActions'
 
 class TodoForm extends Component {
     constructor(props) {
         super(props)
         this.keyHandler = this.keyHandler.bind(this)
+        this.state = {} 	//file to upload
     }
 
     UNSAFE_componentWillMount() {
@@ -24,14 +25,23 @@ class TodoForm extends Component {
     }
 
     render() {
-        const { add, description, clear, dateOcurr} = this.props
+        const { title, add, description, clear, dateOcurr, file} = this.props
         return (
             <div role='form' className='calendarForm'>
                 <div className='calendar-input'>
                     <input 
+                        id='title' 
+                        className='form-control'
+                        placeholder='Título do Evento'
+                        onChange={this.props.changeTitle}
+                        onKeyUp={this.keyHandler}
+                        name='title'
+                        type='text'
+                        value={title}/>
+                    <input 
                         id='description' 
                         className='form-control'
-                        placeholder='Adicione um evento'
+                        placeholder='Descrição'
                         onChange={this.props.changeDescription}
                         onKeyUp={this.keyHandler}
                         name='description'
@@ -46,10 +56,18 @@ class TodoForm extends Component {
                         type='date'
                         value={this.dateOcurr}
                     />
-
+                    <input id="select-document"
+                                type="file" 
+                                name="file" 
+                                accept="image/png, image/jpeg" 
+                                onChange={this.props.changeFile}
+                                 />
                 <div className='btn-calendar'>
                     <button className='btn-success btn-add'
-                        onClick={() => add(description, dateOcurr)}><i className="fa fa-plus" aria-hidden="true"/></button>
+                        onClick={() => {
+                            console.log(file)
+                            add(title, description, dateOcurr, file);
+                        }}><i className="fa fa-plus" aria-hidden="true"/></button>
                     
                     <button className='btn-danger btn-close'
                         onClick={() => clear()}><i className="fa fa-close" aria-hidden="true"/></button>
@@ -60,7 +78,7 @@ class TodoForm extends Component {
     }
 }
 
-const mapStateToProps = state => ({description: state.todo.description, dateOcurr: state.todo.date})
+const mapStateToProps = state => ({title: state.todo.title, description: state.todo.description, dateOcurr: state.todo.date, file: state.todo.file})
 const mapDispatchToProps = dispatch => 
-    bindActionCreators({ add, changeDescription, search, clear, changeDate }, dispatch)
+    bindActionCreators({ add, changeTitle, changeFile, changeDescription, search, clear, changeDate }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(TodoForm)

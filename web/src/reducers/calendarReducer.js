@@ -1,7 +1,11 @@
-const INITIAL_STATE = { description: '', date: '', list: [] }
+const INITIAL_STATE = { file: {}, title: '', description: '', date: '', list: [] }
 
 export default (state = INITIAL_STATE, action) => {
     switch(action.type) {
+        case 'TITLE_CHANGED':
+            return { ...state, title: action.payload }
+        case 'FILE_CHANGED':
+            return { ...state, file: action.payload }
         case 'DESCRIPTION_CHANGED':
             return { ...state, description: action.payload }
         case 'DATE_CHANGED':
