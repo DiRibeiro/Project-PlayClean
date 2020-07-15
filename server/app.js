@@ -37,7 +37,7 @@ app.delete('/calendars', TokenValidation, Calendar.delete)
 // Todo.register(router, '/todos')
 
 //Cata Treco
-app.get('/cataTreco', TokenValidation, (req, res) => CataTrecoDAO.getCataTreco(req, res))
+app.get('/cataTreco', (req, res) => CataTrecoDAO.getCataTreco(req, res))
 app.post('/cataTreco',(req, res) => CataTrecoDAO.postCataTreco(req, res))
 app.post('/cataTrecoStatus', TokenValidation, (req, res) => CataTrecoDAO.setStatus(req, res))
 //app.put('/cataTreco',(req, res) => CataTrecoDAO.deleteCataTreco(req, res))
