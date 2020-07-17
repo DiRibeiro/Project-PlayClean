@@ -45,7 +45,7 @@ const Form = props => {
         
     return (
         <form onSubmit={ handleSubmit } className="form-group" encType="multipart/form-data" >
-            {/* Information about what whistleblower */}
+            
             <h4><b>Dados do usuário</b></h4>
             <div className="row mb-3">
                 <div className="col-md-4">

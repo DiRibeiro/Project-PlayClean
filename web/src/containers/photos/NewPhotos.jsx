@@ -4,7 +4,7 @@ import FormData from 'form-data'
 import { useDispatch, useSelector } from 'react-redux'
 import FormPhotos from './FormPhotos'
 import Gallery from 'react-grid-gallery'
-
+import BASE_URL from '../../config/consts'
 const Photos = (props) => {
     const dispatch = useDispatch()
     const [files, setFiles] = useState({ images: [] })
@@ -17,10 +17,12 @@ const Photos = (props) => {
         thumbnailWidth: 320,
         thumbnailHeight: 174
     }]
-	
+    
+    
+    const [title, setTitle] = useState('')
 
     useEffect(() => {
-        // console.log("BUSCANDO FOTOS")
+        console.log("BUSCANDO FOTOS")
         dispatch(getPhotos())
     }, [])
 
@@ -31,30 +33,38 @@ const Photos = (props) => {
         setFiles({ images })
     }
 
-    const renderImages = () =>
-        photosOnBackend.map((element, index) =>
-            <img
-                key={ index }
-                style={{ 
-                    clear: 'both',
-                    width: '200px',
-                    //height: '100px',
-                    margin: '0px 5px',
-                    marginTop: '-14px',
-                    borderRadius: '3px'
-                }} 
-                src={ URL.createObjectURL(element) } 
-                alt="img galeria" />)
+    const renderImages = () => {
 
+        return photosOnBackend.map((element, index) =>
+            <div key={ index }>
+                <h2 style={{textAlign: "center", marginTop: 20}}>{element.title}</h2>
+                {element.images.map(picture => 
+                    <img
+                    key={ index }
+                    style={{ 
+                        clear: 'both',
+                        width: '200px',
+                        //height: '100px',
+                        margin: '0px 5px',
+                        marginTop: '-14px',
+                        borderRadius: '3px'
+                    }} 
+                    src={ `${BASE_URL}/${picture}` } 
+                    alt="img galeria" />    
+                )}
+
+                    <hr/>
+            </div>)
+        
+    }
     const handleForm = (values) => {
+        
         const fd = new FormData()
 
         if (files['images'] !== undefined)
             files['images'].forEach(img => fd.append('images', img))
-        
-        for (let key in values)
-            if (values.hasOwnProperty(key))
-                fd.append(key, values[key])
+            
+        fd.append('title', title)
 
         setFiles({ images: [] })
         dispatch(postPhotos(fd))
@@ -67,10 +77,11 @@ const Photos = (props) => {
             <div className="box-header with-border">
                 <h3 className="box-title">Upload de fotos</h3>
                 
-                {renderImages}
+                
 
                 <div className="box-body">
                     <FormPhotos
+                    titleHandle = {e => setTitle(e.target.value)}
                         handleSubmit={ values => handleForm(values) }
                         handleImage = { values => fileSelectedHandler(values) } 
                         photos={ files['images'] } />
@@ -80,7 +91,7 @@ const Photos = (props) => {
         <div className="box box-success">
             <div className="box-header with-border">
                 <h3 className="box-title">Fotos</h3>
-                    <Gallery images={IMAGES} />
+                {renderImages()}
             </div>
         </div>
         </>

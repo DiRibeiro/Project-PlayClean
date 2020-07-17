@@ -20,10 +20,9 @@ export const getPhotos = () => {
 }
 
 export const postPhotos = (values) => dispatch => {
+    
     dispatch({ type: LOAD, payload: true })
-    
-    // console.log("Action postPhotos")
-    
+        
     axios
 		 .post(`${BASE_URL}/photos`, values, {
 			headers: {

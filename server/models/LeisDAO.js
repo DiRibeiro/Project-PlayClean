@@ -66,7 +66,7 @@ const postLeis = (req, res, next) => {
 
 const deleteLeis = (req, res, next) => {
     leis
-        .deleteOne({'_id' : req.query.whoCreated})
+        .deleteOne({'_id' : req.params.id})
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {

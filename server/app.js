@@ -37,7 +37,7 @@ app.delete('/calendars', TokenValidation, Calendar.delete)
 // Todo.register(router, '/todos')
 
 //Cata Treco
-app.get('/cataTreco', TokenValidation, (req, res) => CataTrecoDAO.getCataTreco(req, res))
+app.get('/cataTreco', (req, res) => CataTrecoDAO.getCataTreco(req, res))
 app.post('/cataTreco',(req, res) => CataTrecoDAO.postCataTreco(req, res))
 app.post('/cataTrecoStatus', TokenValidation, (req, res) => CataTrecoDAO.setStatus(req, res))
 //app.put('/cataTreco',(req, res) => CataTrecoDAO.deleteCataTreco(req, res))
@@ -54,11 +54,12 @@ app.post('/leis',
     upload.single('document'), 
     LeisDAO.postLeis
     );
-//app.put('/leis', (req, res) => LeisDAO.deleteLeis(req, res))
+
+app.delete('/leis/:id', TokenValidation, LeisDAO.deleteLeis)
 
 //Mural Photos
-app.get('/photos',(req, res) => Photo.getPhotos(req, res))
-app.post('/photos', TokenValidation, upload.array('images', 4), (req, res) => Photo.postPhotos(req, res))
+app.get('/photos', Photo.getPhotos)
+app.post('/photos', TokenValidation, upload.array('images', 12), Photo.postPhotos)
 
 //Coleta
 app.get('/coleta', (req, res) => ColetaDAO.getColeta(req, res))

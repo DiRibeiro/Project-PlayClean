@@ -10,29 +10,20 @@ const getPhotos = (req, res, next) => {
 			if (err)
 				res.status(400).json(err)
 			else {
-				let images64base = result.map(element =>
-					element.images.map(pic => {
-						let image = fs.readFileSync(pic)
-						return new Buffer(image).toString('base64')
-					})
-				)
-				result.forEach(
-					(element, index) =>
-						(element['images'] = images64base[index])
-				)
 				res.status(200).json( {result} )
 			}
 		})
 }
 
 const postPhotos = (req, res, next) => {
-	const newPhotos =  new photos(req.body) 				// Criar o novo report a ser inserido
-
+	const newPhotos =  new photos(req.body) 				
 	const paths = new Array()	
-	newPhotos.images = paths
+	
 	if (req.files)
-		req.files.forEach(pic => paths.push({'url': `https://localhost:3001/murals/${pic.filename}`, '_id' : `${pic._id}`}))
-		
+		req.files.forEach(pic => paths.push(`murals/${pic.filename}`))
+    
+    newPhotos.images = paths
+
 	newPhotos.save()
 		.then(e => {
 			res.status(200).json(paths)

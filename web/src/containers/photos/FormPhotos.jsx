@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-// import {useSelector} from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+
 import 'react-widgets/dist/css/react-widgets.css'
 
-const FormPhotos = props => {
+let FormPhotos = props => {
     const { handleSubmit, handleImage } = props
     const [files] = useState(props.photos)
     
@@ -23,10 +24,13 @@ const FormPhotos = props => {
         
     return (
         <form onSubmit={ handleSubmit } className="form-group" encType="multipart/form-data" >
-            {/* Information about what whistleblower */}
+            
             <div className="row">
-                { renderImages() }
+                <label>Título do conjunto de imagens</label>
+                <Field name="title" component="input" type="text" placeholder="Título" className="form-control" onChange={props.titleHandle} />
                 
+                { renderImages() }
+
                 <label 
                     htmlFor="select-pictures"
                     style={{
@@ -64,4 +68,5 @@ const FormPhotos = props => {
     )
 }
 
+FormPhotos = reduxForm({ form: 'newFormPhotos' })(FormPhotos) 
 export default FormPhotos
