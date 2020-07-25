@@ -7,7 +7,7 @@ import 'react-widgets/dist/css/react-widgets.css'
 let FormPhotos = props => {
     const dispatch = useDispatch()
     const { handleSubmit, handleImage } = props
-    const [files] = useState(props.photos)
+    const [files, setFiles] = useState(props.photos)
     
     const renderImages = () =>
         files.map((element, index) =>
@@ -25,7 +25,7 @@ let FormPhotos = props => {
                 alt="img photos" />)
         
     return (
-        <form onSubmit={ handleSubmit } className="form-group" encType="multipart/form-data" action="javascript:void(0);" >
+        <form onSubmit={(values) => { handleSubmit(values); setFiles([])  }} className="form-group" encType="multipart/form-data" action="javascript:void(0);" >
             
             <div className="row">
                 <label>Título do conjunto de imagens</label>

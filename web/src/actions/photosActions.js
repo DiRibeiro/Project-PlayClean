@@ -1,6 +1,6 @@
 import { toastr } from 'react-redux-toastr'
 import axios from 'axios'
-
+import { reset } from 'redux-form'
 import BASE_URL from '../config/consts'
 
 const PHOTOS_FETCHED = 'PHOTOS_FETCHED'
@@ -36,9 +36,14 @@ export const postPhotos = (values) => dispatch => {
 
 			}else if (response.status === 200) {
 				dispatch({ type: LOAD, payload: false })
-				window.location = '/photos'                 //nao remova
-				toastr.success('Sucesso!', 'Nova foto inserida com sucesso!')
-			}
+				//window.location = '/photos'                 
+                toastr.success('Sucesso!', 'Nova foto inserida com sucesso!')
+                dispatch(
+					reset('newFormPhotos')
+					)
+                dispatch(getPhotos());
+            }
+            
 		})
 		.catch(error => {
 			toastr.error('Erro!', 'Internal server error')
