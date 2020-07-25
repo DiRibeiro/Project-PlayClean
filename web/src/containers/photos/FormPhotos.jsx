@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { useDispatch } from 'react-redux'
 
 import 'react-widgets/dist/css/react-widgets.css'
 
 let FormPhotos = props => {
+    const dispatch = useDispatch()
     const { handleSubmit, handleImage } = props
     const [files] = useState(props.photos)
     
@@ -23,7 +25,7 @@ let FormPhotos = props => {
                 alt="img photos" />)
         
     return (
-        <form onSubmit={ handleSubmit } className="form-group" encType="multipart/form-data" >
+        <form onSubmit={ handleSubmit } className="form-group" encType="multipart/form-data" action="javascript:void(0);" >
             
             <div className="row">
                 <label>Título do conjunto de imagens</label>
@@ -60,7 +62,7 @@ let FormPhotos = props => {
                     <button
                         type='submit'
                         className='btn btn-success btnLogin'
-                        //onClick={() => { dispatch(window.location = '/photos')}}
+                        onClick={() => { dispatch(window.location = '/photos')}}
                         >Cadastrar</button>
                 </div>
             </div>
