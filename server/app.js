@@ -31,6 +31,7 @@ app.put('/report' , TokenValidation, (req, res) => ReportsDAO.deleteReport(req, 
 
 //Calendar Events
 app.get('/calendars', Calendar.get)
+app.get('/calendars/:year/:month', Calendar.getMonth)
 app.post('/calendars', TokenValidation, upload.single('image'), Calendar.post)
 app.delete('/calendars', TokenValidation, Calendar.delete)
 // app.put('/calendars', Calendar.put)

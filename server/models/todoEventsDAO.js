@@ -13,6 +13,22 @@ exports.get = (req, res, next) => {
         })
 }
 
+exports.getMonth = (req, res, next) => {
+
+    let month = req.params.month -1;
+    let year = req.params.year;
+
+    calendars
+        .find()
+		.sort({ dateOcurr: 1 })
+        .then(data => {
+            let filter = data.filter(event => event.dateOcurr.getUTCMonth() == month && event.dateOcurr.getFullYear() == year);
+            res.status(200).json(filter);
+        }).catch(err => {
+            res.status(400).json(err)
+        })
+}
+
 exports.post = (req, res, next) => {
     let newTodo =  new calendars(req.body)
     console.log(req.body)
