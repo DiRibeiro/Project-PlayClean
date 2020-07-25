@@ -16,7 +16,7 @@ const getAllLeis = (req, res, next) => {
 
 const getLeisMunicipais = (req, res, next) => {
     leis
-        .find({typeLei: 'Municipal'})
+        .find({type: 'Municipal'})
         .then(data => {
             // console.log(data)
             res.status(200).json(data)
@@ -27,7 +27,7 @@ const getLeisMunicipais = (req, res, next) => {
 
 const getLeisEstaduais = (req, res, next) => {
     leis
-        .find({typeLei: 'Estadual'})
+        .find({type: 'Estadual'})
         .then(data => {
             // console.log(data)
             res.status(200).json(data)
@@ -38,7 +38,7 @@ const getLeisEstaduais = (req, res, next) => {
 
 const getLeisFederais = (req, res, next) => {
     leis
-        .find({typeLei: 'Federal'})
+        .find({type: 'Federal'})
         .then(data => {
             // console.log(data)
             res.status(200).json(data)
