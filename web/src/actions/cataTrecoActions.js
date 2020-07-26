@@ -17,7 +17,7 @@ export const getCataTreco = () => {
 	}
 }
 
-export const postCataTreco = values => dispatch => {
+export const postCataTreco = (values, router) => dispatch => {
 	axios
 		.post(`${BASE_URL}/cataTreco`, values)
 		.then(response => {
@@ -26,7 +26,8 @@ export const postCataTreco = values => dispatch => {
 
 			else if (response.status === 200) {
 				dispatch(reset('newCataTrecoForm'))
-				window.location = '/listCataTreco'                 // dont forget to remove that fucking shit
+                //window.location = '/listCataTreco'                 // dont forget to remove that fucking shit
+                router.push('/listCataTreco')        
 				toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
 			}
 		})

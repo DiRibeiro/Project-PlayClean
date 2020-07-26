@@ -53,7 +53,8 @@ export const add = (title, description, dateOcurr, file) => dispatch => {
                     toastr.error('Erro!', response)
                 }   
                 else if (response.status === 200) {
-                    window.location = '/calendar'
+                    //window.location = '/calendar'
+                    dispatch(search());
                     toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
                 }
             }).catch(error => {
@@ -69,8 +70,9 @@ export const remove = ( description, dateOcurr ) => {
                 toastr.error('Erro!', response)
             }   
             else if (response.status === 200) {
-                window.location = '/calendar'
+                //window.location = '/calendar'
                 toastr.success('Sucesso!', 'Registro deletado!')
+                dispatch(search())
             }
         }).catch(error => {
             toastr.error('Erro!', 'Internal server error')

@@ -5,7 +5,7 @@ import { postReport } from '../actions/reportActions'
 
 import FormData from 'form-data'
 
-const Report = () => {
+const Report = props => {
     const dispatch = useDispatch()
     const [files, setFiles] = useState({ images: [] })
 
@@ -26,7 +26,8 @@ const Report = () => {
                 fd.append(key, values[key])
 
         setFiles({ images: [] })
-        dispatch(postReport(fd))
+        dispatch(postReport(fd, props.router))
+       
     }
 
     return (

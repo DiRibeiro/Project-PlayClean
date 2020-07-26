@@ -5,8 +5,8 @@ import { postLeis } from '../actions/leisActions'
 
 import FormData from 'form-data'
 
-const Leis = () => {
-    
+const Leis = (props) => {
+
     const dispatch = useDispatch()
     
     const [file, setFile] = useState();
@@ -33,11 +33,13 @@ const Leis = () => {
         fd.append('document', file);
         
         setFile("")
-        dispatch(postLeis(fd))
+        dispatch(postLeis(fd, props.router))
+        //window.location = '/listLeis'
     }
 
     useEffect(() => {
         console.log("Mounting scene with form")
+        setFile();
     }, [])
 
     return (

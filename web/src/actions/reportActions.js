@@ -20,7 +20,7 @@ export const getReports = () => {
 	}
 }
 
-export const postReport = values => dispatch => {
+export const postReport = (values, router) => dispatch => {
     dispatch({ type: LOAD, payload: true })
     axios
 		 .post(`${BASE_URL}/report`, values, {
@@ -37,8 +37,9 @@ export const postReport = values => dispatch => {
 				dispatch({ type: LOAD, payload: false })
 				dispatch(
 					reset('newReportForm')
-					)
-				window.location = '/listReport'                 //nao remova
+                    )
+                router.push('/listReport')
+				//window.location = '/listReport'                 //nao remova
 				toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
 			}
 		})

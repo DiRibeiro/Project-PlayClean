@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux'
 import FormCataTreco from './form/FormCataTreco'
 import { postCataTreco } from '../actions/cataTrecoActions'
 
-const CataTreco = () => {
+const CataTreco = (props) => {
     const dispatch = useDispatch()
 
     const handleForm = (values) => {
-        dispatch(postCataTreco(values))
+        dispatch(postCataTreco(values, props.router))
     }
 
     return (

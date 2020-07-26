@@ -17,7 +17,8 @@ export const getLeis = () => {
 	}
 }
 
-export const postLeis = values => {
+export const postLeis = (values, router) => {
+
     return dispatch => {
      console.log("POSTING LAWS") //percei que isso nunca era chamado!!!
     
@@ -32,8 +33,9 @@ export const postLeis = values => {
 				toastr.error('Erro!', response)
 
 			else if (response.status === 200) {
-				dispatch(reset('newLeisForm'))
-				window.location = '/listLeis'                
+                dispatch(reset('newLeisForm'))
+                //window.location = '/listLeis'
+                router.push('/listLeis')            
 				toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
 			}
 		})
