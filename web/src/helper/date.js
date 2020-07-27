@@ -8,7 +8,7 @@ export const fullDate = value => {
 
 export const shortDate = value => {
     let date = new Date(value)
-    return `${ date.getDate()} de ${ date.getMonth() } de ${ date.getFullYear() }`
+    return `${ date.getUTCDate()}/${ date.getUTCMonth() + 1 }/${ date.getFullYear() }`
 }
 
 export const getMonth = value => months[value]

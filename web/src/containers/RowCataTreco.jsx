@@ -8,13 +8,13 @@ const RowCataTreco = props => {
         let statusDom
         let cataTreco = props.cataTreco || props
 
-        if(cataTreco.status === 0)
+        if(cataTreco.status === 1)
             statusDom = (<button className="btn btn-success">Agendado</button>)
 
-        else if(cataTreco.status === 1) 
+        else if(cataTreco.status === 2) 
             statusDom = (<button className="btn btn-dark">Realizado</button>)
 
-        else if(cataTreco.status === 2) 
+        else if(cataTreco.status === 0) 
             statusDom = (<button className="btn btn-warning">Pendente</button>)
 
         return (

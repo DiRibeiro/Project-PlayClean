@@ -39,9 +39,10 @@ app.delete('/calendars', TokenValidation, Calendar.delete)
 
 //Cata Treco
 app.get('/cataTreco', (req, res) => CataTrecoDAO.getCataTreco(req, res))
+app.get('/allCataTreco', (req, res) => CataTrecoDAO.getAllCataTreco(req, res))
 app.post('/cataTreco',(req, res) => CataTrecoDAO.postCataTreco(req, res))
 app.post('/cataTrecoStatus', TokenValidation, (req, res) => CataTrecoDAO.setStatus(req, res))
-//app.put('/cataTreco',(req, res) => CataTrecoDAO.deleteCataTreco(req, res))
+app.delete('/cataTreco/:id', CataTrecoDAO.deleteCataTreco)
 
 // app.get('/get', (req, res) => CataTrecoDAO.get(req, res))
 //Leis

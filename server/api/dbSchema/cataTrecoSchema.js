@@ -22,7 +22,8 @@ const cataTrecoSchema = new mongoose.Schema({
     protocol: {
         type: Number,
         default: 0
-    }
+    },
+    dateToCollect: { type: Date, default: null}
 });
 
 module.exports = cataTrecoSchema

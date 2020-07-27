@@ -1,19 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setStatus ,getCataTreco } from '../actions/cataTrecoActions'
+import { setStatus ,getCataTreco, removeCataTreco } from '../actions/cataTrecoActions'
 
-import { fullDate } from '../helper/date'
+import { fullDate, shortDate } from '../helper/date'
 import { useEffect } from 'react'
 
 const ShowCataTrecoDetails = props => { 
 	const dispatch = useDispatch()
 	const cataTreco = useSelector(state => state.cataTreco.list)
 	const ct = cataTreco.find(element => element._id === props.location.state) || undefined
-	
+    
+    const [dateToCollect, setDateToCollect] = useState('');
+
 	useEffect(() => {
 		dispatch(getCataTreco())
 	}, [])
-	
+    
+    /*
 	const showStatus = () => (
 		<div className='showStatus'>
 			<button className="btn btn-success showBtn"
@@ -29,7 +32,20 @@ const ShowCataTrecoDetails = props => {
 			>Pendente
 			</button>
 		</div>
-	)
+    )
+    */
+
+    const updateStatus = () => {
+        console.log("Updating...")
+        console.log(ct)
+        dispatch(setStatus(ct._id, 1, dateToCollect));
+        
+    }
+
+    const remove = () => {
+        dispatch(removeCataTreco(ct._id));
+    
+    }
 
 	return ct !== undefined ? (
 		<div className='box box-success'>
@@ -38,7 +54,7 @@ const ShowCataTrecoDetails = props => {
 					
 					{ /* Info */ }
 					<div className='col-xl-8 col-md-6'>
-					{ showStatus() }
+                    {/* showStatus() */}
 						<h4>Cata-Treco</h4>
 						<br />
 						<span>
@@ -66,6 +82,29 @@ const ShowCataTrecoDetails = props => {
 					</div>
 				</div>
 			</div>
+            
+            {ct.status == 0 ? 
+            <div style={{marginLeft: 20}}>
+                <h3>Agendar para</h3>
+                <div style={{display: 'flex'}}>
+                <input  style={{width: '300px'}}
+                    id='dateToCollect'
+                    className='form-control inputDate'
+                    onChange={(e) => setDateToCollect(e.target.value)}
+                    name='dateToCollect'
+                    type='date'
+                    value={dateToCollect}
+                />
+				<button onClick={() => updateStatus()}>Confirmar</button>	
+                </div>
+            </div>
+            :
+            <div>
+                <h2>Agendado pra o dia: {shortDate(ct.dateToCollect)}</h2>
+                <button onClick={() => remove()}>Remover</button>
+            </div>
+            }
+            <br></br>
 		</div>
 	) : (
 		<>{ (window.location = '/listCataTreco') }</>

@@ -6,7 +6,7 @@ import BASE_URL from '../config/consts'
 
 export const getCataTreco = () => {
 	return dispatch => {
-		axios.get(`${BASE_URL}/cataTreco`)
+		axios.get(`${BASE_URL}/allCataTreco`)
 			.then(result =>
 				dispatch({
 					type: 'CATATRECO_FETCHED',
@@ -34,10 +34,10 @@ export const postCataTreco = (values, router) => dispatch => {
 		.catch(error => toastr.error('Erro!', 'Internal server error'))
 }
 
-export const setStatus = (status, _id) => {
+export const setStatus = (_id, status, dateToCollect) => {
 	return dispatch => {
 		axios
-			.post(`${BASE_URL}/cataTrecoStatus`, { status, _id })
+			.post(`${BASE_URL}/cataTrecoStatus`, { _id, status, dateToCollect })
 			.then(response => {
 				if (response.status === 202) toastr.error('Erro!', response)
 				else if (response.status === 200) {
@@ -45,7 +45,28 @@ export const setStatus = (status, _id) => {
 						'Sucesso!',
 						'Registro atualizado com sucesso!'
 					)
-					dispatch(getCataTreco())
+                    dispatch(getCataTreco())
+                    window.location='/listCataTreco';
+				}
+			})
+			.catch(error => toastr.error('Erro!', 'Internal server error'))
+	}
+}
+
+
+export const removeCataTreco = _id => {
+	return dispatch => {
+		axios
+			.delete(`${BASE_URL}/cataTreco/${_id}`)
+			.then(response => {
+				if (response.status === 202) toastr.error('Erro!', response)
+				else if (response.status === 200) {
+					toastr.success(
+						'Sucesso!',
+						'Registro removido com sucesso!'
+					)
+                    dispatch(getCataTreco())
+                    window.location='/listCataTreco';
 				}
 			})
 			.catch(error => toastr.error('Erro!', 'Internal server error'))

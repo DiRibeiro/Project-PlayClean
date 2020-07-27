@@ -35,7 +35,7 @@ export const postLeis = (values, router) => {
 			else if (response.status === 200) {
                 dispatch(reset('newLeisForm'))
                 //window.location = '/listLeis'
-                router.push('/listLeis')            
+                router.push('/listLeis')            //that is the correct way... but I changed nginx setup too
 				toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
 			}
 		})

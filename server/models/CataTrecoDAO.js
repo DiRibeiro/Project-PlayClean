@@ -5,6 +5,18 @@ const { cataTreco } = require('../config/db')
 
 const getCataTreco = (req, res, next) => {
     cataTreco
+        .find({status: 1})
+        .sort({ dateCreate: -1 })
+        .then(data => {
+            res.status(200).json(data)
+        }).catch(err => {
+            res.status(400).json(err)
+        })
+}
+
+
+const getAllCataTreco = (req, res, next) => {
+    cataTreco
         .find()
         .sort({ dateCreate: -1 })
         .then(data => {
@@ -32,18 +44,20 @@ const postCataTreco = (req, res, next) => {
         })
 }
 
-const setStatus = (req, res) =>
+const setStatus = (req, res) => {
+    console.log(req.body)
 	cataTreco.updateOne(
 		{ _id: mongoose.Types.ObjectId(req.body._id) },
-		{ status: req.body.status },
+        { status: req.body.status,
+            dateToCollect: req.body.dateToCollect },
 		(err, response) =>
 			err ? res.status(202).json(err) : res.status(200).json(response)
     )
-
+}
 
 const deleteCataTreco = (req, res, next) => {
     cataTreco
-        .deleteOne({'protocol' : req.query.protocol})
+        .deleteOne({'_id' : req.params.id})
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {
@@ -52,4 +66,4 @@ const deleteCataTreco = (req, res, next) => {
 }
 
     
-module.exports = {setStatus, getCataTreco, postCataTreco, deleteCataTreco}
+module.exports = {setStatus, getCataTreco, postCataTreco, deleteCataTreco, getAllCataTreco}
