@@ -30,7 +30,8 @@ const ColetaForm = props => {
                             <div className="input-group">
                                 {/* <span className="input-group-addon"><i className="fas fa-signature"/></span> */}
                                 <Field name='type' component="select" className="form-control select">
-                                    <option value="organica" defaultValue>Orgânica</option>
+                                    <option value="" disabled defaultValue>Selecione</option>
+                                    <option value="organica" >Orgânica</option>
                                     <option value="seletiva" >Seletiva</option>
                                 </Field>
                             </div>
