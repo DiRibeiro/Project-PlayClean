@@ -138,7 +138,7 @@ const Form = props => {
                 <button
                     type='submit'
                     className='btn btn-success btnLogin'
-                    onClick={() => { dispatch(window.location = '/listReport')}}
+                    //onClick={() => { dispatch(window.location = '/listReport')}}
                     >Cadastrar</button>
             </div>
         </form>
