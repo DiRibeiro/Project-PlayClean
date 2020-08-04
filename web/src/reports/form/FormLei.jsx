@@ -25,10 +25,10 @@ let FormLei = props => {
                         {/* <h5><b>Dados das leis municipais</b></h5> */}
                         <div className="row mb-3">
                             <div className="col-md-6">
-                                <label>Artigo da lei</label>
+                                <label>Título da lei</label>
                                 <div className="input-group">
                                     <span className="input-group-addon"><i className="fas fa-signature"/></span>
-                                    <Field name="title" component="input" type="text" placeholder="Artigo da lei" className="form-control" />
+                                    <Field name="title" component="input" type="text" placeholder="Titulo da lei" className="form-control" />
                                 </div>
                                 {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
                             </div>
@@ -46,13 +46,6 @@ let FormLei = props => {
                                     </Field>
                                 </div>
                                 {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
-                            </div>
-                        </div>
-                        <div className='row'>    
-                            <div className="col-md-6">
-                                <label>Descrição da lei</label>
-                                    <Field name="description" row='6' component="textarea" type="text" placeholder="Descreva da lei" className="form-control" />
-                                    {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
                             </div>
                         </div>
                         <div className='row'>    
