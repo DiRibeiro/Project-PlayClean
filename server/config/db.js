@@ -18,19 +18,19 @@ const calendars = mongoose.model('calendars', calendarSchema)
 const photos = mongoose.model('photos', photosSchema)
 const coleta = mongoose.model('coleta', coletaSchema)
 
-user.find({ 'userName': 'admin' })
+user.find({ 'userName': 'prefeitura' })
     .then(result => {
         const adminExists = result;
         console.log("Admin: ", adminExists)
         if (result.length < 1) {
             user.insertMany({
-                firstName: "Diego",
-                lastName: "RIbeiro",
-                cpf: "07998634910",
-                phone: "51989405478",
-                userName: "admin",
+                firstName: "Prefeitura",
+                lastName: "Osorio",
+                cpf: "00000000000",
+                phone: "5136631947",
+                userName: "prefeitura",
                 type: "admin",
-                password: "admin"
+                password: "pref_JL"
             }, err => {
                 console.log(err)
             })
