@@ -5,7 +5,8 @@ const { photos } = require('../config/db')
 
 const getPhotos = (req, res, next) => {
 	photos
-		.find()
+        .find()
+        .sort({ created: -1 })
 		.exec((err, result) => {
 			if (err)
 				res.status(400).json(err)
