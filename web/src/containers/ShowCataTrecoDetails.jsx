@@ -5,6 +5,10 @@ import { setStatus ,getCataTreco, removeCataTreco } from '../actions/cataTrecoAc
 import { fullDate, shortDate } from '../helper/date'
 import { useEffect } from 'react'
 
+
+import 'react-widgets/dist/css/react-widgets.css'
+
+
 const ShowCataTrecoDetails = props => { 
 	const dispatch = useDispatch()
 	const cataTreco = useSelector(state => state.cataTreco.list)
@@ -37,8 +41,9 @@ const ShowCataTrecoDetails = props => {
 
     const updateStatus = () => {
         console.log("Updating...")
-        console.log(ct)
-        dispatch(setStatus(ct._id, 1, dateToCollect));
+        console.log(ct, dateToCollect)
+        let date = new Date(new Date(dateToCollect).getTime() + 12 * 3600 * 1000)
+        dispatch(setStatus(ct._id, 1, date));
         
     }
 
@@ -55,7 +60,7 @@ const ShowCataTrecoDetails = props => {
 					{ /* Info */ }
 					<div className='col-xl-8 col-md-6'>
                     {/* showStatus() */}
-						<h4>Cata-Treco</h4>
+						<h3>Cata-Treco</h3>
 						<br />
 						<span>
 							Cadastrado dia: { fullDate(ct.dateCreate) }
@@ -93,14 +98,30 @@ const ShowCataTrecoDetails = props => {
                     onChange={(e) => setDateToCollect(e.target.value)}
                     name='dateToCollect'
                     type='date'
+                    format='dd/MM/yyyy'
                     value={dateToCollect}
                 />
 				<button onClick={() => updateStatus()}>Confirmar</button>	
                 </div>
+                <br></br>
+                <button onClick={() => remove()}>Remover</button>
             </div>
             :
-            <div>
+            <div style={{marginLeft: 20}}> 
                 <h2>Agendado pra o dia: {shortDate(ct.dateToCollect)}</h2>
+                <div style={{display: 'flex'}}>
+                <input  style={{width: '300px'}}
+                    id='dateToCollect'
+                    className='form-control inputDate'
+                    onChange={(e) => setDateToCollect(e.target.value)}
+                    name='dateToCollect'
+                    type='date'
+                    format='dd/MM/yyyy'
+                    value={dateToCollect}
+                />
+                <button onClick={() => updateStatus()}>Atualizar Agendamento</button>	
+                </div>
+                <br></br>
                 <button onClick={() => remove()}>Remover</button>
             </div>
             }
