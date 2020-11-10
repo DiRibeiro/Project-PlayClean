@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 
 import 'react-widgets/dist/css/react-widgets.css'
 
 let FormPhotos = props => {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const { handleSubmit, handleImage } = props
     const [files, setFiles] = useState(props.photos)
     

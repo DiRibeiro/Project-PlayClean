@@ -7,7 +7,7 @@ import MenuTree from '../template/MenuTree'
 // import UserSide from '../containers/UserSide'
 
 // import { tradeTokenToUser, updateToken } from '../actions/userActions'
-import { setSidebarEvents, setSidebarReport, setSidebarColletions, setSidebarCataTreco, setSidebarLei } from '../actions/utilsActions'
+import { setSidebarEvents, setSidebarReport, /* setSidebarColletions, */ setSidebarCataTreco, setSidebarLei } from '../actions/utilsActions'
 
 export default () => {
 	const dispatch = useDispatch()

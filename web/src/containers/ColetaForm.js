@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React/* , { useEffect } */ from 'react'
 import { Field, reduxForm } from 'redux-form'
 
 import 'react-widgets/dist/css/react-widgets.css'

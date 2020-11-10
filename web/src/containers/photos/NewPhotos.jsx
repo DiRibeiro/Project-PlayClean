@@ -3,7 +3,7 @@ import {postPhotos, getPhotos} from '../../actions/photosActions'
 import FormData from 'form-data'
 import { useDispatch, useSelector } from 'react-redux'
 import FormPhotos from './FormPhotos'
-import Gallery from 'react-grid-gallery'
+// import Gallery from 'react-grid-gallery'
 import BASE_URL from '../../config/consts'
 const Photos = (props) => {
     const dispatch = useDispatch()
@@ -11,12 +11,12 @@ const Photos = (props) => {
 
     const photosOnBackend = useSelector(state => state.photos.photo)
     
-    const IMAGES = [{
-        src: "http://localhost:3001/uploads/LogoAzul_FundoBranco-1592242728235.jpg",
-        thumbnail: "http://localhost:3001/uploads/LogoAzul_FundoBranco-1592242728235.jpg",
-        thumbnailWidth: 320,
-        thumbnailHeight: 174
-    }]
+    // const IMAGES = [{
+    //     src: "http://localhost:3001/uploads/LogoAzul_FundoBranco-1592242728235.jpg",
+    //     thumbnail: "http://localhost:3001/uploads/LogoAzul_FundoBranco-1592242728235.jpg",
+    //     thumbnailWidth: 320,
+    //     thumbnailHeight: 174
+    // }]
     
     
     const [title, setTitle] = useState('')

@@ -21,7 +21,7 @@ const TodoList = props => {
                 <td>{todo.title}</td>
                 <td className={todo.done ? 'markedAsDone' : ''}>{todo.description}</td>
                 <td className={todo.done ? 'markedAsDone' : ''}>{fullDate(todo.dateOcurr)}</td>
-                <td><a href={`${BASE_URL}/${todo.image}`} target="_blank">LINK</a></td>
+                <td><a href={`${BASE_URL}/${todo.image}`} target="_blank" rel='noopener noreferrer'>LINK</a></td>
                 <td>
                     {/* <button className='btn-success btn-add'
                         onClick={() => props.markAsDone(todo)}><i className="fa fa-check"></i></button>

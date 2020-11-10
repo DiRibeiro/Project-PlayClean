@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Field, reduxForm } from 'redux-form'
+// import { Field, reduxForm } from 'redux-form'
 import { useDispatch, useSelector } from 'react-redux'
 
 import 'react-widgets/dist/css/react-widgets.css'
@@ -32,7 +32,7 @@ let Coleta = props => {
         return allColetas.map(coleta => (
             <div key={coleta._id}>
                 <h2>{coleta.neighborhood}</h2>
-                <h4>{coleta.type == 'organica' ? 'Orgânica' : 'Seletiva'}</h4>
+                <h4>{coleta.type === 'organica' ? 'Orgânica' : 'Seletiva'}</h4>
                 <p>{coleta.description}</p>
                 <button className="btn-danger" onClick={() => removeColeta(coleta._id)}>Remover</button>
                 <hr/>

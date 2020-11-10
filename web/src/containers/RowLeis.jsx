@@ -22,7 +22,7 @@ const RowLeis = props => {
                         <h3 className="box-title">{ lei.title }</h3>
                         <span>Tipo de lei {lei.type}</span><br />
                         <p>{ lei.description }</p>
-                        <a href={BASE_URL + '/' + lei.file} target='_blank'>ARQUIVO</a>
+                        <a href={BASE_URL + '/' + lei.file} target='_blank' rel='noopener noreferrer'>ARQUIVO</a>
                     </div>
                     <Link to={{ pathname: '/showDetailLeis', state: lei._id }} >
                         <button className="btn btn-primary bottomZero">Ver mais</button>

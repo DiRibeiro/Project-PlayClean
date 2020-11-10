@@ -88,7 +88,7 @@ const ShowCataTrecoDetails = props => {
 				</div>
 			</div>
             
-            {ct.status == 0 ? 
+            {ct.status === 0 ? 
             <div style={{marginLeft: 20}}>
                 <h3>Agendar para</h3>
                 <div style={{display: 'flex'}}>

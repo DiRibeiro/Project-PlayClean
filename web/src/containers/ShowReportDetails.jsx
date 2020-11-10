@@ -35,7 +35,7 @@ const ShowReportDetails = props => {
 	const showImages = () => {
 		return report.images.map((img, index) => (
 
-			<div  style= {{ display:'block', height: '50%'}}
+			<div  style= {{ display:'block', height: '33%'}}
 				key={ index }
 				className={ `item ${ index._id === 0 ? 'active' : '' }` } >
 				<img

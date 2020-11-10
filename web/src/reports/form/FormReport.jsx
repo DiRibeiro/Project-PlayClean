@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { connect, useDispatch} from 'react-redux'
+import { connect/* , useDispatch */} from 'react-redux'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
 import { createTextMask } from 'redux-form-input-masks'
 // import { DateTimePicker } from 'react-widgets'
@@ -11,7 +11,7 @@ import 'react-widgets/dist/css/react-widgets.css'
 
 const Form = props => {
     const { handleSubmit, handleImage } = props
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const [files] = useState(props.images)
 
     const phoneMask = createTextMask({ pattern: '(99) 99999-9999' })

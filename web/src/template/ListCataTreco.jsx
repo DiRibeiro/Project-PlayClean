@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Loader from 'react-loader-spinner'
+// import Loader from 'react-loader-spinner'
 
 import RowCataTreco from '../containers/RowCataTreco'
 import { getCataTreco } from '../actions/cataTrecoActions'

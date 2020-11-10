@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import LineChart from '../widget/LineChart'
-import DoughnutChart from '../widget/DoughnutChart'
+// import DoughnutChart from '../widget/DoughnutChart'
 
 import Bookmark from '../widget/Bookmark'
 import Map from '../widget/Map'
@@ -17,7 +17,7 @@ const Dashboard = () => {
         
     const bookmark = useSelector(state => state.dashboard.bookmark)
     const lineChart = useSelector(state => state.dashboard.lineChart)
-    const doughnutChart = useSelector(state => state.dashboard.doughnutChart)
+    // const doughnutChart = useSelector(state => state.dashboard.doughnutChart)
     const map = useSelector(state => state.dashboard.map)
 
     useEffect(() => {
@@ -54,10 +54,10 @@ const Dashboard = () => {
                         <div className="col-11 col-md-7">
                             <LineChart data={ lineChart.data } style={{ marginLeft: '8px' }}/>
                         </div>
-                        <div className="col-11 col-md-5">
+                        {/* <div className="col-11 col-md-5">
                             <h4>Denúncias por bairro</h4>
                             <DoughnutChart labels={ doughnutChart.labels } data={ doughnutChart.data } />
-                        </div>
+                        </div> */}
                     </div>
                     <Map map={ map } />
                 </div>
