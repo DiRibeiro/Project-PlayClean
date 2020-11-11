@@ -7,7 +7,7 @@ export const fullDate = value => {
 
 export const shortDate = value => {
     let date = new Date(new Date(value).getTime() - 3*3600*1000)
-    return `${ date.getUTCDate()}/${ date.getUTCMonth() + 1 }/${ date.getFullYear() }`
+    return `${ date.getUTCDate()}/${ date.getUTCMonth() }/${ date.getFullYear() }`
 }
 
 export const getMonth = value => months[value]

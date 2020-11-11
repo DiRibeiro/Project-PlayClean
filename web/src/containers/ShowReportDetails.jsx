@@ -14,24 +14,43 @@ const ShowReportDetails = props => {
 		dispatch(getReports())
 	}, [])
 	
-	const showStatus = () => (
-		<div className='showStatus'>
-			<button className="btn btn-success showBtn"
-				onClick={ () => dispatch(setStatus(0, report._id), window.location='/listReport') }
-			>Aberta
-			</button>
-			<button className="btn btn-dark showBtn"
-				onClick={ () => dispatch(setStatus(1, report._id), window.location='/listReport') }
-			>Fechada
-			</button>
-        	<button className="btn btn-warning showBtn"
-				onClick={ () => dispatch(setStatus(2, report._id), window.location='/listReport') }
+	// const showStatus = () => (
+	// 	<div className='showStatus'>
+	// 		<button className="btn btn-success showBtn"
+	// 			onClick={ () => dispatch(setStatus(0, report._id), window.location='/listReport') }
+	// 		>Aberta
+	// 		</button>
+	// 		<button className="btn btn-dark showBtn"
+	// 			onClick={ () => dispatch(setStatus(1, report._id), window.location='/listReport') }
+	// 		>Fechada
+	// 		</button>
+    //     	<button className="btn btn-warning showBtn"
+	// 			onClick={ () => dispatch(setStatus(2, report._id), window.location='/listReport') }
 				
-				>Pendente
-				</button>
+	// 			>Pendente
+	// 			</button>
+	// 	</div>
+	// )
+	
+	const showStatus = () => (
+		<div className="btn-group showStatus">
+			<button type="button" className="btn-badge btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Selecione o status
+			</button>
+			<div className="dropdown-menu">
+				<button className="btn btn-badge btn-success" 
+					onClick={ () => dispatch(setStatus(0, report._id), window.location='/listReport') }
+				>Aberto</button>
+				<button className="btn btn-badge btn-dark" 
+					onClick={ () => dispatch(setStatus(1, report._id), window.location='/listReport') }
+				>Fechado</button>
+				<button className="btn btn-badge btn-warning" 
+					onClick={ () => dispatch(setStatus(2, report._id), window.location='/listReport') }
+				>Pendente</button>
+			</div>
 		</div>
 	)
-	
+
 	const showImages = () => {
 		return report.images.map((img, index) => (
 
@@ -94,7 +113,7 @@ const ShowReportDetails = props => {
 					</div>
 					{ /* Info */ }
 					<div className='col-xl-8 col-md-6'>
-						{ showStatus() }
+						Esta denúncia está: { showStatus() }
 						<h4>Tipo de denúncia: { report.typeReport }</h4>
 						<span>
 							Cadastrado dia: { fullDate(report.dateCreate)}

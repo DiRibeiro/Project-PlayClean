@@ -7,8 +7,8 @@ import thunk from 'redux-thunk'
 import ReduxToastr from 'react-redux-toastr'
 
 import reducers from './reducers/reducers'
-// import Auth from './main/Auth' 
-import Routes from './main/Routes' 
+import Auth from './main/Auth' 
+// import Routes from './main/Routes' 
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
     && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -20,8 +20,8 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={ store } >
         <>
-            {/* <Auth /> */}
-            <Routes/>
+            <Auth />
+            {/* <Routes/> */}
             <ReduxToastr
                 timeOut={ 3500 }
                 newestOnTop={ true }

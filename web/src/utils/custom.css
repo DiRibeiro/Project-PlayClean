@@ -714,9 +714,9 @@ input {
 }
 
 .showStatus {
-    float: right;
+    /* float: right;
     display: grid;
-    padding: inherit;
+    padding: inherit; */
 }
 
 .showBtn {
@@ -860,6 +860,14 @@ calendarLi:nth-child(2n) {
 }
 
 .btn {
+    /* cursor: default; */
+    width: 6em;
+}
+
+.btn-badge {
+    padding: 2px;
+    height: 2em;
+    cursor: default;
     width: 6em;
 }
 
