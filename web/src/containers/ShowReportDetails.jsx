@@ -65,13 +65,13 @@ const ShowReportDetails = props => {
 		))
 	}
 
-	// const renderIndicators = () => {
-	// 	report.images.forEach((img, index) => (
-	// 		<li
-	// 			data-target='#carousel'
-	// 			data-slide-to={ index }
-	// 			className={ `${ index === 0 ? 'active' : '' }` }></li>
-	// 	))}
+	const renderIndicators = () => {
+		report.images.forEach((img, index) => (
+			<li
+				data-target='#carousel'
+				data-slide-to={ index }
+				className={ `${ index === 0 ? 'active' : '' }` }></li>
+		))}
 		
 	return report !== undefined ? (
 
@@ -81,36 +81,39 @@ const ShowReportDetails = props => {
 			
 				<div className='row'>
 					{/* Carroussel */}
-			
 					<div className='col-md-6'>
 						<div className='box box-solid'>
 							<div className='box-body'>
+								<div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
 								<div
 									id='carousel'
 									className='carousel slide'
 									data-ride='carousel'>
-									{/* <ol className='carousel-indicators'>
+									<ol className='carousel-indicators'>
 										{ renderIndicators() }
-									</ol> */}
+									</ol>
 									<div className='carousel-inner'>
 										{ showImages() }
 									</div>
-									{/* <a
-										className='left carousel-control'
-										href='#carousel'
-										data-slide='prev'>
-										<span className='fa fa-angle-left'></span>
-									</a>
-									<a
-										className='right carousel-control'
-										href='#carousel'
-										data-slide='next'>
-										<span className='fa fa-angle-right'></span>
-									</a> */}
+								</div>
+
+								<a
+									className='left carousel-control'
+									href='#carousel'
+									data-slide='prev'>
+									<span className='fa fa-angle-left'></span>
+								</a>
+								<a
+									className='right carousel-control'
+									href='#carousel'
+									data-slide='next'>
+									<span className='fa fa-angle-right'></span>
+								</a>
 								</div>
 							</div>
 						</div>
 					</div>
+
 					{ /* Info */ }
 					<div className='col-xl-8 col-md-6'>
 						Esta denúncia está: { showStatus() }
