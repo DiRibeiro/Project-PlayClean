@@ -8,7 +8,8 @@ import NewCataTreco from '../reports/NewCataTreco'
 import Dashboard from '../template/Dashboard'
 import ListReports from '../template/ListReport'
 import ReportDetail from '../containers/ShowReportDetails'
-import Coleta from '../containers/Coleta'
+import Coleta from '../containers/coletas/Coleta'
+import ListColetas from '../containers/coletas/ListColetas'
 import ListCataTreco from '../template/ListCataTreco'
 import CataTrecoDetail from '../containers/ShowCataTrecoDetails'
 import Photos from '../containers/photos/NewPhotos'
@@ -29,6 +30,7 @@ export default () => (
             <Route path='dashboard' component={ Dashboard } />
             <Route path='listReport' component={ ListReports } />
             <Route path='coleta' component={ Coleta } />
+            <Route path='listColetas' component={ ListColetas } />
             <Route path='leis' component={ Leis } />
             <Route path='listLeis' component={ ListLeis } />
             <Route path='showDetailLeis' component={ LeisDetail } />

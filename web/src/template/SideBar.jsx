@@ -7,7 +7,7 @@ import MenuTree from '../template/MenuTree'
 // import UserSide from '../containers/UserSide'
 
 // import { tradeTokenToUser, updateToken } from '../actions/userActions'
-import { setSidebarEvents, setSidebarReport, /* setSidebarColletions, */ setSidebarCataTreco, setSidebarLei } from '../actions/utilsActions'
+import { setSidebarEvents, setSidebarReport, setSidebarCataTreco, setSidebarLei, setSidebarColetas } from '../actions/utilsActions'
 
 export default () => {
 	const dispatch = useDispatch()
@@ -19,6 +19,7 @@ export default () => {
 	const eventsOpen = useSelector(state => state.utils.sideEventsOpen)
 	const cataTrecoOpen = useSelector(state => state.utils.sideCataTrecoOpen)
 	const leiOpen = useSelector(state => state.utils.sideLeiOpen)
+	const coletasOpen = useSelector(state => state.utils.sideColetasOpen)
 
 
 	useEffect(() => {
@@ -86,13 +87,27 @@ export default () => {
 							<MenuItem
 								path='photos'
 								icon='photo'
-								label='Galeria de fotos' />
+								label='Mural' />
 							{/* <MenuItem path='registerLostevents' icon='home' label='Cadastrar perdido' /> */}
 						</MenuTree>
 					</li>
 
-                    <MenuItem path='coleta' icon='recycle' label='Coletas' />
-					
+					<li className={ `treeview ${ coletasOpen ? 'menu-open' : '' }` }>
+						<MenuTree
+							open={ coletasOpen ? 'true' : '' }
+							icon='recycle'
+							label='Coletas'
+							onClick={ () => dispatch(setSidebarColetas()) }>
+							<MenuItem 
+								path='listColetas' 
+								icon='eye'
+								label='Ver Coletas' />
+							<MenuItem
+								path='coleta'
+								icon='plus-square'
+								label='Agendar Coletas' />
+						</MenuTree>
+					</li>
 
 					<li className={ `treeview ${ cataTrecoOpen ? 'menu-open' : '' }` }>
 						<MenuTree

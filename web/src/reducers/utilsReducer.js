@@ -4,6 +4,7 @@ const INITIAL_STATE = {
     sideCollectionsOpen: null,
     sideCataTrecoOpen: null,
     sideLeiOpen: null,
+    sideColetasOpen: null,
     loading: false
 }
 
@@ -33,6 +34,11 @@ export default (state = INITIAL_STATE, action) => {
             return { 
                 ...state, 
                 sideLeiOpen: !state.sideLeiOpen
+            }
+        case 'SIDEBAR_COLETAS':
+            return { 
+                ...state, 
+                sideColetasOpen: !state.sideColetasOpen
             }
         case 'LOAD':
             return {

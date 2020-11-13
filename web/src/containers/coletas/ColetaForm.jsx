@@ -25,7 +25,7 @@ const ColetaForm = props => {
                                     <option value="Albatroz" >Albatroz</option>
                                     <option value="Arroio das Pedras" >Arroio das Pedras</option>
                                     <option value="Arroio Grande" >Arroio Grande</option>
-                                    <option value="atlantida sul" >Atlântida Sul</option>
+                                    <option value="Atlântida Sul" >Atlântida Sul</option>
                                     <option value="Baixada" >Baixada</option>
                                     <option value="Barranceira" >Barranceira</option>
                                     <option value="Borrúsia" >Borrúsia</option>
