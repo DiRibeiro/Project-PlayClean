@@ -1,8 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { useDispatch} from 'react-redux'
+// import { Link } from 'react-router'
 import BASE_URL from '../config/consts'
+import {deleteLeis} from '../actions/leisActions'
+
 const RowLeis = props => {
     const renderDom = () => {
+        const dispatch = useDispatch()
         let statusDom
         let lei = props.leis || props
     
@@ -15,6 +19,9 @@ const RowLeis = props => {
         else if(lei.status === 2) 
             statusDom = (<button className="btn btn-warning">Pendente</button>)
 
+        const removeLeis = id => {
+            dispatch(deleteLeis(id));
+        }
         return (
             <div className="box box-success">
                 <div className="box-body listLeis">
@@ -24,9 +31,13 @@ const RowLeis = props => {
                         <p>{ lei.description }</p>
                         <a href={BASE_URL + '/' + lei.file} target='_blank' rel='noopener noreferrer'>ARQUIVO</a>
                     </div>
-                    <Link to={{ pathname: '/showDetailLeis', state: lei._id }} >
+                    {/* <Link to={{ pathname: '/showDetailLeis', state: lei._id }} >
                         <button className="btn btn-primary bottomZero">Ver mais</button>
-                    </Link>
+                    </Link> */}
+                    <button className="btn-danger"
+                        onClick={() => removeLeis(lei._id)}>
+                        <i className='fa fa-trash-o'></i>
+                    </button>
                     { statusDom }
                 </div>
             </div>

@@ -42,3 +42,12 @@ export const postLeis = (values, router) => {
         .catch(error => toastr.error('Erro!', 'Internal server error'))
     }
 }
+
+export const deleteLeis = id => {	
+	return dispatch => {
+		axios.delete(`${BASE_URL}/leis/${id}`)
+		.then(result => {
+			dispatch(getLeis());
+		}).catch(error => toastr.error('Erro!', 'Internal server error'))
+	}
+}
