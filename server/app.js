@@ -27,7 +27,8 @@ app.get('/report', TokenValidation, (req, res) => ReportsDAO.getReport(req, res)
 app.post('/report', upload.array('images', 4), (req, res) => ReportsDAO.setReport(req, res))
 // app.post('/uploads', upload.array('images', 4), (req, res) => ReportsDAO.setReport(req, res))
 app.post('/reportStatus' , TokenValidation, (req, res) => ReportsDAO.setStatus(req, res))
-app.put('/report' , TokenValidation, (req, res) => ReportsDAO.deleteReport(req, res))
+app.get('/reportStatus' , TokenValidation, (req, res) => ReportsDAO.getStatus(req, res))
+app.delete('/report/:id' , TokenValidation, (req, res) => ReportsDAO.deleteReport(req, res))
 
 //Calendar Events
 app.get('/calendars', Calendar.get)

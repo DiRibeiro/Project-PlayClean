@@ -165,9 +165,19 @@ const setStatus = (req, res) =>
 			err ? res.status(202).json(err) : res.status(200).json(response)
 	)
 
+const getStatus = (req, res) =>
+	report
+		.find()
+        .then(data => {
+            // console.log(data)
+            res.status(200).json(data)
+        }).catch(err => {
+            res.status(400).json(err)
+        })
+
 const deleteReport = (req, res, next) => {
-	leis
-		.deleteOne({'_id' : req.query.whoCreated})
+	report
+		.deleteOne({'_id' : req.params.id})
 		.then(data => {
 			res.status(200).json(data)
 		}).catch(err => {
@@ -175,5 +185,4 @@ const deleteReport = (req, res, next) => {
 		})
 }
 
-
-module.exports = { getReport, setReport, getDataDashboard, setStatus, deleteReport }
+module.exports = { getReport, setReport, getDataDashboard, setStatus, getStatus, deleteReport }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setStatus, getReports } from '../actions/reportActions'
+import { setStatus, getReports, deleteReport } from '../actions/reportActions'
 
 import { fullDate } from '../helper/date'
 import { useEffect } from 'react'
@@ -9,48 +9,51 @@ const ShowReportDetails = props => {
 	const dispatch = useDispatch()
 	const reports = useSelector(state => state.reports.list)
 	const report = reports.find(element => element._id === props.location.state) || undefined
-	
+	let statusDOM
+
+	if(report.status === 0)
+		statusDOM = (<span className="btn btn-success">Aberta</span>)
+
+	else if(report.status === 1) 
+		statusDOM = (<span className="btn btn-danger">Fechada</span>)
+
+	else if(report.status === 2) 
+		statusDOM = (<span className="btn btn-warning">Pendente</span>)
+
 	useEffect(() => {
 		dispatch(getReports())
 	}, [])
 	
-	// const showStatus = () => (
-	// 	<div className='showStatus'>
-	// 		<button className="btn btn-success showBtn"
-	// 			onClick={ () => dispatch(setStatus(0, report._id), window.location='/listReport') }
-	// 		>Aberta
-	// 		</button>
-	// 		<button className="btn btn-dark showBtn"
-	// 			onClick={ () => dispatch(setStatus(1, report._id), window.location='/listReport') }
-	// 		>Fechada
-	// 		</button>
-    //     	<button className="btn btn-warning showBtn"
-	// 			onClick={ () => dispatch(setStatus(2, report._id), window.location='/listReport') }
-				
-	// 			>Pendente
-	// 			</button>
-	// 	</div>
-	// )
-	
+	const removeReport = id => {
+		dispatch(deleteReport(id));
+	}
+
 	const showStatus = () => (
-		<div className="btn-group showStatus">
-			<button type="button" className="btn-badge btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Selecione o status
+		<div className="btn-group">
+			<button type="button" className="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				{/* {console.log('aqui', report.status)} */}
+				{statusDOM}
 			</button>
+			
 			<div className="dropdown-menu">
-				<button className="btn btn-badge btn-success" 
+				<button className="btn btn-success" 
 					onClick={ () => dispatch(setStatus(0, report._id), window.location='/listReport') }
 				>Aberto</button>
-				<button className="btn btn-badge btn-dark" 
+				<button className="btn btn-danger" 
 					onClick={ () => dispatch(setStatus(1, report._id), window.location='/listReport') }
 				>Fechado</button>
-				<button className="btn btn-badge btn-warning" 
+				<button className="btn btn-warning" 
 					onClick={ () => dispatch(setStatus(2, report._id), window.location='/listReport') }
 				>Pendente</button>
 			</div>
+			<div className="btn-remove">
+				<button className="btn btn-danger btn-delete" 
+					onClick={ () => dispatch(removeReport(report._id), window.location='/listReport')}
+				><i className='fa fa-trash-o'></i></button>
+			</div>
 		</div>
 	)
-
+	
 	const showImages = () => {
 		return report.images.map((img, index) => (
 
@@ -116,7 +119,7 @@ const ShowReportDetails = props => {
 
 					{ /* Info */ }
 					<div className='col-xl-8 col-md-6'>
-						Esta denúncia está: { showStatus() }
+						Trocar status para: { showStatus() }
 						<h4>Tipo de denúncia: { report.typeReport }</h4>
 						<span>
 							Cadastrado dia: { fullDate(report.dateCreate)}
@@ -139,6 +142,7 @@ const ShowReportDetails = props => {
 						<br />
 						<b>Descrição: </b>
 						{ report.description }
+					
 					</div>
 				</div>
 			</div>

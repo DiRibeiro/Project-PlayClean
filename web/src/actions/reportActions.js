@@ -5,6 +5,7 @@ import { reset } from 'redux-form'
 import BASE_URL from '../config/consts'
 
 const REPORTS_FETCHED = 'REPORTS_FETCHED'
+const STATUS_FETCHED = 'STATUS_FETCHED'
 const LOAD = 'LOAD'
 
 export const getReports = () => {	
@@ -66,3 +67,26 @@ export const setStatus = (status, _id) => {
 			.catch(error => toastr.error('Erro!', 'Internal server error'))
 	}
 }
+
+export const getStatus = () => {
+	return dispatch => {
+		axios
+			.get(`${BASE_URL}/reportStatus`)
+			.then(result => {
+				console.log(result)
+				dispatch({ type: STATUS_FETCHED , payload: result.data})
+			}).catch(err => {
+				console.error(err)
+			})
+	}
+}
+
+export const deleteReport = id => {	
+	return dispatch => {
+		axios.delete(`${BASE_URL}/report/${id}`)
+		.then(result => {
+			dispatch(getReports());
+		}).catch(error => toastr.error('Erro!', 'Internal server error'))
+	}
+}
+
