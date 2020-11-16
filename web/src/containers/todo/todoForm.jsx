@@ -29,9 +29,10 @@ class TodoForm extends Component {
         return (
             <div className="box box-success">
                 <div className="box-body">
-                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div className='row'/* className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" */>
                         <div role='form' className='calendarForm'>
-                            <div className='calendar-input'>
+                            {/* <div className='calendar-input'> */}
+                            <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6'>
                                 <input 
                                     id='title' 
                                     className='form-control'
@@ -41,6 +42,8 @@ class TodoForm extends Component {
                                     name='title'
                                     type='text'
                                     value={title}/>
+                            </div>
+                            <div className='col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3'>
                                 <input 
                                     id='dateOcurr'
                                     className='form-control inputDate'
@@ -50,6 +53,8 @@ class TodoForm extends Component {
                                     type='date'
                                     value={this.dateOcurr}
                                 />
+                            </div>
+                            <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6'>
                                 <textarea 
                                     id='description' 
                                     className='form-control textarea-input'
@@ -59,31 +64,35 @@ class TodoForm extends Component {
                                     name='description'
                                     value={description}
                                     rows="4" cols="50"/>
-                            <div className='btn-calendar'>
-                                <label 
-                                    htmlFor="select-document"
-                                    className='input-select'
-                                    ><i className="fa fa-file-text" aria-hidden="true"></i></label>
-                                <input id="select-document"
-                                            type="file" 
-                                            name="file" 
-                                            accept="image/png, image/jpeg" 
-                                            onChange={this.props.changeFile}
-                                            style={{display:'none'}}
-                                            />
-                                <button className='btn-success btn-add'
-                                    onClick={() => {
-                                        console.log(file)
-                                        add(title, description, dateOcurr, file);
-                                    }}><i className="fa fa-plus" aria-hidden="true"/></button>
-                                
-                                <button className='btn-danger btn-close'
-                                    onClick={() => clear()}><i className="fa fa-close" aria-hidden="true"/></button>
                             </div>
-                            </div>
+                            {/* </div> */}
                         </div>
-                    </div>
                 </div>
+                <div className='row'>
+                    {/* <label 
+                        htmlFor="select-document"
+                        className='input-select'
+                        ><i className="fa fa-file-text" aria-hidden="true"></i></label> */}
+                    <input id="select-document"
+                        className="input-select"
+                        type="file" 
+                        name="file" 
+                        accept="image/png, image/jpeg" 
+                        onChange={this.props.changeFile}
+                        /* style={{display:'none'}} */
+                        />
+                </div>
+                <div className='btn-calendar'>
+                    <button className='btn-success btn-add'
+                        onClick={() => {
+                            console.log(file)
+                            add(title, description, dateOcurr, file);
+                        }}><i className="fa fa-plus" aria-hidden="true"/></button>
+                    
+                    <button className='btn-danger btn-close'
+                        onClick={() => clear()}><i className="fa fa-close" aria-hidden="true"/></button>
+                </div>
+            </div>
             </div>
         )
     }

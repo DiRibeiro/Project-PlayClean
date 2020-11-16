@@ -833,6 +833,7 @@ calendarLi:nth-child(2n) {
     justify-content: center;
     color: white;
     height: fit-content;
+    float: right;
 }
 
 .btn-add {
@@ -937,16 +938,19 @@ calendarLi:nth-child(2n) {
 
 .input-select {
     clear: 'both';
-    background-color: #076abb;
+    /* background-color: #076abb;
     color: #fff;
     margin-left: 0.5em;
     margin-bottom: 0;
     border: none;
     width: 3em;
     padding: 1em;
-    cursor: pointer;
+    cursor: pointer; */
+    margin-left: 1em;
+    margin-top: 1em;
+    border: none;
 }
 
 .textarea-input {
-    margin-left: 1em;
+    margin-top: 1em;
 }
