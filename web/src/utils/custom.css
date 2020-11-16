@@ -832,6 +832,7 @@ calendarLi:nth-child(2n) {
     flex-direction: row;
     justify-content: center;
     color: white;
+    height: fit-content;
 }
 
 .btn-add {
@@ -930,4 +931,22 @@ calendarLi:nth-child(2n) {
 
 .btn-dialog {
     justify-content: center !important;
+}
+
+/* Calendar */
+
+.input-select {
+    clear: 'both';
+    background-color: #076abb;
+    color: #fff;
+    margin-left: 0.5em;
+    margin-bottom: 0;
+    border: none;
+    width: 3em;
+    padding: 1em;
+    cursor: pointer;
+}
+
+.textarea-input {
+    margin-left: 1em;
 }

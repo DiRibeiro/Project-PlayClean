@@ -28,8 +28,8 @@ class TodoForm extends Component {
         const { title, add, description, clear, dateOcurr, file} = this.props
         return (
             <div className="box box-success">
-                <div className="box-body listLeis">
-                    <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                <div className="box-body">
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <div role='form' className='calendarForm'>
                             <div className='calendar-input'>
                                 <input 
@@ -42,15 +42,6 @@ class TodoForm extends Component {
                                     type='text'
                                     value={title}/>
                                 <input 
-                                    id='description' 
-                                    className='form-control'
-                                    placeholder='Descrição'
-                                    onChange={this.props.changeDescription}
-                                    onKeyUp={this.keyHandler}
-                                    name='description'
-                                    type='text'
-                                    value={description}/>
-                                <input 
                                     id='dateOcurr'
                                     className='form-control inputDate'
                                     onChange={this.props.changeDate}
@@ -59,13 +50,27 @@ class TodoForm extends Component {
                                     type='date'
                                     value={this.dateOcurr}
                                 />
+                                <textarea 
+                                    id='description' 
+                                    className='form-control textarea-input'
+                                    placeholder='Descrição'
+                                    onChange={this.props.changeDescription}
+                                    onKeyUp={this.keyHandler}
+                                    name='description'
+                                    value={description}
+                                    rows="4" cols="50"/>
+                            <div className='btn-calendar'>
+                                <label 
+                                    htmlFor="select-document"
+                                    className='input-select'
+                                    ><i className="fa fa-file-text" aria-hidden="true"></i></label>
                                 <input id="select-document"
                                             type="file" 
                                             name="file" 
                                             accept="image/png, image/jpeg" 
                                             onChange={this.props.changeFile}
+                                            style={{display:'none'}}
                                             />
-                            <div className='btn-calendar'>
                                 <button className='btn-success btn-add'
                                     onClick={() => {
                                         console.log(file)
