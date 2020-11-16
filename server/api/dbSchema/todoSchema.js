@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const todoSchema = new mongoose.Schema({
+    whoCreated: mongoose.Schema.Types.ObjectId,
     title: { type: String, required: true},
     description: { type: String, required: true},
     dateOcurr: { type: Date, default: Date.now },

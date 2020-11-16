@@ -77,7 +77,7 @@ class TodoForm extends Component {
                         className="input-select"
                         type="file" 
                         name="file" 
-                        accept="image/png, image/jpeg" 
+                        accept="image/*" 
                         onChange={this.props.changeFile}
                         /* style={{display:'none'}} */
                         />

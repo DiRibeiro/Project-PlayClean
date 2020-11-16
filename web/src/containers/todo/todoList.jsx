@@ -14,12 +14,16 @@ const TodoList = props => {
     useEffect(() => {
 		dispatch(search())
     }, [])
+
+    const removeCalendar = id => {
+        dispatch(remove(id));
+    }
     
     const renderRows = () => {
-        return list.map((todo, index) => (
-            <tr key={index}>
+        return list.map((todo) => (
+            <tr key={todo._id}>
                 <td>{todo.title}</td>
-                <td className={todo.done ? 'markedAsDone' : ''}>{todo.description}</td>
+                <td className='tableDescription'>{todo.description}</td>
                 <td className={todo.done ? 'markedAsDone' : ''}>{fullDate(todo.dateOcurr)}</td>
                 <td><a href={`${BASE_URL}/${todo.image}`} target="_blank" rel='noopener noreferrer'>LINK</a></td>
                 <td>
@@ -28,7 +32,7 @@ const TodoList = props => {
                     <button className='btn-warning btn-search'
                         onClick={() => props.markAsPending(todo)}><i className="fa fa-undo"></i></button> */}
                     <button className='btn-danger btn-close'
-                        onClick={() => props.remove()}><i className="fa fa-trash-o"></i></button>
+                        onClick={() => dispatch(removeCalendar(todo._id),window.location='/calendar')}><i className="fa fa-trash-o"></i></button>
                 </td>
                 
             </tr>
@@ -36,20 +40,22 @@ const TodoList = props => {
     }
 
     return (
-        <table className='table'>
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Descrição</th>
-                    <th>Data</th>
-                    <th>Arquivo</th>
-                    <th className='tableActions'>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {renderRows()}
-            </tbody>
-        </table>
+        <div className='box'>
+            <table className='table'>
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th className='tableDescription'>Descrição</th>
+                        <th className='tableDate'>Data</th>
+                        <th>Arquivo</th>
+                        <th className='tableActions'>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {renderRows()}
+                </tbody>
+            </table>
+        </div>
     )
 }
 

@@ -49,7 +49,7 @@ exports.post = (req, res, next) => {
 
 exports.delete = (req, res, next) => {
     calendars
-        .deleteOne()
+        .deleteOne({'_id' : req.params.id})
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {

@@ -65,9 +65,9 @@ export const add = (title, description, dateOcurr, file) => dispatch => {
             })
 }
 
-export const remove = ( description, dateOcurr ) => {
+export const remove = id => {
     return dispatch => {
-        axios.delete(`${BASE_URL}/calendars`, { description, dateOcurr })
+        axios.delete(`${BASE_URL}/calendars${id}`)
         .then(response => {
             if (response.status === 400) {
                 toastr.error('Erro!', response)

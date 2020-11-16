@@ -34,7 +34,7 @@ app.delete('/report/:id' , TokenValidation, (req, res) => ReportsDAO.deleteRepor
 app.get('/calendars', Calendar.get)
 app.get('/calendars/:year/:month', Calendar.getMonth)
 app.post('/calendars', TokenValidation, upload.single('image'), Calendar.post)
-app.delete('/calendars', TokenValidation, Calendar.delete)
+app.delete('/calendars/:id', TokenValidation, Calendar.delete)
 // app.put('/calendars', Calendar.put)
 // Todo.register(router, '/todos')
 
