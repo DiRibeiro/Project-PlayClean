@@ -1,13 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import Loader from 'react-loader-spinner'
 
 // import RowReport from '../containers/RowReport'
 import { getColeta, deleteColeta } from '../../actions/coletaActions'
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+// import DialogContent from '@material-ui/core/DialogContent';
+// import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 const ListColetas = () => {
 	const dispatch = useDispatch()
 	const allColetas = useSelector(state => state.coleta.coleta)
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
 	useEffect(() => {
 		dispatch(getColeta())
@@ -24,12 +39,36 @@ const ListColetas = () => {
                 <td>{coleta.type === 'organica' ? 'Orgânica' : 'Seletiva' || 'seletiva'}</td>
                 <td>{coleta.description}</td>
                 <td>
-                    <button className="btn-danger"
-                        onClick={() => removeColeta(coleta._id)}>
-                        <i className='fa fa-trash-o'></i>
-                    </button>
+                <div className="btn-remove">
+						<button 
+							className="btn btn-danger btn-delete" 
+							variant="outlined" 
+							onClick={handleClickOpen}>
+							<i className='fa fa-trash-o'></i>
+						</button>
+						<Dialog
+							open={open}
+							onClose={handleClose}
+							aria-labelledby="alert-dialog-title"
+							aria-describedby="alert-dialog-description"
+						>
+							<DialogTitle id="alert-dialog-title">{"Deseja apagar esta coleta?"}</DialogTitle>
+							{/* <DialogContent>
+							<DialogContentText id="alert-dialog-description">
+								Você está prestes a deletar uma denúncia, gostaria de continuar?
+							</DialogContentText>
+							</DialogContent> */}
+							<DialogActions className='btn-dialog'>
+							<button className="btn btn-danger" onClick={handleClose}>
+								Não
+							</button>
+							<button className="btn btn-success" onClick={ () => dispatch(removeColeta(coleta._id), window.location='/listColetas')} autoFocus>
+								Sim
+							</button>
+							</DialogActions>
+						</Dialog>
+					</div>
                 </td>
-                <hr/>
             </tr>
         ));
     }

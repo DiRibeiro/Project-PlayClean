@@ -27,51 +27,57 @@ class TodoForm extends Component {
     render() {
         const { title, add, description, clear, dateOcurr, file} = this.props
         return (
-            <div role='form' className='calendarForm'>
-                <div className='calendar-input'>
-                    <input 
-                        id='title' 
-                        className='form-control'
-                        placeholder='Título do Evento'
-                        onChange={this.props.changeTitle}
-                        onKeyUp={this.keyHandler}
-                        name='title'
-                        type='text'
-                        value={title}/>
-                    <input 
-                        id='description' 
-                        className='form-control'
-                        placeholder='Descrição'
-                        onChange={this.props.changeDescription}
-                        onKeyUp={this.keyHandler}
-                        name='description'
-                        type='text'
-                        value={description}/>
-                    <input 
-                        id='dateOcurr'
-                        className='form-control inputDate'
-                        onChange={this.props.changeDate}
-                        onKeyUp={this.keyHandler}
-                        name='dateOcurr'
-                        type='date'
-                        value={this.dateOcurr}
-                    />
-                    <input id="select-document"
-                                type="file" 
-                                name="file" 
-                                accept="image/png, image/jpeg" 
-                                onChange={this.props.changeFile}
-                                 />
-                <div className='btn-calendar'>
-                    <button className='btn-success btn-add'
-                        onClick={() => {
-                            console.log(file)
-                            add(title, description, dateOcurr, file);
-                        }}><i className="fa fa-plus" aria-hidden="true"/></button>
-                    
-                    <button className='btn-danger btn-close'
-                        onClick={() => clear()}><i className="fa fa-close" aria-hidden="true"/></button>
-                </div>
+            <div className="box box-success">
+                <div className="box-body listLeis">
+                    <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                        <div role='form' className='calendarForm'>
+                            <div className='calendar-input'>
+                                <input 
+                                    id='title' 
+                                    className='form-control'
+                                    placeholder='Título do Evento'
+                                    onChange={this.props.changeTitle}
+                                    onKeyUp={this.keyHandler}
+                                    name='title'
+                                    type='text'
+                                    value={title}/>
+                                <input 
+                                    id='description' 
+                                    className='form-control'
+                                    placeholder='Descrição'
+                                    onChange={this.props.changeDescription}
+                                    onKeyUp={this.keyHandler}
+                                    name='description'
+                                    type='text'
+                                    value={description}/>
+                                <input 
+                                    id='dateOcurr'
+                                    className='form-control inputDate'
+                                    onChange={this.props.changeDate}
+                                    onKeyUp={this.keyHandler}
+                                    name='dateOcurr'
+                                    type='date'
+                                    value={this.dateOcurr}
+                                />
+                                <input id="select-document"
+                                            type="file" 
+                                            name="file" 
+                                            accept="image/png, image/jpeg" 
+                                            onChange={this.props.changeFile}
+                                            />
+                            <div className='btn-calendar'>
+                                <button className='btn-success btn-add'
+                                    onClick={() => {
+                                        console.log(file)
+                                        add(title, description, dateOcurr, file);
+                                    }}><i className="fa fa-plus" aria-hidden="true"/></button>
+                                
+                                <button className='btn-danger btn-close'
+                                    onClick={() => clear()}><i className="fa fa-close" aria-hidden="true"/></button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

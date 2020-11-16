@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch} from 'react-redux'
 // import { Link } from 'react-router'
 import BASE_URL from '../config/consts'
 import {deleteLeis} from '../actions/leisActions'
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+// import DialogContent from '@material-ui/core/DialogContent';
+// import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const RowLeis = props => {
     const renderDom = () => {
@@ -10,6 +16,16 @@ const RowLeis = props => {
         let statusDom
         let lei = props.leis || props
     
+        const [open, setOpen] = useState(false);
+
+        const handleClickOpen = () => {
+            setOpen(true);
+        };
+
+        const handleClose = () => {
+            setOpen(false);
+        };
+
         if(lei.status === 0)
             statusDom = (<button className="btn btn-success">Aberta</button>)
 
@@ -34,10 +50,35 @@ const RowLeis = props => {
                     {/* <Link to={{ pathname: '/showDetailLeis', state: lei._id }} >
                         <button className="btn btn-primary bottomZero">Ver mais</button>
                     </Link> */}
-                    <button className="btn-danger"
-                        onClick={() => removeLeis(lei._id)}>
-                        <i className='fa fa-trash-o'></i>
-                    </button>
+                    <div className="btn-remove">
+						<button 
+							className="btn btn-danger btn-delete" 
+							variant="outlined" 
+							onClick={handleClickOpen}>
+							<i className='fa fa-trash-o'></i>
+						</button>
+						<Dialog
+							open={open}
+							onClose={handleClose}
+							aria-labelledby="alert-dialog-title"
+							aria-describedby="alert-dialog-description"
+						>
+							<DialogTitle id="alert-dialog-title">{"Deseja apagar esta lei?"}</DialogTitle>
+							{/* <DialogContent>
+							<DialogContentText id="alert-dialog-description">
+								Você está prestes a deletar uma denúncia, gostaria de continuar?
+							</DialogContentText>
+							</DialogContent> */}
+							<DialogActions className='btn-dialog'>
+							<button className="btn btn-danger" onClick={handleClose}>
+								Não
+							</button>
+							<button className="btn btn-success" onClick={ () => dispatch(removeLeis(lei._id), window.location='/listLeis')} autoFocus>
+								Sim
+							</button>
+							</DialogActions>
+						</Dialog>
+					</div>
                     { statusDom }
                 </div>
             </div>

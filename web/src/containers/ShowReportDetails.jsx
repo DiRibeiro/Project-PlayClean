@@ -1,15 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setStatus, getReports, deleteReport } from '../actions/reportActions'
 
 import { fullDate } from '../helper/date'
 import { useEffect } from 'react'
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+// import DialogContent from '@material-ui/core/DialogContent';
+// import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 const ShowReportDetails = props => { 
 	const dispatch = useDispatch()
 	const reports = useSelector(state => state.reports.list)
 	const report = reports.find(element => element._id === props.location.state) || undefined
 	let statusDOM
+
+	const [open, setOpen] = useState(false);
+
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
+	};
 
 	if(report.status === 0)
 		statusDOM = (<span className="btn btn-success">Aberta</span>)
@@ -45,11 +61,6 @@ const ShowReportDetails = props => {
 				<button className="btn btn-warning" 
 					onClick={ () => dispatch(setStatus(2, report._id), window.location='/listReport') }
 				>Pendente</button>
-			</div>
-			<div className="btn-remove">
-				<button className="btn btn-danger btn-delete" 
-					onClick={ () => dispatch(removeReport(report._id), window.location='/listReport')}
-				><i className='fa fa-trash-o'></i></button>
 			</div>
 		</div>
 	)
@@ -142,7 +153,35 @@ const ShowReportDetails = props => {
 						<br />
 						<b>Descrição: </b>
 						{ report.description }
-					
+					</div>
+					<div className="btn-remove">
+						<button 
+							className="btn btn-danger btn-delete" 
+							variant="outlined" 
+							onClick={handleClickOpen}>
+							<i className='fa fa-trash-o'></i>
+						</button>
+						<Dialog
+							open={open}
+							onClose={handleClose}
+							aria-labelledby="alert-dialog-title"
+							aria-describedby="alert-dialog-description"
+						>
+							<DialogTitle id="alert-dialog-title">{"Deseja apagar esta denúncia?"}</DialogTitle>
+							{/* <DialogContent>
+							<DialogContentText id="alert-dialog-description">
+								Você está prestes a deletar uma denúncia, gostaria de continuar?
+							</DialogContentText>
+							</DialogContent> */}
+							<DialogActions className='btn-dialog'>
+							<button className="btn btn-danger" onClick={handleClose}>
+								Não
+							</button>
+							<button className="btn btn-success" onClick={ () => dispatch(removeReport(report._id), window.location='/listReport')} autoFocus>
+								Sim
+							</button>
+							</DialogActions>
+						</Dialog>
 					</div>
 				</div>
 			</div>
