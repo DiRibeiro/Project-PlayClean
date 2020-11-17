@@ -35,7 +35,6 @@ const TodoList = props => {
     }
 
     const editCalendar = id => {
-        console.log(id)
         // dispatch(update(id));
     }
     
