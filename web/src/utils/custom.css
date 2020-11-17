@@ -954,3 +954,17 @@ calendarLi:nth-child(2n) {
 .textarea-input {
     margin-top: 1em;
 }
+
+.tableActions {
+    text-align-last: center;
+}
+
+.tableDate {
+    width: 200px;
+    text-align-last: left;
+}
+
+.tableFile {
+    width: 1em;
+    margin-right: 0;
+}

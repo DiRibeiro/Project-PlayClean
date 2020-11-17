@@ -56,3 +56,13 @@ exports.delete = (req, res, next) => {
             res.status(400).json(err)
         })
 }
+
+exports.put = (req, res, next) => {
+    calendars
+        .findByIdAndUpdate({'_id' : req.params.id}, req.body, {upsert: true})
+        .then(data => {
+            res.status(200).json(data)
+        }).catch(err => {
+            res.status(400).json(err)
+        })
+}

@@ -65,22 +65,22 @@ export const add = (title, description, dateOcurr, file) => dispatch => {
             })
 }
 
-export const remove = id => {
-    return dispatch => {
-        axios.delete(`${BASE_URL}/calendars${id}`)
-        .then(response => {
-            if (response.status === 400) {
-                toastr.error('Erro!', response)
-            }   
-            else if (response.status === 200) {
-                //window.location = '/calendar'
-                toastr.success('Sucesso!', 'Registro deletado!')
-                dispatch(search())
-            }
-        }).catch(error => {
-            toastr.error('Erro!', 'Internal server error')
-        })
-    }
+export const remove = id => {	
+    return async dispatch => {
+        await axios.delete(`${BASE_URL}/calendars/${id}`)
+		.then(result => {
+		    dispatch(search());
+		}).catch(error => toastr.error('Erro!', 'Internal server error'))
+	}
+}
+
+export const update = id => {    
+	return async dispatch => {
+        await axios.put(`${BASE_URL}/calendars/${id}`)
+		.then(result => {
+		    dispatch(search());
+		}).catch(error => toastr.error('Erro!', 'Internal server error'))
+	}
 }
 
 export const clear = ( ) => {

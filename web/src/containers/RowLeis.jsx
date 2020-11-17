@@ -38,6 +38,7 @@ const RowLeis = props => {
         const removeLeis = id => {
             dispatch(deleteLeis(id));
         }
+        
         return (
             <div className="box box-success">
                 <div className="box-body listLeis">

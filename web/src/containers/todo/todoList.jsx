@@ -1,9 +1,14 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useSelector, connect, useDispatch } from 'react-redux'
 import { bindActionCreators} from 'redux'
-import { remove, search } from '../../actions/calendarActions'
+import { remove, search, update } from '../../actions/calendarActions'
 import { fullDate } from '../../helper/date'
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+// import DialogContent from '@material-ui/core/DialogContent';
+// import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 import BASE_URL from '../../config/consts'
 
@@ -12,27 +17,78 @@ const TodoList = props => {
     const list = useSelector(state => state.todo.list) || undefined
 	
     useEffect(() => {
-		dispatch(search())
+		dispatch(search(), update())
     }, [])
+
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const removeCalendar = id => {
         dispatch(remove(id));
     }
+
+    const editCalendar = id => {
+        dispatch(update(id));
+    }
     
     const renderRows = () => {
-        return list.map((todo) => (
+        return list.map(todo => (
             <tr key={todo._id}>
                 <td>{todo.title}</td>
                 <td className='tableDescription'>{todo.description}</td>
-                <td className={todo.done ? 'markedAsDone' : ''}>{fullDate(todo.dateOcurr)}</td>
-                <td><a href={`${BASE_URL}/${todo.image}`} target="_blank" rel='noopener noreferrer'>LINK</a></td>
-                <td>
-                    {/* <button className='btn-success btn-add'
-                        onClick={() => props.markAsDone(todo)}><i className="fa fa-check"></i></button>
-                    <button className='btn-warning btn-search'
-                        onClick={() => props.markAsPending(todo)}><i className="fa fa-undo"></i></button> */}
-                    <button className='btn-danger btn-close'
-                        onClick={() => dispatch(removeCalendar(todo._id),window.location='/calendar')}><i className="fa fa-trash-o"></i></button>
+                <td className='tableDate'>{fullDate(todo.dateOcurr)}</td>
+                <td className='tableFile'><a href={`${BASE_URL}/${todo.image}`} target="_blank" rel='noopener noreferrer'>LINK</a></td>
+                <td className='tableActions'>
+                    <div className="btn-remove">
+                        <button 
+                            style={{
+                                float: 'none',
+                                marginRight: '1px',
+                            }}
+							className="btn btn-danger btn-delete" 
+							variant="outlined" 
+							onClick={handleClickOpen}>
+							<i className='fa fa-trash-o'></i>
+						</button>
+						<Dialog
+							open={open}
+							onClose={handleClose}
+							aria-labelledby="alert-dialog-title"
+							aria-describedby="alert-dialog-description"
+						>
+							<DialogTitle id="alert-dialog-title">{"Deseja apagar este evento?"}</DialogTitle>
+							{/* <DialogContent>
+							<DialogContentText id="alert-dialog-description">
+								Você está prestes a deletar uma denúncia, gostaria de continuar?
+							</DialogContentText>
+							</DialogContent> */}
+							<DialogActions className='btn-dialog'>
+							<button className="btn btn-danger" onClick={handleClose}>
+								Não
+							</button>
+							<button className="btn btn-success" onClick={ () => dispatch(removeCalendar(todo._id), window.location = ('/calendar'))} autoFocus>
+								Sim
+							</button>
+							</DialogActions>
+						</Dialog>
+                        <button 
+                            style={{
+                                float: 'none',
+                                marginRight: '1px',
+                            }}
+							className="btn btn-primary btn-delete" 
+							variant="outlined" 
+							onClick={() => dispatch(editCalendar(todo._id))}>
+							<i className='fa fa-pencil'></i>
+						</button>
+					</div>
                 </td>
                 
             </tr>
@@ -47,7 +103,7 @@ const TodoList = props => {
                         <th>Título</th>
                         <th className='tableDescription'>Descrição</th>
                         <th className='tableDate'>Data</th>
-                        <th>Arquivo</th>
+                        <th className='tableFile'>Arquivo</th>
                         <th className='tableActions'>Ações</th>
                     </tr>
                 </thead>
