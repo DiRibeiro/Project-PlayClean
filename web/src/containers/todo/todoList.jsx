@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useSelector, connect, useDispatch } from 'react-redux'
-import { bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 import { remove, search, update } from '../../actions/calendarActions'
 import { fullDate } from '../../helper/date'
 
@@ -35,7 +35,8 @@ const TodoList = props => {
     }
 
     const editCalendar = id => {
-        dispatch(update(id));
+        console.log(id)
+        // dispatch(update(id));
     }
     
     const renderRows = () => {

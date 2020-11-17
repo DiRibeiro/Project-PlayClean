@@ -35,7 +35,7 @@ app.get('/calendars', Calendar.get)
 app.get('/calendars/:year/:month', Calendar.getMonth)
 app.post('/calendars', TokenValidation, upload.single('image'), Calendar.post)
 app.delete('/calendars/:id', TokenValidation, Calendar.delete)
-app.put('/calendars/:id', TokenValidation, Calendar.put)
+app.put('/calendars/:id', Calendar.put)
 // Todo.register(router, '/todos')
 
 //Cata Treco

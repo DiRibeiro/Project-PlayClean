@@ -84,8 +84,8 @@ export const update = id => {
 }
 
 export const clear = ( ) => {
-    return dispatch => {
-        axios
+    return async dispatch => {
+        await axios
             .get(`${BASE_URL}/calendars`)
             .then(response => {
                 dispatch({

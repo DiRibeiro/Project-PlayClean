@@ -59,7 +59,7 @@ exports.delete = (req, res, next) => {
 
 exports.put = (req, res, next) => {
     calendars
-        .findByIdAndUpdate({'_id' : req.params.id}, req.body, {upsert: true})
+        .updateOne({'title' : req.body.title, 'description': req.body.description, 'dateOcurr': req.body.dateOcurr})
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {
