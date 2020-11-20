@@ -6,7 +6,7 @@ const LineChart = props => {
         <div style={{ position: 'relative' }} >
             <Line
                 data = {{
-                    labels: ['Jeneiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
                     datasets: [
                         {
                             label: 'Total de denúncias por mês',

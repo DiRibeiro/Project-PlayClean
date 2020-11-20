@@ -30,7 +30,6 @@ const Dashboard = () => {
                 <h3 className="box-title">Denúncias</h3>
             </div>
             <div className="box-body">
-               
                 <div className="row">
                     <Bookmark 
                         label={ `Denúncias de ${ getMonth(bookmark.month) }` } 
@@ -50,18 +49,46 @@ const Dashboard = () => {
                         color="bg-yellow-seccondary" 
                         icon='list-alt'
                         month={ getMonth(bookmark.month) } />
+                </div>
+                <div className="box-header with-border">
+                    <h3 className="box-title">Cata-Treco</h3>
+                </div>
                     <div className="row">
-                        <div className="col-11 col-md-7">
+                        <Bookmark 
+                            label={ `Cata-Treco de ${ getMonth(bookmark.month) }` } 
+                            value={ bookmark.totalReports } 
+                            bg='aqua' 
+                            icon='chart-bar'
+                            month={ getMonth(bookmark.month) } />
+                        <Bookmark 
+                            label='Cata-Treco fechadas' 
+                            value={ bookmark.closedReports }
+                            bg='green' 
+                            icon='check-circle' 
+                            month={ getMonth(bookmark.month) } />
+                        <Bookmark 
+                            label='Cata-Treco em aberto' 
+                            value={ bookmark.totalReports - bookmark.closedReports }
+                            color="bg-yellow-seccondary" 
+                            icon='list-alt'
+                            month={ getMonth(bookmark.month) } />
+                    </div>
+                
+                    <div className="row">
+                        <div className="col-11 col-md-6">
                             <LineChart data={ lineChart.data } style={{ marginLeft: '8px' }}/>
                         </div>
                         {/* <div className="col-11 col-md-5">
                             <h4>Denúncias por bairro</h4>
                             <DoughnutChart labels={ doughnutChart.labels } data={ doughnutChart.data } />
                         </div> */}
+                        <div className="col-11 col-md-6">
+                            <LineChart data={ lineChart.data } style={{ marginLeft: '8px' }}/>
+                        </div>
                     </div>
+                    
                     <Map map={ map } />
                 </div>
-            </div>
         </div>
     )
 
