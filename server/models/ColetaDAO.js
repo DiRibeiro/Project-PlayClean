@@ -29,10 +29,10 @@ const postColeta = (req, res, next) => {
         })
 }
 
-const deleteColeta = (req, res, next) => {
+const deleteColeta = async (req, res, next) => {
     console.log(req.params.id)
-    coleta
-        .deleteOne({'_id' : req.params.id})
+    await coleta
+        .deleteOne({_id : req.params.id})
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {

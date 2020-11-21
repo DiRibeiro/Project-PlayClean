@@ -1,4 +1,4 @@
-import React/* , { useEffect } */ from 'react'
+import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 
 import 'react-widgets/dist/css/react-widgets.css'
@@ -91,23 +91,24 @@ const ColetaForm = props => {
                     {/* </div> */}
                     {/* <div className="row mb-3"> */}
                         <div className="col-md-3">
-                            <label>Tipo de coleta</label>
                             {/* <div className="input-group"> */}
                                 {/* <span className="input-group-addon"><i className="fas fa-signature"/></span> */}
-                                <Field name='type' component="select" className="form-control select">
-                                    <option value="" disabled defaultValue>Selecione</option>
-                                    <option value="Orgânica" >Orgânica</option>
-                                    <option value="Seletiva" >Seletiva</option>
-                                </Field>
+                            <label>Coleta Orgânica</label>
+                            <Field name='organic' component='input' className="form-control"/>
+                            <label>Coleta Seletiva</label>
+                            <Field name='selective' component='input' className="form-control" value='Seletiva'/>
                             {/* </div> */}
                             {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
                         </div>
                     {/* </div> */}
                     {/* <div className='row mb-3'> */}
                         <div className="col-md-3">
-                            <label>Horário</label>
+                            <label>Horário da Coleta Orgânica</label>
+                            <Field name='descriptionOrganic' component="input" className="form-control"/>
+                            <label>Horário da Coleta Seletiva</label>
+                            <Field name='descriptionSelective' component="input" className="form-control"/>
                             {/* <div className="input-group"> */}
-                            <Field name='description' component="select" className="form-control select">
+                            {/* <Field name='description' component="select" className="form-control select">
                                 <option value="" disabled defaultValue>Selecione</option>
                                 <option value="Segunda-Feira de Manhã" >Segunda-Feira de Manhã</option>
                                 <option value="Segunda-Feira de Tarde" >Segunda-Feira de Tarde</option>
@@ -130,7 +131,7 @@ const ColetaForm = props => {
                                 <option value="Domingo de Manhã" >Domingo de Manhã</option>
                                 <option value="Domingo de Tarde" >Domingo de Tarde</option>
                                 <option value="Domingo de Manhã/Tarde" >Domingo de Manhã/Tarde</option>
-                            </Field>
+                            </Field> */}
                             {/* </div> */}
                             {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
                         </div>

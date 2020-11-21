@@ -41,8 +41,8 @@ export const postColeta = values => {
 }
 
 export const deleteColeta = id => {	
-	return dispatch => {
-		axios.delete(`${BASE_URL}/coleta/${id}`)
+	return async dispatch => {
+		await axios.delete(`${BASE_URL}/coleta/${id}`)
 		.then(result => {
 			dispatch(getColeta());
 		}).catch(error => toastr.error('Erro!', 'Internal server error'))

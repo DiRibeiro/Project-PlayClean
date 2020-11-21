@@ -29,15 +29,26 @@ const ListColetas = () => {
 	}, [])
 
 	const removeColeta = id => {
-        dispatch(deleteColeta(id));
+		dispatch(deleteColeta(id),
+			getColeta(),
+			window.location=('/listColetas'),
+			);
     }
 
     const renderColetas = () => {
-        return allColetas.map(coleta => (
-            <tr key={coleta._id}>
+        return allColetas.map((coleta, index) => (
+            <tr key={index}>
                 <td>{coleta.neighborhood}</td>
-                <td>{coleta.type === 'organica' ? 'Orgânica' : 'Seletiva' || 'seletiva'}</td>
-                <td>{coleta.description}</td>
+                <td>
+					{coleta.organic}
+					<br/>
+					{coleta.selective}
+				</td>
+                <td>
+					{coleta.descriptionOrganic}
+					<br/>
+					{coleta.descriptionSelective}
+				</td>
                 <td>
                 <div className="btn-remove">
 						<button 
@@ -62,7 +73,7 @@ const ListColetas = () => {
 							<button className="btn btn-danger" onClick={handleClose}>
 								Não
 							</button>
-							<button className="btn btn-success" onClick={ () => dispatch(removeColeta(coleta._id), window.location='/listColetas')} autoFocus>
+							<button className="btn btn-success" onClick={ () => dispatch(removeColeta(coleta._id))}>
 								Sim
 							</button>
 							</DialogActions>
