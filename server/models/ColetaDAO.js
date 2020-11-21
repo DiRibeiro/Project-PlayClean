@@ -39,4 +39,17 @@ const deleteColeta = async (req, res, next) => {
             res.status(400).json(err)
         })
 }
-module.exports = { getColeta, postColeta, deleteColeta}
+
+const editColeta = async (req, res, next) => {
+    let newColeta = new coleta(req.body)
+
+    await newColeta
+        .updateOne(_id, {}, {upsert: true})
+        .save()
+        .then(data => {
+            res.status(200).json(data)
+        }).catch(err => {
+            res.status(400).json(err)
+        })
+}
+module.exports = { getColeta, postColeta, deleteColeta, editColeta}

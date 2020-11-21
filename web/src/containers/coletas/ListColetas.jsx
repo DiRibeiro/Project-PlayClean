@@ -51,34 +51,40 @@ const ListColetas = () => {
 				</td>
                 <td>
                 <div className="btn-remove">
-						<button 
-							className="btn btn-danger btn-delete" 
-							variant="outlined" 
-							onClick={handleClickOpen}>
-							<i className='fa fa-trash-o'></i>
+					<button 
+						className="btn btn-danger btn-delete" 
+						variant="outlined" 
+						onClick={handleClickOpen}>
+						<i className='fa fa-trash-o'></i>
+					</button>
+					<Dialog
+						open={open}
+						onClose={handleClose}
+						aria-labelledby="alert-dialog-title"
+						aria-describedby="alert-dialog-description"
+					>
+						<DialogTitle id="alert-dialog-title">{"Deseja apagar esta coleta?"}</DialogTitle>
+						{/* <DialogContent>
+						<DialogContentText id="alert-dialog-description">
+							Você está prestes a deletar uma denúncia, gostaria de continuar?
+						</DialogContentText>
+						</DialogContent> */}
+						<DialogActions className='btn-dialog'>
+						<button className="btn btn-danger" onClick={handleClose}>
+							Não
 						</button>
-						<Dialog
-							open={open}
-							onClose={handleClose}
-							aria-labelledby="alert-dialog-title"
-							aria-describedby="alert-dialog-description"
-						>
-							<DialogTitle id="alert-dialog-title">{"Deseja apagar esta coleta?"}</DialogTitle>
-							{/* <DialogContent>
-							<DialogContentText id="alert-dialog-description">
-								Você está prestes a deletar uma denúncia, gostaria de continuar?
-							</DialogContentText>
-							</DialogContent> */}
-							<DialogActions className='btn-dialog'>
-							<button className="btn btn-danger" onClick={handleClose}>
-								Não
-							</button>
-							<button className="btn btn-success" onClick={ () => dispatch(removeColeta(coleta._id))}>
-								Sim
-							</button>
-							</DialogActions>
-						</Dialog>
-					</div>
+						<button className="btn btn-success" onClick={ () => dispatch(removeColeta(coleta._id))}>
+							Sim
+						</button>
+						</DialogActions>
+					</Dialog>
+				</div>
+				<button
+					className="btn btn-primary btn-delete" 
+					variant="outlined" 
+					>
+					<i className='fa fa-pencil'></i>
+				</button>
                 </td>
             </tr>
         ));

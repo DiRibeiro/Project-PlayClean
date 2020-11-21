@@ -68,6 +68,7 @@ app.post('/photos', TokenValidation, upload.array('images', 12), Photo.postPhoto
 app.get('/coleta', (req, res) => ColetaDAO.getColeta(req, res))
 app.post('/coleta', TokenValidation, (req, res) => ColetaDAO.postColeta(req, res))
 app.delete('/coleta/:id', (req, res) => ColetaDAO.deleteColeta(req, res))
+app.put('/coleta', (req, res) => ColetaDAO.editColeta(req, res))
 
 // Dashboard
 app.get('/dashboard', TokenValidation, (req, res) => ReportsDAO.getDataDashboard(req, res))
