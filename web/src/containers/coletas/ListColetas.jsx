@@ -16,7 +16,6 @@ const ListColetas = (props) => {
 	const allColetas = useSelector(state => state.coleta.coleta);
 	const [open, setOpen] = useState(false);
 	const [edit, setEdit] = useState(false);
-	const [state, setState] = useState('');
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -45,17 +44,8 @@ const ListColetas = (props) => {
         setEdit(false);
     };
 
-	const updateColeta = e => {
-		const {
-			neighborhood,
-			organic,
-			selective,
-			descriptionOrganic,
-			descriptionSelective
-		} = ''
-		setState({neighborhood: e.neighborhood})
-		console.log(neighborhood)
-		// dispatch(editColeta(update));
+	const updateColeta = id => {
+		dispatch(editColeta(id));
 	}
 	
 	const renderColetas = () => {

@@ -94,9 +94,9 @@ const ColetaForm = props => {
                             {/* <div className="input-group"> */}
                                 {/* <span className="input-group-addon"><i className="fas fa-signature"/></span> */}
                             <label>Coleta Orgânica</label>
-                            <Field name='organic' component='input' className="form-control"/>
+                            <Field name='organic' component='input' className="form-control" placeholder='Orgânica'/>
                             <label>Coleta Seletiva</label>
-                            <Field name='selective' component='input' className="form-control" value='Seletiva'/>
+                            <Field name='selective' component='input' className="form-control" placeholder='Seletiva'/>
                             {/* </div> */}
                             {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
                         </div>
@@ -104,9 +104,9 @@ const ColetaForm = props => {
                     {/* <div className='row mb-3'> */}
                         <div className="col-md-3">
                             <label>Horário da Coleta Orgânica</label>
-                            <Field name='descriptionOrganic' component="input" className="form-control"/>
+                            <Field name='descriptionOrganic' component="input" placeholder='Dia da semana | Manhã e/ou Tarde' className="form-control"/>
                             <label>Horário da Coleta Seletiva</label>
-                            <Field name='descriptionSelective' component="input" className="form-control"/>
+                            <Field name='descriptionSelective' component="input" placeholder='Dia da semana | Manhã e/ou Tarde' className="form-control"/>
                             {/* <div className="input-group"> */}
                             {/* <Field name='description' component="select" className="form-control select">
                                 <option value="" disabled defaultValue>Selecione</option>
