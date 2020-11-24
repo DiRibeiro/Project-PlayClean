@@ -32,7 +32,7 @@ const postColeta = (req, res, next) => {
 const deleteColeta = async (req, res, next) => {
     console.log(req.params.id)
     await coleta
-        .deleteOne({'_id' : req.params.id})
+        .deleteOne({_id : req.params.id})
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {
@@ -42,14 +42,7 @@ const deleteColeta = async (req, res, next) => {
 
 const editColeta = async (req, res, next) => {    
     await coleta
-        .updateOne({_id : req.params.id},
-            {
-                neighborhood: req.body.neighborhood,
-                descriptionOrganic: req.body.descriptionOrganic,
-                organic: req.body.organic,
-                descriptionSelective: req.body.descriptionSelective,
-                selective: req.body.selective
-            })
+        .updateOne({_id : req.params.id}, req.body)
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {

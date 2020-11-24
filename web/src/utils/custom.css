@@ -968,3 +968,7 @@ calendarLi:nth-child(2n) {
     width: 1em;
     margin-right: 0;
 }
+
+.MuiDialog-paperWidthSm {
+    max-width: 60em !important;
+}

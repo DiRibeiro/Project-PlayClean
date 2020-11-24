@@ -48,3 +48,13 @@ export const deleteColeta = id => {
 		}).catch(error => toastr.error('Erro!', 'Internal server error'))
 	}
 }
+
+export const editColeta = (id) => {	
+	return async dispatch => {
+		await axios.put(`${BASE_URL}/coleta/${id}`)
+		.then(result => {
+			dispatch(getColeta());
+			toastr.success('Sucesso!', 'Registro editado com sucesso!')
+		}).catch(error => toastr.error('Erro!', 'Internal server error'))
+	}
+}

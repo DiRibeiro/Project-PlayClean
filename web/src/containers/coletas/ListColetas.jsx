@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 // import Loader from 'react-loader-spinner'
 
 // import RowReport from '../containers/RowReport'
-import { getColeta, deleteColeta } from '../../actions/coletaActions'
+import { getColeta, deleteColeta, editColeta } from '../../actions/coletaActions'
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -11,10 +11,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 // import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const ListColetas = () => {
-	const dispatch = useDispatch()
-	const allColetas = useSelector(state => state.coleta.coleta)
-    const [open, setOpen] = useState(false);
+const ListColetas = (props) => {
+	const dispatch = useDispatch();
+	const allColetas = useSelector(state => state.coleta.coleta);
+	const [open, setOpen] = useState(false);
+	const [edit, setEdit] = useState(false);
+	const [state, setState] = useState('');
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -35,7 +37,28 @@ const ListColetas = () => {
 			);
     }
 
-    const renderColetas = () => {
+	const handleUpdateOpen = () => {
+        setEdit(true);
+    };
+
+    const handleUpdateClose = () => {
+        setEdit(false);
+    };
+
+	const updateColeta = e => {
+		const {
+			neighborhood,
+			organic,
+			selective,
+			descriptionOrganic,
+			descriptionSelective
+		} = ''
+		setState({neighborhood: e.neighborhood})
+		console.log(neighborhood)
+		// dispatch(editColeta(update));
+	}
+	
+	const renderColetas = () => {
         return allColetas.map((coleta, index) => (
             <tr key={index}>
                 <td>{coleta.neighborhood}</td>
@@ -82,9 +105,116 @@ const ListColetas = () => {
 				<button
 					className="btn btn-primary btn-delete" 
 					variant="outlined" 
+					onClick={ handleUpdateOpen }
 					>
 					<i className='fa fa-pencil'></i>
 				</button>
+				<div className='dialog-configure'>
+				<Dialog
+					open={edit}
+					onClose={ handleUpdateClose }
+					aria-labelledby="alert-dialog-title"
+					aria-describedby="alert-dialog-description"
+				>
+					<DialogTitle id="alert-dialog-title">Informe a edição.</DialogTitle>
+					<form>
+					<div className="box-body">
+						<div className="row">
+							<div className="col-md-4">
+								<label>Bairro</label>
+									<select  name="neighborhood" className="form-control select">
+										<option value="" defaultValue>{coleta.neighborhood}</option>
+										<option value="Aguapés" >Aguapés</option>
+										<option value="Albatroz" >Albatroz</option>
+										<option value="Arroio das Pedras" >Arroio das Pedras</option>
+										<option value="Arroio Grande" >Arroio Grande</option>
+										<option value="Atlântida Sul" >Atlântida Sul</option>
+										<option value="Baixada" >Baixada</option>
+										<option value="Barranceira" >Barranceira</option>
+										<option value="Borrúsia" >Borrúsia</option>
+										<option value="Bosque do Albatroz" >Bosque do Albatroz</option>
+										<option value="Caconde" >Caconde</option>
+										<option value="Caiu do Céu" >Caiu do Céu</option>
+										<option value="Campos de Dentro" >Campos de Dentro</option>
+										<option value="Cascata" >Cascata</option>
+										<option value="Centro" >Centro</option>
+										<option value="Costa Verde" >Costa Verde</option>
+										<option value="Distrito Industrial" >Distrito Industrial</option>
+										<option value="Estrada Posto Buffon" >Estrada Posto Buffon</option>
+										<option value="Estrada Romildo Bolzan" >Estrada Romildo Bolzan</option>
+										<option value="Estrada da Perua" >Estrada da Perua</option>
+										<option value="Estrada do Mar" >Estrada do Mar</option>
+										<option value="Farroupilha" >Farroupilha</option>
+										<option value="Figueira Grande" >Figueira Grande</option>
+										<option value="Goiabeira 1 e 2" >Goiabeira 1 e 2</option>
+										<option value="Ilha" >Ilha</option>
+										<option value="Interlagos" >Interlagos</option>
+										<option value="Invernada" >Invernada</option>
+										<option value="Jardim da Lagoa" >Jardim da Lagoa</option>
+										<option value="Lagoa do Horácio" >Lagoa do Horácio</option>
+										<option value="Laranjeiras" >Laranjeiras</option>
+										<option value="Livramento" >Livramento</option>
+										<option value="Loteamento Serramar" >Loteamento Serramar</option>
+										<option value="Mariápolis" >Mariápolis</option>
+										<option value="Marmeleiro" >Marmeleiro</option>
+										<option value="Medianeira" >Medianeira</option>
+										<option value="Morro da Antena" >Morro da Antena</option>
+										<option value="Palmital" >Palmital</option>
+										<option value="Panorâmico" >Panorâmico</option>
+										<option value="Parque Eólico" >Parque Eólico</option>
+										<option value="Parque Real" >Parque Real</option>
+										<option value="Parque da lagoa" >Parque da lagoa</option>
+										<option value="Parque de Rodeios" >Parque de Rodeios</option>
+										<option value="Parque do Sol" >Parque do Sol</option>
+										<option value="Passinhos" >Passinhos</option>
+										<option value="Penitenciária Modulada" >Penitenciária Modulada</option>
+										<option value="Ponta dos Dihel" >Ponta dos Dihel</option>
+										<option value="Por do Sol" >Por do Sol</option>
+										<option value="Porto Lacustre" >Porto Lacustre</option>
+										<option value="RS 030" >RS 030</option>
+										<option value="RST 101" >RST 101</option>
+										<option value="Rincão" >Rincão</option>
+										<option value="Santa Luzia" >Santa Luzia</option>
+										<option value="Santa Rita" >Santa Rita</option>
+										<option value="Sertão" >Sertão</option>
+										<option value="Sindicato Rural" >Sindicato Rural</option>
+										<option value="Sulbrasileiro" >Sulbrasileiro</option>
+										<option value="Tombadouro" >Tombadouro</option>
+										<option value="Trilhos" >Trilhos</option>
+										<option value="Vila Brasília" >Vila Brasília</option>
+										<option value="Vila Emboaba" >Vila Emboaba</option>
+										<option value="Vila Petrobrás" >Vila Petrobrás</option>
+										<option value="Vila Popular" >Vila Popular</option>
+										<option value="Vila da Serra" >Vila da Serra</option>
+										<option value="Vila dos Pescadores do Passo da Lagoa" >Vila dos Pescadores do Passo da Lagoa</option>
+										<option value="Várzea do Padre" >Várzea do Padre</option>
+									</select>
+							</div>
+							<div className="col-md-4">
+								<label>Coleta Orgânica</label>
+								<input defaultValue={coleta.organic} name='organic' type='text' className="form-control"/>
+								<label>Coleta Seletiva</label>
+								<input defaultValue={coleta.selective} name='selective' type='text' className="form-control"/>
+							</div>
+							<div className="col-md-4">
+								<label>Horário da Coleta Orgânica</label>
+								<input defaultValue={coleta.descriptionOrganic} name='descriptionOrganic' type="text" className="form-control"/>
+								<label>Horário da Coleta Seletiva</label>
+								<input defaultValue={coleta.descriptionSelective} name='descriptionSelective' type="text" className="form-control"/>
+							</div>
+						</div>
+					</div>
+					<DialogActions className='btn-dialog'>
+						<button className="btn btn-danger" onClick={handleUpdateClose}>
+							Não
+						</button>
+						<button className="btn btn-success" onClick={ async () => await dispatch(updateColeta(coleta._id))}>
+							Sim
+						</button>
+					</DialogActions>
+					</form>
+				</Dialog>
+				</div>
                 </td>
             </tr>
         ));
