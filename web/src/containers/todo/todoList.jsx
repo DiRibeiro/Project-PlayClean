@@ -31,7 +31,7 @@ const TodoList = props => {
     };
 
     const removeCalendar = id => {
-        dispatch(remove(id));
+        dispatch(remove(id), window.location = ('/calendar'));
     }
 
     const editCalendar = id => {
@@ -39,8 +39,8 @@ const TodoList = props => {
     }
     
     const renderRows = () => {
-        return list.map(todo => (
-            <tr key={todo._id}>
+        return list.map((todo, index) => (
+            <tr key={index}>
                 <td>{todo.title}</td>
                 <td className='tableDescription'>{todo.description}</td>
                 <td className='tableDate'>{fullDate(todo.dateOcurr)}</td>
@@ -73,7 +73,7 @@ const TodoList = props => {
 							<button className="btn btn-danger" onClick={handleClose}>
 								Não
 							</button>
-							<button className="btn btn-success" onClick={ () => dispatch(removeCalendar(todo._id), window.location = ('/calendar'))} autoFocus>
+							<button className="btn btn-success" onClick={ () => removeCalendar(todo._id)} autoFocus>
 								Sim
 							</button>
 							</DialogActions>

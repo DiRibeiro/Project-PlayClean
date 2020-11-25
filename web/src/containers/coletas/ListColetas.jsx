@@ -30,10 +30,7 @@ const ListColetas = (props) => {
 	}, [])
 
 	const removeColeta = id => {
-		dispatch(deleteColeta(id),
-			getColeta(),
-			window.location=('/listColetas'),
-			);
+		dispatch(deleteColeta(id), window.location=('/listColetas'));
     }
 
 	const handleUpdateOpen = () => {
@@ -44,8 +41,17 @@ const ListColetas = (props) => {
         setEdit(false);
     };
 
-	const updateColeta = id => {
-		dispatch(editColeta(id));
+	const updateColeta = (id, neighborhood, organic, selective, descriptionOrganic, descriptionSelective) => {
+		console.log(id, neighborhood, organic, selective, descriptionOrganic, descriptionSelective)
+		dispatch(
+			editColeta(
+				id,
+				neighborhood,
+				organic,
+				selective,
+				descriptionOrganic,
+				descriptionSelective,
+			));        
 	}
 	
 	const renderColetas = () => {
@@ -56,6 +62,11 @@ const ListColetas = (props) => {
 					{coleta.organic}
 					<br/>
 					{coleta.selective}
+				</td>
+                <td>
+					{coleta.dayOrganic}
+					<br/>
+					{coleta.daySelective}
 				</td>
                 <td>
 					{coleta.descriptionOrganic}
@@ -86,7 +97,7 @@ const ListColetas = (props) => {
 						<button className="btn btn-danger" onClick={handleClose}>
 							Não
 						</button>
-						<button className="btn btn-success" onClick={ () => dispatch(removeColeta(coleta._id))}>
+						<button className="btn btn-success" onClick={ () => removeColeta(coleta._id)}>
 							Sim
 						</button>
 						</DialogActions>
@@ -110,7 +121,7 @@ const ListColetas = (props) => {
 					<form>
 					<div className="box-body">
 						<div className="row">
-							<div className="col-md-4">
+							<div className="col-md-3">
 								<label>Bairro</label>
 									<select  name="neighborhood" className="form-control select">
 										<option value="" defaultValue>{coleta.neighborhood}</option>
@@ -180,17 +191,39 @@ const ListColetas = (props) => {
 										<option value="Várzea do Padre" >Várzea do Padre</option>
 									</select>
 							</div>
-							<div className="col-md-4">
+							<div className="col-md-3">
 								<label>Coleta Orgânica</label>
 								<input defaultValue={coleta.organic} name='organic' type='text' className="form-control"/>
 								<label>Coleta Seletiva</label>
 								<input defaultValue={coleta.selective} name='selective' type='text' className="form-control"/>
 							</div>
-							<div className="col-md-4">
-								<label>Horário da Coleta Orgânica</label>
+							<div className="col-md-3">
+								<label>Turno Coleta Orgânica</label>
 								<input defaultValue={coleta.descriptionOrganic} name='descriptionOrganic' type="text" className="form-control"/>
-								<label>Horário da Coleta Seletiva</label>
+								<label>Turno Coleta Seletiva</label>
 								<input defaultValue={coleta.descriptionSelective} name='descriptionSelective' type="text" className="form-control"/>
+							</div>
+							<div className="col-md-3">
+								<label>Dia Coleta Orgânica</label>
+								<select name='dayOrganic' className="form-control select">
+									<option value="" disabled defaultValue>{coleta.dayOrganic}</option>
+									<option value="Segunda-Feira" >Segunda-Feira</option>
+									<option value="Terça-Feira" >Terça-Feira</option>
+									<option value="Quarta-Feira" >Quarta-Feira</option>
+									<option value="Quinta-Feira" >Quinta-Feira</option>
+									<option value="Sexta-Feira" >Sexta-Feira</option>
+									<option value="Sábado" >Sábado</option>
+								</select>
+								<label>Dia Coleta Seletiva</label>
+								<select name='daySelective' className="form-control select">
+									<option value="" disabled defaultValue>{coleta.daySelective}</option>
+									<option value="Segunda-Feira" >Segunda-Feira</option>
+									<option value="Terça-Feira" >Terça-Feira</option>
+									<option value="Quarta-Feira" >Quarta-Feira</option>
+									<option value="Quinta-Feira" >Quinta-Feira</option>
+									<option value="Sexta-Feira" >Sexta-Feira</option>
+									<option value="Sábado" >Sábado</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -198,7 +231,17 @@ const ListColetas = (props) => {
 						<button className="btn btn-danger" onClick={handleUpdateClose}>
 							Não
 						</button>
-						<button className="btn btn-success" onClick={ async () => await dispatch(updateColeta(coleta._id))}>
+						<button className="btn btn-success"
+							onClick={ () =>
+								updateColeta(
+									coleta._id,
+									coleta.neighborhood,
+									coleta.organic,
+									coleta.selective,
+									coleta.descriptionOrganic,
+									coleta.descriptionSelective,
+									)
+							}>
 							Sim
 						</button>
 					</DialogActions>
@@ -216,7 +259,8 @@ const ListColetas = (props) => {
                 <tr>
                     <th>Bairro</th>
                     <th>Tipo de Coleta</th>
-                    <th>Dia e Turno</th>
+                    <th>Dia</th>
+					<th>Turno</th>
                     <th className='tableActions'>Ações</th>
                 </tr>
             </thead>

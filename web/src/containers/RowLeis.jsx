@@ -74,7 +74,7 @@ const RowLeis = props => {
 							<button className="btn btn-danger" onClick={handleClose}>
 								Não
 							</button>
-							<button className="btn btn-success" onClick={ () => dispatch(removeLeis(lei._id), window.location='/listLeis')} autoFocus>
+							<button className="btn btn-success" onClick={ () => removeLeis(lei._id)} autoFocus>
 								Sim
 							</button>
 							</DialogActions>

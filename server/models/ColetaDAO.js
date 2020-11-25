@@ -29,10 +29,10 @@ const postColeta = (req, res, next) => {
         })
 }
 
-const deleteColeta = async (req, res, next) => {
+const deleteColeta = (req, res, next) => {
     console.log(req.params.id)
-    await coleta
-        .deleteOne({_id : req.params.id})
+    coleta
+        .deleteOne({'_id' : req.params.id})
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {
@@ -40,9 +40,17 @@ const deleteColeta = async (req, res, next) => {
         })
 }
 
-const editColeta = async (req, res, next) => {    
+const editColeta = async (req, res) => {
+    
+    console.log("New coleta, req.body", req.body)    
     await coleta
-        .updateOne({_id : req.params.id}, req.body)
+        .updateOne({_id: mongoose.Types.ObjectId(req.body._id),
+                neighborhood: req.body.neighborhood,
+                organic: req.body.organic,
+                selective: req.body.selective,
+                descriptionOrganic: req.body.descriptionOrganic,
+                descriptionSelective: req.body.descriptionSelective
+            })
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {

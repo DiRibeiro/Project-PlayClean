@@ -6,7 +6,9 @@ const coletaSchema = new mongoose.Schema({
     organic: String,
     selective: String,
     descriptionOrganic: String,
+    dayOrganic: String,
     descriptionSelective: String,
+    daySelective: String,
 });
 
 module.exports = coletaSchema

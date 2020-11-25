@@ -86,54 +86,40 @@ const ColetaForm = props => {
                                     <option value="Vila dos Pescadores do Passo da Lagoa" >Vila dos Pescadores do Passo da Lagoa</option>
                                     <option value="Várzea do Padre" >Várzea do Padre</option>
                                  </Field>
-                            {/* </div> */}
                         </div>
-                    {/* </div> */}
-                    {/* <div className="row mb-3"> */}
                         <div className="col-md-3">
-                            {/* <div className="input-group"> */}
-                                {/* <span className="input-group-addon"><i className="fas fa-signature"/></span> */}
                             <label>Coleta Orgânica</label>
                             <Field name='organic' component='input' className="form-control" placeholder='Orgânica'/>
                             <label>Coleta Seletiva</label>
                             <Field name='selective' component='input' className="form-control" placeholder='Seletiva'/>
-                            {/* </div> */}
-                            {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
                         </div>
-                    {/* </div> */}
-                    {/* <div className='row mb-3'> */}
                         <div className="col-md-3">
-                            <label>Horário da Coleta Orgânica</label>
-                            <Field name='descriptionOrganic' component="input" placeholder='Dia da semana | Manhã e/ou Tarde' className="form-control"/>
-                            <label>Horário da Coleta Seletiva</label>
-                            <Field name='descriptionSelective' component="input" placeholder='Dia da semana | Manhã e/ou Tarde' className="form-control"/>
-                            {/* <div className="input-group"> */}
-                            {/* <Field name='description' component="select" className="form-control select">
+                            <label>Turno da Coleta Orgânica</label>
+                            <Field name='descriptionOrganic' component="input" placeholder='Informar turno' className="form-control"/>
+                            <label>Turno da Coleta Seletiva</label>
+                            <Field name='descriptionSelective' component="input" placeholder='Informar turno' className="form-control"/>
+                        </div>
+                        <div className="col-md-3">
+                            <label>Dia da Coleta Orgânica</label>
+                            <Field name='dayOrganic' component="select" className="form-control select">
                                 <option value="" disabled defaultValue>Selecione</option>
-                                <option value="Segunda-Feira de Manhã" >Segunda-Feira de Manhã</option>
-                                <option value="Segunda-Feira de Tarde" >Segunda-Feira de Tarde</option>
-                                <option value="Segunda-Feira de Manhã/Tarde" >Segunda-Feira de Manhã/Tarde</option>
-                                <option value="Terça-Feira de Manhã" >Terça-Feira de Manhã</option>
-                                <option value="Terça-Feira de Tarde" >Terça-Feira de Tarde</option>
-                                <option value="Terça-Feira de Manhã/Tarde" >Terça-Feira de Manhã/Tarde</option>
-                                <option value="Quarta-Feira de Manhã" >Quarta-Feira de Manhã</option>
-                                <option value="Quarta-Feira de Tarde" >Quarta-Feira de Tarde</option>
-                                <option value="Quarta-Feira de Manhã/Tarde" >Quarta-Feira de Manhã/Tarde</option>
-                                <option value="Quinta-Feira de Manhã" >Quinta-Feira de Manhã</option>
-                                <option value="Quinta-Feira de Tarde" >Quinta-Feira de Tarde</option>
-                                <option value="Quinta-Feira de Manhã/Tarde" >Quinta-Feira de Manhã/Tarde</option>
-                                <option value="Sexta-Feira de Manhã" >Sexta-Feira de Manhã</option>
-                                <option value="Sexta-Feira de Tarde" >Sexta-Feira de Tarde</option>
-                                <option value="Sexta-Feira de Manhã/Tarde" >Sexta-Feira de Manhã/Tarde</option>
-                                <option value="Sábado de Manhã" >Sábado de Manhã</option>
-                                <option value="Sábado de Tarde" >Sábado de Tarde</option>
-                                <option value="Sábado de Manhã/Tarde" >Sábado de Manhã/Tarde</option>
-                                <option value="Domingo de Manhã" >Domingo de Manhã</option>
-                                <option value="Domingo de Tarde" >Domingo de Tarde</option>
-                                <option value="Domingo de Manhã/Tarde" >Domingo de Manhã/Tarde</option>
-                            </Field> */}
-                            {/* </div> */}
-                            {/* <h5 className="requiredField">*Campo obrigatório</h5> */}
+                                <option value="Segunda-Feira" >Segunda-Feira</option>
+                                <option value="Terça-Feira" >Terça-Feira</option>
+                                <option value="Quarta-Feira" >Quarta-Feira</option>
+                                <option value="Quinta-Feira" >Quinta-Feira</option>
+                                <option value="Sexta-Feira" >Sexta-Feira</option>
+                                <option value="Sábado" >Sábado</option>
+                            </Field>
+                            <label>Dia da Coleta Seletiva</label>
+                            <Field name='daySelective' component="select" className="form-control select">
+                                <option value="" disabled defaultValue>Selecione</option>
+                                <option value="Segunda-Feira" >Segunda-Feira</option>
+                                <option value="Terça-Feira" >Terça-Feira</option>
+                                <option value="Quarta-Feira" >Quarta-Feira</option>
+                                <option value="Quinta-Feira" >Quinta-Feira</option>
+                                <option value="Sexta-Feira" >Sexta-Feira</option>
+                                <option value="Sábado" >Sábado</option>
+                            </Field>
                         </div>
                     </div>
                     <div className="box-footer">

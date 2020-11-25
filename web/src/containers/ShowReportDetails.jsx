@@ -41,7 +41,7 @@ const ShowReportDetails = props => {
 	}, [])
 	
 	const removeReport = id => {
-		dispatch(deleteReport(id));
+		dispatch(deleteReport(id), window.location='/listReport');
 	}
 
 	const showStatus = () => (
@@ -177,7 +177,7 @@ const ShowReportDetails = props => {
 							<button className="btn btn-danger" onClick={handleClose}>
 								Não
 							</button>
-							<button className="btn btn-success" onClick={ () => dispatch(removeReport(report._id), window.location='/listReport')} autoFocus>
+							<button className="btn btn-success" onClick={ () => removeReport(report._id)} autoFocus>
 								Sim
 							</button>
 							</DialogActions>

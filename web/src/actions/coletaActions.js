@@ -40,21 +40,24 @@ export const postColeta = values => {
     }
 }
 
-export const deleteColeta = id => {	
-	return async dispatch => {
-		await axios.delete(`${BASE_URL}/coleta/${id}`)
+export const deleteColeta = _id => {	
+	return dispatch => {
+		axios
+		.delete(`${BASE_URL}/coleta/${_id}`)
 		.then(result => {
 			dispatch(getColeta());
 		}).catch(error => toastr.error('Erro!', 'Internal server error'))
 	}
 }
 
-export const editColeta = (id) => {	
+export const editColeta = (_id, neighborhood, organic, selective, descriptionOrganic, descriptionSelective) => {	
 	return async dispatch => {
-		await axios.put(`${BASE_URL}/coleta/${id}`)
-		.then(result => {
-			dispatch(getColeta());
-			toastr.success('Sucesso!', 'Registro editado com sucesso!')
-		}).catch(error => toastr.error('Erro!', 'Internal server error'))
+		await axios
+			.post(`${BASE_URL}/coletaUpdate`, 
+				{_id, neighborhood, organic, selective, descriptionOrganic, descriptionSelective})
+			.then(result => {
+				toastr.success('Sucesso!', 'Registro editado com sucesso!')
+				dispatch(getColeta());
+			}).catch(error => toastr.error('Erro!', 'Internal server error'))
 	}
 }
