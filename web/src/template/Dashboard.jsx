@@ -7,7 +7,7 @@ import LineChart from '../widget/LineChart'
 import Bookmark from '../widget/Bookmark'
 import Map from '../widget/Map'
 
-import { getDashboardData } from '../actions/dashboardActions'
+import { getDashboardData, getDashboardCtData } from '../actions/dashboardActions'
 
 import { getMonth } from '../helper/date'
 
@@ -16,12 +16,17 @@ const Dashboard = () => {
     const dispatch = useDispatch()
         
     const bookmark = useSelector(state => state.dashboard.bookmark)
+    const bookmarkCt = useSelector(state => state.dashboardCt.bookmark)
     const lineChart = useSelector(state => state.dashboard.lineChart)
+    const lineChartCt = useSelector(state => state.dashboardCt.lineChart)
     // const doughnutChart = useSelector(state => state.dashboard.doughnutChart)
     const map = useSelector(state => state.dashboard.map)
 
     useEffect(() => {
-        dispatch(getDashboardData())
+        dispatch(
+            getDashboardData(),
+            getDashboardCtData()
+            )
     }, [])
 
     return (
@@ -55,23 +60,23 @@ const Dashboard = () => {
                 </div>
                     <div className="row">
                         <Bookmark 
-                            label={ `Cata-Treco de ${ getMonth(bookmark.month) }` } 
-                            value={ bookmark.totalReports } 
+                            label={ `Cata-Treco de ${ getMonth(bookmarkCt.month) }` } 
+                            value={ bookmarkCt.totalCt } 
                             bg='aqua' 
                             icon='chart-bar'
-                            month={ getMonth(bookmark.month) } />
+                            month={ getMonth(bookmarkCt.month) } />
                         <Bookmark 
                             label='Cata-Treco fechadas' 
-                            value={ bookmark.closedReports }
+                            value={ bookmarkCt.closedCt }
                             bg='green' 
                             icon='check-circle' 
-                            month={ getMonth(bookmark.month) } />
+                            month={ getMonth(bookmarkCt.month) } />
                         <Bookmark 
                             label='Cata-Treco em aberto' 
-                            value={ bookmark.totalReports - bookmark.closedReports }
+                            value={ bookmarkCt.totalCt - bookmarkCt.closedCt }
                             color="bg-yellow-seccondary" 
                             icon='list-alt'
-                            month={ getMonth(bookmark.month) } />
+                            month={ getMonth(bookmarkCt.month) } />
                     </div>
                 
                     <div className="row">
@@ -83,7 +88,7 @@ const Dashboard = () => {
                             <DoughnutChart labels={ doughnutChart.labels } data={ doughnutChart.data } />
                         </div> */}
                         <div className="col-11 col-md-6">
-                            <LineChart data={ lineChart.data } style={{ marginLeft: '8px' }}/>
+                            <LineChart data={ lineChartCt.data } style={{ marginLeft: '8px' }}/>
                         </div>
                     </div>
                     

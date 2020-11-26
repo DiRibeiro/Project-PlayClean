@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form'
 import { reducer as toastrReducer } from 'react-redux-toastr'
 
 import dashboard from './dashboardReducer'
+import dashboardCt from './dashboardCtReducer'
 import reports from './reportsReducer'
 import user from './userReducer'
 import auth from './authReducer'
@@ -25,6 +26,7 @@ const rootReducer = combineReducers(
         photos,
         cataTreco,
         dashboard,
+        dashboardCt,
         user,
         auth,
         utils

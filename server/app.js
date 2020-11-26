@@ -71,7 +71,8 @@ app.delete('/coleta/:id', ColetaDAO.deleteColeta)
 app.post('/coletaUpdate', TokenValidation, (req, res) => ColetaDAO.editColeta(req, res))
 
 // Dashboard
-app.get('/dashboard', TokenValidation, (req, res) => ReportsDAO.getDataDashboard(req, res))
+app.get('/dashboardReports', TokenValidation, (req, res) => ReportsDAO.getDataDashboard(req, res))
+app.get('/dashboardCataTreco', TokenValidation, (req, res) => CataTrecoDAO.getDataCtDashboard(req, res))
 
 // Login/Register
 app.post('/login', (req, res) => Auth.login(req, res))

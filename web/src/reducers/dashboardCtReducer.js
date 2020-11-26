@@ -1,9 +1,9 @@
 const INITIAL_STATE = {
     bookmark: {
         month: '',
-        totalReports: null,
-        closedReports: null,
-        openReports: null
+        totalCt: null,
+        closedCt: null,
+        openCt: null
     },
     lineChart: {
         /* All months in the year */
@@ -24,10 +24,10 @@ const INITIAL_STATE = {
 }
 
 export default (state = INITIAL_STATE, action) => {
-        switch(action.type) {
-        case 'DASHBOARD_FETCHED':
-            return { ...state, ...action.payload }
-        default:
-            return state
-    }
+    switch(action.type) {
+    case 'DASHBOARD_CT_FETCHED':
+        return { ...state, ...action.payload }
+    default:
+        return state
+}
 }
