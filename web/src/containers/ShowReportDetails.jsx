@@ -70,11 +70,12 @@ const ShowReportDetails = props => {
 
 			<div  style= {{ display:'block', height: '33%'}}
 				key={ index }
-				className={ `item ${ index._id === 0 ? 'active' : '' }` } >
+				className={ `item ${ index === 0 ? 'active' : '' }` } >
 				<img
 					src={ `data:image/png;base64, ${ img }` }
-					alt={ `report img ${ index._id }` } 
+					alt={ `report img ${ img }` } 
 					style={{ width: '100%' }}/>
+					{console.log(index)}
 			</div>
 		))
 	}
@@ -82,7 +83,7 @@ const ShowReportDetails = props => {
 	const renderIndicators = () => {
 		report.images.forEach((img, index) => (
 			<li
-				data-target='#carousel'
+				data-target={img}
 				data-slide-to={ index }
 				className={ `${ index === 0 ? 'active' : '' }` }></li>
 		))}
@@ -95,7 +96,7 @@ const ShowReportDetails = props => {
 			
 				<div className='row'>
 					{/* Carroussel */}
-					<div className='col-md-6'>
+					<div className='col-md-4'>
 						<div className='box box-solid'>
 							<div className='box-body'>
 								<div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">

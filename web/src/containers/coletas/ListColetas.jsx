@@ -53,10 +53,22 @@ const ListColetas = (props) => {
 				descriptionSelective,
 			));        
 	}
-	
+
+	const gera_cor = () => { 
+		var letters = '0123456789ABCDEF';
+		var color = '#';
+		for (var i = 0; i < 6; i++) {
+		  color += letters[Math.floor(Math.random() * 16)];
+		}
+		return color;
+	}
+
 	const renderColetas = () => {
         return allColetas.map((coleta, index) => (
-            <tr key={index}>
+			<tr 
+				style={{color: 'black', fontSize: 12, fontWeight: 'bold', backgroundColor: gera_cor(), borderColor: `black`, borderStyle: 'solid'}}
+				key={index}>
+				{/* {console.log(gera_cor())} */}
                 <td>{coleta.neighborhood}</td>
                 <td>
 					{coleta.organic}
@@ -254,20 +266,26 @@ const ListColetas = (props) => {
     }
 
 	return (
-        <table className='table'>
-            <thead>
-                <tr>
-                    <th>Bairro</th>
-                    <th>Tipo de Coleta</th>
-                    <th>Dia</th>
-					<th>Turno</th>
-                    <th className='tableActions'>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {renderColetas()}
-            </tbody>
-        </table>
+		<div className="box box-success">
+			<div className="box-header with-border">
+			</div>
+			<div className="box-body">
+				<table className='table'>
+					<thead>
+						<tr>
+							<th>Bairro</th>
+							<th>Tipo de Coleta</th>
+							<th>Dia</th>
+							<th>Turno</th>
+							<th className='tableActions'>Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						{renderColetas()}
+					</tbody>
+				</table>
+			</div>
+		</div>
 	)
 }
 

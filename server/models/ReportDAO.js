@@ -126,18 +126,18 @@ const getDataDashboard = async (req, res) => {
 			/* All months in the year */
 			data: totalReportYear
 		},
-		doughnutChart: {
-			labels: [
-				'Centro',
-				'Borúsia',
-				'Atlântida Sul',
-				'Serramar',
-				'Laranjeiras',
-				'Mariápolis',
-				'Palmital'
-			],
-			data: [1, 1, 1, 1, 1, 1, 1]
-		},
+		// doughnutChart: {
+		// 	labels: [
+		// 		'Centro',
+		// 		'Borúsia',
+		// 		'Atlântida Sul',
+		// 		'Serramar',
+		// 		'Laranjeiras',
+		// 		'Mariápolis',
+		// 		'Palmital'
+		// 	],
+		// 	data: [1, 1, 1, 1, 1, 1, 1]
+		// },
 		map: {
 			list: [
 				{

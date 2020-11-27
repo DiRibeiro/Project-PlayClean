@@ -2,14 +2,13 @@ import { toastr } from 'react-redux-toastr'
 import BASE_URL from '../config/consts'
 import axios from 'axios'
 
-const DASHBOARD_FETCHED = "DASHBOARD_FETCHED"
-/* Connection with server here. Now fake data is returned */
+const DASHBOARD_CT_FETCHED = "DASHBOARD_CT_FETCHED"
 
-export const getDashboardData = () => {
+export const getDashboardCtData = () => {
     return dispatch => {
-        axios.get(`${BASE_URL}/dashboardReports`).then(response => {
+        axios.get(`${BASE_URL}/dashboardCataTreco`).then(response => {
             dispatch({
-                type: DASHBOARD_FETCHED,
+                type: DASHBOARD_CT_FETCHED,
                 payload: response.data
             })
     

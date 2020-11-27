@@ -5,14 +5,14 @@ const INITIAL_STATE = {
         closedCt: null,
         openCt: null
     },
-    lineChart: {
-        /* All months in the year */
-        data: []
-    },
-    // doughnutChart: {
-    //     labels: ['Centro', 'Borúsia', 'Atlântida Sul', 'Serramar', 'Laranjeiras', 'Mariápolis', 'Palmital'],
+    // lineChart: {
+    //     /* All months in the year */
     //     data: []
-    // }, 
+    // },
+    doughnutChart: {
+        labels: ['Centro', 'Borúsia', 'Atlântida Sul', 'Serramar', 'Laranjeiras', 'Mariápolis', 'Palmital'],
+        data: []
+    }, 
     map: {
         list: [{
             anchor: {

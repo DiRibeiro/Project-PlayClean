@@ -66,7 +66,7 @@ const deleteCataTreco = (req, res, next) => {
 }
 
 const getTotalPerMonth = async () => {
-	const reports = await findAllReports()
+	const ct = await findAllCt()
 	const date = new Date()
 
 	const months = []
@@ -78,7 +78,7 @@ const getTotalPerMonth = async () => {
 			`${date.getFullYear()}-${i == 12 ? 1 : i + 1}-1`
 		).getTime()
 
-		reports.forEach(element => {
+		ct.forEach(element => {
 			if (element.dateCreate >= start && element.dateCreate < end) total++
 		})
 		months.push(total)
@@ -87,25 +87,25 @@ const getTotalPerMonth = async () => {
 	return months
 }
 
-async function findAllReports() {
+async function findAllCt() {
 	try {
-		const respose = await report.find().exec()
+		const respose = await cataTreco.find().exec()
 		return respose
 	} catch (err) {
 		return err
 	}
 }
 
-const getDataDashboard = async (req, res) => {
+const getDataCtDashboard = async (req, res) => {
 	const now = new Date()
 
-	const reports = await findAllReports()
+	const ct = await findAllCt()
 
 	// Total reports
-	const totalReportYear = await getTotalPerMonth()
+	const totalCtYear = await getTotalPerMonth()
 
-	// Total reports current month
-	const totalReportMonth = totalReportYear[now.getMonth()]
+	// Total Cts current month
+	const totalCtMonth = totalCtYear[now.getMonth()]
 
 	// Total Done reports
 	let totalClosed = 0
@@ -118,12 +118,12 @@ const getDataDashboard = async (req, res) => {
 		`${month == 12 ? year + 1 : year}-${month == 12 ? 1 : month + 1}-1`
 	).getTime() // Current month end
 
-	reports.map(report => {
-		if (report.dateCreate >= start && report.dateCreate < end) {
-			if (report.status == 1)
+	ct.map(cata => {
+		if (cata.dateCreate >= start && cata.dateCreate < end) {
+			if (cata.status == 1)
 				// Pending
 				totalClosed++
-			else if (reports.status == 2)
+			else if (cts.status == 2)
 				// Closed
 				totalPending++
 		}
@@ -132,14 +132,14 @@ const getDataDashboard = async (req, res) => {
 	res.status(200).json({
 		bookmark: {
 			month: now.getMonth(),
-			totalReports: totalReportMonth,
-			closedReports: totalClosed,
-			openReports: totalPending
+			totalCt: totalCtMonth,
+			closedCt: totalClosed,
+			openCt: totalPending
 		},
-		lineChart: {
-			/* All months in the year */
-			data: totalReportYear
-		},
+		// lineChart: {
+		// 	/* All months in the year */
+		// 	data: totalCtYear
+		// },
 		doughnutChart: {
 			labels: [
 				'Centro',
@@ -150,7 +150,7 @@ const getDataDashboard = async (req, res) => {
 				'Mariápolis',
 				'Palmital'
 			],
-			data: [1, 1, 1, 1, 1, 1, 1]
+			data: totalCtYear
 		},
 		map: {
 			list: [
@@ -171,4 +171,4 @@ const getDataDashboard = async (req, res) => {
 	})
 }
     
-module.exports = {setStatus, getCataTreco, postCataTreco, deleteCataTreco, getAllCataTreco}
+module.exports = {setStatus, getCataTreco, postCataTreco, deleteCataTreco, getAllCataTreco, getDataCtDashboard}

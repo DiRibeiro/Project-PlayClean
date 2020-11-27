@@ -24,10 +24,10 @@ const INITIAL_STATE = {
 }
 
 export default (state = INITIAL_STATE, action) => {
-        switch(action.type) {
-        case 'DASHBOARD_FETCHED':
-            return { ...state, ...action.payload }
-        default:
-            return state
+    switch(action.type) {
+    case 'DASHBOARD_FETCHED':
+        return { ...state, ...action.payload }
+    default:
+        return state
     }
 }
