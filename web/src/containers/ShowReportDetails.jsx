@@ -68,14 +68,14 @@ const ShowReportDetails = props => {
 	const showImages = () => {
 		return report.images.map((img, index) => (
 
-			<div  style= {{ display:'block', height: '33%'}}
+			<div  style= {{ /* display:'block', */ height: '33%'}}
 				key={ index }
 				className={ `item ${ index === 0 ? 'active' : '' }` } >
 				<img
 					src={ `data:image/png;base64, ${ img }` }
 					alt={ `report img ${ img }` } 
 					style={{ width: '100%' }}/>
-					{console.log(index)}
+					{/* {console.log(report.images[0])} */}
 			</div>
 		))
 	}

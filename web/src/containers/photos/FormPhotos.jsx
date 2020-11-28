@@ -25,7 +25,7 @@ let FormPhotos = props => {
                 alt="img photos" />)
         
     return (
-        <form onSubmit={(values) => { handleSubmit(values); setFiles([])  }} className="form-group" encType="multipart/form-data" action="javascript:void(0);" >
+        <form onSubmit={(values) => { handleSubmit(values); setFiles([])  }} className="form-group" encType="multipart/form-data">
             
             <div className="row">
                 <label>Título do conjunto de imagens</label>
