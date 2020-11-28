@@ -9,8 +9,7 @@ import { makeStyles } from '../../../node_modules/@material-ui/core/styles';
 import GridList from '../../../node_modules/@material-ui/core/GridList';
 import GridListTile from '../../../node_modules/@material-ui/core/GridListTile';
 import GridListTileBar from '../../../node_modules/@material-ui/core/GridListTileBar';
-// import ListSubheader from '../../../node_modules/@material-ui/core/ListSubheader';
-import IconButton from '../../../node_modules/@material-ui/core/IconButton';
+import Backdrop from '@material-ui/core/Backdrop';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,12 +20,16 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.background.paper,
     },
     gridList: {
-      width: 'auto',
-      height: 450,
+      width: '100%',
+      height: 'auto',
     },
     icon: {
       color: 'rgba(255, 255, 255, 0.54)',
     },
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+      },
   }));
 
 const Photos = (props) => {
@@ -60,10 +63,19 @@ const Photos = (props) => {
         dispatch(postPhotos(fd))
     }
 
+    const [open, setOpen] = useState(false);
+
+	const handleClickOpen = () => {
+		setOpen(!open);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
+    };
+    
     const renderImages = () => {
         return photosOnBackend.map((element, index) =>
-            <div className=''>
-                <h2 style={{textAlign: "left", marginTop: 20}}>{element.title}</h2>
+            <div key={index}>
                     <img
                     key={ index }
                     className=''
@@ -73,7 +85,7 @@ const Photos = (props) => {
                     }} 
                     src={ `${BASE_URL}/${element.images}` } 
                     alt={`img galeria`} />
-                {console.log(element.images)}
+                {/* {console.log(element.title)} */}
                     <hr/>
             </div>)
         
@@ -106,13 +118,10 @@ const Photos = (props) => {
                             width: '100%',
                             height: 0,
                             padding: '2px',
-                            margin: '0px',
+                            marginBottom: '2em',
                             textAlign: 'left',
                          }}
                         >Fotos</h3>
-                    {/* <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-                    <ListSubheader component="div">Fotos</ListSubheader>
-                    </GridListTile> */}
                     {photosOnBackend.map((element, index) => (
                     <GridListTile key={index}>
                         <img src={ `${BASE_URL}/${element.images[0]}` }
@@ -120,21 +129,19 @@ const Photos = (props) => {
                     />
                         <GridListTileBar
                             title={element.title}
-                        //   subtitle={<span>by: {tile.author}</span>}
-                            actionIcon={
-                                <IconButton 
-                                    aria-label={`info about ${element.title}`}
-                                    className={classes.icon}
-                                    onClick={() => renderImages()}
-                                    >
-                                    <i className='fa fa-info-circle'/>
-                                </IconButton>
-                            }
-                        />
+                            onClick={handleClickOpen}
+                            />      
                     </GridListTile>
                     ))}
                 </GridList>
                 </div>
+                <Backdrop
+                    className={classes.backdrop}
+                    open={open}
+                    onClick={handleClose}
+                >
+                    {renderImages()}
+                </Backdrop>
             </div>
         </div>
         </>

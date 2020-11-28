@@ -12,7 +12,18 @@ export const getPhotos = () => {
 		.then(result => {
 			console.log(result)
 			dispatch({ type: PHOTOS_FETCHED , payload: result.data })
+		}).catch(err => {
+			console.error(err)
+		})
+	}
+}
 
+export const getPhotosId = (id) => {	
+	return dispatch => {
+		axios.get(`${ BASE_URL }/photos/${id}`)
+		.then(result => {
+			console.log(result._id)
+			dispatch({ type: PHOTOS_FETCHED , payload: result.data })
 		}).catch(err => {
 			console.error(err)
 		})
