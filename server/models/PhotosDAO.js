@@ -18,7 +18,7 @@ const getPhotos = (req, res, next) => {
 
 const getPhotosId = (req, res, next) => {
 	photos
-        .findOne({ _id : req.params._id })
+        .findOne({ _id : req.params.id })
         // .sort({ created : -1 })
 		.then(data => {
 			res.status(200).json(data);

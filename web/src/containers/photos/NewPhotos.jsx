@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {postPhotos, getPhotos} from '../../actions/photosActions'
+import {postPhotos, getPhotos, getPhotosId} from '../../actions/photosActions'
 import FormData from 'form-data'
 import { useDispatch, useSelector } from 'react-redux'
 import FormPhotos from './FormPhotos'
@@ -65,8 +65,9 @@ const Photos = (props) => {
 
     const [open, setOpen] = useState(false);
 
-	const handleClickOpen = () => {
-		setOpen(!open);
+	const handleClickOpen = (id) => {
+        setOpen(!open);
+        dispatch(getPhotosId(id));
 	};
 
 	const handleClose = () => {
@@ -88,7 +89,6 @@ const Photos = (props) => {
                 {/* {console.log(element.title)} */}
                     <hr/>
             </div>)
-        
     }
  
     return (
@@ -109,7 +109,6 @@ const Photos = (props) => {
         <div className="box box-success">
             <div className="box-header with-border">
                 <div className={classes.root}>
-                <GridList cellHeight={180} className={classes.gridList}>
                     <h3 
                         key="Subheader"
                         cols={2}
@@ -122,6 +121,7 @@ const Photos = (props) => {
                             textAlign: 'left',
                          }}
                         >Fotos</h3>
+                <GridList cellHeight={180} className={classes.gridList}>
                     {photosOnBackend.map((element, index) => (
                     <GridListTile key={index}>
                         <img src={ `${BASE_URL}/${element.images[0]}` }
@@ -129,7 +129,7 @@ const Photos = (props) => {
                     />
                         <GridListTileBar
                             title={element.title}
-                            onClick={handleClickOpen}
+                            onClick={() => handleClickOpen(element._id)}
                             />      
                     </GridListTile>
                     ))}
