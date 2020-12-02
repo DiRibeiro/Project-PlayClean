@@ -55,12 +55,17 @@ const ListColetas = (props) => {
 	}
 
 	const gera_cor = () => { 
-		var letters = '0123456789ABCDEF';
-		var color = '#';
-		for (var i = 0; i < 6; i++) {
-		  color += letters[Math.floor(Math.random() * 16)];
+		var arrCores = ['#C0C0C0', '#D3D3D3'];
+		var index = []
+		// Define cor aleatória
+		index = Math.round(Math.random() * (arrCores.length - 1));
+		if(index === arrCores['#C0C0C0']){
+			return index
 		}
-		return color;
+		else if(index === arrCores['#D3D3D3']){
+			return index
+		}
+		return arrCores[index]
 	}
 
 	const renderColetas = () => {
