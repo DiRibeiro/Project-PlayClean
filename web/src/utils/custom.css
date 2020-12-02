@@ -972,3 +972,17 @@ calendarLi:nth-child(2n) {
 .MuiDialog-paperWidthSm {
     max-width: 60em !important;
 }
+
+.dialogContainer {
+    clear: both;
+    opacity: 0.9;
+    background-color: black;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.dialogContent {
+    height: 100% !important;
+    width: 100% !important;
+    border: solid 2px blue;
+}

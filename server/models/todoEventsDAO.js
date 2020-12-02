@@ -34,7 +34,8 @@ exports.post = (req, res, next) => {
     console.log(req.body)
     if (req.file) {
         newTodo.image = "events/" + req.file.filename;
-
+    } else {
+        newTodo.image = null;
     }
 
     newTodo

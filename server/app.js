@@ -62,6 +62,7 @@ app.delete('/leis/:id', TokenValidation, LeisDAO.deleteLeis)
 
 //Mural Photos
 app.get('/photos', Photo.getPhotos)
+app.get('/photos/:id', (req, res) => Photo.getPhotosId(req, res))
 app.post('/photos', TokenValidation, upload.array('images', 12), Photo.postPhotos)
 
 //Coleta
