@@ -87,39 +87,12 @@ const ColetaForm = props => {
                                     <option value="Várzea do Padre" >Várzea do Padre</option>
                                  </Field>
                         </div>
-                        <div className="col-md-3">
-                            <label>Coleta Orgânica</label>
-                            <Field name='organic' component='input' className="form-control" placeholder='Orgânica'/>
-                            <label>Coleta Seletiva</label>
-                            <Field name='selective' component='input' className="form-control" placeholder='Seletiva'/>
-                        </div>
-                        <div className="col-md-3">
-                            <label>Turno da Coleta Orgânica</label>
-                            <Field name='descriptionOrganic' component="input" placeholder='Informar turno' className="form-control"/>
-                            <label>Turno da Coleta Seletiva</label>
-                            <Field name='descriptionSelective' component="input" placeholder='Informar turno' className="form-control"/>
-                        </div>
-                        <div className="col-md-3">
-                            <label>Dia da Coleta Orgânica</label>
-                            <Field name='dayOrganic' component="select" className="form-control select">
-                                <option value="" disabled defaultValue>Selecione</option>
-                                <option value="Segunda-Feira" >Segunda-Feira</option>
-                                <option value="Terça-Feira" >Terça-Feira</option>
-                                <option value="Quarta-Feira" >Quarta-Feira</option>
-                                <option value="Quinta-Feira" >Quinta-Feira</option>
-                                <option value="Sexta-Feira" >Sexta-Feira</option>
-                                <option value="Sábado" >Sábado</option>
-                            </Field>
-                            <label>Dia da Coleta Seletiva</label>
-                            <Field name='daySelective' component="select" className="form-control select">
-                                <option value="" disabled defaultValue>Selecione</option>
-                                <option value="Segunda-Feira" >Segunda-Feira</option>
-                                <option value="Terça-Feira" >Terça-Feira</option>
-                                <option value="Quarta-Feira" >Quarta-Feira</option>
-                                <option value="Quinta-Feira" >Quinta-Feira</option>
-                                <option value="Sexta-Feira" >Sexta-Feira</option>
-                                <option value="Sábado" >Sábado</option>
-                            </Field>
+                        <div className="col-md-6">
+                            <label>Descrição Coleta Orgânica</label>
+                            <Field name='organic' component='textarea' className="form-control" placeholder='Segunda-feira - Manhã&#10;Quinta-feira - Tarde'  style={{ height: 100 }}/>
+                            <br/>
+                            <label>Descrição Coleta Seletiva</label>
+                            <Field name='selective' component='textarea' className="form-control" placeholder='Terça-feira - Tarde&#10;Quinta-feira - Noite' style={{ height: 100 }}/>
                         </div>
                     </div>
                     <div className="box-footer">

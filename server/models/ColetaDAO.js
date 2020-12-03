@@ -44,16 +44,15 @@ const editColeta = async (req, res) => {
     
     console.log("New coleta, req.body", req.body)    
     await coleta
-        .updateOne({_id: mongoose.Types.ObjectId(req.body._id),
+        .findByIdAndUpdate(req.body._id, {
                 neighborhood: req.body.neighborhood,
                 organic: req.body.organic,
                 selective: req.body.selective,
-                descriptionOrganic: req.body.descriptionOrganic,
-                descriptionSelective: req.body.descriptionSelective
             })
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {
+            console.log(err);
             res.status(400).json(err)
         })
 }

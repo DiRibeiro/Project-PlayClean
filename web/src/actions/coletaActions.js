@@ -9,6 +9,7 @@ export const getColeta = () => {
 	return dispatch => {
 		axios.get(`${BASE_URL}/coleta`)
 		.then(result => {
+            console.log(result.data)
 			dispatch({ 
 				type: COLETA_FETCHED, 
 				payload: result.data
@@ -50,11 +51,11 @@ export const deleteColeta = _id => {
 	}
 }
 
-export const editColeta = (_id, neighborhood, organic, selective, descriptionOrganic, descriptionSelective) => {	
+export const editColeta = (_id, neighborhood, organic, selective) => {	
 	return async dispatch => {
 		await axios
 			.post(`${BASE_URL}/coletaUpdate`, 
-				{_id, neighborhood, organic, selective, descriptionOrganic, descriptionSelective})
+				{_id, neighborhood, organic, selective})
 			.then(result => {
 				toastr.success('Sucesso!', 'Registro editado com sucesso!')
 				dispatch(getColeta());
