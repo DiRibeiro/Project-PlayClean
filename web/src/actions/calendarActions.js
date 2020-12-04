@@ -65,21 +65,24 @@ export const add = (title, description, dateOcurr, file) => dispatch => {
             })
 }
 
-export const remove = id => {	
+export const remove = _id => {	
     return async dispatch => {
-        await axios.delete(`${BASE_URL}/calendars/${id}`)
+        await axios.delete(`${BASE_URL}/calendars/${_id}`)
 		.then(result => {
 		    dispatch(search());
 		}).catch(error => toastr.error('Erro!', 'Internal server error'))
 	}
 }
 
-export const update = id => {    
+export const update = (_id, title, description, dateOcurr) => { 
 	return async dispatch => {
-        await axios.put(`${BASE_URL}/calendars/${id}`)
-		.then(result => {
-		    dispatch(search());
-		}).catch(error => toastr.error('Erro!', 'Internal server error'))
+        await axios
+            .post(`${BASE_URL}/calendarsUpdate`,
+                {_id, title, description, dateOcurr})
+            .then(result => {
+                toastr.success('Sucesso!', 'Registro editado com sucesso!')
+                dispatch(search());
+            }).catch(error => toastr.error('Erro!', 'Internal server error'))
 	}
 }
 

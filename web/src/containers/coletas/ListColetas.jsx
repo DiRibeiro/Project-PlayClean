@@ -41,8 +41,6 @@ const ListColetas = (props) => {
         const coleta = allColetas[index];
         setNewOrganicText(coleta.organic);
         setNewSelectiveText(coleta.selective);
-
-
     };
 
     const handleUpdateClose = () => {
@@ -122,7 +120,7 @@ const ListColetas = (props) => {
                                     coleta.neighborhood,
                                     newOrganicText,
                                     newSelectiveText,
-                                ))}>
+                                ), window.location = '/listColetas')}>
                             Atualizar
                         </button>
                     </DialogActions>
@@ -137,7 +135,7 @@ const ListColetas = (props) => {
         return allColetas.map((coleta, index) => (
             <tr
                 style={{ color: 'black', fontSize: 12, fontWeight: 'bold', backgroundColor: "lightgray", borderColor: `black`, borderStyle: 'solid' }}
-                key={coleta._id}>
+                key={index}>
 
                 <td>{coleta.neighborhood}</td>
 

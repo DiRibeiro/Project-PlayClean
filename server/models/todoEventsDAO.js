@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const { calendars } = require('../config/db')
 
-exports.get = (req, res, next) => {
+const getTodo = (req, res, next) => {
     calendars
         .find()
 		.sort({ dateOcurr: 1 })
@@ -13,7 +13,7 @@ exports.get = (req, res, next) => {
         })
 }
 
-exports.getMonth = (req, res, next) => {
+const getMonthTodo = (req, res, next) => {
 
     let month = req.params.month -1;
     let year = req.params.year;
@@ -29,7 +29,7 @@ exports.getMonth = (req, res, next) => {
         })
 }
 
-exports.post = (req, res, next) => {
+const postTodo = (req, res, next) => {
     let newTodo =  new calendars(req.body)
     console.log(req.body)
     if (req.file) {
@@ -48,7 +48,7 @@ exports.post = (req, res, next) => {
         })
 }
 
-exports.delete = (req, res, next) => {
+const deleteTodo = (req, res, next) => {
     calendars
         .deleteOne({'_id' : req.params.id})
         .then(data => {
@@ -58,12 +58,19 @@ exports.delete = (req, res, next) => {
         })
 }
 
-exports.put = (req, res, next) => {
-    calendars
-        .updateOne({'title' : req.body.title, 'description': req.body.description, 'dateOcurr': req.body.dateOcurr})
+const editTodo = async (req, res, next) => {
+    console.log(req.body)
+    await calendars
+        .findByIdAndUpdate(req.params._id, {
+            title: req.body.title,
+            description: req.body.description,
+            dateOcurr: req.body.dateOcurr,
+        })
         .then(data => {
             res.status(200).json(data)
         }).catch(err => {
             res.status(400).json(err)
         })
 }
+
+module.exports = {getTodo, getMonthTodo, postTodo, deleteTodo, editTodo}

@@ -31,11 +31,11 @@ app.get('/reportStatus' , TokenValidation, (req, res) => ReportsDAO.getStatus(re
 app.delete('/report/:id' , TokenValidation, (req, res) => ReportsDAO.deleteReport(req, res))
 
 //Calendar Events
-app.get('/calendars', Calendar.get)
-app.get('/calendars/:year/:month', Calendar.getMonth)
-app.post('/calendars', TokenValidation, upload.single('image'), Calendar.post)
-app.delete('/calendars/:id', TokenValidation, Calendar.delete)
-app.put('/calendars/:id', Calendar.put)
+app.get('/calendars', Calendar.getTodo)
+app.get('/calendars/:year/:month', Calendar.getMonthTodo)
+app.post('/calendars', TokenValidation, upload.single('image'), Calendar.postTodo)
+app.delete('/calendars/:id', TokenValidation, Calendar.deleteTodo)
+app.post('/calendarsUpdate', TokenValidation, (req, res) => Calendar.editTodo(req, res))
 // Todo.register(router, '/todos')
 
 //Cata Treco
