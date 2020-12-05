@@ -58,13 +58,21 @@ const deleteTodo = (req, res, next) => {
         })
 }
 
-const editTodo = async (req, res, next) => {
+const editTodo = async (req, res) => {
     console.log(req.body)
+
+    if (req.file) {
+        calendars.image = "events/" + req.file.filename;
+    } else {
+        calendars.image = null;
+    }
+
     await calendars
-        .findByIdAndUpdate(req.params._id, {
+        .findByIdAndUpdate(req.body._id, {
             title: req.body.title,
             description: req.body.description,
             dateOcurr: req.body.dateOcurr,
+            image: req.body.image
         })
         .then(data => {
             res.status(200).json(data)

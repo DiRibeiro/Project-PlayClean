@@ -957,6 +957,9 @@ calendarLi:nth-child(2n) {
 
 .tableActions {
     text-align-last: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .tableDate {

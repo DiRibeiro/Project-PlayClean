@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useSelector, connect, useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { remove, search, update } from '../../actions/calendarActions'
+import { remove, search, editTodo } from '../../actions/calendarActions'
 import { fullDate } from '../../helper/date'
 
 import Dialog from '@material-ui/core/Dialog';
@@ -42,6 +42,7 @@ const TodoList = props => {
         setNewTitle(calendario.title);
         setNewDescription(calendario.description);
         setNewDateOcurr(calendario.dateOcurr);
+        setNewImage(calendario.image);
     };
 
     const handleCloseUpdate = () => {
@@ -76,6 +77,7 @@ const TodoList = props => {
     const [newTitle, setNewTitle] = useState();
     const [newDescription, setNewDescription] = useState();
     const [newDateOcurr, setNewDateOcurr] = useState();
+    const [newImage, setNewImage] = useState();
 
     const editDialogComponent = () => {
         const calendario = list[index];
@@ -120,6 +122,17 @@ const TodoList = props => {
                                 onChange={e => setNewDescription(e.target.value)}
                             />
                         </div>
+                        {/* <div className='row'>
+                            <input 
+                                id="select-document"
+                                className="input-select"
+                                type="file" 
+                                name="file" 
+                                accept="image/*" 
+                                value={newImage}
+                                onChange={e => setNewImage(e.target.value)}
+                                />
+                        </div> */}
                     </div>
                     <DialogActions className='btn-dialog'>
                         <button className="btn btn-danger" onClick={handleCloseUpdate}>
@@ -127,11 +140,12 @@ const TodoList = props => {
                         </button>
                         <button className="btn btn-success"
                             onClick={ () => 
-                                dispatch(update(
+                                dispatch(editTodo(
                                     calendario._id,
                                     newTitle,
                                     newDescription,
-                                    newDateOcurr
+                                    newDateOcurr,
+                                    newImage
                                     ), window.location = '/calendar')}>
                             Atualiza
                         </button>
@@ -157,7 +171,7 @@ const TodoList = props => {
                             }}
 							className="btn btn-danger btn-delete" 
 							variant="outlined" 
-							onClick={handleClickOpen}>
+							onClick={() => handleClickOpen(index)}>
 							<i className='fa fa-trash-o'></i>
 						</button>
                         {removeDialogComponent()}
@@ -201,5 +215,5 @@ const TodoList = props => {
 
 const mapStateToProps = state => ({list: state.todo.list})
 const mapDispatchToProps = dispatch => 
-    bindActionCreators({ remove, update, search }, dispatch)
+    bindActionCreators({ remove, editTodo, search }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)

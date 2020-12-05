@@ -74,11 +74,11 @@ export const remove = _id => {
 	}
 }
 
-export const update = (_id, title, description, dateOcurr) => { 
+export const editTodo = (_id, title, description, dateOcurr, image) => { 
 	return async dispatch => {
         await axios
             .post(`${BASE_URL}/calendarsUpdate`,
-                {_id, title, description, dateOcurr})
+                {_id, title, description, dateOcurr, image})
             .then(result => {
                 toastr.success('Sucesso!', 'Registro editado com sucesso!')
                 dispatch(search());
