@@ -134,7 +134,7 @@ const ListColetas = (props) => {
     const renderColetas = () => {
         return allColetas.map((coleta, index) => (
             <tr
-                style={{ color: 'black', fontSize: 12, fontWeight: 'bold', backgroundColor: "lightgray", borderColor: `black`, borderStyle: 'solid' }}
+                className='trColetas'
                 key={index}>
 
                 <td>{coleta.neighborhood}</td>

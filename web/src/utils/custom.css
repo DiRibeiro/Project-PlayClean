@@ -989,3 +989,14 @@ calendarLi:nth-child(2n) {
     width: 100% !important;
     border: solid 2px blue;
 }
+
+.trColetas {
+    font-weight: bold;
+    font-size: 12;
+    background-color: lightgray;
+    color: black;
+}
+
+.trColetas:nth-of-type(2n) {
+    background-color: whitesmoke;
+}
