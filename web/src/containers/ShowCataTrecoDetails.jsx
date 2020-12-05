@@ -19,32 +19,12 @@ const ShowCataTrecoDetails = props => {
 	useEffect(() => {
 		dispatch(getCataTreco())
 	}, [])
-    
-    /*
-	const showStatus = () => (
-		<div className='showStatus'>
-			<button className="btn btn-success showBtn"
-				onClick={ () => dispatch(setStatus(0, cataTreco._id), window.location='/listCataTreco') }
-			>Agendado
-			</button>
-			<button className="btn btn-dark showBtn"
-				onClick={ () => dispatch(setStatus(1, cataTreco._id), window.location='/listCataTreco') }
-			>Realizado
-			</button>
-        	<button className="btn btn-warning showBtn"
-				onClick={ () => dispatch(setStatus(2, cataTreco._id), window.location='/listCataTreco') }
-			>Pendente
-			</button>
-		</div>
-    )
-    */
 
     const updateStatus = () => {
         console.log("Updating...")
         console.log(ct, dateToCollect)
-        let date = new Date(new Date(dateToCollect).getTime() + 12 * 3600 * 1000)
+        let date = new Date(new Date(dateToCollect).getTime()/*  + 12 * 3600 * 1000 */)
         dispatch(setStatus(ct._id, 1, date));
-        
     }
 
     const remove = () => {
