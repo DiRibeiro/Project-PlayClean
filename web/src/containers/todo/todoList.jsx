@@ -94,6 +94,7 @@ const TodoList = props => {
                     <div className="box-body" style={{margin: '20px'}}>
                         <div className="row">
                             <input 
+                                style={{marginBottom: 2}}
                                 id='title' 
                                 className='form-control'
                                 name='title'
@@ -105,7 +106,7 @@ const TodoList = props => {
                         <div className="row">
                             <input 
                                 id='dateOcurr'
-                                className='form-control inputDate'
+                                className='form-control'
                                 name='dateOcurr'
                                 type='date'
                                 value={newDateOcurr}

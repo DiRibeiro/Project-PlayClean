@@ -49,7 +49,7 @@ const setStatus = (req, res) => {
 	cataTreco.updateOne(
 		{ _id: mongoose.Types.ObjectId(req.body._id) },
         { status: req.body.status,
-            dateToCollect: req.body.dateToCollect },
+            dateOcurr: req.body.dateOcurr },
 		(err, response) =>
 			err ? res.status(202).json(err) : res.status(200).json(response)
     )

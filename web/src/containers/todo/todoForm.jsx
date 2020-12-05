@@ -41,17 +41,20 @@ class TodoForm extends Component {
                                     onKeyUp={this.keyHandler}
                                     name='title'
                                     type='text'
-                                    value={title}/>
+                                    value={title}
+                                    required
+                                    />
                             </div>
                             <div className='col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3'>
                                 <input 
                                     id='dateOcurr'
-                                    className='form-control inputDate'
+                                    className='form-control'
                                     onChange={this.props.changeDate}
                                     onKeyUp={this.keyHandler}
                                     name='dateOcurr'
                                     type='date'
                                     value={this.dateOcurr}
+                                    required
                                 />
                             </div>
                             <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6'>
@@ -63,7 +66,9 @@ class TodoForm extends Component {
                                     onKeyUp={this.keyHandler}
                                     name='description'
                                     value={description}
-                                    rows="4" cols="50"/>
+                                    rows="4" cols="50"
+                                    required
+                                    />
                             </div>
                             {/* </div> */}
                         </div>
@@ -76,6 +81,7 @@ class TodoForm extends Component {
                     <input id="select-document"
                         className="input-select"
                         type="file" 
+                        // required
                         name="file" 
                         accept="image/*" 
                         onChange={this.props.changeFile}

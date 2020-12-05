@@ -14,7 +14,7 @@ const ShowCataTrecoDetails = props => {
 	const cataTreco = useSelector(state => state.cataTreco.list)
 	const ct = cataTreco.find(element => element._id === props.location.state) || undefined
     
-    const [dateToCollect, setDateToCollect] = useState('');
+    const [dateOcurr, setDateOcurr] = useState('');
 
 	useEffect(() => {
 		dispatch(getCataTreco())
@@ -22,8 +22,8 @@ const ShowCataTrecoDetails = props => {
 
     const updateStatus = () => {
         console.log("Updating...")
-        console.log(ct, dateToCollect)
-        let date = new Date(new Date(dateToCollect).getTime()/*  + 12 * 3600 * 1000 */)
+        console.log(ct, dateOcurr)
+        let date = new Date(new Date(dateOcurr).getTime()/*  + 12 * 3600 * 1000 */)
         dispatch(setStatus(ct._id, 1, date));
     }
 
@@ -73,13 +73,13 @@ const ShowCataTrecoDetails = props => {
                 <h3>Agendar para</h3>
                 <div style={{display: 'flex'}}>
                 <input  style={{width: '300px'}}
-                    id='dateToCollect'
+                    id='dateOcurr'
                     className='form-control inputDate'
-                    onChange={(e) => setDateToCollect(e.target.value)}
-                    name='dateToCollect'
+                    onChange={(e) => setDateOcurr(e.target.value)}
+                    name='dateOcurr'
                     type='date'
                     format='dd/MM/yyyy'
-                    value={dateToCollect}
+                    value={dateOcurr}
                 />
 				<button onClick={() => updateStatus()}>Confirmar</button>	
                 </div>
@@ -88,21 +88,23 @@ const ShowCataTrecoDetails = props => {
             </div>
             :
             <div style={{marginLeft: 20}}> 
-                <h2>Agendado pra o dia: {shortDate(ct.dateToCollect)}</h2>
+                <h2>Agendado pra o dia: {shortDate(ct.dateOcurr)}</h2>
                 <div style={{display: 'flex'}}>
                 <input  style={{width: '300px'}}
-                    id='dateToCollect'
+                    id='dateOcurr'
                     className='form-control inputDate'
-                    onChange={(e) => setDateToCollect(e.target.value)}
-                    name='dateToCollect'
+                    onChange={(e) => setDateOcurr(e.target.value)}
+                    name='dateOcurr'
                     type='date'
                     format='dd/MM/yyyy'
-                    value={dateToCollect}
+                    value={dateOcurr}
                 />
                 <button onClick={() => updateStatus()}>Atualizar Agendamento</button>	
                 </div>
                 <br></br>
-                <button onClick={() => remove()}>Remover</button>
+                <button 
+                    className="btn btn-danger" 
+                    onClick={() => remove()}>Remover</button>
             </div>
             }
             <br></br>

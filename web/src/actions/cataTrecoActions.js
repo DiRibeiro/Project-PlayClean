@@ -34,10 +34,10 @@ export const postCataTreco = (values, router) => dispatch => {
 		.catch(error => toastr.error('Erro!', 'Internal server error'))
 }
 
-export const setStatus = (_id, status, dateToCollect) => {
+export const setStatus = (_id, status, dateOcurr) => {
 	return dispatch => {
 		axios
-			.post(`${BASE_URL}/cataTrecoStatus`, { _id, status, dateToCollect })
+			.post(`${BASE_URL}/cataTrecoStatus`, { _id, status, dateOcurr })
 			.then(response => {
 				if (response.status === 202) toastr.error('Erro!', response)
 				else if (response.status === 200) {
