@@ -17,6 +17,16 @@ const RowCataTreco = props => {
         else if(cataTreco.status === 0) 
             statusDom = (<button className="btn btn-warning">Pendente</button>)
 
+
+        const showDetail = () => {
+            if(cataTreco.dateOcurr === null){
+                return null
+            }
+            else {
+                return 'Agendado para dia ' + fullDate(cataTreco.dateOcurr)
+            }
+        }
+
         return (
             <div className="box box-success">
                 <div className="box-body listCataTreco">
@@ -26,7 +36,8 @@ const RowCataTreco = props => {
                         <br/>
                         <span>Cadastrado dia { fullDate(cataTreco.dateCreate) }</span><br />
                         <p>{ cataTreco.description }</p>
-                        <span>Agendado para dia { fullDate(cataTreco.dateOcurr) }</span><br />
+                        {showDetail()}
+                        
                     </div>
                     <Link to={{ pathname: '/showDetailCataTreco', state: cataTreco._id }} >
                         <button className="btn btn-primary bottomZero">Ver mais</button>

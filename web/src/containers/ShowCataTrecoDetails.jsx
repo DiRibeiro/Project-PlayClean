@@ -1,13 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setStatus ,getCataTreco, removeCataTreco } from '../actions/cataTrecoActions'
 
 import { fullDate, shortDate } from '../helper/date'
-import { useEffect } from 'react'
-
 
 import 'react-widgets/dist/css/react-widgets.css'
-
 
 const ShowCataTrecoDetails = props => { 
 	const dispatch = useDispatch()
@@ -15,21 +12,23 @@ const ShowCataTrecoDetails = props => {
 	const ct = cataTreco.find(element => element._id === props.location.state) || undefined
     
     const [dateOcurr, setDateOcurr] = useState('');
-
+    
 	useEffect(() => {
 		dispatch(getCataTreco())
 	}, [])
 
     const updateStatus = () => {
         console.log("Updating...")
-        console.log(ct, dateOcurr)
-        let date = new Date(new Date(dateOcurr).getTime()/*  + 12 * 3600 * 1000 */)
-        dispatch(setStatus(ct._id, 1, date));
+        // console.log(ct, dateOcurr) 
+        var date
+        if(dateOcurr !== null && dateOcurr >= ct.dateCreate) {
+            date = new Date(new Date(dateOcurr).getTime()/*  + 12 * 3600 * 1000 */)
+            return dispatch(setStatus(ct._id, 1, date))
+        }
     }
 
     const remove = () => {
         dispatch(removeCataTreco(ct._id));
-    
     }
 
 	return ct !== undefined ? (
@@ -49,6 +48,7 @@ const ShowCataTrecoDetails = props => {
 						<br />
 						<b>Protocolo: </b>
 						{ ct.protocol }
+						<br />
 						<b>Onde ocorreu: </b>
 						{ ct.adressOcurr }
 						<br />
@@ -74,17 +74,23 @@ const ShowCataTrecoDetails = props => {
                 <div style={{display: 'flex'}}>
                 <input  style={{width: '300px'}}
                     id='dateOcurr'
-                    className='form-control inputDate'
+                    className='form-control'
                     onChange={(e) => setDateOcurr(e.target.value)}
                     name='dateOcurr'
                     type='date'
                     format='dd/MM/yyyy'
                     value={dateOcurr}
                 />
-				<button onClick={() => updateStatus()}>Confirmar</button>	
+                <button 
+                    className='btn btn-primary'
+                    onClick={() => updateStatus()}
+                >Confirmar</button>	
                 </div>
                 <br></br>
-                <button onClick={() => remove()}>Remover</button>
+                <button 
+                    className="btn btn-danger"
+                    onClick={() => remove()}
+                >Remover</button>
             </div>
             :
             <div style={{marginLeft: 20}}> 
@@ -92,19 +98,24 @@ const ShowCataTrecoDetails = props => {
                 <div style={{display: 'flex'}}>
                 <input  style={{width: '300px'}}
                     id='dateOcurr'
-                    className='form-control inputDate'
+                    className='form-control'
                     onChange={(e) => setDateOcurr(e.target.value)}
                     name='dateOcurr'
                     type='date'
                     format='dd/MM/yyyy'
                     value={dateOcurr}
                 />
-                <button onClick={() => updateStatus()}>Atualizar Agendamento</button>	
+                <button 
+                    className='btn btn-primary'
+                    style={{width: 'auto'}}
+                    onClick={() => updateStatus()}
+                >Atualizar Agendamento</button>	
                 </div>
                 <br></br>
                 <button 
                     className="btn btn-danger" 
-                    onClick={() => remove()}>Remover</button>
+                    onClick={() => remove()}>Remover
+                </button>
             </div>
             }
             <br></br>

@@ -61,7 +61,7 @@ export const add = (title, description, dateOcurr, file) => dispatch => {
                     toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
                 }
             }).catch(error => {
-                toastr.error('Erro!', 'Internal server error')
+                toastr.error('Erro!', 'Favor informar todos os campos.')
             })
 }
 

@@ -21,12 +21,14 @@ const RowReport = props => {
         return (
             <div className="box box-success">
                 <div className="box-body listReport">
-                    <Link className="" to={{ pathname: '/showDetailReport', state: report._id }} >
+                    <Link className="linkReport" to={{ pathname: '/showDetailReport', state: report._id }} >
                         <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                                 <h3 className="box-title">{ report.title }</h3>
-                                <span>Ocorreu dia { fullDate(report.dateOcurr) }</span><br />
-                                <span>Cadastrado dia { fullDate(report.dateCreate) }</span><br />
-                                <p>{ report.description }</p>
+                                <h4 className='typeReportsH4'>Tipo de Denúncia:</h4>{ report.typeReport }
+                                <br/>
+                                <span>Cadastrado dia { fullDate(report.dateCreate) }</span>
+                                <br/><br/>
+                                <p className='reportDescription'>{ report.description }</p>
                             {/* <button className="btn btn-primary bottomZero">Ver mais</button> */}
                         </div>
                     </Link>

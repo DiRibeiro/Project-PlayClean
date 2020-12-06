@@ -158,6 +158,28 @@ input[type=date] {
     margin-bottom: 10px;
     bottom: 0;
 }
+
+.typeReportsH4 {
+    margin: 0;
+    margin-right: 0.5em;
+    float: left;
+    line-height: 0.9;
+    color: black;
+    font-weight: 500;
+}
+
+.linkReport {
+    color: black;
+}
+
+.linkReport:hover {
+    color: black;
+}
+
+.reportDescription {
+    font-size: medium;
+    font-weight: 600;
+}
 /* margin-bottom: 15px;  */
 
 /* Filter search */
@@ -932,6 +954,10 @@ calendarLi:nth-child(2n) {
 
 .btn-dialog {
     justify-content: center !important;
+}
+
+.MuiBackdrop-root {
+    background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Calendar */

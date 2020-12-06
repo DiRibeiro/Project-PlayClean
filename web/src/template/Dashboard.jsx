@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import LineChart from '../widget/LineChart'
-import DoughnutChart from '../widget/DoughnutChart'
+// import DoughnutChart from '../widget/DoughnutChart'
 
 import Bookmark from '../widget/Bookmark'
 import Map from '../widget/Map'
@@ -17,8 +17,8 @@ const Dashboard = () => {
     const dispatch = useDispatch()
         
     const bookmarkCt = useSelector(state => state.dashboardCt.bookmark)
-    const doughnutChartCt = useSelector(state => state.dashboardCt.doughnutChart)
-    // const lineChartCt = useSelector(state => state.dashboardCt.lineChart)
+    // const doughnutChartCt = useSelector(state => state.dashboardCt.doughnutChart)
+    const lineChartCt = useSelector(state => state.dashboardCt.lineChart)
 
     const bookmark = useSelector(state => state.dashboard.bookmark)
     const lineChart = useSelector(state => state.dashboard.lineChart)
@@ -85,13 +85,13 @@ const Dashboard = () => {
                         <div className="col-11 col-md-6">
                             <LineChart data={ lineChart.data } style={{ marginLeft: '8px' }}/>
                         </div>
-                        <div className="col-11 col-md-5">
+                        {/* <div className="col-11 col-md-5">
                             <h4>Cata-Treco por bairro</h4>
                             <DoughnutChart labels={ doughnutChartCt.labels } data={ doughnutChartCt.data } />
-                        </div>
-                        {/* <div className="col-11 col-md-6">
-                            <LineChart data={ lineChartCt.data } style={{ marginLeft: '8px' }}/>
                         </div> */}
+                        <div className="col-11 col-md-6">
+                            <LineChart data={ lineChartCt.data } style={{ marginLeft: '8px' }}/>
+                        </div>
                     </div>
                     
                     <Map map={ map } />

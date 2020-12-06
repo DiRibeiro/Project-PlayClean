@@ -7,16 +7,18 @@ const DASHBOARD_FETCHED = "DASHBOARD_FETCHED"
 
 export const getDashboardData = () => {
     return dispatch => {
-        axios.get(`${BASE_URL}/dashboardReports`).then(response => {
-            dispatch({
-                type: DASHBOARD_FETCHED,
-                payload: response.data
+        axios
+            .get(`${BASE_URL}/dashboardReports`)
+            .then(response => {
+                dispatch({
+                    type: DASHBOARD_FETCHED,
+                    payload: response.data
+                })
+        
+            }).catch(error => {
+                console.log(error)
+                toastr.error('Erro!', 'Internal server error')
             })
-    
-        }).catch(error => {
-            console.log(error)
-            toastr.error('Erro!', 'Internal server error')
-        })
     }
 
 }

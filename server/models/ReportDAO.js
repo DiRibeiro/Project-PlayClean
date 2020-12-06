@@ -109,7 +109,7 @@ const getDataDashboard = async (req, res) => {
 			if (report.status == 1)
 				// Pending
 				totalClosed++
-			else if (reports.status == 2)
+			else if (report.status == 2)
 				// Closed
 				totalPending++
 		}

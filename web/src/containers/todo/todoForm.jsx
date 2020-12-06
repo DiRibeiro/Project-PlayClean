@@ -17,7 +17,7 @@ class TodoForm extends Component {
 
     keyHandler(e) {
         const { add, clear, search, description, dateOcurr } = this.props
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && description != null &&  dateOcurr != null) {
             e.shiftKey ? search() : add(description, dateOcurr)
         } else if (e.key === 'Escape') {
             clear()
@@ -34,6 +34,7 @@ class TodoForm extends Component {
                             {/* <div className='calendar-input'> */}
                             <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6'>
                                 <input 
+                                    required
                                     id='title' 
                                     className='form-control'
                                     placeholder='Título do Evento'
@@ -42,7 +43,6 @@ class TodoForm extends Component {
                                     name='title'
                                     type='text'
                                     value={title}
-                                    required
                                     />
                             </div>
                             <div className='col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3'>
@@ -91,7 +91,7 @@ class TodoForm extends Component {
                 <div className='btn-calendar'>
                     <button className='btn-success btn-add'
                         onClick={() => {
-                            console.log(file)
+                            // console.log(file)
                             add(title, description, dateOcurr, file);
                         }}><i className="fa fa-plus" aria-hidden="true"/></button>
                     

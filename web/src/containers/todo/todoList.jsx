@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { useSelector, connect, useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { remove, search, editTodo } from '../../actions/calendarActions'
+import { remove, search, editTodo, changeDate } from '../../actions/calendarActions'
 import { fullDate } from '../../helper/date'
 
 import Dialog from '@material-ui/core/Dialog';
@@ -110,7 +110,7 @@ const TodoList = props => {
                                 name='dateOcurr'
                                 type='date'
                                 value={newDateOcurr}
-                                onChange={e => setNewDateOcurr(e.target.value)}
+                                onChange={e => changeDate(e.target.value)}
                             />
                         </div>
                         <div className='row'>

@@ -132,7 +132,7 @@ const ShowReportDetails = props => {
 					{ /* Info */ }
 					<div className='col-xl-8 col-md-6'>
 						Trocar status para: { showStatus() }
-						<h4>Tipo de denúncia: { report.typeReport }</h4>
+						<h4><strong>Tipo de denúncia:</strong> { report.typeReport }</h4>
 						<span>
 							Cadastrado dia: { fullDate(report.dateCreate)}
 						</span>
