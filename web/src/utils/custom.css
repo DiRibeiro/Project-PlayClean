@@ -960,6 +960,24 @@ calendarLi:nth-child(2n) {
     background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
+/* Button Cancel toastr */
+.rrt-button.rrt-cancel-btn.toastr-control {
+    display: none;
+}
+
+/* Button OK toastr */
+.rrt-button.rrt-ok-btn.toastr-control {
+    background-color: #00a65a !important;
+    color: white;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+}
+
+.rrt-message {
+    font-weight: 600;
+    color: black;
+}
+
 /* Calendar */
 
 .input-select {

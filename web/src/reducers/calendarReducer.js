@@ -13,7 +13,7 @@ export default (state = INITIAL_STATE, action) => {
         case 'TODO_SEARCHED':
             return { ...state, list: action.payload.data }
         case 'TODO_CLEAR':
-            return { ...state, description: '', date: '' }
+            return { ...state, description: '', date: '', title: '' }
         default:
             return state
     }
