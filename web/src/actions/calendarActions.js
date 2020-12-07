@@ -48,6 +48,7 @@ export const add = (title, description, dateOcurr, file) => dispatch => {
     let date = new Date(new Date(dateOcurr).getTime() + 12 * 3600 * 1000);
 
     fd.append('dateOcurr', date);
+    
     axios
         .post(`${BASE_URL}/calendars`, fd, {
             headers: {

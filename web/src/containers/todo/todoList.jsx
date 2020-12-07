@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { useSelector, connect, useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { remove, search, editTodo, changeDate } from '../../actions/calendarActions'
-import { fullDate } from '../../helper/date'
+import { remove, search, editTodo } from '../../actions/calendarActions'
+import { fullDate, shortDate } from '../../helper/date'
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -37,6 +37,8 @@ const TodoList = props => {
     const handleClickOpenUpdate = (index) => {
         setEdit(true);
         setIndex(index);
+        // let date = new Date(new Date(dateOcurr).getTime() + 12 * 3600 * 1000);
+        // console.log(date)
 
         const calendario = list[index];
         setNewTitle(calendario.title);
@@ -104,13 +106,14 @@ const TodoList = props => {
                             />
                         </div>
                         <div className="row">
+                            <label>Data atual do evento: {shortDate(newDateOcurr)}</label>
                             <input 
                                 id='dateOcurr'
                                 className='form-control'
                                 name='dateOcurr'
                                 type='date'
                                 value={newDateOcurr}
-                                onChange={e => changeDate(e.target.value)}
+                                onChange={e => setNewDateOcurr(e.target.value)}
                             />
                         </div>
                         <div className='row'>

@@ -84,7 +84,7 @@ const Photos = (props) => {
                         width: '150px',
                         borderRadius: '3px'
                     }} 
-                    src={ `${BASE_URL}/${element.images}` } 
+                    src={ `${BASE_URL}/photos/${element._id}` } 
                     alt={`img galeria`} />
                 {/* {console.log(element.title)} */}
                     <hr/>
@@ -102,14 +102,14 @@ const Photos = (props) => {
                         handleSubmit={ values => handleForm(values) }
                         handleImage = { values => fileSelectedHandler(values) }
                         photos={ files['images'] } 
-                    />
+                        />
                 </div>
             </div>
         </div>
         <div className="box box-success">
             <div className="box-header with-border">
                 <div className={classes.root}>
-                    <h3 
+                    {/* <h3 
                         key="Subheader"
                         cols={2}
                         className="box-title"
@@ -120,18 +120,28 @@ const Photos = (props) => {
                             marginBottom: '2em',
                             textAlign: 'left',
                          }}
-                        >Fotos</h3>
-                <GridList cellHeight={180} className={classes.gridList}>
+                        >Fotos</h3> */}
+                <GridList cellHeight={150} cols={5} className={classes.gridList}>
                     {photosOnBackend.map((element, index) => (
-                    <GridListTile key={index}>
-                        <img src={ `${BASE_URL}/${element.images[0]}` }
-                        alt={`img galeria`}
-                    />
-                        <GridListTileBar
-                            title={element.title}
-                            onClick={() => handleClickOpen(element._id)}
-                            />      
-                    </GridListTile>
+                        <GridListTile key={index}>
+                            <img 
+                                key={element._id}
+                                src={ `${BASE_URL}/${element.images[0]}` }
+                                alt={`img galeria`}
+                                onClick={() => handleClickOpen(element._id)}
+                            />
+                            <GridListTileBar
+                                title={element.title}
+                                actionIcon={
+                                    <button
+                                        className="btn btn-danger btn-delete" 
+                                        variant="outlined" 
+                                        onClick={console.log('Deletado')}>
+                                            <i className='fa fa-trash-o'></i>
+                                    </button>
+                                }
+                            /> 
+                        </GridListTile>
                     ))}
                 </GridList>
                 </div>
