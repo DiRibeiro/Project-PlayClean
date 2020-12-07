@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {postPhotos, getPhotos, getPhotosId} from '../../actions/photosActions'
+import {postPhotos, getPhotos, getPhotosId, deleteGallery, deleteSingleImg} from '../../actions/photosActions'
 import FormData from 'form-data'
 import { useDispatch, useSelector } from 'react-redux'
 import FormPhotos from './FormPhotos'
@@ -10,6 +10,7 @@ import GridList from '../../../node_modules/@material-ui/core/GridList';
 import GridListTile from '../../../node_modules/@material-ui/core/GridListTile';
 import GridListTileBar from '../../../node_modules/@material-ui/core/GridListTileBar';
 import Backdrop from '@material-ui/core/Backdrop';
+import { Dialog, DialogActions } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,6 +34,19 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const Photos = (props) => {
+
+    const menuStyle = {
+        cursor: 'pointer',
+        display: 'flex', 
+        minWidth: '100px',
+        maxWidth: '300px',
+        fontSize: '30px',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        textAlign: 'center',
+    }
+
+
     const classes = useStyles();
 
     const dispatch = useDispatch()
@@ -40,7 +54,10 @@ const Photos = (props) => {
 
     const photosOnBackend = useSelector(state => state.photos.photo)
     
-    const [title, setTitle] = useState('')
+    const [title, setTitle] = useState('');
+    const [index, setIndex] = useState();
+    const [internalIndex, setInternalIndex] = useState(0);
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         console.log("BUSCANDO FOTOS")
@@ -63,33 +80,119 @@ const Photos = (props) => {
         dispatch(postPhotos(fd))
     }
 
-    const [open, setOpen] = useState(false);
-
-	const handleClickOpen = (id) => {
+    
+	const handleClickOpen = (index) => {
         setOpen(!open);
-        dispatch(getPhotosId(id));
+       setIndex(index);
+       setInternalIndex(0);
 	};
 
 	const handleClose = () => {
 		setOpen(false);
     };
-    
-    const renderImages = () => {
-        return photosOnBackend.map((element, index) =>
-            <div key={index}>
-                    <img
-                    key={ index }
-                    className=''
-                    style={{ 
-                        width: '150px',
-                        borderRadius: '3px'
-                    }} 
-                    src={ `${BASE_URL}/photos/${element._id}` } 
-                    alt={`img galeria`} />
-                {/* {console.log(element.title)} */}
-                    <hr/>
-            </div>)
+
+
+    const previousImage = (galleryIndex, imageIndex) => {
+
+        const gallery = photosOnBackend[galleryIndex];
+
+        if (imageIndex == 0) {
+            setInternalIndex(gallery.images.length -1)
+        } else {
+            setInternalIndex(internalIndex -1);
+        }
+
     }
+
+
+    const nextImage = (galleryIndex, imageIndex) => {
+
+        const gallery = photosOnBackend[galleryIndex];
+
+        if (imageIndex == gallery.images.length -1) {
+            setInternalIndex(0)
+        } else {
+            setInternalIndex(internalIndex +1);
+        }
+    }
+
+    
+    const removeGallery = () => {
+
+        const gallery = photosOnBackend[index];
+        dispatch(deleteGallery(gallery._id));
+        handleClose();
+    }
+
+
+    const removeImage = () => {
+
+        const gallery = photosOnBackend[index];
+        dispatch(deleteSingleImg(gallery._id, internalIndex))
+
+    }
+
+
+    const galleryComponent = () => {
+
+        const gallery = photosOnBackend[index];
+        if (!gallery) return null;
+
+
+        return (
+            <div >
+                <Dialog
+                    open={open}
+                    onClose={() => setOpen(false)}
+                    fullWidth={true}
+                    maxWidth = {'md'}
+                >
+
+                    <div className="box-body" style={{margin: '20px'}}>
+                        <div className="row" style={{marginBottom: '20px'}}>
+                            <h2 style={{textAlign: 'center'}}>{gallery.title}</h2>
+                            <h4 style={{textAlign: 'center'}}>Foto {internalIndex +1} de {gallery.images.length}</h4>
+                        </div>
+                        
+                        
+                        <div className="row" style={{display: 'flex', justifyContent: 'center'}}>
+                            <div style={menuStyle} onClick={() => previousImage(index, internalIndex)}>
+                                {`<<`}
+                            </div>
+                            <img 
+                                style={{maxWidth : '700px'}}
+                                src={ `${BASE_URL}/${gallery.images[internalIndex]}` }
+                                alt={`img galeria`}
+                                onClick={() =>  {handleClickOpen(index); }}
+                            />
+                            <div style={menuStyle} onClick={() => nextImage(index, internalIndex)}>
+                                <h2>{`>>`}</h2>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <DialogActions className='btn-dialog' >
+                        
+                        <button className="btn btn-danger" onClick={() => removeGallery()} style={{width: 150}}>
+                            Deletar Galeria
+                        </button>
+                        <button className="btn btn-warning" onClick={() => removeImage()} style={{width: 150}}>
+                            Deletar Imagem
+                        </button>
+                        <button className="btn btn-success" style={{width: 150}}
+                            onClick={() =>
+                                console.log("Clicked... ")}>
+                            Fechar
+                        </button>
+                    </DialogActions>
+
+                </Dialog>
+            </div >
+        );
+    }
+
  
     return (
         <>
@@ -109,48 +212,28 @@ const Photos = (props) => {
         <div className="box box-success">
             <div className="box-header with-border">
                 <div className={classes.root}>
-                    {/* <h3 
-                        key="Subheader"
-                        cols={2}
-                        className="box-title"
-                        style={{     
-                            width: '100%',
-                            height: 0,
-                            padding: '2px',
-                            marginBottom: '2em',
-                            textAlign: 'left',
-                         }}
-                        >Fotos</h3> */}
+                   
                 <GridList cellHeight={150} cols={5} className={classes.gridList}>
                     {photosOnBackend.map((element, index) => (
-                        <GridListTile key={index}>
+                        <GridListTile key={element._id}>
                             <img 
-                                key={element._id}
                                 src={ `${BASE_URL}/${element.images[0]}` }
                                 alt={`img galeria`}
-                                onClick={() => handleClickOpen(element._id)}
+                                onClick={() =>  {handleClickOpen(index); }}
                             />
                             <GridListTileBar
                                 title={element.title}
-                                actionIcon={
-                                    <button
-                                        className="btn btn-danger btn-delete" 
-                                        variant="outlined" 
-                                        onClick={console.log('Deletado')}>
-                                            <i className='fa fa-trash-o'></i>
-                                    </button>
-                                }
                             /> 
                         </GridListTile>
                     ))}
                 </GridList>
+                {galleryComponent()}
                 </div>
                 <Backdrop
                     className={classes.backdrop}
                     open={open}
                     onClick={handleClose}
                 >
-                    {renderImages()}
                 </Backdrop>
             </div>
         </div>
@@ -160,28 +243,3 @@ const Photos = (props) => {
 
 export default Photos
 
-
-    
-    // return (
-    //     <>
-    //     <div className="box box-success">
-    //         <div className="box-header with-border">
-    //             <h3 className="box-title">Upload de fotos</h3>
-    //             <div className="box-body">
-    //                 <FormPhotos
-    //                     titleHandle = {e => setTitle(e.target.value)}
-    //                     handleSubmit={ values => handleForm(values) }
-    //                     handleImage = { values => fileSelectedHandler(values) } 
-    //                     photos={ files['images'] } 
-    //                 />
-    //             </div>
-    //         </div>
-    //     </div>
-    //     <div className="box box-success">
-    //         <div className="box-header with-border">
-    //             <h3 className="box-title">Fotos</h3>
-    //             {renderImages()}
-    //         </div>
-    //     </div>
-    //     </>
-    // )   

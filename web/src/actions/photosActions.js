@@ -61,3 +61,32 @@ export const postPhotos = (values) => dispatch => {
 			dispatch({ type: LOAD, payload: false })
 		})
 }
+
+
+export const deleteGallery = (id) => dispatch => {
+
+    axios.delete(`${BASE_URL}/photos/${id}`)
+        .then(ok => {
+           
+           toastr.success('OK!', 'Galeria removida')
+           dispatch(getPhotos());
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
+}
+
+export const deleteSingleImg = (galleryID, imageID) => dispatch => {
+
+    axios.delete(`${BASE_URL}/singlePhoto/${galleryID}/${imageID}`)
+        .then(ok => {
+           
+           toastr.success('OK!', 'Imagem removida')
+           dispatch(getPhotos());
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
+}

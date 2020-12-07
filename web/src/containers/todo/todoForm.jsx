@@ -30,6 +30,9 @@ class TodoForm extends Component {
             <div className="box box-success">
                 <div className="box-body">
                     <div className='row'>
+                        <h2 style={{marginLeft: 15}}>Adicione um evento</h2>
+                    </div>
+                    <div className='row'>
                         <div role='form' className='calendarForm'>
                             <div className='col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6'>
                                 <input 

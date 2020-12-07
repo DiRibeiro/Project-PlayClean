@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { useSelector, connect, useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { remove, search, editTodo } from '../../actions/calendarActions'
-import { fullDate, shortDate } from '../../helper/date'
+import { fullDate, shortDate, shortDateHTML } from '../../helper/date'
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -44,6 +44,7 @@ const TodoList = props => {
         setNewTitle(calendario.title);
         setNewDescription(calendario.description);
         setNewDateOcurr(calendario.dateOcurr);
+        setDateValue(shortDateHTML(calendario.dateOcurr));
         setNewImage(calendario.image);
     };
 
@@ -80,6 +81,7 @@ const TodoList = props => {
     const [newDescription, setNewDescription] = useState();
     const [newDateOcurr, setNewDateOcurr] = useState();
     const [newImage, setNewImage] = useState();
+    const [dateValue, setDateValue] = useState();
 
     const editDialogComponent = () => {
         const calendario = list[index];
@@ -95,6 +97,7 @@ const TodoList = props => {
                 >
                     <div className="box-body" style={{margin: '20px'}}>
                         <div className="row">
+                        <label>Título:</label>
                             <input 
                                 style={{marginBottom: 2}}
                                 id='title' 
@@ -106,17 +109,20 @@ const TodoList = props => {
                             />
                         </div>
                         <div className="row">
-                            <label>Data atual do evento: {shortDate(newDateOcurr)}</label>
+                        <br/>
+                            <label>Data atual do evento:</label>
                             <input 
                                 id='dateOcurr'
                                 className='form-control'
                                 name='dateOcurr'
                                 type='date'
-                                value={newDateOcurr}
-                                onChange={e => setNewDateOcurr(e.target.value)}
+                                value={dateValue}
+                                onChange={e => setDateValue(e.target.value)}
                             />
                         </div>
                         <div className='row'>
+                            <br/>
+                        <label>Descrição:</label>
                             <textarea 
                                 id='description' 
                                 className='form-control textarea-input'
@@ -148,7 +154,7 @@ const TodoList = props => {
                                     calendario._id,
                                     newTitle,
                                     newDescription,
-                                    newDateOcurr,
+                                    dateValue,
                                     newImage
                                     ), window.location = '/calendar')}>
                             Atualiza

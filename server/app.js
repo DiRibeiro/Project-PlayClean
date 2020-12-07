@@ -64,6 +64,8 @@ app.delete('/leis/:id', TokenValidation, LeisDAO.deleteLeis)
 app.get('/photos', Photo.getPhotos)
 app.get('/photos/:id', (req, res) => Photo.getPhotosId(req, res))
 app.post('/photos', TokenValidation, upload.array('images', 12), Photo.postPhotos)
+app.delete('/photos/:id', TokenValidation, Photo.deleteGalleryById)
+app.delete('/singlePhoto/:galleryID/:imageID', TokenValidation, Photo.deletePhoto)
 
 //Coleta
 app.get('/coleta', (req, res) => ColetaDAO.getColeta(req, res))

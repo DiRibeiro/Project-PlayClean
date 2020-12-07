@@ -45,4 +45,44 @@ const postPhotos = (req, res, next) => {
 		})			
 }
 
-module.exports = { getPhotos, postPhotos, getPhotosId }
+
+const deleteGalleryById = (req, res, next) => {
+
+    const id = req.params.id;
+
+    photos.findByIdAndDelete({_id: id})
+    .then(ok => {
+        return res.status(202).json({});
+    })  
+    .catch(error => {
+        console.error("Error deleting complete gallery", error)
+    })
+
+}
+
+
+const deletePhoto = (req, res, next) => {
+
+    const galleryID = req.params.galleryID;
+    const imageID = req.params.imageID;
+
+    console.log("Removendo single photo", galleryID, imageID)
+
+    photos.findById(galleryID).lean().exec()
+    .then(document => {
+        document.images.splice(imageID, 1)
+        photos.findByIdAndUpdate({_id: galleryID}, document).lean().exec()
+            .then(newDoc => {
+                return res.status(200).json({})
+            });
+        
+    })
+    .catch(error => {
+        console.error(error);
+        return res.status(503).json({});
+    })
+
+    
+}
+
+module.exports = { getPhotos, postPhotos, getPhotosId, deleteGalleryById, deletePhoto }
