@@ -61,8 +61,9 @@ const Photos = (props) => {
     const [internalIndex, setInternalIndex] = useState(0);
     const [open, setOpen] = useState(false);
 
+    const [uglyHackKey, setUglyHackKey] = useState(Math.random());
+
     useEffect(() => {
-        console.log("BUSCANDO FOTOS")
         dispatch(getPhotos())
     }, [])
 
@@ -70,7 +71,7 @@ const Photos = (props) => {
     const fileSelectedHandler = event => {
         let images = files['images']
         Object.values(event.target.files).map(picture => images.push(picture))
-        setFiles({ images })
+        images.length > 0 ? setFiles({ images }) : setFiles({images: []})
     }
 
     const handleForm = (values) => {
@@ -80,6 +81,7 @@ const Photos = (props) => {
         fd.append('title', title)
         setFiles({ images: [] })
         dispatch(postPhotos(fd))
+        setUglyHackKey(Math.random())
     }
 
     
@@ -202,6 +204,7 @@ const Photos = (props) => {
                 <h3 className="box-title">Upload de fotos</h3>
                 <div className="box-body">
                     <FormPhotos
+                        key={uglyHackKey}
                         titleHandle = {e => setTitle(e.target.value)}
                         handleSubmit={ values => handleForm(values) }
                         handleImage = { values => fileSelectedHandler(values) }

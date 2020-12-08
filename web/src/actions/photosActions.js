@@ -53,7 +53,7 @@ export const postPhotos = (values) => dispatch => {
 					reset('newFormPhotos')
 					)
                 dispatch(getPhotos());
-                window.location.reload();
+                
             }
             
 		})

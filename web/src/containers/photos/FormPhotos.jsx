@@ -9,8 +9,10 @@ let FormPhotos = props => {
     const { handleSubmit, handleImage } = props
     const [files, setFiles] = useState(props.photos)
     
-    const renderImages = () =>
-        files['images'].map((element, index) =>
+    const renderImages = () => {
+        console.log("Images Rendered");
+        return (<>
+        {files['images'].map((element, index) =>
             <img
                 key={ index }
                 style={{ 
@@ -22,7 +24,9 @@ let FormPhotos = props => {
                     borderRadius: '3px'
                 }} 
                 src={ URL.createObjectURL(element) } 
-                alt="img photos" />)
+                alt="img photos" />)}
+                </>);
+        }
         
     return (
         <form onSubmit={(values) => { values.preventDefault(); handleSubmit(values);  }} className="form-group" encType="multipart/form-data">
