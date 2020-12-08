@@ -3,7 +3,7 @@ const path = require('path')
 
 const storage = multer.diskStorage({
 	destination: function(req, file, callback) {
-        console.log("Current path:", req.path)
+        //console.log("Current path:", req.path)
         if (req.path === '/leis') {
             callback(null, path.join(__dirname, '..', 'public','laws'))
         } else if (req.path === '/calendars') {
