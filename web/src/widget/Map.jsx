@@ -5,6 +5,13 @@ import Marker from 'pigeon-marker'
 import Overlay from 'pigeon-overlay'
 
 const MapInstance = props => {
+
+    const provider = (x, y, z) => {
+        const s = String.fromCharCode(97 + ((x + y + z) % 3))
+        return `https://${s}.tile.openstreetmap.org/${z}/${x}/${y}.png`;
+        
+    }
+
     const renderMarker = () => {
         let list = props.map.list
 
@@ -16,7 +23,7 @@ const MapInstance = props => {
 
     return (
         <div className="col-md-12" id="map" >
-            <Map center={[-29.895021, -50.272371]} zoom={13} height={300}>
+            <Map center={[-29.895021, -50.272371]} zoom={13} height={300} provider={provider}>
                 { renderMarker() }
                 <Overlay anchor={[-29.890000, -50.271000]} />
             </Map>
