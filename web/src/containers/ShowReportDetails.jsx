@@ -53,13 +53,13 @@ const ShowReportDetails = props => {
 			
 			<div className="dropdown-menu">
 				<button className="btn btn-success" 
-					onClick={ () => dispatch(setStatus(0, report._id), window.location='/listReport') }
+					onClick={ () => dispatch(setStatus(0, report._id)) }
 				>Aberto</button>
 				<button className="btn btn-danger" 
-					onClick={ () => dispatch(setStatus(1, report._id), window.location='/listReport') }
+					onClick={ () => dispatch(setStatus(1, report._id)) }
 				>Fechado</button>
 				<button className="btn btn-warning" 
-					onClick={ () => dispatch(setStatus(2, report._id), window.location='/listReport') }
+					onClick={ () => dispatch(setStatus(2, report._id)) }
 				>Pendente</button>
 			</div>
 		</div>

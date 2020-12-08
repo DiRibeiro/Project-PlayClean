@@ -62,7 +62,6 @@ let FormPhotos = props => {
                     <button
                         type='submit'
                         className='btn btn-success btnLogin'
-                        //onClick={() => { dispatch(window.location = '/photos')}}
                         >Cadastrar</button>
                 </div>
             </div>
