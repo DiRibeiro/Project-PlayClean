@@ -82,7 +82,7 @@ const Photos = (props) => {
 
     
 	const handleClickOpen = (index) => {
-        setOpen(!open);
+       setOpen(!open);
        setIndex(index);
        setInternalIndex(0);
 	};
@@ -182,8 +182,7 @@ const Photos = (props) => {
                             Deletar Imagem
                         </button>
                         <button className="btn btn-success" style={{width: 150}}
-                            onClick={() =>
-                                console.log("Clicked... ")}>
+                            onClick={() => handleClose()}>
                             Fechar
                         </button>
                     </DialogActions>
