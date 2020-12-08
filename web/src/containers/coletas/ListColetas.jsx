@@ -66,7 +66,7 @@ const ListColetas = (props) => {
                 <button className="btn btn-danger" onClick={handleClose}>
                     Não
 						</button>
-                <button className="btn btn-success" onClick={() => removeColeta(coleta._id)}>
+                <button className="btn btn-success" onClick={() => { removeColeta(coleta._id); handleClose();}}>
                     Sim
 						</button>
             </DialogActions>
