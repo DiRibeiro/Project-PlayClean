@@ -30,7 +30,7 @@ const ListColetas = (props) => {
     }, [])
 
     const removeColeta = id => {
-        dispatch(deleteColeta(id), window.location = ('/listColetas'));
+        dispatch(deleteColeta(id));
     }
 
     const handleUpdateOpen = (index) => {
@@ -114,13 +114,15 @@ const ListColetas = (props) => {
                             Cancelar
                         </button>
                         <button className="btn btn-success"
-                            onClick={() =>
-                                dispatch(editColeta(
+                            onClick={() => { 
+                                    dispatch(editColeta(
                                     coleta._id,
                                     coleta.neighborhood,
                                     newOrganicText,
                                     newSelectiveText,
-                                ), window.location = '/listColetas')}>
+                                    ));
+                                    handleUpdateClose();
+                                }}>
                             Atualizar
                         </button>
                     </DialogActions>
