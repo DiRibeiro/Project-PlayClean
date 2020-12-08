@@ -60,7 +60,6 @@ export const add = (title, description, dateOcurr, file) => dispatch => {
                 toastr.error('Erro!', response)
             }   
             else if (response.status === 200) {
-                //window.location = '/calendar'
                 dispatch(
                     search()
                 );
@@ -76,8 +75,10 @@ export const remove = _id => {
     return async dispatch => {
         await axios.delete(`${BASE_URL}/calendars/${_id}`)
 		.then(result => {
+            toastr.success('Sucesso!', 'Registro removido com sucesso!')
 		    dispatch(search());
-		}).catch(error => toastr.error('Erro!', 'Internal server error'))
+        }).catch(error => {
+            toastr.error('Erro!', 'Internal server error')})
 	}
 }
 

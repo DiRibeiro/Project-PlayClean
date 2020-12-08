@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { useSelector, connect, useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { remove, search, editTodo } from '../../actions/calendarActions'
-import { fullDate, shortDate, shortDateHTML } from '../../helper/date'
+import { fullDate, shortDateHTML } from '../../helper/date'
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -31,19 +31,17 @@ const TodoList = props => {
     }, [])
 
     const removeCalendar = id => {
-        dispatch(remove(id), window.location = ('/calendar'));
+        dispatch(remove(id));
+        setOpen(false);
     }
 
     const handleClickOpenUpdate = (index) => {
         setEdit(true);
         setIndex(index);
-        // let date = new Date(new Date(dateOcurr).getTime() + 12 * 3600 * 1000);
-        // console.log(date)
-
+        
         const calendario = list[index];
         setNewTitle(calendario.title);
         setNewDescription(calendario.description);
-        setNewDateOcurr(calendario.dateOcurr);
         setDateValue(shortDateHTML(calendario.dateOcurr));
         setNewImage(calendario.image);
     };
@@ -79,7 +77,6 @@ const TodoList = props => {
 
     const [newTitle, setNewTitle] = useState();
     const [newDescription, setNewDescription] = useState();
-    const [newDateOcurr, setNewDateOcurr] = useState();
     const [newImage, setNewImage] = useState();
     const [dateValue, setDateValue] = useState();
 
@@ -149,14 +146,16 @@ const TodoList = props => {
                             Não
                         </button>
                         <button className="btn btn-success"
-                            onClick={ () => 
+                            onClick={ () => { 
                                 dispatch(editTodo(
                                     calendario._id,
                                     newTitle,
                                     newDescription,
                                     dateValue,
                                     newImage
-                                    ), window.location = '/calendar')}>
+                                ));
+                                handleCloseUpdate();
+                            }}>
                             Atualiza
                         </button>
                     </DialogActions>

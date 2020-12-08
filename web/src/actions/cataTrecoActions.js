@@ -26,7 +26,6 @@ export const postCataTreco = (values, router) => dispatch => {
 
 			else if (response.status === 200) {
 				dispatch(reset('newCataTrecoForm'))
-                //window.location = '/listCataTreco'                 // dont forget to remove that fucking shit
                 router.push('/listCataTreco')        
 				toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
 			}
@@ -46,7 +45,7 @@ export const setStatus = (_id, status, dateOcurr) => {
 						'Registro atualizado com sucesso!'
 					)
                     dispatch(getCataTreco())
-                    window.location='/listCataTreco';
+                    //window.location='/listCataTreco';
 				}
 			})
 			.catch(error => toastr.error('Erro!', 'Internal server error'))
@@ -66,7 +65,7 @@ export const removeCataTreco = _id => {
 						'Registro removido com sucesso!'
 					)
                     dispatch(getCataTreco())
-                    window.location='/listCataTreco';
+                    //window.location='/listCataTreco';
 				}
 			})
 			.catch(error => toastr.error('Erro!', 'Internal server error'))
