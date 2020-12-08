@@ -47,12 +47,13 @@ export const postPhotos = (values) => dispatch => {
 
 			}else if (response.status === 200) {
 				dispatch({ type: LOAD, payload: false })
-				//window.location = '/photos'                 
+				     
                 toastr.success('Sucesso!', 'Nova foto inserida com sucesso!')
                 dispatch(
 					reset('newFormPhotos')
 					)
                 dispatch(getPhotos());
+                window.location.reload();
             }
             
 		})

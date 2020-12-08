@@ -10,7 +10,7 @@ let FormPhotos = props => {
     const [files, setFiles] = useState(props.photos)
     
     const renderImages = () =>
-        files.map((element, index) =>
+        files['images'].map((element, index) =>
             <img
                 key={ index }
                 style={{ 
@@ -25,7 +25,7 @@ let FormPhotos = props => {
                 alt="img photos" />)
         
     return (
-        <form onSubmit={(values) => { values.preventDefault(); handleSubmit(values); setFiles([])  }} className="form-group" encType="multipart/form-data">
+        <form onSubmit={(values) => { values.preventDefault(); handleSubmit(values);  }} className="form-group" encType="multipart/form-data">
             
             <div className="row">
                 <label>Título do conjunto de imagens</label>

@@ -12,6 +12,7 @@ import GridListTileBar from '../../../node_modules/@material-ui/core/GridListTil
 import Backdrop from '@material-ui/core/Backdrop';
 import { Dialog, DialogActions } from '@material-ui/core'
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -35,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Photos = (props) => {
 
+    
     const menuStyle = {
         cursor: 'pointer',
         display: 'flex', 
@@ -203,7 +205,7 @@ const Photos = (props) => {
                         titleHandle = {e => setTitle(e.target.value)}
                         handleSubmit={ values => handleForm(values) }
                         handleImage = { values => fileSelectedHandler(values) }
-                        photos={ files['images'] } 
+                        photos={ files } 
                         />
                 </div>
             </div>
