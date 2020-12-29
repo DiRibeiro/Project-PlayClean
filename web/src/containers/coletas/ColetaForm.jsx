@@ -33,6 +33,7 @@ const ColetaForm = props => {
                                     <option value="Caconde" >Caconde</option>
                                     <option value="Caiu do Céu" >Caiu do Céu</option>
                                     <option value="Campos de Dentro" >Campos de Dentro</option>
+                                    <option value="Caravágio" >Caravágio</option>
                                     <option value="Cascata" >Cascata</option>
                                     <option value="Centro" >Centro</option>
                                     <option value="Costa Verde" >Costa Verde</option>
@@ -65,6 +66,7 @@ const ColetaForm = props => {
                                     <option value="Parque do Sol" >Parque do Sol</option>
                                     <option value="Passinhos" >Passinhos</option>
                                     <option value="Penitenciária Modulada" >Penitenciária Modulada</option>
+                                    <option value="Pitangas" >Pitangas</option>
                                     <option value="Ponta dos Dihel" >Ponta dos Dihel</option>
                                     <option value="Por do Sol" >Por do Sol</option>
                                     <option value="Porto Lacustre" >Porto Lacustre</option>
@@ -74,6 +76,7 @@ const ColetaForm = props => {
                                     <option value="Santa Luzia" >Santa Luzia</option>
                                     <option value="Santa Rita" >Santa Rita</option>
                                     <option value="Sertão" >Sertão</option>
+                                    <option value="Serramar" >Serramar</option>
                                     <option value="Sindicato Rural" >Sindicato Rural</option>
                                     <option value="Sulbrasileiro" >Sulbrasileiro</option>
                                     <option value="Tombadouro" >Tombadouro</option>
