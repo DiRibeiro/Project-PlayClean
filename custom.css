@@ -1,0 +1,1056 @@
+html {
+    min-width: 70% !important;
+}
+
+* {
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto Thin', sans-serif;
+}
+
+textarea {
+    resize: none;
+}
+
+.floatRight {
+    float: right;
+    margin: 0px 10px 10px 0px;
+}
+
+.seeMoreReport {
+    position: absolute;
+    right: 10px;
+    bottom: 10%;
+}
+
+#map {
+    margin-top: 2rem;
+}
+
+.description {
+    color: #635959;
+}
+
+/* I know, that is bootstrap 4, fuck that */
+.mb-3 {
+    margin-bottom: 15px;
+}
+
+.mb-4 {
+    margin-bottom: 25px;
+}
+
+/* input checkbox CSS */
+.cbx {
+    margin: auto;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+.cbx span {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translate3d(0, 0, 0);
+}
+.cbx span:first-child {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    transform: scale(1);
+    vertical-align: middle;
+    border: 1px solid #9098A9;
+    transition: all 0.2s ease;
+}
+.cbx span:first-child svg {
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: all 0.3s ease;
+    transition-delay: 0.1s;
+    transform: translate3d(0, 0, 0);
+}
+.cbx span:first-child:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #3c8dbc;
+    display: block;
+    transform: scale(0);
+    opacity: 1;
+    border-radius: 50%;
+}
+.cbx span:last-child {
+    padding-left: 8px;
+}
+.cbx:hover span:first-child {
+    border-color: #3c8dbc;
+}
+  
+.inp-cbx:checked + .cbx span:first-child {
+    background: #3c8dbc;
+    border-color: #3c8dbc;
+    animation: wave 0.4s ease;
+}
+.inp-cbx:checked + .cbx span:first-child svg {
+    stroke-dashoffset: 0;
+}
+.inp-cbx:checked + .cbx span:first-child:before {
+    transform: scale(3.5);
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+  
+@keyframes wave {
+    50% {
+     transform: scale(0.9);
+   }
+}
+  
+#cbx {
+    visibility: hidden;
+}
+
+#cbxLabel {
+    margin-left: -13px;
+}
+
+#cbxAnimal {
+    margin-top: 7px;
+}
+
+/* Text apparence for input number */
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
+}
+input[type=date]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+input[type=date] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
+}
+
+.bg-yellow-seccondary {
+    background-color: #ffc538;
+    color: white;
+}
+
+/* item list Report */
+.box-title {
+    margin-top: 0px;
+}
+
+.bottomZero {
+    position: absolute;
+    margin-bottom: 10px;
+    bottom: 0;
+}
+
+.typeReportsH4 {
+    margin: 0;
+    margin-right: 0.5em;
+    float: left;
+    line-height: 0.9;
+    color: black;
+    font-weight: 500;
+}
+
+.linkReport {
+    color: black;
+}
+
+.linkReport:hover {
+    color: black;
+}
+
+.reportDescription {
+    font-size: medium;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container-detailReport {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+/* margin-bottom: 15px;  */
+
+/* Filter search */
+ul.ks-cboxtags {
+    list-style: none;
+    padding-left: 10px;
+    margin-bottom: 0;
+}
+ul.ks-cboxtags li{
+  display: inline;
+}
+ul.ks-cboxtags li label{
+    display: inline-block;
+    background-color: rgba(255, 255, 255, .9);
+    border: 1px solid rgba(139, 139, 139, .3);
+    color: #adadad;
+    border-radius: 6px;
+    white-space: nowrap;
+    margin: 0px 3px ;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li label {
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+ul.ks-cboxtags li label::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 12px;
+    padding: 2px 6px 2px 2px;
+    content: "\f067";
+    transition: transform .3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label::before {
+    content: "\f00c";
+    transform: rotate(-360deg);
+    transition: transform .3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label {
+    background-color: #3c8dbc;  /* before 12bbd4 | after 3c8dbc */
+    color: #fff;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li input[type="checkbox"] {
+  display: absolute;
+}
+
+ul.ks-cboxtags li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+
+.align-self-center {
+    color: #adadad;
+    text-align: center;
+}
+
+/* Dropdown Search Filter */
+.ks-cboxtags li {
+    position:relative;
+    float:left;
+    z-index: 1;
+}
+
+.ks-cboxtags li a { /* Title */
+    display: inline-block;
+    background-color: rgba(255, 255, 255, .9);
+    border: 1px solid rgba(139, 139, 139, .3);
+    color: #adadad;
+    border-radius: 6px;
+    white-space: nowrap;
+    margin: 0px 3px ;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .2s;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.ks-cboxtags li label:hover {
+    background-color: #3c8dbc;  /* before 12bbd4 | after 3c8dbc */
+    color: #fff;
+    transition: all .2s;
+}
+
+.ulDropmenu {
+    padding-inline-start: 5px;
+    padding-top:3px;
+}
+
+.liDropmenu {
+    margin: 2px -4px;
+}
+
+.itemDropmenu {
+    min-width: 200px;
+}
+.ks-cboxtags li .itemDropmenu:hover {
+    background-color: #3c8dbc;  /* before 12bbd4 | after 3c8dbc */
+    color: #fff;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li input[type="checkbox"] {
+    display: absolute;
+}
+
+ul.ks-cboxtags li input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.ks-cboxtags li a:hover {
+    background-color: #3c8dbc;  /* before 12bbd4 | after 3c8dbc */
+    color: #fff;
+    transition: all .2s;
+}
+
+.ks-cboxtags li ul {
+    position:absolute;
+    background-color:#fff;
+    display:none;
+    width: 200px;
+    border-radius: 3px;
+}
+
+.ks-cboxtags li:hover ul, .ks-cboxtags li.over ul {
+    display: block;
+}
+
+ul.ks-cboxtags li input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Sign (login/register) page */
+.login-box {
+    width: 405px;
+}
+
+.login-page {
+    background-color: #9ed1d3;
+}
+
+.login-box-body, .register-box-body {
+    padding-left: 30px; 
+    padding-right: 30px; 
+    border-radius: 3px;
+    box-shadow: 5px 10px 18px #888888;
+    position: relative;
+    /* min-height: 300px;  */
+}
+
+.login-logo, .register-logo {
+    margin: 5px 0px;
+}
+
+.inputCred {
+    margin-bottom: 40px;
+}
+
+.btnLogin {
+    position: relative;
+    float: right;
+    border: 1px solid #a4d9db;
+    /* background-color: white; */
+    /* background-color: #3c8dbc; */
+}
+
+.btnLogin:hover {
+    background-color: #3c8dbc;
+    border: 1px solid #3c8dbc;
+    color: white;
+}
+
+#cbxLogin {
+    margin-top: 45px;
+}
+
+.hrcustom {
+    margin-top: 40px; 
+    margin-bottom: 20px; 
+    border-top: 1px solid #d2d6de;
+    width: 75%;
+}
+
+.register-box {
+    width: 70%;
+    height: auto;
+    margin: 4% auto;
+}
+
+.color99 {
+    color: #999;
+}
+
+.btnRegister {
+    position: absolute;
+    right: 45px;
+    bottom: 30px;
+}
+
+/* @media */
+
+/* .col-lg- */
+@media screen and (min-width: 992px) {
+    .login-page {
+        overflow: hidden;
+    }
+}
+
+/* Mobile */
+@media only screen and (max-width: 450px) {
+    .login-box {
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .login-logo {
+        margin: 4% auto;
+    }
+
+    .logologin {
+        width: 50%;
+    }
+
+    .register-box {
+        margin: 0;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .register-box-body {
+        padding: 15px;
+    }
+
+    .logoRegister {
+        width: 25%;
+    }
+    
+    .register-logo {
+        /* margin-top: 5px; */
+        margin-bottom: 15px;
+    }
+
+    .btnLogin {
+        margin-top: 5px;
+        margin-right: 15px;
+    }
+
+    .imgUserCard {
+        width: 45%;
+    }
+}
+
+/* User */
+.imgUser {
+    background: no-repeat center;
+}
+
+.mt-5 {
+    margin-top: 7px;
+}
+
+/* Form - indicate-form */
+.indicate-form input {
+    /* margin: 0 .25rem; */
+    transition: border-color .5s ease-out;
+}
+.indicate-form input:required {
+    border-left: 2px solid;
+    border-left-color: #2ea740;
+}
+.indicate-form input:invalid {
+    border-left-color: salmon;
+}
+
+/* Required fields */
+.requiredField {
+    color: #6d6262
+}
+
+#components-dropdown-demo-dropdown-button .ant-dropdown-button {
+    margin: 0 8px 8px 0;
+}
+
+/* Make button looks like href link */
+.btnHref {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    font-family: arial, sans-serif;
+    color: #069;
+    cursor: pointer;
+    outline: none;
+}
+
+.btnNav {
+    background: none !important;
+    border: none;
+    padding: 10px 15px;
+    color: #444;
+    cursor: pointer;
+    outline: none;
+}
+
+.btnNav:hover {
+    color: #8f8f8f
+}
+
+.btnSidebar {
+    width: 100%;
+    text-align: left;
+    /* background: none !important; */
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: #b8c7ce;
+    padding: 10px 19px;
+    display: block;
+    text-decoration: none;
+    background-color: #222d32
+}
+
+.btnSidebar:hover {
+    background-color: #1e282c
+}
+
+.btn-logout {
+    margin: auto;
+    height: 5rem;
+    width: 7rem;
+    color: white;
+    background-color: #00a65a;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+}
+
+.btn-logout:hover{
+    background-color: #008d4c;
+    color:white;
+}
+
+.btn.focus, .btn:focus, .btn:hover {
+    color: white;
+    text-decoration: none;
+}
+
+button.btn.btn-success.btnLogin:hover {
+    background-color: #008d4c;
+}
+
+/*LOGIN*/
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+.Login {
+  text-align: center;
+}
+
+.Login-logo {
+  height: 25vmin;
+}
+
+.Login-header {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0b/Mirante_Morro_da_Bor%C3%BAssia_-_Os%C3%B3rio_RS_-_panoramio.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.container {
+    width: 13em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 6em;
+}
+
+.form {
+  display: flex;
+  position: relative;
+  color: #000000;
+  border-top: solid 5px #1e7e34;
+  border-radius: 0.5em;
+  background-color: #ffffff;
+  width: auto;
+  height: auto;
+  padding-top: 1em;
+  padding-bottom: 2em;
+  box-shadow: 2px 2px 4px rgba(0,0,0, .5);
+}
+
+.arrow {
+  width: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border: 15px solid transparent;
+  border-bottom-color: #1e7e34;
+}
+
+/* .inputUser {
+  font-size: 0.7em;
+}
+
+.inputPasswd {
+  font-size: 0.7em;
+} */
+
+.user-row {
+  font-size: .7em;
+  background-color: #1e7e34;
+  /* border: 1px solid #00010000; */
+  border-bottom: #1e7e34 1px solid;
+  border-radius: 4px;
+  margin: auto;
+  margin-bottom: 0.7em;
+  color:white;
+}
+
+.fa-user:before {
+  margin-left: 0.5em;
+}
+
+input.user-form {
+  padding-left: 8px;
+  margin-left: 0.5em;
+  border: none;
+  height: 1.4em;
+}
+
+.password-row {
+  font-size: .7em;
+  background-color: #1e7e34;
+  /* border: 1px solid #000100; */
+  border-bottom: #1e7e34 1px solid;
+  border-radius: 4px;
+  margin:auto;
+  margin-bottom: 0.7em;
+  color:white;
+}
+
+.fa-lock:before {
+  margin-left: 0.5em;
+  padding: 1px;
+}
+
+input.passwd-form {
+  padding-left: 8px;
+  margin-left: 0.5em;
+  border: none;
+  height: 1.4em;
+}
+
+input {
+    clear: both;
+    color: #000000;
+}
+
+.inputCheck{
+  font-size: 0.6em;
+  margin: auto 1em auto 1em;
+  padding: auto;
+}
+
+.formTop {
+  /* float: left; */
+    padding: 0;
+    margin: 0;
+}
+
+.form-check {
+    float: left;
+    margin-left: -14px;
+}
+
+.form-check-input {
+    margin-left: 0;
+}
+/* 
+.btnLogin {
+  height: auto;
+  width: 2.6em;
+  border: 0px;
+  background: #1e7e34;
+  border-radius: 7px;
+  padding: 1em 1em 1em 1rem;
+  color: white;
+  margin: 0em 1.7em 0em 1em;
+  font-size: 22px;
+}
+
+.btnLogin:hover{
+    background: #1e7e34;
+} */
+
+.btn-layout {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.btn-col {
+  width: 8em;
+  margin-right: auto;
+  margin-left: auto;
+} 
+
+.btn-cancel {
+  width: 6em;
+  font-size: 0.7em;
+  padding: 4px;
+  margin-top: 0.3em;
+  margin-right: 1em;
+}
+
+.btn-login {
+  width: 6em; 
+  font-size: 0.7em;
+  padding: 4px;
+  margin-top: 0.3em;
+}
+
+.listReport {
+    min-height: 7em;
+}
+
+.showBtn {
+    margin-bottom: 1em;
+}
+
+/* Lei */
+
+.showLei {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #00a65a;
+}
+
+.showLei a {
+    color: white;
+    border-bottom: #00a65a 1px solid;
+    width: 6em;
+    text-align: center;
+    padding: 6px 0;
+}
+
+.showLei a:hover {
+    background-color: #008d4c;
+    /* width: 6em; */
+    padding: 6px 0;
+}
+.tabContent {
+    margin-left: 12px;
+}
+
+.box {
+    box-shadow: 2px 2px 4px rgba(0,0,0, .5);
+}
+
+/* Calendar */
+
+.calendar-h1 {
+	background: #00a65a;
+	color: white;
+	margin: 0;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	font-size: 24px;
+	font-weight: normal;
+}
+
+.calendarUl {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.calendarLi {
+	background: #fff;
+	height: 40px;
+	line-height: 40px;
+	color: #666;
+}
+
+.span {
+	background: #d82a16;
+	height: 40px;
+	margin-right: 20px;
+	text-align: center;
+	color: white;
+	width: 0;
+	display: inline-block;
+	transition: 0.2s linear;
+	opacity: 0;
+}
+
+.calendar-input {
+	display: flex;
+    flex-direction: row;
+    background: #f7f7f7;
+    width: 100%;
+    height: auto;
+    padding: 13px 13px 13px 13px;
+    box-sizing: border-box;
+    color: #000000;
+    margin: 0px;
+}
+
+.inputDate {
+    margin-left: 1em;
+}
+/* .calendar-input:focus {
+	background: #fff;
+	border: 3px solid #008d4c;
+	outline: none;
+} */
+
+calendarLi:nth-child(2n) {
+	background: #f7f7f7;
+}
+
+.calendarLi:hover .span {
+	width: 40px;
+	opacity: 1.0;
+}
+
+.calendar-container {
+	width: auto;
+	margin: auto;
+	background: #f7f7f7;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+.completed {
+	color: grey;
+	text-decoration: line-through; 
+}
+
+.btn-calendar {
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: white;
+    height: fit-content;
+    float: right;
+}
+
+.btn-add {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    border: none;
+    width: 3em;
+}
+
+.btn-search {
+    margin-right: 0.5em;
+    border: none;
+    width: 3em;
+}
+
+.btn-close {
+    margin-right: 0.5em;
+    border: none;
+    width: 3em;
+}
+
+.btn {
+    margin-right: 2px;
+    padding: 2px;
+    width: 6em;
+}
+
+.btn-delete {
+    /* right: 0; */
+    float: right;
+    margin-right: 1.5em;
+    /* display: block; */
+    width: 2em;
+}
+
+.btn-group.open .dropdown-toggle {
+    box-shadow: none;
+}
+
+.markedAsDone {
+    text-decoration: line-through;
+    color: #777;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    padding: 0;
+    margin: 2px;
+    width: max-content;
+    border-color: none;
+}
+
+/* BADGE */
+
+.badge-success {
+    padding: 3px;
+    height: 2em;
+    width: 6em;
+    background-color: #00a65a;
+    float: right;
+    text-align: center;
+    border-radius: 2em;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+}
+
+.badge-warning {
+    padding: 3px;
+    height: 2em;
+    width: 6em;
+    background-color: #f39c12;
+    float: right;
+    text-align: center;
+    border-radius: 2em;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+}
+
+.badge-close {
+    padding: 3px;
+    height: 2em;
+    width: 6em;
+    background-color: #d82a16;
+    float: right;
+    text-align: center;
+    border-radius: 2em;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+}
+
+/* MODAL */
+
+.btn-dialog {
+    justify-content: center !important;
+}
+
+.MuiBackdrop-root {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Button Cancel toastr */
+.rrt-button.rrt-cancel-btn.toastr-control {
+    display: none;
+}
+
+/* Button OK toastr */
+.rrt-button.rrt-ok-btn.toastr-control {
+    background-color: #00a65a !important;
+    color: white;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+}
+
+.rrt-message {
+    font-weight: 600;
+    color: black;
+}
+
+/* Calendar */
+
+.input-select {
+    clear: 'both';
+    /* background-color: #076abb;
+    color: #fff;
+    margin-left: 0.5em;
+    margin-bottom: 0;
+    border: none;
+    width: 3em;
+    padding: 1em;
+    cursor: pointer; */
+    margin-left: 1em;
+    margin-top: 1em;
+    border: none;
+}
+
+.textarea-input {
+    margin-top: 1em;
+}
+
+.tableActions {
+    text-align-last: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.tableDate {
+    width: 200px;
+    text-align-last: left;
+}
+
+.tableFile {
+    width: 1em;
+    margin-right: 0;
+}
+
+.MuiDialog-paperWidthSm {
+    max-width: 60em !important;
+}
+
+.dialogContainer {
+    clear: both;
+    opacity: 0.9;
+    background-color: black;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.dialogContent {
+    height: 100% !important;
+    width: 100% !important;
+    border: solid 2px blue;
+}
+
+.trColetas {
+    font-weight: bold;
+    font-size: 12;
+    background-color: lightgray;
+    color: black;
+}
+
+.trColetas:nth-of-type(2n) {
+    background-color: whitesmoke;
+}
