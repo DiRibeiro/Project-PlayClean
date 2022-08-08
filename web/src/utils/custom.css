@@ -179,6 +179,16 @@ input[type=date] {
 .reportDescription {
     font-size: medium;
     font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container-detailReport {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 /* margin-bottom: 15px;  */
 

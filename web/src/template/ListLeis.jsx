@@ -18,7 +18,10 @@ const ListLeis = () => {
 	return list.length > 0 ? (
 		renderRows()
 	) : (
-		<Loader
+        <>
+        <h1>Nenhum registro</h1>
+		{/*
+        <Loader
 			type='Oval'
 			color='#00BFFF'
 			height={100}
@@ -28,7 +31,9 @@ const ListLeis = () => {
 				left: '50%',
 				top: '40%'
 			}}
-		/>
+        />
+        */}
+        </>
 	)
 }
 
