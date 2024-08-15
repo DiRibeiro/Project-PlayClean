@@ -23,7 +23,7 @@ export default () => {
 
 
 	useEffect(() => {
-        axios.defaults.headers.common['authorization'] = localStorage.getItem('jogue-limpo') // On reaload re-link the auth token to the header common
+        axios.defaults.headers.common['authorization'] = localStorage.getItem('jogue-limpo') // On reaload re-Navigate the auth token to the header common
 		// dispatch(updateToken())
 		// dispatch(tradeTokenToUser(userToken))
 	}, [])

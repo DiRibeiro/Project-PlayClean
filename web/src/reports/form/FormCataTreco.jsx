@@ -7,7 +7,7 @@ import { createTextMask } from 'redux-form-input-masks'
 import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
 
-import 'react-widgets/dist/css/react-widgets.css'
+// //import 'react-widgets/dist/css/react-widgets.css'
 
 const Form = props => {
     const {handleSubmit} = props

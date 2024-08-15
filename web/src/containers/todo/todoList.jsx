@@ -170,7 +170,7 @@ const TodoList = props => {
                 <td>{todo.title}</td>
                 <td className='tableDescription'>{todo.description}</td>
                 <td className='tableDate'>{fullDate(todo.dateOcurr)}</td>
-                <td className='tableFile'><a href={`${BASE_URL}/${todo.image}`} target="_blank" rel='noopener noreferrer'>LINK</a></td>
+                <td className='tableFile'><a href={`${BASE_URL}/${todo.image}`} target="_blank" rel='noopener noreferrer'>Navigate</a></td>
                 <td className='tableActions'>
                     <div className="btn-remove">
                         <button 

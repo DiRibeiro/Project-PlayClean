@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form'
 import moment from 'react-widgets-moment'
 import momentLocaliser from 'react-widgets-moment'
 
-import 'react-widgets/dist/css/react-widgets.css'
+//import 'react-widgets/dist/css/react-widgets.css'
 
 let FormLei = props => {
     

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch/* , useSelector */ } from 'react-redux'
 
-import 'react-widgets/dist/css/react-widgets.css'
+//import 'react-widgets/dist/css/react-widgets.css'
 import { postColeta, getColeta/* , deleteColeta */ } from '../../actions/coletaActions'
 import ColetaForm from '../coletas/ColetaForm'
 

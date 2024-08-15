@@ -168,11 +168,11 @@ input[type=date] {
     font-weight: 500;
 }
 
-.linkReport {
+.NavigateReport {
     color: black;
 }
 
-.linkReport:hover {
+.NavigateReport:hover {
     color: black;
 }
 
@@ -498,7 +498,7 @@ ul.ks-cboxtags li input[type="checkbox"] {
     margin: 0 8px 8px 0;
 }
 
-/* Make button looks like href link */
+/* Make button looks like href Navigate */
 .btnHref {
     background: none !important;
     border: none;

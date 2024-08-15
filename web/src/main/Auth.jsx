@@ -1,10 +1,10 @@
-import '../utils/dependences'
+// import '../utils/dependences'
 import '../utils/custom.css'
 
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
-import Loader from 'react-loader-spinner'
+import {Circles} from 'react-loader-spinner'
 
 import Routes from './Routes'
 import Authenticate from '../reports/Authenticate'
@@ -31,7 +31,7 @@ const AuthOrApp = () => {
 		
 	else
 		return (
-			<Loader
+			<Circles
 				type='Oval'
 				color='#00BFFF'
 				height={100}

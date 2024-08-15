@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-router'
+import { Router, Route } from 'react-router'
 
 import NewReport from '../reports/NewReport'
 import NewLeis from '../reports/NewLeis'
@@ -21,9 +21,9 @@ import LeisDetail from '../containers/ShowLeisDetails'
 import App from './App'
 
 export default () => (
-    <Router history={ browserHistory }>
-        <Route exact path='/' component={ App }>
-            <IndexRoute component={ Dashboard } />
+    <Router>
+        <Route path="/" element={<App />}>
+            <Route index element={<Dashboard />} />
             <Route path='registerReport' component={ NewReport } />
             <Route path='registerLeis' component={ NewLeis } />
             <Route path='registerCataTreco' component={ NewCataTreco } />
@@ -40,6 +40,5 @@ export default () => (
             <Route path='listCataTreco' component={ ListCataTreco } />
             <Route path='showDetailCataTreco' component={ CataTrecoDetail } />
         </Route>
-        <Redirect from='*' to='/' />
     </Router>
 )

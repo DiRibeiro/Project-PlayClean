@@ -4,7 +4,7 @@ import { setStatus ,getCataTreco, removeCataTreco } from '../actions/cataTrecoAc
 
 import { fullDate, shortDate } from '../helper/date'
 
-import 'react-widgets/dist/css/react-widgets.css'
+//import 'react-widgets/dist/css/react-widgets.css'
 
 const ShowCataTrecoDetails = props => { 
 	const dispatch = useDispatch()

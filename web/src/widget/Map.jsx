@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Map from 'pigeon-maps'
+import {Map} from 'pigeon-maps'
 import Marker from 'pigeon-marker'
 import Overlay from 'pigeon-overlay'
 

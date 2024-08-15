@@ -21,7 +21,7 @@ const RowReport = props => {
         return (
             <div className="box box-success">
                 <div className="box-body listReport">
-                    <Link className="linkReport" to={{ pathname: '/showDetailReport', state: report._id }} >
+                    <Link className="NavigateReport" to={{ pathname: '/showDetailReport', state: report._id }} >
                         <div className="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                                 <h3 className="box-title">{ report.title }</h3>
                                 <h4 className='typeReportsH4'>Tipo de Denúncia:</h4>{ report.typeReport }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 
-import 'react-widgets/dist/css/react-widgets.css'
+//import 'react-widgets/dist/css/react-widgets.css'
 
 
 const ColetaForm = props => {
