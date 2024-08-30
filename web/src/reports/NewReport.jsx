@@ -1,34 +1,32 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import FormReport from './form/FormReport'
-import { postReport } from '../actions/reportActions'
-
-import FormData from 'form-data'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import FormReport from './form/FormReport';
+import { postReport } from '../actions/reportActions';
 
 const Report = props => {
-    const dispatch = useDispatch()
-    const [files, setFiles] = useState({ images: [] })
+    const dispatch = useDispatch();
+    const [files, setFiles] = useState([]);
 
     const fileSelectedHandler = event => {
-        let images = files['images']
-        Object.values(event.target.files).map(picture => images.push(picture))
-        setFiles({ images })
-    }
+        const selectedFiles = Array.from(event.target.files);
+        setFiles(prevFiles => [...prevFiles, ...selectedFiles]);
+    };
 
     const handleForm = values => {
-        const fd = new FormData()
+        const fd = new FormData();
 
-        if (files['images'] !== undefined)
-            files['images'].forEach(img => fd.append('images', img))
+        files.forEach(img => fd.append('images', img));
 
-        for (let key in values)
-            if (values.hasOwnProperty(key))
-                fd.append(key, values[key])
+        Object.keys(values).forEach(key => {
+            fd.append(key, values[key]);
+        });
 
-        setFiles({ images: [] })
-        dispatch(postReport(fd, props.router))
-       
-    }
+        // Clear files after submission
+        setFiles([]);
+
+        // Dispatch action to post report
+        dispatch(postReport(fd, props.router));
+    };
 
     return (
         <div className="box box-success">
@@ -37,12 +35,13 @@ const Report = props => {
             </div>
             <div className="box-body">
                 <FormReport 
-                    onSubmit={ values => handleForm(values) }
-                    handleImage = { values => fileSelectedHandler(values) } 
-                    images={ files['images'] } />
+                    onSubmit={handleForm}
+                    handleImage={fileSelectedHandler}
+                    images={files} 
+                />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Report
+export default Report;

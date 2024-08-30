@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import Loader from 'react-loader-spinner'
+// 
 
 // import RowReport from '../containers/RowReport'
 import { getColeta, deleteColeta, editColeta } from '../../actions/coletaActions'

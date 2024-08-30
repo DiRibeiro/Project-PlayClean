@@ -1,22 +1,23 @@
-import React from 'react'
+import React from 'react';
+import { Outlet } from 'react-router-dom'; // Importando o Outlet
 
-import Header from '../reports/Header'
-import SideBar from '../template/SideBar'
-import Footer from '../containers/Footer'
+import Header from '../reports/Header';
+import SideBar from '../template/SideBar';
+import Footer from '../containers/Footer';
 
-const App = (props) => {
-    return(
-        <div className="wrapper" >
+const App = () => {
+    return (
+        <div className="wrapper">
             <Header />
             <SideBar />
             <div className="content-wrapper">
                 <section className="content container-fluid">
-                    { props.children }
+                    <Outlet /> {/* Renderizando o conteúdo das rotas filhas */}
                 </section>
             </div>
             <Footer />
         </div>
-    )
-}
+    );
+};
 
-export default App
+export default App;

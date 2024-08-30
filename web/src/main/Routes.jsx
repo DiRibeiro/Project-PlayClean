@@ -1,44 +1,47 @@
-import React from 'react'
-import { Router, Route } from 'react-router'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import NewReport from '../reports/NewReport'
-import NewLeis from '../reports/NewLeis'
-import NewCataTreco from '../reports/NewCataTreco'
+import NewReport from '../reports/NewReport';
+import NewLeis from '../reports/NewLeis';
+import NewCataTreco from '../reports/NewCataTreco';
 
-import Dashboard from '../template/Dashboard'
-import ListReports from '../template/ListReport'
-import ReportDetail from '../containers/ShowReportDetails'
-import Coleta from '../containers/coletas/Coleta'
-import ListColetas from '../containers/coletas/ListColetas'
-import ListCataTreco from '../template/ListCataTreco'
-import CataTrecoDetail from '../containers/ShowCataTrecoDetails'
-import Photos from '../containers/photos/NewPhotos'
-import Calendar from '../containers/todo/todo'
-import Leis from '../reports/NewLeis'       
-import ListLeis from '../template/ListLeis'
-import LeisDetail from '../containers/ShowLeisDetails'
+import Dashboard from '../template/Dashboard';
+import ListReports from '../template/ListReport';
+import ReportDetail from '../containers/ShowReportDetails';
+import Coleta from '../containers/coletas/Coleta';
+import ListColetas from '../containers/coletas/ListColetas';
+import ListCataTreco from '../template/ListCataTreco';
+import CataTrecoDetail from '../containers/ShowCataTrecoDetails';
+import Photos from '../containers/photos/NewPhotos';
+import Calendar from '../containers/todo/todo';
+import ListLeis from '../template/ListLeis';
+import LeisDetail from '../containers/ShowLeisDetails';
 
-import App from './App'
+import App from './App';
 
-export default () => (
-    <Router>
-        <Route path="/" element={<App />}>
-            <Route index element={<Dashboard />} />
-            <Route path='registerReport' component={ NewReport } />
-            <Route path='registerLeis' component={ NewLeis } />
-            <Route path='registerCataTreco' component={ NewCataTreco } />
-            <Route path='dashboard' component={ Dashboard } />
-            <Route path='listReport' component={ ListReports } />
-            <Route path='coleta' component={ Coleta } />
-            <Route path='listColetas' component={ ListColetas } />
-            <Route path='leis' component={ Leis } />
-            <Route path='listLeis' component={ ListLeis } />
-            <Route path='showDetailLeis' component={ LeisDetail } />
-            <Route path='calendar' component={ Calendar } />
-            <Route path='photos' component={ Photos } />
-            <Route path='showDetailReport' component={ ReportDetail } />
-            <Route path='listCataTreco' component={ ListCataTreco } />
-            <Route path='showDetailCataTreco' component={ CataTrecoDetail } />
-        </Route>
-    </Router>
-)
+export default function MainRouter() {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<App />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="registerReport" element={<NewReport />} />
+                    <Route path="registerLeis" element={<NewLeis />} />
+                    <Route path="registerCataTreco" element={<NewCataTreco />} />
+                    <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="listReport" element={<ListReports />} />
+                    <Route path="coleta" element={<Coleta />} />
+                    <Route path="listColetas" element={<ListColetas />} />
+                    <Route path="leis" element={<NewLeis />} />
+                    <Route path="listLeis" element={<ListLeis />} />
+                    <Route path="showDetailLeis" element={<LeisDetail />} />
+                    <Route path="calendar" element={<Calendar />} />
+                    <Route path="photos" element={<Photos />} />
+                    <Route path="showDetailReport" element={<ReportDetail />} />
+                    <Route path="listCataTreco" element={<ListCataTreco />} />
+                    <Route path="showDetailCataTreco" element={<CataTrecoDetail />} />
+                </Route>
+            </Routes>
+        </Router>
+    );
+}

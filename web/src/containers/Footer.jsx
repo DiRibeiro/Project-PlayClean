@@ -1,10 +1,18 @@
-import React from 'react'
+import React from 'react';
 
-export default props => (
+const Footer = () => (
     <footer className="main-footer">
         <strong>
             Copyright &copy; 2019
-            <a href="http://google.com" rel="noopener noreferrer" target="_blank"> Jogue Limpo com Osório</a>
+            <a 
+                href="http://google.com" 
+                rel="noopener noreferrer" 
+                target="_blank"
+            >
+                Jogue Limpo com Osório
+            </a>
         </strong>
     </footer>
-)
+);
+
+export default Footer;
