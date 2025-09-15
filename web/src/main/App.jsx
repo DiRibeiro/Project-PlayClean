@@ -1,23 +1,26 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom'; // Importando o Outlet
+import * as React from 'react';
+import { Outlet } from 'react-router-dom';
 
 import Header from '../reports/Header';
 import SideBar from '../template/SideBar';
 import Footer from '../containers/Footer';
 
-const App = () => {
-    return (
-        <div className="wrapper">
-            <Header />
-            <SideBar />
-            <div className="content-wrapper">
-                <section className="content container-fluid">
-                    <Outlet /> {/* Renderizando o conteúdo das rotas filhas */}
-                </section>
-            </div>
-            <Footer />
-        </div>
-    );
-};
+export default function App() {
+  return (
+    <div className="wrapper">
+      {/* link de pular para conteúdo para acessibilidade */}
+      <a href="#app-content" className="sr-only sr-only-focusable">Pular para o conteúdo</a>
 
-export default App;
+      <Header />
+      <SideBar />
+
+      <div className="content-wrapper" role="main" id="app-content">
+        <section className="content container-fluid">
+          <Outlet />
+        </section>
+      </div>
+
+      <Footer />
+    </div>
+  );
+}

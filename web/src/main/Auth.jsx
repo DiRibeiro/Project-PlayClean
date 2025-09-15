@@ -1,44 +1,49 @@
 import '../utils/dependences';
 import '../utils/custom.css';
 
-import React, { useEffect } from 'react';
+import * as React from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Routes from './Routes';
+import MainRouter from './Routes';
 import Authenticate from '../reports/Authenticate';
 import { validatedToken } from '../actions/authActions';
 
-const AuthOrApp = () => {
-    const dispatch = useDispatch();
-    const auth = useSelector(state => state.auth);
-    const user = useSelector(state => state.user.personalInfo);
+function CenterLoader({ label = 'Carregando...' }) {
+  return (
+    <div style={{
+      position: 'absolute', left: '50%', top: '40%',
+      transform: 'translate(-50%, -50%)', display: 'flex',
+      alignItems: 'center', gap: 8
+    }}>
+      <i className="fas fa-circle-notch fa-spin" aria-hidden="true" />
+      <span>{label}</span>
+    </div>
+  );
+}
 
-    useEffect(() => {
-        if (auth.user) {
-            dispatch(validatedToken(auth.user));
-        }
-    }, [auth.user, dispatch]);
+export default function AuthGate() {
+  const dispatch = useDispatch();
+  const { user: token, validToken } = useSelector((s) => s.auth);
+  const user = useSelector((s) => s.user.personalInfo);
 
-    if (auth.user && auth.validToken) {
-        axios.defaults.headers.common['authorization'] = auth.user;
-        axios.defaults.headers.common['_id'] = user._id;
+  // valida o token sempre que mudar
+  React.useEffect(() => {
+    if (token) dispatch(validatedToken(token));
+  }, [token, dispatch]);
 
-        return <Routes />;
-    } else if (!auth.user) {
-        return <Authenticate />;
+  // configura axios apenas quando token/usuario disponíveis
+  React.useEffect(() => {
+    if (token && validToken) {
+      axios.defaults.headers.common.authorization = token;
+      if (user?._id) axios.defaults.headers.common._id = user._id;
     } else {
-        return (
-            <div style={{ 
-                position: 'absolute', 
-                left: '50%', 
-                top: '40%', 
-                transform: 'translate(-50%, -50%)' 
-            }}>
-                Loading
-            </div>
-        );
+      delete axios.defaults.headers.common.authorization;
+      delete axios.defaults.headers.common._id;
     }
-};
+  }, [token, validToken, user?._id]);
 
-export default AuthOrApp;
+  if (token && validToken) return <MainRouter />;
+  if (!token) return <Authenticate />;
+  return <CenterLoader />;
+}
