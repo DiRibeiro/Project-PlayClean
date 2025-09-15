@@ -1,0 +1,6 @@
+export const SIDEBAR_EVENTS = 'SIDEBAR_EVENTS';
+export const SIDEBAR_REPORT = 'SIDEBAR_REPORT';
+export const SIDEBAR_COLLECTIONS = 'SIDEBAR_COLLECTIONS'; // (corrige "Colletions")
+export const SIDEBAR_CATATRECO = 'SIDEBAR_CATATRECO';
+export const SIDEBAR_LEI = 'SIDEBAR_LEI';
+export const SIDEBAR_COLETAS = 'SIDEBAR_COLETAS';

@@ -1,53 +1,41 @@
-import { toastr } from 'react-redux-toastr'
-import axios from 'axios'
-import { reset } from 'redux-form'
+import { toastr } from 'react-redux-toastr';
+import axios from 'axios';
+import { reset } from 'redux-form';
+import BASE_URL from '../config/consts';
 
-import BASE_URL from '../config/consts'
-const LEIS_FETCHED = 'LEIS_FETCHED'
+export const LEIS_FETCHED = 'LEIS_FETCHED';
 
-export const getLeis = () => {	
-	return dispatch => {
-		axios.get(`${BASE_URL}/leis`)
-		.then(result => {
-			dispatch({ 
-				type: LEIS_FETCHED, 
-				payload: result.data
-			})
-		}).catch(error => toastr.error('Erro!', 'Internal server error'))
-	}
-}
+export const getLeis = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`${BASE_URL}/leis`);
+    dispatch({ type: LEIS_FETCHED, payload: data });
+  } catch {
+    toastr.error('Erro!', 'Internal server error');
+  }
+};
 
-export const postLeis = (values, router) => {
-
-    return dispatch => {
-     console.log("POSTING LAWS") //percei que isso nunca era chamado!!!
-    
-	axios
-		.post(`${BASE_URL}/leis`, values, {
-            headers: {
-				'content-type': 'multipart/form-data'
-			}
-        })
-		.then(response => {
-			if (response.status === 400) 
-				toastr.error('Erro!', response)
-
-			else if (response.status === 200) {
-                dispatch(reset('newLeisForm'))
-                //window.location = '/listLeis'
-                router.push('/listLeis')            //that is the correct way... but I changed nginx setup too
-				toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
-			}
-		})
-        .catch(error => toastr.error('Erro!', 'Internal server error'))
+export const postLeis = (values, navigate) => async (dispatch) => {
+  try {
+    // se "values" for FormData, o axios define multipart automaticamente
+    const { status } = await axios.post(`${BASE_URL}/leis`, values);
+    if (status === 400) {
+      toastr.error('Erro!', 'Dados inválidos.');
+      return;
     }
-}
+    dispatch(reset('newLeisForm'));
+    if (typeof navigate === 'function') navigate('/listLeis', { replace: true });
+    toastr.success('Sucesso!', 'Novo registro inserido com sucesso!');
+  } catch {
+    toastr.error('Erro!', 'Internal server error');
+  }
+};
 
-export const deleteLeis = id => {	
-	return dispatch => {
-		axios.delete(`${BASE_URL}/leis/${id}`)
-		.then(result => {
-			dispatch(getLeis());
-		}).catch(error => toastr.error('Erro!', 'Internal server error'))
-	}
-}
+export const deleteLeis = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`${BASE_URL}/leis/${id}`);
+    toastr.success('Sucesso!', 'Registro removido.');
+    dispatch(getLeis());
+  } catch {
+    toastr.error('Erro!', 'Internal server error');
+  }
+};

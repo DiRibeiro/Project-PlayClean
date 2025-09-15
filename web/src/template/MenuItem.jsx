@@ -1,12 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import * as React from 'react';
+import { NavLink } from 'react-router-dom';
 
-export default function MenuItem(props) {
-    return (
-        <li> 
-            <Link to={props.path}>
-                <i className={`fa fa-${props.icon}`}></i> <span>{props.label}</span>
-            </Link>
-        </li>
-    );
+export default function MenuItem({ path, icon, label }) {
+  return (
+    <li>
+      <NavLink to={`/${path}`} className={({ isActive }) => (isActive ? 'active' : undefined)}>
+        <i className={`fa fa-${icon}`} aria-hidden="true" />
+        {' '}
+        <span>{label}</span>
+      </NavLink>
+    </li>
+  );
 }

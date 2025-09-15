@@ -1,40 +1,28 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-// 
+import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import RowCataTreco from '../containers/RowCataTreco'
-import { getCataTreco } from '../actions/cataTrecoActions'
+import RowCataTreco from '../containers/RowCataTreco';
+import { getCataTreco } from '../actions/cataTrecoActions';
 
-const ListCataTreco = () => {
-	const dispatch = useDispatch()
-	const list = useSelector(state => state.cataTreco.list)
-
-	useEffect(() => {
-		dispatch(getCataTreco())
-	}, [])
-
-	const renderRows = () => list.map((cataTreco, index) => <RowCataTreco key={index} cataTreco={cataTreco} />)
-
-	return list.length > 0 ? (
-		renderRows()
-	) : (
-        <>
-        <h1>Nenhum registro</h1>
-		{/*
-        <Loader
-			type='Oval'
-			color='#00BFFF'
-			height={100}
-			width={100}
-			style={{
-				position: 'absolute',
-				left: '50%',
-				top: '40%'
-			}}
-        />
-        */}
-        </>
-	)
+function EmptyState({ title = 'Nenhum registro' }) {
+  return <h1 style={{ opacity: 0.7, fontSize: 22 }}>{title}</h1>;
 }
 
-export default ListCataTreco
+export default function ListCataTreco() {
+  const dispatch = useDispatch();
+  const list = useSelector((s) => s.cataTreco.list) || [];
+
+  React.useEffect(() => {
+    dispatch(getCataTreco());
+  }, [dispatch]);
+
+  if (!list.length) return <EmptyState />;
+
+  return (
+    <>
+      {list.map((item) => (
+        <RowCataTreco key={item._id ?? item.protocol} cataTreco={item} />
+      ))}
+    </>
+  );
+}

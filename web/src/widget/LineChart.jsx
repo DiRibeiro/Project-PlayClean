@@ -1,53 +1,47 @@
-import React from 'react'
-import { Line } from 'react-chartjs-2'
+import * as React from 'react';
+import {
+  Chart as ChartJS,
+  CategoryScale, LinearScale, PointElement, LineElement,
+  Tooltip, Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
-const LineChart = props => {
-    return (
-        <div style={{ position: 'relative' }} >
-            <Line
-                data = {{
-                    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                    datasets: [
-                        {
-                            label: 'Total de denúncias por mês',
-                            data: props.data,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235)',
-                                'rgba(255, 206, 86)',
-                                'rgba(75, 192, 192)',
-                                'rgba(153, 102, 255)',
-                                'rgba(255, 159, 64)',
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235)',
-                                'rgba(255, 206, 86)',
-                                'rgba(75, 192, 192)',
-                                'rgba(153, 102, 255)',
-                                'rgba(255, 159, 64)',
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
-                                'rgba(54, 162, 235)'
-                            ],
-                            borderWidth: 3
-                        }
-                    ]
-                }}
-                options = {{}}
-            />
-        </div>
-    )
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
+
+const DEFAULT_LABELS = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+
+export default function LineChart({
+  labels = DEFAULT_LABELS,
+  data = [],
+  datasetLabel = 'Total de denúncias por mês',
+  height = 300,
+  options,
+  style,
+}) {
+  const chartData = React.useMemo(() => ({
+    labels,
+    datasets: [
+      {
+        label: datasetLabel,
+        data,
+        fill: false,
+        tension: 0.25,
+      },
+    ],
+  }), [labels, data, datasetLabel]);
+
+  const chartOptions = React.useMemo(() => ({
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: true }, tooltip: { mode: 'index', intersect: false } },
+    interaction: { mode: 'nearest', axis: 'x', intersect: false },
+    scales: { y: { beginAtZero: true } },
+    ...options,
+  }), [options]);
+
+  return (
+    <div style={{ position: 'relative', height, ...style }}>
+      <Line data={chartData} options={chartOptions} />
+    </div>
+  );
 }
-
-export default LineChart

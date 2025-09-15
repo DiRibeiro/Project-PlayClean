@@ -1,108 +1,60 @@
-import axios from 'axios'
-import { toastr } from 'react-redux-toastr'
+import axios from 'axios';
+import { toastr } from 'react-redux-toastr';
+import BASE_URL from '../config/consts';
 
-import BASE_URL from '../config/consts'
-import FormData from 'form-data'
+export const changeTitle = (e) => ({ type: 'TITLE_CHANGED', payload: e.target.value });
+export const changeFile = (e) => ({ type: 'FILE_CHANGED', payload: e.target.files?.[0] || null });
+export const changeDescription = (e) => ({ type: 'DESCRIPTION_CHANGED', payload: e.target.value });
+export const changeDate = (e) => ({ type: 'DATE_CHANGED', payload: e.target.value });
 
-export const changeTitle = event => ({
-    type: 'TITLE_CHANGED',
-    payload: event.target.value
-})
+export const search = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`${BASE_URL}/calendars`);
+    dispatch({ type: 'TODO_SEARCHED', payload: res });
+  } catch {
+    toastr.error('Erro!', 'Internal server error');
+  }
+};
 
-export const changeFile = event => ({
-    type: 'FILE_CHANGED',
-    payload: event.target.files[0]
-})
-
-export const changeDescription = event => ({
-    type: 'DESCRIPTION_CHANGED',
-    payload: event.target.value
-})
-
-export const changeDate = event => ({
-    type: 'DATE_CHANGED',
-    payload: event.target.value
-})
-
-export const search = () => {
-    return dispatch => {
-        axios
-            .get(`${BASE_URL}/calendars`)
-            .then(res => {
-                console.log(res)
-                dispatch(
-                    {type: 'TODO_SEARCHED', payload: res}
-                )
-            })
-    }
-}
-
-export const add = (title, description, dateOcurr, file) => dispatch => {
-    // console.log(file)
+export const add = (title, description, dateOcurr, file) => async (dispatch) => {
+  try {
     const fd = new FormData();
-    
-    fd.append('title', title);
-    fd.append('image', file);
-    fd.append('description', description);
+    fd.append('title', title || '');
+    if (file) fd.append('image', file);
+    fd.append('description', description || '');
+    const shiftedISO = new Date(new Date(dateOcurr).getTime() + 12 * 3600 * 1000).toISOString();
+    fd.append('dateOcurr', shiftedISO);
 
-    let date = new Date(new Date(dateOcurr).getTime() + 12 * 3600 * 1000);
-
-    fd.append('dateOcurr', date);
-    
-    axios
-        .post(`${BASE_URL}/calendars`, fd, {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        })
-        .then(response => {
-            if (response.status === 400) {
-                toastr.error('Erro!', response)
-            }   
-            else if (response.status === 200) {
-                dispatch(
-                    search()
-                );
-                toastr.success('Sucesso!', 'Novo registro inserido com sucesso!')
-            }
-        }).catch(error => {
-            // toastr.error('Erro!', 'Favor informar todos os campos.')
-            toastr.confirm('Favor preencher todos os campos.');
-        })
-}
-
-export const remove = _id => {	
-    return async dispatch => {
-        await axios.delete(`${BASE_URL}/calendars/${_id}`)
-		.then(result => {
-            toastr.success('Sucesso!', 'Registro removido com sucesso!')
-		    dispatch(search());
-        }).catch(error => {
-            toastr.error('Erro!', 'Internal server error')})
-	}
-}
-
-export const editTodo = (_id, title, description, dateOcurr, image) => { 
-	return async dispatch => {
-        await axios
-            .post(`${BASE_URL}/calendarsUpdate`,
-                {_id, title, description, dateOcurr, image})
-            .then(result => {
-                toastr.success('Sucesso!', 'Registro editado com sucesso!')
-                dispatch(search());
-            }).catch(error => toastr.error('Erro!', 'Internal server error'))
-	}
-}
-
-export const clear = ( ) => {
-    return async dispatch => {
-        await axios
-            .get(`${BASE_URL}/calendars`)
-            .then(response => {
-                dispatch({
-                    type: 'TODO_CLEAR',
-                    payload: ''
-                })
-            })
+    const response = await axios.post(`${BASE_URL}/calendars`, fd);
+    if (response.status === 200) {
+      await dispatch(search());
+      toastr.success('Sucesso!', 'Novo registro inserido com sucesso!');
+    } else {
+      toastr.error('Erro!', 'Falha ao inserir registro.');
     }
-}
+  } catch {
+    toastr.error('Erro!', 'Favor preencher todos os campos.');
+  }
+};
+
+export const remove = (_id) => async (dispatch) => {
+  try {
+    await axios.delete(`${BASE_URL}/calendars/${_id}`);
+    toastr.success('Sucesso!', 'Registro removido com sucesso!');
+    dispatch(search());
+  } catch {
+    toastr.error('Erro!', 'Internal server error');
+  }
+};
+
+export const editTodo = (_id, title, description, dateOcurr, image) => async (dispatch) => {
+  try {
+    await axios.post(`${BASE_URL}/calendarsUpdate`, { _id, title, description, dateOcurr, image });
+    toastr.success('Sucesso!', 'Registro editado com sucesso!');
+    dispatch(search());
+  } catch {
+    toastr.error('Erro!', 'Internal server error');
+  }
+};
+
+export const clear = () => (dispatch) => dispatch({ type: 'TODO_CLEAR', payload: '' });

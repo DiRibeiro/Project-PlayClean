@@ -1,47 +1,35 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import FormReport from './form/FormReport';
 import { postReport } from '../actions/reportActions';
 
-const Report = props => {
-    const dispatch = useDispatch();
-    const [files, setFiles] = useState([]);
+export default function Report() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [files, setFiles] = React.useState([]);
 
-    const fileSelectedHandler = event => {
-        const selectedFiles = Array.from(event.target.files);
-        setFiles(prevFiles => [...prevFiles, ...selectedFiles]);
-    };
+  const onFiles = React.useCallback((e) => {
+    const selected = Array.from(e?.target?.files || []);
+    setFiles((prev) => [...prev, ...selected]);
+  }, []);
 
-    const handleForm = values => {
-        const fd = new FormData();
+  const onSubmit = React.useCallback((values) => {
+    const fd = new FormData();
+    files.forEach((img) => fd.append('images', img));
+    Object.keys(values || {}).forEach((k) => fd.append(k, values[k]));
+    setFiles([]);
+    dispatch(postReport(fd, navigate));
+  }, [dispatch, navigate, files]);
 
-        files.forEach(img => fd.append('images', img));
-
-        Object.keys(values).forEach(key => {
-            fd.append(key, values[key]);
-        });
-
-        // Clear files after submission
-        setFiles([]);
-
-        // Dispatch action to post report
-        dispatch(postReport(fd, props.router));
-    };
-
-    return (
-        <div className="box box-success">
-            <div className="box-header with-border">
-                <h3 className="box-title">Cadastrar denúncia</h3>
-            </div>
-            <div className="box-body">
-                <FormReport 
-                    onSubmit={handleForm}
-                    handleImage={fileSelectedHandler}
-                    images={files} 
-                />
-            </div>
-        </div>
-    );
-};
-
-export default Report;
+  return (
+    <div className="box box-success">
+      <div className="box-header with-border">
+        <h3 className="box-title">Cadastrar denúncia</h3>
+      </div>
+      <div className="box-body">
+        <FormReport onSubmit={onSubmit} handleImage={onFiles} images={files} />
+      </div>
+    </div>
+  );
+}

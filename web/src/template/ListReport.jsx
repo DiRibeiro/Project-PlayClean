@@ -1,39 +1,28 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import RowReport from '../containers/RowReport'
-import { getReports } from '../actions/reportActions'
+import RowReport from '../containers/RowReport';
+import { getReports } from '../actions/reportActions';
 
-const ListReport = () => {
-	const dispatch = useDispatch()
-	const list = useSelector(state => state.reports.list)
-
-	useEffect(() => {
-		dispatch(getReports())
-	}, [])
-
-	const renderRows = () => list.map((report, index) => <RowReport key={index} report={report} />)
-
-	return list.length > 0 ? (
-		renderRows()
-	) : (
-        <>
-        <h1>Nenhum registro</h1>
-		{/*
-        <Loader
-			type='Oval'
-			color='#00BFFF'
-			height={100}
-			width={100}
-			style={{
-				position: 'absolute',
-				left: '50%',
-				top: '40%'
-			}}
-        />
-        */}
-        </>
-	)
+function EmptyState() {
+  return <h1 style={{ opacity: 0.7, fontSize: 22 }}>Nenhum registro</h1>;
 }
 
-export default ListReport
+export default function ListReport() {
+  const dispatch = useDispatch();
+  const list = useSelector((s) => s.reports.list) || [];
+
+  React.useEffect(() => {
+    dispatch(getReports());
+  }, [dispatch]);
+
+  if (!list.length) return <EmptyState />;
+
+  return (
+    <>
+      {list.map((rep) => (
+        <RowReport key={rep._id ?? rep.title} report={rep} />
+      ))}
+    </>
+  );
+}

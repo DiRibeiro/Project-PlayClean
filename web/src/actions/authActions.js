@@ -1,92 +1,57 @@
-import { toastr } from 'react-redux-toastr'
-import { reset } from 'redux-form'
-import axios from 'axios'
+import { toastr } from 'react-redux-toastr';
+import { reset } from 'redux-form';
+import axios from 'axios';
+import BASE_URL from '../config/consts';
 
-import BASE_URL from '../config/consts'
+export const TOKEN_VALIDATED = 'TOKEN_VALIDATED';
+export const TOKEN_FETCHED = 'TOKEN_FETCHED';
+export const LOGIN = 'LOGIN';
 
-const TOKEN_VALIDATED = 'TOKEN_VALIDATED'
-const TOKEN_FETCHED = 'TOKEN_FETCHED'
-const LOGIN = 'LOGIN'
+export const login = (values) => async (dispatch) => {
+  dispatch({ type: LOGIN, payload: true });
+  try {
+    const { data, status } = await axios.post(`${BASE_URL}/login`, values);
+    if (status === 202) {
+      toastr.error('Erro!', data);
+      return;
+    }
+    if (status === 200 && data?.token && data?.result?._id) {
+      axios.defaults.headers.common.authorization = data.token;
+      axios.defaults.headers.common._id = data.result._id;
+      dispatch(reset('formLogin'));
+      dispatch({ type: TOKEN_FETCHED, payload: data.token });
+    } else {
+      toastr.error('Erro!', 'Resposta inesperada do servidor.');
+    }
+  } catch {
+    toastr.error('Erro!', 'Internal server error');
+  } finally {
+    dispatch({ type: LOGIN, payload: false });
+  }
+};
 
-export const login = values => {
-	return dispatch => {
-		dispatch({ type: LOGIN, payload: true })
-		axios
-			.post(`${BASE_URL}/login`, values)
-			.then(response => {
-				if (response.status === 202) {
-					toastr.error('Erro!', response.data)
-					dispatch({ type: LOGIN, payload: false })
-				} else if (response.status === 200) {
-                    
-                    console.log("Response in login action", response.data)
-                    
-                    axios.defaults.headers.common['authorization'] =
-						response.data.token
-					axios.defaults.headers.common['_id'] =
-						response.data.result._id
+export const signup = (values) => async (dispatch) => {
+  try {
+    const { data, status } = await axios.post(`${BASE_URL}/signup`, values);
+    if (status === 202) {
+      toastr.error('Erro!', data);
+    } else if (status === 200) {
+      toastr.success('Sucesso!', data);
+      dispatch(reset('formRegisterAccount'));
+    }
+  } catch {
+    toastr.error('Erro!', 'Internal server error');
+  }
+};
 
-                   
-					dispatch(reset('formLogin'))
+export const logout = () => ({ type: TOKEN_VALIDATED, payload: false });
 
-					dispatch({
-						type: TOKEN_FETCHED,
-						payload: response.data.token
-					})
-
-					dispatch({ type: LOGIN, payload: false })
-				}
-			})
-			.catch(error => {
-				dispatch({ type: LOGIN, payload: false })
-				toastr.error('Erro!', 'Internal server error')
-			})
-	}
-}
-
-export const signup = values => {
-	return dispatch => {
-		axios
-			.post(`${BASE_URL}/signup`, values)
-			.then(response => {
-				if (response.status === 202)
-					toastr.error('Erro!', response.data)
-				else if (response.status === 200) {
-					toastr.success('Sucesso!', response.data)
-					dispatch(reset('formRegisterAccount'))
-				}
-			})
-			.catch(error => toastr.error('Erro!', 'Internal server error'))
-	}
-}
-
-export const logout = () => {
-	return {
-		type: TOKEN_VALIDATED,
-		payload: false
-	}
-}
-
-export const validatedToken = token => {
-	return dispatch => {
-        token ? 
-            axios
-                .post(`${BASE_URL}/validateToken`, { token })
-                .then(response =>{
-                    dispatch({
-                        type: TOKEN_VALIDATED,
-                        payload: response.data.valid
-                    })}
-                )
-                .catch(error =>{
-                    dispatch({
-                        type: TOKEN_VALIDATED,
-                        payload: false
-                    })}
-                )
-			: dispatch({
-                type: TOKEN_VALIDATED,
-                payload: false
-            })
-	}
-}
+export const validatedToken = (token) => async (dispatch) => {
+  if (!token) return dispatch({ type: TOKEN_VALIDATED, payload: false });
+  try {
+    const { data } = await axios.post(`${BASE_URL}/validateToken`, { token });
+    dispatch({ type: TOKEN_VALIDATED, payload: !!data?.valid });
+  } catch {
+    dispatch({ type: TOKEN_VALIDATED, payload: false });
+  }
+};

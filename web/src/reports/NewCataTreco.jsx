@@ -1,20 +1,17 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import FormCataTreco from './form/FormCataTreco'
-import { postCataTreco } from '../actions/cataTrecoActions'
+import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import FormCataTreco from './form/FormCataTreco';
+import { postCataTreco } from '../actions/cataTrecoActions';
 
-const CataTreco = (props) => {
-    const dispatch = useDispatch()
+export default function CataTreco() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const handleForm = (values) => {
-        dispatch(postCataTreco(values, props.router))
-    }
+  const onSubmit = React.useCallback(
+    (values) => dispatch(postCataTreco(values, navigate)),
+    [dispatch, navigate]
+  );
 
-    return (
-        <FormCataTreco
-            onSubmit={ (values) => handleForm(values)} 
-            />
-    )
+  return <FormCataTreco onSubmit={onSubmit} />;
 }
-
-export default CataTreco

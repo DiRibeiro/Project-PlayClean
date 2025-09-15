@@ -1,24 +1,14 @@
-import { toastr } from 'react-redux-toastr'
-import BASE_URL from '../config/consts'
-import axios from 'axios'
+import { toastr } from 'react-redux-toastr';
+import BASE_URL from '../config/consts';
+import axios from 'axios';
 
-const DASHBOARD_FETCHED = "DASHBOARD_FETCHED"
-/* Connection with server here. Now fake data is returned */
+export const DASHBOARD_FETCHED = 'DASHBOARD_FETCHED';
 
-export const getDashboardData = () => {
-    return dispatch => {
-        axios
-            .get(`${BASE_URL}/dashboardReports`)
-            .then(response => {
-                dispatch({
-                    type: DASHBOARD_FETCHED,
-                    payload: response.data
-                })
-        
-            }).catch(error => {
-                console.log(error)
-                toastr.error('Erro!', 'Internal server error')
-            })
-    }
-
-}
+export const getDashboardData = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`${BASE_URL}/dashboardReports`);
+    dispatch({ type: DASHBOARD_FETCHED, payload: data });
+  } catch {
+    toastr.error('Erro!', 'Internal server error');
+  }
+};

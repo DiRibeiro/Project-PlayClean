@@ -1,40 +1,28 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import RowLeis from '../containers/RowLeis';
+import { getLeis } from '../actions/leisActions';
 
-import RowLeis from '../containers/RowLeis'
-import { getLeis } from '../actions/leisActions'
-
-const ListLeis = () => {
-	const dispatch = useDispatch()
-	const list = useSelector(state => state.leis.list)
-
-	useEffect(() => {
-		dispatch(getLeis())
-	}, [])
-
-	const renderRows = () => list.map((leis, index) => <RowLeis key={index} leis={leis} />)
-
-	return list.length > 0 ? (
-		renderRows()
-	) : (
-        <>
-        <h1>Nenhum registro</h1>
-		{/*
-        <Loader
-			type='Oval'
-			color='#00BFFF'
-			height={100}
-			width={100}
-			style={{
-				position: 'absolute',
-				left: '50%',
-				top: '40%'
-			}}
-        />
-        */}
-        </>
-	)
+function EmptyState() {
+  return <h1 style={{ opacity: 0.7, fontSize: 22 }}>Nenhum registro</h1>;
 }
 
-export default ListLeis
+export default function ListLeis() {
+  const dispatch = useDispatch();
+  const list = useSelector((s) => s.leis.list) || [];
+
+  React.useEffect(() => {
+    dispatch(getLeis());
+  }, [dispatch]);
+
+  if (!list.length) return <EmptyState />;
+
+  return (
+    <>
+      {list.map((lei) => (
+        <RowLeis key={lei._id ?? lei.title} leis={lei} />
+      ))}
+    </>
+  );
+}
