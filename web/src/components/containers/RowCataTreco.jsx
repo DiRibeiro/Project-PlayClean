@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Card, CardContent, CardActions, Typography, Button, Stack } from '@mui/material';
-import StatusChip from '../components/common/StatusChip';
-import { fullDate } from '../helper/date';
+import StatusChip from '../common/StatusChip';
+import { fullDate } from '../../helper/date';
 
 function statusView(status) {
   if (status === 1) return <StatusChip label="Agendado" tone="success" />;

@@ -1,13 +1,19 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { createTextMask } from 'redux-form-input-masks';
 
 const cpfMask = createTextMask({ pattern: '999.999.999-99' });
-
 const required = (v) => (v ? undefined : 'Obrigatório');
 
+// cria o selector do redux-form para este form
+const selector = formValueSelector('newCataTrecoForm');
+
 function Form({ handleSubmit }) {
+  const dispatch = useDispatch(); // se precisar disparar actions
+  // lê o campo "typeReport" direto do store
+  const typeReportValue = useSelector((state) => selector(state, 'typeReport'));
+
   return (
     <form onSubmit={handleSubmit} className="form-group" noValidate>
       <div className="box box-success">
@@ -99,6 +105,9 @@ function Form({ handleSubmit }) {
             </div>
           </div>
 
+          {/* Exemplo: usando o valor lido do store */}
+          {/* <pre>typeReport: {String(typeReportValue)}</pre> */}
+
           <div className="box-footer">
             <button type="submit" className="btn btn-success btnLogin">Agendar</button>
           </div>
@@ -108,12 +117,4 @@ function Form({ handleSubmit }) {
   );
 }
 
-let FormCataTreco = reduxForm({ form: 'newCataTrecoForm' })(Form);
-
-const selector = formValueSelector('newCataTrecoForm');
-FormCataTreco = connect((state) => {
-  const typeReportValue = selector(state, 'typeReport');
-  return { typeReportValue };
-})(FormCataTreco);
-
-export default FormCataTreco;
+export default reduxForm({ form: 'newCataTrecoForm' })(Form);

@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import Header from '../reports/Header';
 import SideBar from '../template/SideBar';
-import Footer from '../containers/Footer';
+import Footer from '../components/layout/Footer';
 
 export default function App() {
   return (

@@ -1,12 +1,18 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { createTextMask } from 'redux-form-input-masks';
 
 const phoneMask = createTextMask({ pattern: '(99) 99999-9999' });
 const required = (v) => (v ? undefined : 'Obrigatório');
 
+// selector do redux-form para este form
+const selector = formValueSelector('newReportForm');
+
 function Form({ handleSubmit, handleImage, images = [] }) {
+  // lê o campo "typeReport" direto do store (se precisar usar em lógica/render)
+  const typeReportValue = useSelector((state) => selector(state, 'typeReport'));
+
   // preview controlado e sem vazamento de URLs
   const previews = React.useMemo(() => images.map((f) => URL.createObjectURL(f)), [images]);
   React.useEffect(() => () => previews.forEach((u) => URL.revokeObjectURL(u)), [previews]);
@@ -144,12 +150,4 @@ function Form({ handleSubmit, handleImage, images = [] }) {
   );
 }
 
-let FormReport = reduxForm({ form: 'newReportForm' })(Form);
-
-const selector = formValueSelector('newReportForm');
-FormReport = connect((state) => {
-  const typeReportValue = selector(state, 'typeReport');
-  return { typeReportValue };
-})(FormReport);
-
-export default FormReport;
+export default reduxForm({ form: 'newReportForm' })(Form);

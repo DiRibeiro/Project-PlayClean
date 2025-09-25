@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { Card, CardContent, CardActions, Typography, Button } from '@mui/material';
-import ConfirmDialog from '../components/common/ConfirmDialog';
-import StatusChip from '../components/common/StatusChip';
-import BASE_URL from '../config/consts';
-import { deleteLeis } from '../actions/leisActions';
+import ConfirmDialog from '../common/ConfirmDialog';
+import StatusChip from '../common/StatusChip';
+import BASE_URL from '../../config/consts';
+import { deleteLeis } from '../../actions/leisActions';
 
 function statusChip(status) {
   if (status === 0) return <StatusChip label="Aberta" tone="success" />;

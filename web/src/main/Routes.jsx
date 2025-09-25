@@ -9,15 +9,15 @@ const NewReport        = React.lazy(() => import('../reports/NewReport'));
 const NewLeis          = React.lazy(() => import('../reports/NewLeis'));
 const NewCataTreco     = React.lazy(() => import('../reports/NewCataTreco'));
 const ListReports      = React.lazy(() => import('../template/ListReport'));
-const ReportDetail     = React.lazy(() => import('../containers/ShowReportDetails'));
-const Coleta           = React.lazy(() => import('../containers/coletas/Coleta'));
-const ListColetas      = React.lazy(() => import('../containers/coletas/ListColetas'));
+const ReportDetail     = React.lazy(() => import('../components/containers/ShowReportDetails'));
+const Coleta           = React.lazy(() => import('../pages/coletas/Coleta'));
+const ListColetas      = React.lazy(() => import('../pages/coletas/ListColetas'));
 const ListCataTreco    = React.lazy(() => import('../template/ListCataTreco'));
-const CataTrecoDetail  = React.lazy(() => import('../containers/ShowCataTrecoDetails'));
-const Photos           = React.lazy(() => import('../containers/photos/NewPhotos'));
-const Calendar         = React.lazy(() => import('../containers/todo/todo'));
+const CataTrecoDetail  = React.lazy(() => import('../components/containers/ShowCataTrecoDetails'));
+const Photos           = React.lazy(() => import('../pages/photos/NewPhotos'));
+const Calendar         = React.lazy(() => import('../pages/todo/todo'));
 const ListLeis         = React.lazy(() => import('../template/ListLeis'));
-const LeisDetail       = React.lazy(() => import('../containers/ShowLeisDetails'));
+const LeisDetail       = React.lazy(() => import('../components/containers/ShowLeisDetails'));
 
 function Fallback() {
   return (

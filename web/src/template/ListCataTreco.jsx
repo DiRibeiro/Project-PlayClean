@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import RowCataTreco from '../containers/RowCataTreco';
+import RowCataTreco from '../components/containers/RowCataTreco';
 import { getCataTreco } from '../actions/cataTrecoActions';
 
 function EmptyState({ title = 'Nenhum registro' }) {

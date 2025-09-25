@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import LineChart from '../widget/LineChart';
-import Bookmark from '../widget/Bookmark';
-import Map from '../widget/Map';
+import LineChart from '../template/charts/LineChart';
+import Bookmark from '../template/Bookmark';
+import Map from '../template/Map';
 
 import { getDashboardData } from '../actions/dashboardActions';
 import { getDashboardCtData } from '../actions/dashboardCtActions';

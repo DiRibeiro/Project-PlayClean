@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import RowReport from '../containers/RowReport';
+import RowReport from '../components/containers/RowReport';
 import { getReports } from '../actions/reportActions';
 
 function EmptyState() {

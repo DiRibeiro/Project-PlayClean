@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Box, Button, Card, CardContent, CardHeader, Grid, TextField, Typography, Stack } from '@mui/material';
-import { setStatus, getCataTreco, removeCataTreco } from '../actions/cataTrecoActions';
-import { fullDate, shortDate } from '../helper/date';
+import { setStatus, getCataTreco, removeCataTreco } from '../../actions/cataTrecoActions';
+import { fullDate, shortDate } from '../../helper/date';
 
 export default function ShowCataTrecoDetails() {
   const dispatch = useDispatch();

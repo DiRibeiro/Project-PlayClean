@@ -4,8 +4,7 @@ import { remove, search, editTodo } from '../../actions/calendarActions';
 import { fullDate, shortDateHTML } from '../../helper/date';
 import BASE_URL from '../../config/consts';
 import { Card, CardContent, CardHeader, IconButton, Table, TableBody, TableCell, TableHead, TableRow, Tooltip, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import {Delete as DeleteIcon, Edit as EditIcon} from '@mui/icons-material';
 
 export default function TodoList() {
   const dispatch = useDispatch();
