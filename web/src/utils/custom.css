@@ -525,7 +525,6 @@ ul.ks-cboxtags li input[type="checkbox"] {
 .btnSidebar {
     width: 100%;
     text-align: left;
-    /* background: none !important; */
     border: none;
     cursor: pointer;
     outline: none;
@@ -533,11 +532,60 @@ ul.ks-cboxtags li input[type="checkbox"] {
     padding: 10px 19px;
     display: block;
     text-decoration: none;
-    background-color: #222d32
+    background-color: #222d32;
 }
 
 .btnSidebar:hover {
-    background-color: #1e282c
+    background-color: #1e282c;
+}
+
+.main-header .sidebar-toggle {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+.main-header .sidebar-toggle::before {
+    content: none;
+}
+
+.main-header .sidebar-toggle:hover,
+.main-header .sidebar-toggle:focus {
+    background-color: #008d4c;
+    color: #fff;
+    outline: none;
+}
+
+.main-header .sidebar-toggle .fa {
+    width: 20px;
+    font-size: 16px;
+    line-height: 50px;
+}
+
+@media (min-width: 768px) {
+    .sidebar-collapse .sidebar-menu > li > .btnSidebar {
+        width: 50px;
+        height: 44px;
+        padding: 12px 5px;
+        text-align: center;
+    }
+
+    .sidebar-collapse .sidebar-menu > li > .btnSidebar > span,
+    .sidebar-collapse .sidebar-menu > li > .btnSidebar > .pull-right-container,
+    .sidebar-collapse .sidebar-menu > li > .treeview-menu {
+        display: none !important;
+    }
+
+    .sidebar-collapse .sidebar-menu > li > .btnSidebar > .fa {
+        margin-right: 0 !important;
+        font-size: 16px;
+    }
 }
 
 .btn-logout {

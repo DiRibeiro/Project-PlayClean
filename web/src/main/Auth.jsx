@@ -9,6 +9,8 @@ import MainRouter from './Routes';
 import Authenticate from '../reports/Authenticate';
 import { validatedToken } from '../actions/authActions';
 
+const DISABLE_AUTH_TEMPORARILY = false;
+
 function CenterLoader({ label = 'Carregando...' }) {
   return (
     <div style={{
@@ -22,7 +24,7 @@ function CenterLoader({ label = 'Carregando...' }) {
   );
 }
 
-export default function AuthGate() {
+function AuthenticatedAppGate() {
   const dispatch = useDispatch();
   const { user: token, validToken } = useSelector((s) => s.auth);
   const user = useSelector((s) => s.user.personalInfo);
@@ -46,4 +48,10 @@ export default function AuthGate() {
   if (token && validToken) return <MainRouter />;
   if (!token) return <Authenticate />;
   return <CenterLoader />;
+}
+
+export default function AuthGate() {
+  if (DISABLE_AUTH_TEMPORARILY) return <MainRouter />;
+
+  return <AuthenticatedAppGate />;
 }

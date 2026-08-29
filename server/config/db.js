@@ -24,13 +24,13 @@ user.find({ 'userName': 'prefeitura' })
         console.log("Admin: ", adminExists)
         if (result.length < 1) {
             user.insertMany({
-                firstName: "Prefeitura",
+                firstName: "Projeto",
                 lastName: "Osorio",
                 cpf: "00000000000",
                 phone: "5136631947",
                 userName: "prefeitura",
                 type: "admin",
-                password: "pref_JL"
+                password: "admin"
             }, err => {
                 console.log(err)
             })

@@ -1,13 +1,13 @@
 db.users.insertMany([
 	{
-		"firstName": "Prefeitura",
+		"firstName": "Projeto",
 		"lastName": "Osorio",
 		"cpf": "00000000000",
 		"phone": "5136631947",
 		"userName": "prefeitura",
 		"reports": [],
 		"type": "admin",
-		"password": "pref_JL"
+		"password": "admin"
 	}
 ])
 

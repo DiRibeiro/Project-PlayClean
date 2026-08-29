@@ -9,6 +9,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import BASE_URL from '../../config/consts';
 import FormPhotos from './FormPhotos';
 
+const getImageSrc = (image) => {
+  if (!image) return '';
+  if (/^https?:\/\//i.test(image)) return image;
+  return `${BASE_URL}/${image}`;
+};
+
 export default function NewPhotos() {
   const dispatch = useDispatch();
   const galleries = useSelector((s) => s.photos.photo);
@@ -75,7 +81,7 @@ export default function NewPhotos() {
           <ImageList cols={5} gap={8}>
             {galleries.map((g, gi) => (
               <ImageListItem key={g._id ?? gi} sx={{ cursor: 'pointer' }} onClick={() => openViewer(gi, 0)}>
-                <img src={`${BASE_URL}/${g.images[0]}`} alt={g.title} loading="lazy" />
+                <img src={getImageSrc(g.images[0])} alt={g.title} loading="lazy" />
                 <ImageListItemBar
                   title={g.title}
                   actionIcon={
@@ -102,7 +108,7 @@ export default function NewPhotos() {
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
                 <IconButton onClick={prev}><ArrowBackIosNewIcon /></IconButton>
                 <img
-                  src={`${BASE_URL}/${galleries[viewer.galleryIdx].images[viewer.imageIdx]}`}
+                  src={getImageSrc(galleries[viewer.galleryIdx].images[viewer.imageIdx])}
                   alt="item"
                   style={{ maxWidth: '100%', maxHeight: 520 }}
                 />

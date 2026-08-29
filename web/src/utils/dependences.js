@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-import 'ionicons/dist/css/ionicons.min.css';
+import 'ionicons/css/ionicons.min.css';
 import 'admin-lte/dist/css/AdminLTE.min.css';
 import 'admin-lte/dist/css/skins/_all-skins.min.css';
 import 'morris.js/morris.css';

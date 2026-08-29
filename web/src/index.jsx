@@ -8,7 +8,10 @@ import ReduxToastr from 'react-redux-toastr';
 
 import reducers from './reducers/reducers';
 import Auth from './main/Auth';
+import { setupApiFallbackMocks } from './mocks/apiFallback';
 // import Routes from './main/Routes';
+
+setupApiFallbackMocks();
 
 // Verifica se o DevTools está disponível e aplica-o, caso contrário, usa `compose` normalmente.
 const composeEnhancers =
